@@ -79,13 +79,13 @@ Reference types store a **reference (address)** to the object in **heap memory**
 ┌────────────────────────────────────────────────────┐
 │          Primitive vs Reference in Memory          │
 │                                                    │
-│   Stack                        Heap               │
+│   Stack                        Heap                │
 │   ┌──────────────┐             ┌────────────────┐  │
-│   │ int x = 10  │             │                │  │
-│   │  x  →  10   │  (direct)   │                │  │
+│   │ int x = 10   │             │                │  │
+│   │  x  →  10    │  (direct)   │                │  │
 │   ├──────────────┤             │                │  │
-│   │ String s    │             │  "Aasii"       │  │
-│   │  s  → ──────┼────────────►│  (object)      │  │
+│   │ String s     │             │  "Aasii"       │  │
+│   │  s  →  ──────────────────► │  (object)      │  │
 │   └──────────────┘             └────────────────┘  │
 └────────────────────────────────────────────────────┘
 ```

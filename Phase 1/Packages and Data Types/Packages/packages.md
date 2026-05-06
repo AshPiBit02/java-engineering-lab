@@ -13,14 +13,14 @@ A **package** is a **namespace** that organizes a group of related classes, inte
 ┌──────────────────────────────────────────────────────────┐
 │                  Package = Folder Analogy                │
 │                                                          │
-│   📁 com/                                                │
+│   📁 com/                                                |
 │     📁 university/                                       │
 │       📁 student/                                        │
-│         📄 Student.java       ← class                   │
-│         📄 Enrollment.java    ← class                   │
+│         📄 Student.java       ← class                    │
+│         📄 Enrollment.java    ← class                    │
 │       📁 teacher/                                        │
-│         📄 Teacher.java       ← class                   │
-│         📄 Subject.java       ← class                   │
+│         📄 Teacher.java       ← class                    │
+│         📄 Subject.java       ← class                    │
 └──────────────────────────────────────────────────────────┘
 ```
 
@@ -116,9 +116,9 @@ Java follows a **reverse domain name** convention to ensure globally unique pack
 ┌──────────────────────────────────────────────────────────┐
 │              Package Naming Convention                   │
 │                                                          │
-│   com  .  university  .  department  .  classname       │
+│   com  .  university  .  department  .  classname        │
 │    │          │              │              │            │
-│  domain    org name      sub-module      feature        │
+│  domain    org name      sub-module      feature         │
 │                                                          │
 │   Examples:                                              │
 │   com.google.gson                                        │
@@ -170,9 +170,9 @@ java.util.ArrayList<String> list = new java.util.ArrayList<>();
 ┌──────────────────────────────────────────────────────────┐
 │                    Import Resolution                     │
 │                                                          │
-│   import java.util.ArrayList;                           │
-│          │      │       │                               │
-│       domain  module  class                             │
+│   import java.util.ArrayList;                            │
+│          │      │       │                                │
+│       domain  module  class                              │
 │                                                          │
 │   JVM looks in:                                          │
 │   java/ → util/ → ArrayList.class ✅                    │
@@ -267,13 +267,13 @@ Access modifiers behave differently across packages:
 ┌──────────────────────────────────────────────────────────────┐
 │                  Access Across Packages                      │
 │                                                              │
-│   Package A                      Package B                  │
+│   Package A                      Package B                   │
 │   ┌─────────────────┐            ┌─────────────────┐         │
 │   │ class Foo       │            │ class Bar       │         │
 │   │                 │            │                 │         │
-│   │ public    m1() ─┼────────────┼──► accessible  │         │
-│   │ protected m2() ─┼── subclass ┼──► accessible  │         │
-│   │ default   m3() ─┼────────────┼──► ❌ blocked  │         │
+│   │ public    m1() ─┼────────────┼──► accessible   │         │
+│   │ protected m2() ─┼── subclass ┼──► accessible   │         │
+│   │ default   m3() ─┼────────────┼──► ❌ blocked   │         │
 │   │ private   m4()  │            │    ❌ blocked   │         │
 │   └─────────────────┘            └─────────────────┘         │
 └──────────────────────────────────────────────────────────────┘
@@ -310,13 +310,13 @@ import java.util.regex.*;   // must import explicitly
 │                    Sub-package Structure                 │
 │                                                          │
 │   java/                                                  │
-│   └── util/                    ← java.util              │
+│   └── util/                    ← java.util               │
 │       ├── ArrayList.class                                │
 │       ├── HashMap.class                                  │
-│       ├── regex/               ← java.util.regex        │
+│       ├── regex/               ← java.util.regex         │
 │       │   ├── Pattern.class                              │
 │       │   └── Matcher.class                              │
-│       └── stream/              ← java.util.stream       │
+│       └── stream/              ← java.util.stream        │
 │           └── Stream.class                               │
 └──────────────────────────────────────────────────────────┘
 ```
