@@ -175,7 +175,7 @@ In addition to **Java SE (Standard Edition)**, there are two other editions:
 │   │   ┌──────────────────────────────────────┐   │   │
 │   │   │   Java Runtime Environment (JRE)     │   │   │
 │   │   │   ┌────────────────────────────────┐ │   │   │
-│   │   │   │  Java Virtual Machine (JVM)   │ │   │   │
+│   │   │   │  Java Virtual Machine (JVM)    │ │   │   │
 │   │   │   └────────────────────────────────┘ │   │   │
 │   │   └──────────────────────────────────────┘   │   │
 │   └──────────────────────────────────────────────┘   │
