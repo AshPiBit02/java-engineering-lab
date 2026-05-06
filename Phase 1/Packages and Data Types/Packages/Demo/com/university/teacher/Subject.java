@@ -8,7 +8,6 @@ public class Subject {
         this.title=title;
         this.credits=credits;
     }
-
     @Override
     public String toString(){
         return title+ " (" + credits + " credits)";
