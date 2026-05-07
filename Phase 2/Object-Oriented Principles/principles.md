@@ -13,14 +13,14 @@
 ┌──────────────────────────────────────────────────────────────┐
 │                Four Pillars of OOP                           │
 │                                                              │
-│   ┌─────────────────┐       ┌─────────────────┐             │
-│   │  Encapsulation  │       │   Abstraction   │             │
-│   │  (data hiding)  │       │ (hide complexity│             │
-│   └─────────────────┘       └─────────────────┘             │
-│   ┌─────────────────┐       ┌─────────────────┐             │
-│   │   Inheritance   │       │  Polymorphism   │             │
-│   │ (reuse & extend)│       │  (many forms)   │             │
-│   └─────────────────┘       └─────────────────┘             │
+│   ┌─────────────────┐       ┌─────────────────┐              │
+│   │  Encapsulation  │       │   Abstraction   │              │
+│   │  (data hiding)  │       │(hide complexity)│              │
+│   └─────────────────┘       └─────────────────┘              │
+│   ┌─────────────────┐       ┌─────────────────┐              │
+│   │   Inheritance   │       │  Polymorphism   │              │
+│   │ (reuse & extend)│       │  (many forms)   │              │
+│   └─────────────────┘       └─────────────────┘              │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -87,7 +87,7 @@ class BankAccount {
 ┌──────────────────────────────────────────────────────────────┐
 │                    Encapsulation                             │
 │                                                              │
-│   Outside World                   Class                     │
+│   Outside World                   Class                      │
 │                                                              │
 │   can NOT access ──► ❌  private double balance             │
 │                                                              │
@@ -132,7 +132,7 @@ class Circle extends Shape {
 ┌──────────────────────────────────────────────────────────────┐
 │                      Abstraction                             │
 │                                                              │
-│   User sees:           area()  →  "just call it"            │
+│   User sees:           area()  →  "just call it"             │
 │                                                              │
 │   Hidden inside:       Math.PI * r * r   (complexity hidden) │
 └──────────────────────────────────────────────────────────────┘
@@ -172,12 +172,12 @@ d.bark();   // ✅ own method
 │                      Inheritance                             │
 │                                                              │
 │         ┌─────────────────────────┐                          │
-│         │       Animal            │  ← parent (superclass)  │
+│         │       Animal            │  ← parent (superclass)   │
 │         │   type, eat()           │                          │
 │         └────────────┬────────────┘                          │
-│                      │  extends                             │
+│                      │  extends                              │
 │         ┌────────────▼────────────┐                          │
-│         │         Dog             │  ← child (subclass)     │
+│         │         Dog             │  ← child (subclass)      │
 │         │  inherits type, eat()   │                          │
 │         │  + own: bark()          │                          │
 │         └─────────────────────────┘                          │
@@ -250,15 +250,15 @@ a.sound();               // Woof!  ← decided at runtime
 ┌──────────────────────────────────────────────────────────────┐
 │                  OOP Pillars in Action                       │
 │                                                              │
-│   Class / Object      → foundation of everything            │
+│   Class / Object      → foundation of everything             │
 │         │                                                    │
-│   Encapsulation       → protects data inside the object     │
+│   Encapsulation       → protects data inside the object      │
 │         │                                                    │
-│   Abstraction         → exposes only what user needs        │
+│   Abstraction         → exposes only what user needs         │
 │         │                                                    │
-│   Inheritance         → child reuses parent's code          │
+│   Inheritance         → child reuses parent's code           │
 │         │                                                    │
-│   Polymorphism        → same interface, different behavior  │
+│   Polymorphism        → same interface, different behavior   │
 └──────────────────────────────────────────────────────────────┘
 ```
 

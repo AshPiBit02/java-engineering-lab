@@ -91,10 +91,10 @@ class Dog extends Animal {        // subclass
 │                                                              │
 │   Animal (superclass)         Dog (subclass)                 │
 │   ───────────────────         ─────────────────────          │
-│   name   ─────────────────►  name   (inherited)             │
-│   age    ─────────────────►  age    (inherited)             │
-│   eat()  ─────────────────►  eat()  (inherited)             │
-│   sleep()─────────────────►  sleep()(inherited)             │
+│   name   ─────────────────►  name   (inherited)              │
+│   age    ─────────────────►  age    (inherited)              │
+│   eat()  ─────────────────►  eat()  (inherited)              │
+│   sleep()─────────────────►  sleep()(inherited)              │
 │                              breed  (own field)              │
 │                              bark() (own method)             │
 └──────────────────────────────────────────────────────────────┘
@@ -240,11 +240,11 @@ new C();
 │                                                              │
 │   new C()                                                    │
 │      │                                                       │
-│      ▼   C() calls super() → B()                            │
-│      ▼   B() calls super() → A()                            │
-│      ▼   A() runs first    → prints "A constructor"         │
-│      ▼   B() runs next     → prints "B constructor"         │
-│      ▼   C() runs last     → prints "C constructor"         │
+│      ▼   C() calls super() → B()                             │
+│      ▼   B() calls super() → A()                             │
+│      ▼   A() runs first    → prints "A constructor"          │
+│      ▼   B() runs next     → prints "B constructor"          │
+│      ▼   C() runs last     → prints "C constructor"          │
 └──────────────────────────────────────────────────────────────┘
 ```
 

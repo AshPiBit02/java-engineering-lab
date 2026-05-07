@@ -11,16 +11,16 @@ Inheritance allows a child class to acquire the properties and behaviors of a pa
 ┌──────────────────────────────────────────────────────────────┐
 │                 Types of Inheritance in Java                 │
 │                                                              │
-│   ┌─────────────┐  ┌─────────────┐  ┌──────────────────┐    │
-│   │   Single    │  │ Multilevel  │  │  Hierarchical    │    │
-│   │  (via class)│  │ (via class) │  │   (via class)    │    │
-│   └─────────────┘  └─────────────┘  └──────────────────┘    │
+│   ┌─────────────┐  ┌─────────────┐  ┌──────────────────┐     │
+│   │   Single    │  │ Multilevel  │  │  Hierarchical    │     │
+│   │  (via class)│  │ (via class) │  │   (via class)    │     │
+│   └─────────────┘  └─────────────┘  └──────────────────┘     │
 │                                                              │
-│   ┌─────────────┐  ┌─────────────┐                          │
-│   │  Multiple   │  │   Hybrid    │                          │
+│   ┌─────────────┐  ┌─────────────┐                           │
+│   │  Multiple   │  │   Hybrid    │                           │
 │   │ ❌ classes  │  │ ❌ classes  │                          │
 │   │ ✅ interface│  │ ✅ interface│                          │
-│   └─────────────┘  └─────────────┘                          │
+│   └─────────────┘  └─────────────┘                           │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -57,12 +57,12 @@ d.bark();   // ✅ own method
 │                    Single Inheritance                        │
 │                                                              │
 │              ┌──────────────────┐                            │
-│              │     Animal       │  ← parent                 │
+│              │     Animal       │  ← parent                  │
 │              │  eat()           │                            │
 │              └────────┬─────────┘                            │
-│                       │  extends                            │
+│                       │  extends                             │
 │              ┌────────▼─────────┐                            │
-│              │       Dog        │  ← child                  │
+│              │       Dog        │  ← child                   │
 │              │  eat() inherited │                            │
 │              │  bark() own      │                            │
 │              └──────────────────┘                            │
@@ -109,18 +109,18 @@ p.weep();   // ✅ own method
 │                  Multilevel Inheritance                      │
 │                                                              │
 │              ┌──────────────────┐                            │
-│              │     Animal       │  ← grandparent            │
+│              │     Animal       │  ← grandparent             │
 │              │  eat()           │                            │
 │              └────────┬─────────┘                            │
-│                       │  extends                            │
+│                       │  extends                             │
 │              ┌────────▼─────────┐                            │
-│              │       Dog        │  ← parent                 │
+│              │       Dog        │  ← parent                  │
 │              │  eat() inherited │                            │
 │              │  bark() own      │                            │
 │              └────────┬─────────┘                            │
-│                       │  extends                            │
+│                       │  extends                             │
 │              ┌────────▼─────────┐                            │
-│              │      Puppy       │  ← child                  │
+│              │      Puppy       │  ← child                   │
 │              │  eat()  inherited│                            │
 │              │  bark() inherited│                            │
 │              │  weep() own      │                            │
@@ -169,17 +169,17 @@ c.meow();   // ✅ own
 │                Hierarchical Inheritance                      │
 │                                                              │
 │                ┌──────────────────┐                          │
-│                │      Animal      │  ← parent               │
+│                │      Animal      │  ← parent                │
 │                │  eat()           │                          │
 │                └────────┬─────────┘                          │
-│                         │                                   │
+│                         │                                    │
 │            ┌────────────┴────────────┐                       │
-│            │                         │                      │
-│   ┌────────▼─────────┐   ┌───────────▼──────┐               │
-│   │       Dog        │   │       Cat        │               │
-│   │  eat() inherited │   │  eat() inherited │               │
-│   │  bark() own      │   │  meow() own      │               │
-│   └──────────────────┘   └──────────────────┘               │
+│            │                         │                       │
+│   ┌────────▼─────────┐   ┌───────────▼──────┐                │
+│   │       Dog        │   │       Cat        │                │
+│   │  eat() inherited │   │  eat() inherited │                │
+│   │  bark() own      │   │  meow() own      │                │
+│   └──────────────────┘   └──────────────────┘                │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -206,21 +206,21 @@ A class inherits from **more than one parent class**.
 │                  The Diamond Problem                         │
 │                                                              │
 │         ┌──────────────────┐                                 │
-│         │        A         │   void show() { "A" }          │
+│         │        A         │   void show() { "A" }           │
 │         └────────┬─────────┘                                 │
 │                  │                                           │
 │       ┌──────────┴──────────┐                                │
-│       │                     │                               │
+│       │                     │                                │
 │  ┌────▼─────┐          ┌────▼─────┐                          │
 │  │    B     │          │    C     │                          │
 │  │ show()   │          │ show()   │   both override show()   │
 │  └────┬─────┘          └────┬─────┘                          │
-│       │                     │                               │
+│       │                     │                                │
 │       └──────────┬──────────┘                                │
 │                  │                                           │
 │             ┌────▼─────┐                                     │
-│             │    D     │   which show() to use? A, B or C?  │
-│             │  ❓❓❓  │   → AMBIGUITY = Diamond Problem     │
+│             │    D     │   which show() to use? A, B or C?   │
+│             │  ❓❓❓  │   → AMBIGUITY = Diamond Problem    │
 │             └──────────┘                                     │
 └──────────────────────────────────────────────────────────────┘
 ```
@@ -290,13 +290,13 @@ class D implements B, C {         // hybrid via interfaces ✅
 │          └────────┬─────────┘                                │
 │                   │                                          │
 │        ┌──────────┴──────────┐                               │
-│        │                     │                              │
+│        │                     │                               │
 │  ┌─────▼──────┐        ┌─────▼──────┐                        │
 │  │Interface B │        │Interface C │                        │
 │  └─────┬──────┘        └─────┬──────┘                        │
-│        │                     │                              │
+│        │                     │                               │
 │        └──────────┬──────────┘                               │
-│                   │  implements                             │
+│                   │  implements                              │
 │            ┌──────▼──────┐                                   │
 │            │   Class D   │  ← implements B and C ✅          │
 │            └─────────────┘                                   │
