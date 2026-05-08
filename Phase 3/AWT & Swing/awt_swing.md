@@ -47,7 +47,7 @@
 ┌──────────────────────────────────────────────────────────────┐
 │              CLI  vs  GUI  Programming                       │
 │                                                              │
-│   CLI (Console)               GUI (Graphical)               │
+│   CLI (Console)               GUI (Graphical)                │
 │   ─────────────────           ──────────────────────────     │
 │   Text input/output           Visual components              │
 │   No visual elements          Windows, buttons, menus        │
@@ -64,13 +64,13 @@ Java provides **two major GUI frameworks** built into the standard library:
 ┌──────────────────────────────────────────────────────────────┐
 │               Java GUI Frameworks                            │
 │                                                              │
-│   ┌────────────────────┐    ┌────────────────────┐           │
-│   │       AWT          │    │      Swing          │           │
-│   │ Abstract Window    │    │  (built on AWT)     │           │
-│   │    Toolkit         │    │  more powerful      │           │
-│   │   Java 1.0         │    │   Java 1.2+         │           │
-│   │  Platform-dependent│    │  Platform-independent│          │
-│   └────────────────────┘    └────────────────────┘           │
+│   ┌────────────────────┐    ┌──────────────────────┐         │
+│   │       AWT          │    │      Swing           │         │
+│   │ Abstract Window    │    │  (built on AWT)      │         │
+│   │    Toolkit         │    │  more powerful       │         │
+│   │   Java 1.0         │    │   Java 1.2+          │         │
+│   │  Platform-dependent│    │  Platform-independent│         │
+│   └────────────────────┘    └──────────────────────┘         │
 │                                                              │
 │   Both live under the java.awt and javax.swing packages      │
 └──────────────────────────────────────────────────────────────┘
@@ -98,7 +98,7 @@ Java provides **two major GUI frameworks** built into the standard library:
 │   AWT Component (e.g. Button)                                │
 │        │                                                     │
 │        ▼                                                     │
-│   Native Peer Component (OS-specific)                        │
+│   Native Peer Component (OS-specific) ─────────┐             │
 │        │                   │                   │             │
 │        ▼                   ▼                   ▼             │
 │   Windows Button    Mac Button         Linux Button          │
@@ -123,18 +123,18 @@ AWT uses a **peer-based architecture**:
 ┌──────────────────────────────────────────────────────────────┐
 │                  AWT Peer Architecture                       │
 │                                                              │
-│   ┌──────────────────────────────────────────────────────┐   │
-│   │                  Java Layer                          │   │
-│   │   ┌──────────┐  ┌──────────┐  ┌──────────┐          │   │
-│   │   │  Button  │  │  Frame   │  │  Label   │          │   │
-│   │   └────┬─────┘  └────┬─────┘  └────┬─────┘          │   │
-│   └────────┼─────────────┼─────────────┼────────────────┘   │
+│   ┌─────────────────────────────────────────────────────┐    │
+│   │                  Java Layer                         │    │
+│   │   ┌──────────┐  ┌──────────┐  ┌──────────┐          │    │
+│   │   │  Button  │  │  Frame   │  │  Label   │          │    │
+│   │   └────┬─────┘  └────┬─────┘  └────┬─────┘          │    │
+│   └────────┼─────────────┼─────────────┼────────────────┘    │
 │            │             │             │  (1:1 mapping)      │
-│   ┌────────┼─────────────┼─────────────┼────────────────┐   │
-│   │        ▼             ▼             ▼  Native Layer   │   │
-│   │  ButtonPeer     FramePeer      LabelPeer             │   │
-│   │  (OS button)   (OS window)    (OS label)             │   │
-│   └──────────────────────────────────────────────────────┘   │
+│   ┌────────┼─────────────┼─────────────┼────────────────┐    │
+│   │        ▼             ▼             ▼  Native Layer  │    │
+│   │  ButtonPeer     FramePeer      LabelPeer            │    │
+│   │  (OS button)   (OS window)    (OS label)            │    │
+│   └─────────────────────────────────────────────────────┘    │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -211,12 +211,12 @@ java.awt
 │   Swing Code  (JButton, JFrame, etc.)                        │
 │        │                                                     │
 │        ▼                                                     │
-│   Java 2D API   ← Swing draws components itself             │
+│   Java 2D API   ← Swing draws components itself              │
 │        │                                                     │
 │        ▼                                                     │
-│   OS Graphics Context  ← only uses OS for raw drawing area  │
+│   OS Graphics Context  ← only uses OS for raw drawing area   │
 │                                                              │
-│   Result: Same look on ALL platforms ✅                      │
+│   Result: Same look on ALL platforms ✅                     │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -230,7 +230,7 @@ java.awt
 ┌──────────────────────────────────────────────────────────────┐
 │               Why Swing was Created over AWT                 │
 │                                                              │
-│   AWT Problem                  Swing Solution               │
+│   AWT Problem                  Swing Solution                │
 │   ─────────────────────        ────────────────────────      │
 │   OS-dependent look            Consistent cross-platform look│
 │   Limited components           Rich set of 40+ components    │
@@ -254,8 +254,8 @@ Swing is built on the **Model-View-Controller (MVC)** pattern — separating dat
 │              Swing MVC Architecture                          │
 │                                                              │
 │   ┌─────────────────┐                                        │
-│   │     MODEL       │  ← holds the data                     │
-│   │  (data/state)   │    e.g. ButtonModel, ListModel        │
+│   │     MODEL       │  ← holds the data                      │
+│   │  (data/state)   │    e.g. ButtonModel, ListModel         │
 │   └────────┬────────┘                                        │
 │            │  notifies                                       │
 │   ┌────────▼────────┐    ┌─────────────────────┐             │
@@ -317,24 +317,24 @@ javax.swing
 ## 4. AWT vs Swing
 
 ```
-┌──────────────────────────────────────────────────────────────┐
-│                    AWT  vs  Swing                            │
-│                                                              │
-│   Feature          AWT                  Swing               │
-│   ─────────────────────────────────────────────────────      │
-│   Introduced       Java 1.0             Java 1.2 (JFC)      │
-│   Package          java.awt             javax.swing          │
-│   Component type   Heavyweight          Lightweight          │
-│   Rendering        OS / Native peer     Java 2D API          │
-│   Platform look    Different per OS     Consistent all OS    │
-│   Component count  ~20 basic            40+ rich components  │
+┌───────────────────────────────────────────────────────────────┐
+│                    AWT  vs  Swing                             │ 
+│                                                               │
+│   Feature          AWT                  Swing                 │
+│   ──────────────────────────────────────────────────────────  │
+│   Introduced       Java 1.0             Java 1.2 (JFC)        │
+│   Package          java.awt             javax.swing           │
+│   Component type   Heavyweight          Lightweight           │
+│   Rendering        OS / Native peer     Java 2D API           │
+│   Platform look    Different per OS     Consistent all OS     │
+│   Component count  ~20 basic            40+ rich components   │
 │   MVC support      ❌ No               ✅ Built-in           │
 │   Customizable     ❌ Limited           ✅ Pluggable L&F     │
-│   Performance      Slower (OS calls)    Faster (Java renders)│
+│   Performance      Slower (OS calls)    Faster (Java renders) │
 │   Double buffering ❌ No               ✅ Yes (flicker-free) │
-│   Prefix           No prefix (Button)   J prefix (JButton)   │
+│   Prefix           No prefix (Button)   J prefix (JButton)    │
 │   Still used?      ❌ Rarely            ✅ Yes (legacy apps) │
-└──────────────────────────────────────────────────────────────┘
+└───────────────────────────────────────────────────────────────┘
 ```
 
 > **Fig. 8 — AWT vs Swing Full Comparison**
@@ -398,27 +398,27 @@ An **Applet** is a small Java program that runs **inside a web browser** or **ap
 │          │                                                   │
 │          ▼                                                   │
 │   ┌─────────────┐                                            │
-│   │   init()    │  ← called once — initialize components    │
+│   │   init()    │  ← called once — initialize components     │
 │   └──────┬──────┘                                            │
 │          │                                                   │
 │          ▼                                                   │
 │   ┌─────────────┐                                            │
-│   │   start()   │  ← called each time applet becomes visible│
+│   │   start()   │  ← called each time applet becomes visible │
 │   └──────┬──────┘                                            │
 │          │                                                   │
 │          ▼                                                   │
 │   ┌─────────────┐                                            │
-│   │   paint()   │  ← called to draw/render the applet       │
-│   └──────┬──────┘  ← called whenever repaint needed         │
+│   │   paint()   │  ← called to draw/render the applet        │
+│   └──────┬──────┘  ← called whenever repaint needed          │
 │          │                                                   │
 │          ▼                                                   │
 │   ┌─────────────┐                                            │
-│   │   stop()    │  ← called when applet hidden / tab switch │
+│   │   stop()    │  ← called when applet hidden / tab switch  │
 │   └──────┬──────┘                                            │
 │          │                                                   │
 │          ▼                                                   │
 │   ┌─────────────┐                                            │
-│   │  destroy()  │  ← called once — browser closes applet    │
+│   │  destroy()  │  ← called once — browser closes applet     │
 │   └─────────────┘                                            │
 └──────────────────────────────────────────────────────────────┘
 ```
@@ -476,7 +476,7 @@ public class HelloApplet extends Applet {
 │               Swing Full Class Hierarchy                     │
 │                                                              │
 │   java.lang.Object                                           │
-│   └── java.awt.Component          ← base of all GUI elements│
+│   └── java.awt.Component          ← base of all GUI elements │
 │       └── java.awt.Container      ← can hold components      │
 │           ├── java.awt.Window     ← top-level OS window      │
 │           │   ├── java.awt.Frame  ← AWT top-level window     │
@@ -487,7 +487,7 @@ public class HelloApplet extends Applet {
 │           ├── java.awt.Panel      ← AWT container            │
 │           │   └── java.applet.Applet ← AWT applet            │
 │           │       └── JApplet     ← Swing applet             │
-│           └── javax.swing.JComponent ← base of all Swing    │
+│           └── javax.swing.JComponent ← base of all Swing     │
 │               ├── JLabel                                     │
 │               ├── AbstractButton                             │
 │               │   ├── JButton                                │
@@ -552,10 +552,10 @@ A **Component** is any **visual element** on the screen that the user can see an
 │   ┌────────────────────────────────────────────────────┐     │
 │   │                   JFrame Window                    │     │
 │   │                                                    │     │
-│   │   ┌───────────┐  ┌───────────┐  ┌──────────────┐  │     │
-│   │   │  JLabel   │  │JTextField │  │   JButton    │  │     │
-│   │   │"Username:"│  │[        ] │  │  [  Login  ] │  │     │
-│   │   └───────────┘  └───────────┘  └──────────────┘  │     │
+│   │   ┌───────────┐  ┌───────────┐  ┌──────────────┐   │     │
+│   │   │  JLabel   │  │JTextField │  │   JButton    │   │     │
+│   │   │"Username:"│  │[        ] │  │  [  Login  ] │   │     │
+│   │   └───────────┘  └───────────┘  └──────────────┘   │     │
 │   │                                                    │     │
 │   │   Each of these boxes is a COMPONENT               │     │
 │   └────────────────────────────────────────────────────┘     │
@@ -664,15 +664,15 @@ A **Container** is a special component that can **hold and organize other compon
 │   │   ┌──────────────────────────────────────────────┐   │   │
 │   │   │  JPanel  (intermediate container)            │   │   │
 │   │   │                                              │   │   │
-│   │   │   ┌─────────┐  ┌───────────┐  ┌──────────┐  │   │   │
-│   │   │   │ JLabel  │  │JTextField │  │ JButton  │  │   │   │
-│   │   │   └─────────┘  └───────────┘  └──────────┘  │   │   │
+│   │   │   ┌─────────┐  ┌───────────┐  ┌──────────┐   │   │   │
+│   │   │   │ JLabel  │  │JTextField │  │ JButton  │   │   │   │
+│   │   │   └─────────┘  └───────────┘  └──────────┘   │   │   │
 │   │   └──────────────────────────────────────────────┘   │   │
 │   │                                                      │   │
 │   │   ┌──────────────────────────────────────────────┐   │   │
 │   │   │  Another JPanel                              │   │   │
 │   │   │   ┌─────────────┐  ┌──────────────────────┐  │   │   │
-│   │   │   │  JCheckBox  │  │    JRadioButton       │  │   │   │
+│   │   │   │  JCheckBox  │  │    JRadioButton      │  │   │   │
 │   │   │   └─────────────┘  └──────────────────────┘  │   │   │
 │   │   └──────────────────────────────────────────────┘   │   │
 │   └──────────────────────────────────────────────────────┘   │
@@ -744,7 +744,7 @@ public class MyApp {
 │  JFrame Structure                                            │
 │                                                              │
 │  ┌────────────────────────────────────────────────────────┐  │
-│  │  Title Bar  │ My Application          [ _ ][ □ ][ X ] │  │
+│  │  Title Bar  │ My Application          [ _ ][ □ ][ X ]  │  │
 │  ├────────────────────────────────────────────────────────┤  │
 │  │  Menu Bar   │  File   Edit   View                      │  │
 │  ├────────────────────────────────────────────────────────┤  │
@@ -887,7 +887,7 @@ frame.add(split);
 ┌──────────────────────────────────────────────────────────────┐
 │               Component  vs  Container                       │
 │                                                              │
-│   Component                      Container                  │
+│   Component                      Container                   │
 │   ──────────────────────         ───────────────────────     │
 │   Basic visual element           Special component           │
 │   Cannot hold others             CAN hold other components   │
