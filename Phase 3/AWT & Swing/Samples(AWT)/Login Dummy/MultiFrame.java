@@ -38,16 +38,22 @@ public class MultiFrame {
 
         // Frame 2
         Frame dashboardFrame = new Frame("Dashboard Frame");
+        // Lable L=new Label("Hallo!\n\n" +
+        // "Here you can share your moments,connect with friends, " +
+        // "and explore content that inspires you. " +
+        // "Stay creative and enjoy your time here!");
         TextArea ta = new TextArea(
                 "Hallo!\n\n" +
                         "Here you can share your moments,connect with friends, " +
                         "and explore content that inspires you. " +
                         "Stay creative and enjoy your time here!",
-                5, 40, TextArea.SCROLLBARS_VERTICAL_ONLY);
-        ta.setBounds(50, 125, 300, 120);
+                5, 40, TextArea.SCROLLBARS_NONE);
+        ta.setBounds(50, 60, 300, 120);
         ta.setEditable(false);
+        ta.setBackground(dashboardFrame.getBackground());
+        ta.setForeground(Color.BLACK);
         Label loggedInLabel = new Label("Logged In Successfully!");
-        loggedInLabel.setBounds(120, 50, 200, 30);
+        loggedInLabel.setBounds(120, 30, 200, 30);
         Button logoutBtn = new Button("Logout");
         logoutBtn.setBounds(150, 200, 80, 30);
 
