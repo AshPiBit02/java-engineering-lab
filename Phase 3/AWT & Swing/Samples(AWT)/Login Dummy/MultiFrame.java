@@ -38,15 +38,24 @@ public class MultiFrame {
 
         // Frame 2
         Frame dashboardFrame = new Frame("Dashboard Frame");
+        TextArea ta = new TextArea(
+                "Hallo!\n\n" +
+                        "Here you can share your moments,connect with friends, " +
+                        "and explore content that inspires you. " +
+                        "Stay creative and enjoy your time here!",
+                5, 40, TextArea.SCROLLBARS_VERTICAL_ONLY);
+        ta.setBounds(50, 125, 300, 120);
+        ta.setEditable(false);
         Label loggedInLabel = new Label("Logged In Successfully!");
-        loggedInLabel.setBounds(120, 100, 200, 30);
+        loggedInLabel.setBounds(120, 50, 200, 30);
         Button logoutBtn = new Button("Logout");
-        logoutBtn.setBounds(150, 150, 80, 30);
+        logoutBtn.setBounds(150, 200, 80, 30);
 
         dashboardFrame.add(loggedInLabel);
         dashboardFrame.add(logoutBtn);
         dashboardFrame.setSize(400, 250);
         dashboardFrame.setLayout(null);
+        dashboardFrame.add(ta);
 
         // Frame 3(Incorrect password or Unknown User)
         Frame failedFrame = new Frame("Login Failed");
@@ -62,7 +71,27 @@ public class MultiFrame {
 
         loginBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (defaultUser.equals(tf1.getText()) && defaultPassword.equals(tf2.getText())) {
+                String empty = "";
+                if (empty.equals(tf1.getText()) || empty.equals(tf2.getText())) {
+                    Dialog d = new Dialog(loginFrame, "Warning!!!", true);
+                    d.setLayout(new FlowLayout());
+                    Label msg = new Label("Fields can't be empty.");
+                    Button okBtn = new Button("OK");
+
+                    okBtn.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            d.setVisible(false);
+                            d.dispose();
+                        }
+                    });
+
+                    d.add(msg);
+                    d.add(okBtn);
+                    d.setSize(200, 100);
+                    d.setLocationRelativeTo(null); // center relative to parent
+                    d.setVisible(true);
+
+                } else if (defaultUser.equals(tf1.getText()) && defaultPassword.equals(tf2.getText())) {
                     // Hide login frame, show dashboard
                     loginFrame.setVisible(false);
                     failedFrame.setVisible(false);
