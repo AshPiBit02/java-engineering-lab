@@ -63,6 +63,12 @@ public class Calculator {
         add.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    String empty = "";
+                    if (empty.equals(inputFirst.getText()) || empty.equals(inputSecond.getText())) {
+                        emptyInput(f, "Error! Fields can't be empty!!!");
+                        return;
+
+                    }
                     double num1 = Double.parseDouble(inputFirst.getText());
                     double num2 = Double.parseDouble(inputSecond.getText());
                     double sum = num1 + num2;
@@ -77,6 +83,12 @@ public class Calculator {
         sub.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    String empty = "";
+                    if (empty.equals(inputFirst.getText()) || empty.equals(inputSecond.getText())) {
+                        emptyInput(f, "Error! Fields can't be empty!!!");
+                        return;
+
+                    }
                     double num1 = Double.parseDouble(inputFirst.getText());
                     double num2 = Double.parseDouble(inputSecond.getText());
                     double sub = num1 - num2;
@@ -91,6 +103,12 @@ public class Calculator {
         mul.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    String empty = "";
+                    if (empty.equals(inputFirst.getText()) || empty.equals(inputSecond.getText())) {
+                        emptyInput(f, "Error! Fields can't be empty!!!");
+                        return;
+
+                    }
                     double num1 = Double.parseDouble(inputFirst.getText());
                     double num2 = Double.parseDouble(inputSecond.getText());
                     double mul = num1 * num2;
@@ -107,8 +125,13 @@ public class Calculator {
                 try {
                     double num1 = Double.parseDouble(inputFirst.getText());
                     double num2 = Double.parseDouble(inputSecond.getText());
+                    String empty = "";
                     if (num2 == 0) {
                         showExceptionDialog(f, "Cannot divide by zero!");
+                    } else if (empty.equals(inputFirst.getText()) || empty.equals(inputSecond.getText())) {
+                        emptyInput(f, "Error! Fields can't be empty!!!");
+                        return;
+
                     } else {
                         double div = num1 / num2;
                         resultField.setText(String.format("%.2f", div));
@@ -141,8 +164,8 @@ public class Calculator {
     }
 
     // General exception popup method
-    private static void showExceptionDialog(Frame parent, String message) {
-        Dialog d = new Dialog(parent, "Error", true);
+    private static void showExceptionDialog(Frame f, String message) {
+        Dialog d = new Dialog(f, "Error", true);
         d.setLayout(new FlowLayout());
 
         Label msg = new Label(message);
@@ -151,7 +174,24 @@ public class Calculator {
 
         d.add(msg);
         d.add(ok);
-        d.setSize(250, 120);
+        d.setSize(200, 100);
+        d.setLocationRelativeTo(null);
+        d.setVisible(true);
+    }
+
+    // General empty input handler
+    private static void emptyInput(Frame f, String message) {
+        Dialog d = new Dialog(f, "Error", true);
+        d.setLayout(new FlowLayout());
+
+        Label msg = new Label(message);
+        Button ok = new Button("OK");
+        ok.addActionListener(e -> d.setVisible(false));
+
+        d.add(msg);
+        d.add(ok);
+        d.setSize(200, 100);
+        d.setLocationRelativeTo(null);
         d.setVisible(true);
 
     }
