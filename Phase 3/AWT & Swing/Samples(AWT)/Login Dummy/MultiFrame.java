@@ -2,6 +2,14 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class MultiFrame {
+    public static void closeAllFrames(Frame... frames) {
+        for (Frame f : frames) {
+            if (f != null) {
+                f.dispose();
+            }
+        }
+    }
+
     public static void main(String[] args) {
         String defaultPassword = "clfbd5b2d7";
         String defaultUser = "Admin57";
@@ -75,6 +83,19 @@ public class MultiFrame {
         failedFrame.setSize(400, 250);
         failedFrame.setLayout(null);
 
+        // Shared WindowAdapter created once
+        WindowAdapter closer = new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                closeAllFrames(loginFrame, dashboardFrame, failedFrame);
+            }
+        };
+
+        // Attach same listener to all frames
+        loginFrame.addWindowListener(closer);
+        dashboardFrame.addWindowListener(closer);
+        failedFrame.addWindowListener(closer);
+
+        // Login button logic
         loginBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String empty = "";
@@ -131,31 +152,7 @@ public class MultiFrame {
                 loginFrame.setVisible(true);
             }
         });
-
-        // Close both frames properly
-        loginFrame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                dashboardFrame.dispose();
-                loginFrame.dispose();
-                failedFrame.dispose();
-            }
-        });
-        dashboardFrame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                loginFrame.dispose();
-                failedFrame.dispose();
-                dashboardFrame.dispose();
-            }
-        });
-        failedFrame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                loginFrame.dispose();
-                dashboardFrame.dispose();
-                failedFrame.dispose();
-            }
-
-        });
-
     }
+    // Close all frames(utility method)
 
 }
