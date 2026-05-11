@@ -35,7 +35,7 @@ public class Calculator {
         Button div = new Button("Divide");
         Button clear = new Button("Clear");
         add.setBounds(75, 275, 50, 30);
-        sub.setBounds(150, 275, 50, 30);
+        sub.setBounds(150, 275, 60, 30);
         mul.setBounds(225, 275, 50, 30);
         div.setBounds(300, 275, 50, 30);
         clear.setBounds(375, 275, 50, 30);
@@ -56,6 +56,7 @@ public class Calculator {
         f.add(clear);
 
         f.setSize(500, 400);
+        f.setBackground(Color.LIGHT_GRAY);
         f.setLayout(null);
         f.setVisible(true);
 
