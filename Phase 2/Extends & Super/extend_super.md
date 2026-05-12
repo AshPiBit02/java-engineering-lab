@@ -156,7 +156,6 @@ class Car extends Vehicle {
 }
 ```
 
-> *(Cross-reference your **Access Modifiers** notes for the full visibility table.)*
 
 ---
 
