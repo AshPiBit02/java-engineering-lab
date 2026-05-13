@@ -24,6 +24,7 @@ public class Main {
         frame.setIconImage(icon.getImage());
         frame.setLayout(null);
         frame.setSize(250, 350);
+        frame.getContentPane().setBackground(new Color(255,222,173));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Adding Labels
