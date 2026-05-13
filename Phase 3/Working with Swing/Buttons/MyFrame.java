@@ -34,10 +34,16 @@ public class MyFrame extends JFrame implements ActionListener {
 
     }
 
+    int x = 0;
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
             System.out.println("Button Off");
+            x++;
+        }
+        if (x == 4) {
+
             button.setEnabled(false);
         }
     }
