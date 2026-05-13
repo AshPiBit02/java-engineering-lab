@@ -5,14 +5,27 @@ import java.awt.event.*;
 
 public class MyFrame extends JFrame implements ActionListener {
     JButton button;
-    JLabel label;
+    JLabel label, label2;
+    ImageIcon lvl1, lvl2, lvl3, lvl4, lvl5;
 
     MyFrame() {
-        ImageIcon icon2 = new ImageIcon("vid.png");
+        lvl1 = new ImageIcon("lvl1.png");
+        lvl2 = new ImageIcon("lvl2.png");
+        lvl3 = new ImageIcon("lvl3.png");
+        lvl4 = new ImageIcon("lvl4.png");
+        lvl5 = new ImageIcon("lvl5.png");
         label = new JLabel("MyLabel");
-        label.setIcon(icon2);
-        label.setBounds(200, 30, 150, 250);
+        label.setBounds(0, 0, 200, 200);
         label.setVisible(false);
+
+        label2 = new JLabel();
+        label2.setText("Knocked!!!!!!!");
+        label2.setBackground(Color.LIGHT_GRAY);
+        label2.setBounds(0, 0, 150, 50);
+        label2.setHorizontalTextPosition(JLabel.CENTER);
+        label2.setVerticalTextPosition(JLabel.TOP);
+        label2.setVisible(false);
+        label2.setLayout(null);
 
         ImageIcon icon = new ImageIcon("thumb.png");
         button = new JButton("Tap");
@@ -39,14 +52,35 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setVisible(true);
         this.add(button);
         this.add(label);
+        this.add(label2);
 
     }
+
+    int tap = 0;
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
+            if (tap == 0) {
+                label.setIcon(lvl1);
+            } else if (tap == 1) {
+                label.setIcon(lvl2);
+            } else if (tap == 2) {
+                label.setIcon(lvl3);
+            } else if (tap == 3) {
+                label.setIcon(lvl4);
+            } else if (tap == 4) {
+                label.setIcon(lvl5);
+            } else {
+                label.setVisible(false);
+                button.setEnabled(false);
+                label2.setVisible(true);
+                return;
+            }
             label.setVisible(true);
+            tap++;
         }
+
     }
 
 }
