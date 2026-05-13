@@ -50,9 +50,9 @@ By the end of the course, students will be proficient in Java programming — eq
 
 - [x] 1.1 Java Architecture, Class paths, Sample Program
 - [x] 1.2 Classes, Objects, Constructors
-- [ ] 1.3 Packages and Data Types
-- [ ] 1.4 Conditional Statements
-- [ ] 1.5 Access Modifiers
+- [x] 1.3 Packages and Data Types
+- [x] 1.4 Conditional Statements
+- [x] 1.5 Access Modifiers
 - [ ] 1.6 Exception Handling
 - [ ] 1.7 Java Collections
 
@@ -60,21 +60,21 @@ By the end of the course, students will be proficient in Java programming — eq
 
 ### Phase 2 · Object Oriented Principles in Java 
 
-- [ ] 2.1 Review of object-oriented principles
-- [ ] 2.2 Super class, sub class, inheritance, and member access
-- [ ] 2.3 Types of inheritance
-- [ ] 2.4 Extends and super keyword
-- [ ] 2.5 Overriding / Overloading
+- [x] 2.1 Review of object-oriented principles
+- [x] 2.2 Super class, sub class, inheritance, and member access
+- [x] 2.3 Types of inheritance
+- [x] 2.4 Extends and super keyword
+- [x] 2.5 Overriding / Overloading
 - [ ] 2.6 Final classes and methods
-- [ ] 2.7 Abstract classes and methods
-- [ ] 2.8 Upcasting vs Down casting
+- [x] 2.7 Abstract classes and methods
+- [x] 2.8 Upcasting vs Down casting
 - [ ] 2.9 Interfaces and Implementations
 
 ---
 
 ### Phase 3 · Building Components using Swing and JavaFX
 
-- [ ] 3.1 Introduction to AWT and Swing — Concept, Applets, Swing Class Hierarchy, Components/Containers
+- [x] 3.1 Introduction to AWT and Swing — Concept, Applets, Swing Class Hierarchy, Components/Containers
 - [ ] 3.2 Layout Management
 - [ ] 3.3 GUI Controls
 - [ ] 3.4 Menu Elements and Tooltips
