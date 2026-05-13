@@ -5,8 +5,15 @@ import java.awt.event.*;
 
 public class MyFrame extends JFrame implements ActionListener {
     JButton button;
+    JLabel label;
 
     MyFrame() {
+        ImageIcon icon2 = new ImageIcon("vid.png");
+        label = new JLabel("MyLabel");
+        label.setIcon(icon2);
+        label.setBounds(200, 30, 150, 250);
+        label.setVisible(false);
+
         ImageIcon icon = new ImageIcon("thumb.png");
         button = new JButton("Tap");
         // button.setText("TAP"); set button title
@@ -23,7 +30,7 @@ public class MyFrame extends JFrame implements ActionListener {
 
         button.setFont(new Font("Comic Sans", Font.ITALIC, 25));
 
-        button.setBounds(200, 200, 150, 150);
+        button.setBounds(175, 200, 150, 150);
         button.addActionListener(this);
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -31,20 +38,14 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setSize(500, 500);
         this.setVisible(true);
         this.add(button);
+        this.add(label);
 
     }
-
-    int x = 0;
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
-            System.out.println("Button Off");
-            x++;
-        }
-        if (x == 4) {
-
-            button.setEnabled(false);
+            label.setVisible(true);
         }
     }
 
