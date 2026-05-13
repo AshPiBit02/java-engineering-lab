@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 // import javax.swing.ImageIcon;
 
-public class MyFrame extends JFrame {
+public class MyFrame extends JFrame implements ActionListener {
     JButton button;
 
     MyFrame() {
@@ -19,12 +19,12 @@ public class MyFrame extends JFrame {
         button.setForeground(Color.cyan);
         button.setBackground(Color.lightGray);
         button.setBorder(BorderFactory.createEtchedBorder());
-        button.setEnabled(false); // disable button
+        // button.setEnabled(false); // disable button
 
         button.setFont(new Font("Comic Sans", Font.ITALIC, 25));
 
         button.setBounds(200, 200, 150, 150);
-        button.addActionListener(e -> System.out.println("TAP"));
+        button.addActionListener(this);
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(null);
@@ -32,6 +32,14 @@ public class MyFrame extends JFrame {
         this.setVisible(true);
         this.add(button);
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == button) {
+            System.out.println("Button Off");
+            button.setEnabled(false);
+        }
     }
 
 }
