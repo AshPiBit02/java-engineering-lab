@@ -23,6 +23,7 @@ public class Main {
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setBounds(0, 0, 500, 500);
 
+        // Higher the value higher the placement
         layeredPane.add(label1, Integer.valueOf(2));
         layeredPane.add(label2, Integer.valueOf(1));
         layeredPane.add(label3, Integer.valueOf(0));
