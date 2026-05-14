@@ -21,18 +21,25 @@ public class Main {
         frame.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
 
         JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(250, 250));
+        panel.setPreferredSize(new Dimension(200, 250));
         panel.setBackground(Color.LIGHT_GRAY);
         panel.setLayout(new FlowLayout());
 
-        panel.add(new JButton("1"));
-        panel.add(new JButton("2"));
-        panel.add(new JButton("3"));
-        panel.add(new JButton("4"));
-        panel.add(new JButton("5"));
-        panel.add(new JButton("6"));
-        panel.add(new JButton("7"));
-        panel.add(new JButton("8"));
+        // Array to hold separate button objects
+        JButton[] buttons = new JButton[10];
+        for (int i = 0; i < buttons.length; i++) {
+            buttons[i] = new JButton(String.valueOf(i));
+            buttons[i].setFocusable(false);
+            panel.add(buttons[i]);
+        }
+
+        // Prints the button when clicked
+        for (int i = 0; i < buttons.length; i++) {
+            buttons[i].addActionListener(e -> {
+                JButton b = (JButton) e.getSource();
+                System.out.println("Clicked: " + b.getText());
+            });
+        }
 
         frame.add(panel);
         frame.setVisible(true);
