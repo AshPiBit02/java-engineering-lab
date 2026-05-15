@@ -8,7 +8,7 @@ public class Gay {
         String[] answer = { "Sorry", "No Comment" };
         String[] answer2 = { "Yes, I am.", "May be, I don't know." };
         int response = JOptionPane.showOptionDialog(null,
-                "Arey you Gay?",
+                "Are you Gay?",
                 "LGBTQ+",
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
@@ -48,12 +48,12 @@ public class Gay {
             int g = 10;
             int y = 1;
             while (g > 0) {
-                System.out.println("Ga" + "y".repeat(y) + "!");
+                System.out.print("\rGa" + "y".repeat(y) + "!"); // '\r' overwrites the sop statement
                 Thread.sleep(1000);
                 g--;
                 y++;
             }
-            System.out.println("Gayyyyyyyyyyyyyyyyyy................");
+            System.out.print("\nGayyyyyyyyyyyyyyyyyy................");
         }
     }
 }
