@@ -23,6 +23,7 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setLayout(new FlowLayout());
 
         menuBar = new JMenuBar();
+
         fileMenu = new JMenu("File");
         editMenu = new JMenu("Edit");
         helpMenu = new JMenu("Help");
@@ -35,6 +36,15 @@ public class MyFrame extends JFrame implements ActionListener {
         loadItem.addActionListener(this);
         saveItem.addActionListener(this);
         exitItem.addActionListener(this);
+
+        fileMenu.setMnemonic(KeyEvent.VK_F); // Alt + f for file menu
+        editMenu.setMnemonic(KeyEvent.VK_E); // Alt + e for edit menu
+        helpMenu.setMnemonic(KeyEvent.VK_H); // Alt + h for edit menu
+        aboutMenu.setMnemonic(KeyEvent.VK_A); // Alt + a for edit menu
+
+        loadItem.setMnemonic(KeyEvent.VK_L); // l for load
+        saveItem.setMnemonic(KeyEvent.VK_S); // s for save
+        exitItem.setMnemonic(KeyEvent.VK_E); // e for exit
 
         fileMenu.add(loadItem);
         fileMenu.add(saveItem);
