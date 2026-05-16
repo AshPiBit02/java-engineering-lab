@@ -3,12 +3,16 @@ import javax.swing.*;
 
 public class ProgressBarDemo {
     JFrame frame = new JFrame();
+    // JProgressBar bar = new JProgressBar(0, 250); // max,min value
     JProgressBar bar = new JProgressBar();
 
     ProgressBarDemo() {
         // bar.setValue(0); // sets initial value
         bar.setBounds(50, 50, 300, 50);
         bar.setStringPainted(true);
+        bar.setFont(new Font("MV Boli", Font.BOLD, 16));
+        bar.setForeground(Color.DARK_GRAY);
+        bar.setBackground(Color.LIGHT_GRAY);
 
         frame.add(bar);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,7 +30,7 @@ public class ProgressBarDemo {
         while (counter <= 100) {
             bar.setValue(counter);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -45,6 +49,7 @@ public class ProgressBarDemo {
                 counter += 10;
             }
         }
+        bar.setString("Done! :)");
         System.out.println("Task Complete!");
     }
 
