@@ -16,11 +16,19 @@ public class MyFrame extends JFrame implements ActionListener {
     JMenuItem saveItem;
     JMenuItem exitItem;
 
+    ImageIcon loadIcon;
+    ImageIcon saveIcon;
+    ImageIcon exitIcon;
+
     MyFrame() {
         this.setTitle("File Explorer");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500, 500);
         this.setLayout(new FlowLayout());
+
+        loadIcon = new ImageIcon("load.jpg");
+        saveIcon = new ImageIcon("save.jpg");
+        exitIcon = new ImageIcon("exit.jpg");
 
         menuBar = new JMenuBar();
 
@@ -36,6 +44,10 @@ public class MyFrame extends JFrame implements ActionListener {
         loadItem.addActionListener(this);
         saveItem.addActionListener(this);
         exitItem.addActionListener(this);
+
+        loadItem.setIcon(loadIcon);
+        saveItem.setIcon(saveIcon);
+        exitItem.setIcon(exitIcon);
 
         fileMenu.setMnemonic(KeyEvent.VK_F); // Alt + f for file menu
         editMenu.setMnemonic(KeyEvent.VK_E); // Alt + e for edit menu
