@@ -27,53 +27,89 @@ public class MyFrame extends JFrame implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // keyTyped-> Invoked when a key is typed. Uses keyChar, char output
+        int step = 10;
+        int frameWidth = this.getWidth();
+        int frameHeight = this.getHeight();
+        int labelWidth = label.getWidth();
+        int labelHeight = label.getHeight();
+
         switch (e.getKeyChar()) {
-            case 'a':
-                label.setLocation(label.getX() - 10, label.getY());
+            case 'a': // left
+                if (label.getX() - step < 0) {
+                    label.setLocation(frameWidth - labelWidth, label.getY());
+                } else {
+                    label.setLocation(label.getX() - step, label.getY());
+                }
                 break;
-            case 'w':
-                label.setLocation(label.getX(), label.getY() - 10);
+            case 'w': // up
+                if (label.getY() - step < 0) {
+                    label.setLocation(label.getX(), frameHeight - labelHeight);
+                } else {
+                    label.setLocation(label.getX(), label.getY() - step);
+                }
                 break;
-            case 'd':
-                label.setLocation(label.getX() + 10, label.getY());
+            case 'd': // right
+                if (label.getX() + step + labelWidth > frameWidth) {
+                    label.setLocation(0, label.getY());
+                } else {
+                    label.setLocation(label.getX() + step, label.getY());
+                }
                 break;
-            case 's':
-                label.setLocation(label.getX(), label.getY() + 10);
+            case 's': // down
+                if (label.getY() + step + labelHeight > frameHeight) {
+                    label.setLocation(label.getX(), 0);
+                } else {
+                    label.setLocation(label.getX(), label.getY() + step);
+                }
                 break;
-
         }
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // keyPressed -> Invoked when a physical key is pressed down. Uses keyCode, int
-        // output
+        int step = 10;
+        int frameWidth = this.getWidth();
+        int frameHeight = this.getHeight();
+        int labelWidth = label.getWidth();
+        int labelHeight = label.getHeight();
 
-        // Arrow keycodes
         switch (e.getKeyCode()) {
-            case 37:
-                label.setLocation(label.getX() - 10, label.getY());
+            case KeyEvent.VK_LEFT:
+                if (label.getX() - step < 0) {
+                    label.setLocation(frameWidth - labelWidth, label.getY());
+                } else {
+                    label.setLocation(label.getX() - step, label.getY());
+                }
                 break;
-            case 38:
-                label.setLocation(label.getX(), label.getY() - 10);
+            case KeyEvent.VK_UP:
+                if (label.getY() - step < 0) {
+                    label.setLocation(label.getX(), frameHeight - labelHeight);
+                } else {
+                    label.setLocation(label.getX(), label.getY() - step);
+                }
                 break;
-            case 39:
-                label.setLocation(label.getX() + 10, label.getY());
+            case KeyEvent.VK_RIGHT:
+                if (label.getX() + step + labelWidth > frameWidth) {
+                    label.setLocation(0, label.getY());
+                } else {
+                    label.setLocation(label.getX() + step, label.getY());
+                }
                 break;
-            case 40:
-                label.setLocation(label.getX(), label.getY() + 10);
+            case KeyEvent.VK_DOWN:
+                if (label.getY() + step + labelHeight > frameHeight) {
+                    label.setLocation(label.getX(), 0);
+                } else {
+                    label.setLocation(label.getX(), label.getY() + step);
+                }
                 break;
         }
-
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         // keyReleased -> called whenever a button is released
 
-        // System.out.println("You released key Char: " + e.getKeyChar());
+        System.out.println("You released key Char: " + e.getKeyChar());
         System.out.println("You released key Code: " + e.getKeyCode());
     }
 
