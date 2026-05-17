@@ -10,6 +10,7 @@ public class MyFrame extends JFrame implements MouseListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500, 500);
         this.setLayout(null);
+        this.setLocationRelativeTo(null); // Frame appears at the center of the screen.
 
         label = new JLabel();
         label.setBounds(0, 0, 100, 100);
@@ -33,6 +34,7 @@ public class MyFrame extends JFrame implements MouseListener {
     public void mousePressed(MouseEvent e) {
         // Invoked when a mouse button has been pressed on a component.
         System.out.println("You pressed the mouse.");
+        label.setBackground(Color.YELLOW);
 
     }
 
@@ -40,6 +42,7 @@ public class MyFrame extends JFrame implements MouseListener {
     public void mouseReleased(MouseEvent e) {
         // Invoked when a mouse button has been released on a component.
         System.out.println("You released the mouse.");
+        label.setBackground(Color.GREEN);
 
     }
 
@@ -47,6 +50,7 @@ public class MyFrame extends JFrame implements MouseListener {
     public void mouseEntered(MouseEvent e) {
         // Invoked when the mouse enters a component
         System.out.println("You entered the component.");
+        label.setBackground(Color.BLUE);
 
     }
 
@@ -54,5 +58,6 @@ public class MyFrame extends JFrame implements MouseListener {
     public void mouseExited(MouseEvent e) {
         // Invoked when the mouse exits a component
         System.out.println("You exit the component.");
+        label.setBackground(Color.RED);
     }
 }
