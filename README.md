@@ -68,7 +68,7 @@ By the end of the course, students will be proficient in Java programming — eq
 - [ ] 2.6 Final classes and methods
 - [x] 2.7 Abstract classes and methods
 - [x] 2.8 Upcasting vs Down casting
-- [ ] 2.9 Interfaces and Implementations
+- [x] 2.9 Interfaces and Implementations
 
 ---
 
@@ -143,16 +143,16 @@ By the end of the course, students will be proficient in Java programming — eq
 
 - [x] **T01** · Setting Up Java Development Environment (JDK + IDE)
 - [x] **T02** · Creating Your First Java Program
-- [ ] **T03** · Working with Classes and Objects
-- [ ] **T04** · Packages and Data Types
-- [ ] **T05** · Conditional Statements — if-else, switch-case, logical operators
-- [ ] **T06** · Access Modifiers — public, private, protected, default
+- [x] **T03** · Working with Classes and Objects
+- [x] **T04** · Packages and Data Types
+- [x] **T05** · Conditional Statements — if-else, switch-case, logical operators
+- [x] **T06** · Access Modifiers — public, private, protected, default
 - [ ] **T07** · Exception Handling — try-catch, checked vs unchecked exceptions
 - [ ] **T08** · Working with Files in Java (Java I/O)
 - [ ] **T09** · Java Collections Framework — ArrayList, LinkedList, HashMap
-- [ ] **T10** · Object-Oriented Concepts — inheritance, polymorphism, encapsulation, abstraction
+- [x] **T10** · Object-Oriented Concepts — inheritance, polymorphism, encapsulation, abstraction
 - [ ] **T11** · Advanced Inheritance and Interfaces
-- [ ] **T12** · GUIs with Swing — components, event handling, layout management
+- [x] **T12** · GUIs with Swing — components, event handling, layout management
 - [ ] **T13** · Introduction to JavaFX — scene graphs, UI controls, event handling
 - [ ] **T14** · Network Programming with Sockets — TCP and UDP
 - [ ] **T15** · Database Connectivity with JDBC
@@ -166,10 +166,10 @@ By the end of the course, students will be proficient in Java programming — eq
 
 ## 🔬 Practical Work
 
-- [ ] **P01** · Basic Java Application — syntax, variables, and control structures
-- [ ] **P02** · Object-Oriented Programming — inheritance, encapsulation, polymorphism
-- [ ] **P03** · GUI Application with Swing — buttons, text fields, labels
-- [ ] **P04** · JavaFX Project — layout managers, UI controls, event handling
+- [x] **P01** · Basic Java Application — syntax, variables, and control structures
+- [x] **P02** · Object-Oriented Programming — inheritance, encapsulation, polymorphism
+- [x] **P03** · GUI Application with Swing — buttons, text fields, labels
+- [x] **P04** · JavaFX Project — layout managers, UI controls, event handling
 - [ ] **P05** · Socket Programming — client-server app over TCP/UDP
 - [ ] **P06** · JDBC Database Application — CRUD operations and exception handling
 - [ ] **P07** · Servlet-Based Web Application — HTTP, JSP, and dynamic content
