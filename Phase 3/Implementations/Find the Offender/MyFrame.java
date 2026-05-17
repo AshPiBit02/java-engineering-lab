@@ -118,23 +118,37 @@ public class MyFrame extends JFrame implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        String offender;
         if (e.getSource() == man1) {
             man13 = new ImageIcon("man1/man13.png");
             man1.setIcon(man13);
+            offender = "man1";
         } else if (e.getSource() == man2) {
             man23 = new ImageIcon("man2/man23.png");
             man2.setIcon(man23);
+            offender = "man2";
         } else if (e.getSource() == man3) {
             man33 = new ImageIcon("man3/man33.png");
             man3.setIcon(man33);
+            offender = "man3";
         } else if (e.getSource() == man4) {
             man43 = new ImageIcon("man4/man43.png");
             man4.setIcon(man43);
+            offender = "man4";
         } else {
             man53 = new ImageIcon("man5/man53.png");
             man5.setIcon(man53);
-
+            offender = "man5";
         }
+        System.out.println("[Officer] Offender Found");
+        System.out.println("[" + offender + "] That was an Accident!");
+
+        // Remove the MouseListener when offender is found.
+        man1.removeMouseListener(this);
+        man2.removeMouseListener(this);
+        man3.removeMouseListener(this);
+        man4.removeMouseListener(this);
+        man5.removeMouseListener(this);
 
     }
 
@@ -150,22 +164,35 @@ public class MyFrame extends JFrame implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        String man;
+        String dialog;
         if (e.getSource() == man1) {
             man12 = new ImageIcon("man1/man12.png");
             man1.setIcon(man12);
+            man = "man1";
+            dialog = "I'm Innocent.";
         } else if (e.getSource() == man2) {
             man22 = new ImageIcon("man2/man22.png");
             man2.setIcon(man22);
+            man = "man2";
+            dialog = "I'm the Victim.";
         } else if (e.getSource() == man3) {
             man32 = new ImageIcon("man3/man32.png");
             man3.setIcon(man32);
+            man = "man3";
+            dialog = "I've Family to Feed.";
         } else if (e.getSource() == man4) {
             man42 = new ImageIcon("man4/man42.png");
             man4.setIcon(man42);
+            man = "man4";
+            dialog = "Please! Leave me.";
         } else {
             man52 = new ImageIcon("man5/man52.png");
             man5.setIcon(man52);
+            man = "man5";
+            dialog = "You wealthy men alwys conspire against us.";
         }
+        System.out.println("[" + man + "] " + dialog);
 
     }
 
