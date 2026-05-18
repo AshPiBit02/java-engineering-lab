@@ -25,38 +25,44 @@ public class Game {
         Bluelabel.setBounds(200, 100, 100, 100);
         Bluelabel.setOpaque(true);
 
-        // Actions For Red Label (WASD)
-        Redlabel.getInputMap().put(KeyStroke.getKeyStroke('w'), "redUp");
-        Redlabel.getActionMap().put("redUp", new MoveAction(Redlabel, 0, -offset));
+        // Red label controls (WASD)
+        InputMap redMap = Redlabel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap redActions = Redlabel.getActionMap();
 
-        Redlabel.getInputMap().put(KeyStroke.getKeyStroke('s'), "redDown");
-        Redlabel.getActionMap().put("redDown", new MoveAction(Redlabel, 0, offset));
+        redMap.put(KeyStroke.getKeyStroke('w'), "redUp");
+        redActions.put("redUp", new MoveAction(Redlabel, 0, -offset));
 
-        Redlabel.getInputMap().put(KeyStroke.getKeyStroke('a'), "redLeft");
-        Redlabel.getActionMap().put("redLeft", new MoveAction(Redlabel, -offset, 0));
+        redMap.put(KeyStroke.getKeyStroke('s'), "redDown");
+        redActions.put("redDown", new MoveAction(Redlabel, 0, offset));
 
-        Redlabel.getInputMap().put(KeyStroke.getKeyStroke('d'), "redRight");
-        Redlabel.getActionMap().put("redRight", new MoveAction(Redlabel, offset, 0));
+        redMap.put(KeyStroke.getKeyStroke('a'), "redLeft");
+        redActions.put("redLeft", new MoveAction(Redlabel, -offset, 0));
 
-        // Actions For Blue Label (Arrow keys)
-        Bluelabel.getInputMap().put(KeyStroke.getKeyStroke("UP"), "blueUp");
-        Bluelabel.getActionMap().put("blueUp", new MoveAction(Bluelabel, 0, -offset));
+        redMap.put(KeyStroke.getKeyStroke('d'), "redRight");
+        redActions.put("redRight", new MoveAction(Redlabel, offset, 0));
 
-        Bluelabel.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "blueDown");
-        Bluelabel.getActionMap().put("blueDown", new MoveAction(Bluelabel, 0, offset));
+        // Blue label controls (Arrow keys)
+        InputMap blueMap = Bluelabel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap blueActions = Bluelabel.getActionMap();
 
-        Bluelabel.getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "blueLeft");
-        Bluelabel.getActionMap().put("blueLeft", new MoveAction(Bluelabel, -offset, 0));
+        blueMap.put(KeyStroke.getKeyStroke("UP"), "blueUp");
+        blueActions.put("blueUp", new MoveAction(Bluelabel, 0, -offset));
 
-        Bluelabel.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "blueRight");
-        Bluelabel.getActionMap().put("blueRight", new MoveAction(Bluelabel, offset, 0));
+        blueMap.put(KeyStroke.getKeyStroke("DOWN"), "blueDown");
+        blueActions.put("blueDown", new MoveAction(Bluelabel, 0, offset));
+
+        blueMap.put(KeyStroke.getKeyStroke("LEFT"), "blueLeft");
+        blueActions.put("blueLeft", new MoveAction(Bluelabel, -offset, 0));
+
+        blueMap.put(KeyStroke.getKeyStroke("RIGHT"), "blueRight");
+        blueActions.put("blueRight", new MoveAction(Bluelabel, offset, 0));
 
         frame.add(Redlabel);
         frame.add(Bluelabel);
         frame.setVisible(true);
     }
 
-    // Generic action class
+    // Generic reusable action
     public class MoveAction extends AbstractAction {
         JLabel label;
         int dx, dy;
@@ -71,5 +77,9 @@ public class Game {
         public void actionPerformed(ActionEvent e) {
             label.setLocation(label.getX() + dx, label.getY() + dy);
         }
+    }
+
+    public static void main(String[] args) {
+        new Game();
     }
 }
