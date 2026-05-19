@@ -1,4 +1,5 @@
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -82,25 +83,29 @@ public class Frame extends JFrame {
 
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.setBounds(20, 150, 290, 300);
-        buttonPanel.setBackground(Color.LIGHT_GRAY);
+        buttonPanel.setBackground(Color.GRAY);
         buttonPanel.setOpaque(true);
         buttonPanel.setLayout(new GridLayout(5, 4, 5, 5));
+        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 4));
 
         // del button added to panel
         del.setBounds(167, 105, 68, 40);
         del.setFocusable(false);
-        del.setBorder(new LineBorder(Color.LIGHT_GRAY, 3));
+        del.setBorder(new LineBorder(Color.GRAY, 4));
+        del.setBackground(new Color(233, 223, 204));
         this.add(del);
 
         // Clear button added to panel
         clear.setBounds(240, 105, 70, 40);
         clear.setFocusable(false);
-        clear.setBorder(new LineBorder(Color.LIGHT_GRAY, 3));
+        clear.setBorder(new LineBorder(Color.GRAY, 4));
+        clear.setBackground(new Color(233, 223, 204));
         this.add(clear);
 
         for (JButton b : buttons) {
             buttonPanel.add(b);
             b.setFocusable(false);
+            b.setBackground(new Color(233, 223, 204));
         }
 
         getContentPane().setBackground(new Color(102, 102, 102));
