@@ -2,6 +2,8 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 import java.awt.*;
 
@@ -10,6 +12,8 @@ public class Frame extends JFrame {
     JButton one, two, three, four, five, six, seven, eight, nine, zero, result, dot, clear, mul, div, sub, add, del,
             mod, zerozero, expo, squr;
     JPanel buttonPanel;
+
+    JPanel resultPanel;
 
     Frame() {
 
@@ -40,21 +44,42 @@ public class Frame extends JFrame {
                 div,
                 mod, expo, squr, result };
 
+        resultPanel = new JPanel();
+        // text = new JTextField();
+        resultPanel.setBounds(10, 20, 300, 80);
+        this.add(resultPanel);
+
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.setBounds(20, 150, 290, 300);
         buttonPanel.setBackground(Color.LIGHT_GRAY);
         buttonPanel.setOpaque(true);
         buttonPanel.setLayout(new GridLayout(5, 4, 5, 5));
+
+        // del button added to panel
+        del.setBounds(167, 105, 68, 40);
+        del.setFocusable(false);
+        del.setBorder(new LineBorder(Color.LIGHT_GRAY, 3));
+        this.add(del);
+
+        // Clear button added to panel
+        clear.setBounds(240, 105, 70, 40);
+        clear.setFocusable(false);
+        clear.setBorder(new LineBorder(Color.LIGHT_GRAY, 3));
+        this.add(clear);
+
         for (JButton b : buttons) {
             buttonPanel.add(b);
             b.setFocusable(false);
         }
 
+        getContentPane().setBackground(new Color(102, 102, 102));
+        // this.setOpacity(true);
         this.setLayout(null);
         this.add(buttonPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(350, 500);
         // this.add(button);
+        this.setResizable(false);
         this.setVisible(true);
     }
 
