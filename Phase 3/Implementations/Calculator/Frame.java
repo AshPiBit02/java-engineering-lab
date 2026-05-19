@@ -15,6 +15,9 @@ public class Frame extends JFrame {
 
     JPanel resultPanel;
 
+    JTextField inputText;
+    JTextField outputText;
+
     Frame() {
 
         one = new JButton("1");
@@ -44,9 +47,37 @@ public class Frame extends JFrame {
                 div,
                 mod, expo, squr, result };
 
+        // will contain the display section
         resultPanel = new JPanel();
-        // text = new JTextField();
         resultPanel.setBounds(10, 20, 300, 80);
+        resultPanel.setLayout(null);
+        resultPanel.setBackground(Color.WHITE);
+        resultPanel.setOpaque(true);
+
+        // InputText will display the input from the user
+        inputText = new JTextField();
+        inputText.setFont(new Font("Monospaced", Font.BOLD, 18));
+        inputText.setBounds(2, 2, 300, 40);
+        inputText.setBorder(null);
+        inputText.setLayout(null);
+        // inputText.setBackground(Color.RED);// for reference
+
+        // OutputText will display the result
+        outputText = new JTextField("0");
+        // Align the output text displayer to the bottom right corner
+        outputText.setBounds(resultPanel.getWidth() - 250, resultPanel.getHeight() - 40, 250, 40);
+        outputText.setFont(new Font("Monospaced", Font.BOLD, 18));
+        // Align text inside the field to the right
+        outputText.setHorizontalAlignment(JTextField.RIGHT);
+        outputText.setBorder(null);
+        outputText.setBackground(Color.WHITE);
+        // This field will only display the result
+        outputText.setEditable(false);
+        outputText.setFocusable(false);
+
+        resultPanel.add(outputText);
+        resultPanel.add(inputText);
+
         this.add(resultPanel);
 
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
