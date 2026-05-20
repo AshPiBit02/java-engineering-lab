@@ -11,7 +11,7 @@ import java.awt.*;
 public class Frame extends JFrame implements ActionListener {
 
     JButton one, two, three, four, five, six, seven, eight, nine, zero, result, dot, clear, mul, div, sub, add, del,
-            mod, zerozero, expo, squr;
+            mod, zerozero, expo, squr, left, right;
     JPanel buttonPanel;
 
     JPanel resultPanel;
@@ -43,6 +43,8 @@ public class Frame extends JFrame implements ActionListener {
         expo = new JButton("x10ˣ");
         squr = new JButton("x²");
         zerozero = new JButton("00");
+        left = new JButton("(");
+        right = new JButton(")");
 
         JButton[] buttons = { seven, eight, nine, add, four, five, six, sub, one, two, three, mul, zero, zerozero, dot,
                 div,
@@ -87,6 +89,21 @@ public class Frame extends JFrame implements ActionListener {
         buttonPanel.setOpaque(true);
         buttonPanel.setLayout(new GridLayout(5, 4, 5, 5));
         buttonPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 4));
+
+        // parentheses
+        left.setBounds(22, 105, 68, 40);
+        left.setFocusable(false);
+        left.setBorder(new LineBorder(Color.GRAY, 4));
+        left.setBackground(new Color(233, 223, 204));
+        left.addActionListener(this);
+
+        right.setBounds(95, 105, 68, 40);
+        right.setFocusable(false);
+        right.setBorder(new LineBorder(Color.GRAY, 4));
+        right.setBackground(new Color(233, 223, 204));
+        right.addActionListener(this);
+        this.add(left);
+        this.add(right);
 
         // del button added to panel
         del.setBounds(167, 105, 68, 40);
