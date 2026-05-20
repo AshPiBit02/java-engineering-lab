@@ -5,10 +5,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-
+import java.awt.event.*;
 import java.awt.*;
 
-public class Frame extends JFrame {
+public class Frame extends JFrame implements ActionListener {
 
     JButton one, two, three, four, five, six, seven, eight, nine, zero, result, dot, clear, mul, div, sub, add, del,
             mod, zerozero, expo, squr;
@@ -94,6 +94,7 @@ public class Frame extends JFrame {
         del.setBorder(new LineBorder(Color.GRAY, 4));
         del.setBackground(new Color(233, 223, 204));
         this.add(del);
+        del.addActionListener(this);
 
         // Clear button added to panel
         clear.setBounds(240, 105, 70, 40);
@@ -101,11 +102,13 @@ public class Frame extends JFrame {
         clear.setBorder(new LineBorder(Color.GRAY, 4));
         clear.setBackground(new Color(233, 223, 204));
         this.add(clear);
+        clear.addActionListener(this);
 
         for (JButton b : buttons) {
             buttonPanel.add(b);
             b.setFocusable(false);
             b.setBackground(new Color(233, 223, 204));
+            b.addActionListener(this);
         }
 
         getContentPane().setBackground(new Color(102, 102, 102));
@@ -117,6 +120,87 @@ public class Frame extends JFrame {
         // this.add(button);
         this.setResizable(false);
         this.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton src = (JButton) e.getSource();
+        String label = src.getText();
+
+        switch (label) {
+            case "CLR":
+                inputText.setText("");
+                outputText.setText("0");
+                break;
+            case "DEL":
+                String current = inputText.getText();
+                if (!current.isEmpty()) {
+                    inputText.setText(current.substring(0, current.length() - 1));
+                }
+                break;
+            case "=":
+                // TODO: implement evaluation logic
+                break;
+            case "1":
+                inputText.setText(inputText.getText() + "1");
+                break;
+            case "2":
+                inputText.setText(inputText.getText() + "2");
+                break;
+            case "3":
+                inputText.setText(inputText.getText() + "3");
+                break;
+            case "4":
+                inputText.setText(inputText.getText() + "4");
+                break;
+            case "5":
+                inputText.setText(inputText.getText() + "5");
+                break;
+            case "6":
+                inputText.setText(inputText.getText() + "6");
+                break;
+            case "7":
+                inputText.setText(inputText.getText() + "7");
+                break;
+            case "8":
+                inputText.setText(inputText.getText() + "8");
+                break;
+            case "9":
+                inputText.setText(inputText.getText() + "9");
+                break;
+            case "0":
+                inputText.setText(inputText.getText() + "0");
+                break;
+            case "00":
+                inputText.setText(inputText.getText() + "00");
+                break;
+            case ".":
+                inputText.setText(inputText.getText() + ".");
+                break;
+            case "%":
+                inputText.setText(inputText.getText() + "%");
+                break;
+            case "+":
+                inputText.setText(inputText.getText() + "+");
+                break;
+            case "-":
+                inputText.setText(inputText.getText() + "-");
+                break;
+            case "×":
+                inputText.setText(inputText.getText() + "*");
+                break;
+            case "÷":
+                inputText.setText(inputText.getText() + "÷");
+                break;
+            case "x²":
+                inputText.setText(inputText.getText() + "^2");
+                break;
+            case "x10ˣ":
+                inputText.setText(inputText.getText() + "10^");
+                break;
+            default:
+                break;
+        }
     }
 
 }
