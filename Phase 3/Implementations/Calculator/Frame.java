@@ -1,4 +1,3 @@
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -7,9 +6,6 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import java.awt.event.*;
 import java.awt.*;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 
 public class Frame extends JFrame implements ActionListener {
 
@@ -53,8 +49,6 @@ public class Frame extends JFrame implements ActionListener {
                 div,
                 mod, expo, squr, result };
 
-        // will contain the display section
-
         // resultPanel setup
         resultPanel = new JPanel();
         resultPanel.setBounds(10, 20, 300, 80);
@@ -72,6 +66,7 @@ public class Frame extends JFrame implements ActionListener {
         outputText.setHorizontalAlignment(JTextField.RIGHT);
         outputText.setBorder(null);
         outputText.setEditable(false);
+        outputText.setBackground(Color.WHITE);
 
         // add in order
         resultPanel.add(inputText);
@@ -124,12 +119,10 @@ public class Frame extends JFrame implements ActionListener {
         }
 
         getContentPane().setBackground(new Color(102, 102, 102));
-        // this.setOpacity(true);
         this.setLayout(null);
         this.add(buttonPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(350, 500);
-        // this.add(button);
         this.setResizable(false);
         this.setVisible(true);
     }
@@ -152,15 +145,16 @@ public class Frame extends JFrame implements ActionListener {
                 break;
             case "=":
                 try {
-                    String expr = current;
-                    System.out.println("Evaluating: " + expr);
+                    String expr = current.trim();
+                    double evalResult = evaluate(expr);
 
-                    ScriptEngineManager mgr = new ScriptEngineManager();
-                    ScriptEngine engine = mgr.getEngineByName("JavaScript");
+                    // Display as integer if result is a whole number (e.g. 6.0 → 6)
+                    if (evalResult == (long) evalResult)
+                        outputText.setText(String.valueOf((long) evalResult));
+                    else
+                        outputText.setText(String.valueOf(evalResult));
 
-                    Object evalResult = engine.eval(expr); // ← renamed to evalResult
-                    outputText.setText(evalResult.toString()); // ← updated here too
-                } catch (ScriptException ex) {
+                } catch (Exception ex) {
                     outputText.setText("Syntax Error");
                     ex.printStackTrace();
                 }
@@ -218,12 +212,11 @@ public class Frame extends JFrame implements ActionListener {
                 inputText.setText(current + "/");
                 break;
             case "x²":
-                inputText.setText(current + "Math.pow(" + current + ",2)");
+                inputText.setText("Math.pow(" + current + ",2)");
                 break;
             case "x10ˣ":
-                inputText.setText(current + "Math.pow(10,"); // user must type exponent then close parenthesis
+                inputText.setText(current + "*Math.pow(10,");
                 break;
-
             case "(":
                 inputText.setText(current + "(");
                 break;
@@ -233,9 +226,75 @@ public class Frame extends JFrame implements ActionListener {
             default:
                 break;
         }
-        System.out.println("Evaluating: " + current);
-        System.out.println("Result: " + outputText.getText());
-
     }
 
+    /** Entry point: strips whitespace and starts parsing from position 0. */
+    private double evaluate(String expr) {
+        return parseAddSub(expr.replaceAll("\\s+", ""), new int[] { 0 });
+    }
+
+    /** Handles addition and subtraction (lowest precedence). */
+    private double parseAddSub(String expr, int[] pos) {
+        double leftVal = parseMulDiv(expr, pos);
+        while (pos[0] < expr.length()) {
+            char op = expr.charAt(pos[0]);
+            if (op == '+' || op == '-') {
+                pos[0]++;
+                double rightVal = parseMulDiv(expr, pos);
+                leftVal = (op == '+') ? leftVal + rightVal : leftVal - rightVal;
+            } else {
+                break;
+            }
+        }
+        return leftVal;
+    }
+
+    /** Handles multiplication and division (medium precedence). */
+    private double parseMulDiv(String expr, int[] pos) {
+        double leftVal = parsePrimary(expr, pos);
+        while (pos[0] < expr.length()) {
+            char op = expr.charAt(pos[0]);
+            if (op == '*' || op == '/') {
+                pos[0]++;
+                double rightVal = parsePrimary(expr, pos);
+                leftVal = (op == '*') ? leftVal * rightVal : leftVal / rightVal;
+            } else {
+                break;
+            }
+        }
+        return leftVal;
+    }
+
+    private double parsePrimary(String expr, int[] pos) {
+        // Math.pow(base, exponent)
+        if (expr.startsWith("Math.pow(", pos[0])) {
+            pos[0] += 9; // skip "Math.pow("
+            double base = parseAddSub(expr, pos);
+            pos[0]++; // skip ','
+            double exp = parseAddSub(expr, pos);
+            pos[0]++; // skip ')'
+            return Math.pow(base, exp);
+        }
+
+        if (expr.charAt(pos[0]) == '-') {
+            pos[0]++;
+            return -parsePrimary(expr, pos);
+        }
+
+        // Parenthesised expression
+        if (expr.charAt(pos[0]) == '(') {
+            pos[0]++; // skip '('
+            double val = parseAddSub(expr, pos);
+            pos[0]++; // skip ')'
+            return val;
+        }
+
+        // Numeric literal (integer or decimal)
+        int start = pos[0];
+        while (pos[0] < expr.length() &&
+                (Character.isDigit(expr.charAt(pos[0])) || expr.charAt(pos[0]) == '.')) {
+            pos[0]++;
+        }
+        return Double.parseDouble(expr.substring(start, pos[0]));
+    }
 }
