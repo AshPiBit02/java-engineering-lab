@@ -60,7 +60,7 @@ public class Frame extends JFrame implements ActionListener {
         inputText.setFont(new Font("Monospaced", Font.BOLD, 18));
         inputText.setBorder(null);
 
-        // outputText 
+        // outputText
         outputText = new JTextField("0");
         outputText.setFont(new Font("Monospaced", Font.BOLD, 18));
         outputText.setHorizontalAlignment(JTextField.RIGHT);
