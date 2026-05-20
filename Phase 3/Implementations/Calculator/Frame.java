@@ -7,6 +7,9 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import java.awt.event.*;
 import java.awt.*;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 public class Frame extends JFrame implements ActionListener {
 
@@ -53,14 +56,14 @@ public class Frame extends JFrame implements ActionListener {
         // will contain the display section
         resultPanel = new JPanel();
         resultPanel.setBounds(10, 20, 300, 80);
-        resultPanel.setLayout(null);
+        resultPanel.setLayout(new GridLayout(2, 1));
         resultPanel.setBackground(Color.WHITE);
         resultPanel.setOpaque(true);
 
         // InputText will display the input from the user
         inputText = new JTextField();
         inputText.setFont(new Font("Monospaced", Font.BOLD, 18));
-        inputText.setBounds(2, 2, 300, 40);
+        inputText.setBounds(2, 2, 296, 35);
         inputText.setBorder(null);
         inputText.setLayout(null);
         // inputText.setBackground(Color.RED);// for reference
@@ -68,7 +71,7 @@ public class Frame extends JFrame implements ActionListener {
         // OutputText will display the result
         outputText = new JTextField("0");
         // Align the output text displayer to the bottom right corner
-        outputText.setBounds(resultPanel.getWidth() - 250, resultPanel.getHeight() - 40, 250, 40);
+        outputText.setBounds(2, 42, 296, 35);
         outputText.setFont(new Font("Monospaced", Font.BOLD, 18));
         // Align text inside the field to the right
         outputText.setHorizontalAlignment(JTextField.RIGHT);
@@ -78,8 +81,8 @@ public class Frame extends JFrame implements ActionListener {
         outputText.setEditable(false);
         outputText.setFocusable(false);
 
-        resultPanel.add(outputText);
         resultPanel.add(inputText);
+        resultPanel.add(outputText);
 
         this.add(resultPanel);
 
@@ -156,8 +159,24 @@ public class Frame extends JFrame implements ActionListener {
                 }
                 break;
             case "=":
-                // TODO: implement evaluation logic
+                try {
+                    ScriptEngineManager mgr = new ScriptEngineManager();
+                    ScriptEngine engine = mgr.getEngineByName("JavaScript");
+
+                    // Convert pretty symbols to JavaScript equivalents
+                    String expr = current.replace("×", "*")
+                            .replace("÷", "/")
+                            .replace("^", "**")
+                            .replace("x²", "**2")
+                            .replace("x10ˣ", "10**");
+
+                    Object result = engine.eval(expr);
+                    outputText.setText(result.toString());
+                } catch (ScriptException ex) {
+                    outputText.setText("Error");
+                }
                 break;
+
             case "1":
                 inputText.setText(current + "1");
                 break;
