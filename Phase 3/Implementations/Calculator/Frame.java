@@ -143,6 +143,7 @@ public class Frame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton src = (JButton) e.getSource();
         String label = src.getText();
+        String current = inputText.getText();
 
         switch (label) {
             case "CLR":
@@ -150,7 +151,6 @@ public class Frame extends JFrame implements ActionListener {
                 outputText.setText("0");
                 break;
             case "DEL":
-                String current = inputText.getText();
                 if (!current.isEmpty()) {
                     inputText.setText(current.substring(0, current.length() - 1));
                 }
@@ -159,61 +159,67 @@ public class Frame extends JFrame implements ActionListener {
                 // TODO: implement evaluation logic
                 break;
             case "1":
-                inputText.setText(inputText.getText() + "1");
+                inputText.setText(current + "1");
                 break;
             case "2":
-                inputText.setText(inputText.getText() + "2");
+                inputText.setText(current + "2");
                 break;
             case "3":
-                inputText.setText(inputText.getText() + "3");
+                inputText.setText(current + "3");
                 break;
             case "4":
-                inputText.setText(inputText.getText() + "4");
+                inputText.setText(current + "4");
                 break;
             case "5":
-                inputText.setText(inputText.getText() + "5");
+                inputText.setText(current + "5");
                 break;
             case "6":
-                inputText.setText(inputText.getText() + "6");
+                inputText.setText(current + "6");
                 break;
             case "7":
-                inputText.setText(inputText.getText() + "7");
+                inputText.setText(current + "7");
                 break;
             case "8":
-                inputText.setText(inputText.getText() + "8");
+                inputText.setText(current + "8");
                 break;
             case "9":
-                inputText.setText(inputText.getText() + "9");
+                inputText.setText(current + "9");
                 break;
             case "0":
-                inputText.setText(inputText.getText() + "0");
+                inputText.setText(current + "0");
                 break;
             case "00":
-                inputText.setText(inputText.getText() + "00");
+                inputText.setText(current + "00");
                 break;
             case ".":
-                inputText.setText(inputText.getText() + ".");
+                inputText.setText(current + ".");
                 break;
             case "%":
-                inputText.setText(inputText.getText() + "%");
+                inputText.setText(current + "%");
                 break;
             case "+":
-                inputText.setText(inputText.getText() + "+");
+                inputText.setText(current + "+");
                 break;
             case "-":
-                inputText.setText(inputText.getText() + "-");
+                inputText.setText(current + "-");
                 break;
             case "×":
-                inputText.setText(inputText.getText() + "*");
+                inputText.setText(current + "*");
                 break;
             case "÷":
-                inputText.setText(inputText.getText() + "÷");
+                inputText.setText(current + "÷");
                 break;
             case "x²":
-                inputText.setText(inputText.getText() + "^2");
+                inputText.setText(current + "^2");
                 break;
             case "x10ˣ":
-                inputText.setText(inputText.getText() + "10^");
+                inputText.setText(current + "10^");
+                break;
+            case "(":
+                inputText.setText(current + "(");
+                break;
+            case ")":
+                inputText.setText(current + ")");
                 break;
             default:
                 break;
