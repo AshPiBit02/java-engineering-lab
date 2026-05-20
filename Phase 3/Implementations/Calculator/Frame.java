@@ -54,36 +54,28 @@ public class Frame extends JFrame implements ActionListener {
                 mod, expo, squr, result };
 
         // will contain the display section
+
+        // resultPanel setup
         resultPanel = new JPanel();
         resultPanel.setBounds(10, 20, 300, 80);
         resultPanel.setLayout(new GridLayout(2, 1));
         resultPanel.setBackground(Color.WHITE);
-        resultPanel.setOpaque(true);
 
-        // InputText will display the input from the user
+        // inputText
         inputText = new JTextField();
         inputText.setFont(new Font("Monospaced", Font.BOLD, 18));
-        inputText.setBounds(2, 2, 296, 35);
         inputText.setBorder(null);
-        inputText.setLayout(null);
-        // inputText.setBackground(Color.RED);// for reference
 
-        // OutputText will display the result
+        // outputText
         outputText = new JTextField("0");
-        // Align the output text displayer to the bottom right corner
-        outputText.setBounds(2, 42, 296, 35);
         outputText.setFont(new Font("Monospaced", Font.BOLD, 18));
-        // Align text inside the field to the right
         outputText.setHorizontalAlignment(JTextField.RIGHT);
         outputText.setBorder(null);
-        outputText.setBackground(Color.WHITE);
-        // This field will only display the result
         outputText.setEditable(false);
-        outputText.setFocusable(false);
 
+        // add in order
         resultPanel.add(inputText);
         resultPanel.add(outputText);
-
         this.add(resultPanel);
 
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -160,20 +152,17 @@ public class Frame extends JFrame implements ActionListener {
                 break;
             case "=":
                 try {
+                    String expr = current;
+                    System.out.println("Evaluating: " + expr);
+
                     ScriptEngineManager mgr = new ScriptEngineManager();
                     ScriptEngine engine = mgr.getEngineByName("JavaScript");
 
-                    // Convert pretty symbols to JavaScript equivalents
-                    String expr = current.replace("×", "*")
-                            .replace("÷", "/")
-                            .replace("^", "**")
-                            .replace("x²", "**2")
-                            .replace("x10ˣ", "10**");
-
-                    Object result = engine.eval(expr);
-                    outputText.setText(result.toString());
+                    Object evalResult = engine.eval(expr); // ← renamed to evalResult
+                    outputText.setText(evalResult.toString()); // ← updated here too
                 } catch (ScriptException ex) {
-                    outputText.setText("Error");
+                    outputText.setText("Syntax Error");
+                    ex.printStackTrace();
                 }
                 break;
 
@@ -226,14 +215,15 @@ public class Frame extends JFrame implements ActionListener {
                 inputText.setText(current + "*");
                 break;
             case "÷":
-                inputText.setText(current + "÷");
+                inputText.setText(current + "/");
                 break;
             case "x²":
-                inputText.setText(current + "^2");
+                inputText.setText(current + "Math.pow(" + current + ",2)");
                 break;
             case "x10ˣ":
-                inputText.setText(current + "10^");
+                inputText.setText(current + "Math.pow(10,"); // user must type exponent then close parenthesis
                 break;
+
             case "(":
                 inputText.setText(current + "(");
                 break;
@@ -243,6 +233,9 @@ public class Frame extends JFrame implements ActionListener {
             default:
                 break;
         }
+        System.out.println("Evaluating: " + current);
+        System.out.println("Result: " + outputText.getText());
+
     }
 
 }
