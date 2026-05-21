@@ -54,7 +54,7 @@ public class Frame extends JFrame implements ActionListener {
         inputText = new JTextField();
         inputText.setFont(new Font("Monospaced", Font.BOLD, 18));
         inputText.setBorder(null);
-        inputText.setBackground(new Color(210, 180, 140));
+        inputText.setBackground(Color.decode("#d9f5f1"));
 
         // outputText
         outputText = new JTextField("0");
@@ -62,7 +62,7 @@ public class Frame extends JFrame implements ActionListener {
         outputText.setHorizontalAlignment(JTextField.RIGHT);
         outputText.setBorder(null);
         outputText.setEditable(false);
-        outputText.setBackground(new Color(210, 180, 140));
+        outputText.setBackground(Color.decode("#d9f5f1"));
 
         // add in order
         resultPanel.add(inputText);
@@ -77,40 +77,40 @@ public class Frame extends JFrame implements ActionListener {
         name.setVerticalAlignment(JLabel.CENTER);
         name.setBorder(null);
         name.setFont(new Font("Edwardian Script ITC", Font.BOLD, 35));
-        name.setForeground(new Color(0, 0, 0));
+        name.setForeground(Color.WHITE);
         this.add(name);
 
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.setBounds(20, 150, 290, 250);
-        buttonPanel.setBackground(new Color(139, 69, 19));
+        buttonPanel.setBackground(Color.decode("#020213"));
         buttonPanel.setOpaque(true);
         buttonPanel.setLayout(new GridLayout(4, 4, 5, 5));
-        buttonPanel.setBorder(BorderFactory.createLineBorder(new Color(139, 69, 19), 4));
+        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.decode("#020213"), 4));
 
         // del button added to panel
         del.setBounds(167, 105, 68, 40);
         del.setFocusable(false);
-        del.setBorder(new LineBorder(new Color(139, 69, 19), 4));
-        del.setBackground(new Color(233, 223, 204));
+        del.setBorder(new LineBorder(Color.decode("#020213"), 4));
+        del.setBackground(Color.decode("#a7c785"));
         this.add(del);
         del.addActionListener(this);
 
         // Clear button added to panel
         clear.setBounds(240, 105, 70, 40);
         clear.setFocusable(false);
-        clear.setBorder(new LineBorder(new Color(139, 69, 19), 4));
-        clear.setBackground(new Color(233, 223, 204));
+        clear.setBorder(new LineBorder(Color.decode("#020213"), 4));
+        clear.setBackground(Color.decode("#a7c785"));
         this.add(clear);
         clear.addActionListener(this);
 
         for (JButton b : buttons) {
             buttonPanel.add(b);
             b.setFocusable(false);
-            b.setBackground(new Color(233, 223, 204));
+            b.setBackground(Color.decode("#a7c785"));
             b.addActionListener(this);
         }
 
-        getContentPane().setBackground(new Color(160, 82, 45));
+        getContentPane().setBackground(Color.decode("#08082f"));
         this.setLayout(null);
         this.add(buttonPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
