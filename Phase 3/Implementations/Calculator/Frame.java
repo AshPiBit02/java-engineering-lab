@@ -13,15 +13,15 @@ public class Frame extends JFrame implements ActionListener {
     JButton one, two, three, four, five, six, seven, eight, nine, zero, result, dot, clear, mul, div, sub, add, del,
             mod, zerozero, expo, squr, left, right;
     JPanel buttonPanel;
-
     JPanel resultPanel;
-
     JTextField inputText;
     JTextField outputText;
-
     JLabel name;
 
     Frame() {
+
+        // FIX #1: setLayout(null) moved here, before any add() calls
+        this.setLayout(null);
 
         one = new JButton("1");
         two = new JButton("2");
@@ -47,7 +47,7 @@ public class Frame extends JFrame implements ActionListener {
 
         // resultPanel setup
         resultPanel = new JPanel();
-        resultPanel.setBounds(10, 20, 300, 80);
+        resultPanel.setBounds(10, 20, 320, 80);
         resultPanel.setLayout(new GridLayout(2, 1));
 
         // inputText
@@ -69,10 +69,9 @@ public class Frame extends JFrame implements ActionListener {
         resultPanel.add(outputText);
         this.add(resultPanel);
 
-        // Calculator name label
         name = new JLabel();
         name.setText("Juj Calci");
-        name.setBounds(20, 100, 120, 50);
+        name.setBounds(20, 103, 130, 40);
         name.setHorizontalAlignment(JLabel.CENTER);
         name.setVerticalAlignment(JLabel.CENTER);
         name.setBorder(null);
@@ -87,21 +86,28 @@ public class Frame extends JFrame implements ActionListener {
         buttonPanel.setLayout(new GridLayout(4, 4, 5, 5));
         buttonPanel.setBorder(BorderFactory.createLineBorder(Color.decode("#020213"), 4));
 
-        // del button added to panel
-        del.setBounds(167, 105, 68, 40);
+        // FIX #3: del and clear placed in a sub-panel so positions are
+        // relative and won't break if surrounding layout shifts
+        JPanel topButtonPanel = new JPanel(null);
+        topButtonPanel.setBounds(155, 103, 165, 40);
+        topButtonPanel.setBackground(Color.decode("#08082f"));
+        topButtonPanel.setOpaque(true);
+
+        del.setBounds(0, 0, 78, 40);
         del.setFocusable(false);
         del.setBorder(new LineBorder(Color.decode("#020213"), 4));
         del.setBackground(Color.decode("#a7c785"));
-        this.add(del);
+        topButtonPanel.add(del);
         del.addActionListener(this);
 
-        // Clear button added to panel
-        clear.setBounds(240, 105, 70, 40);
+        clear.setBounds(83, 0, 82, 40);
         clear.setFocusable(false);
         clear.setBorder(new LineBorder(Color.decode("#020213"), 4));
         clear.setBackground(Color.decode("#a7c785"));
-        this.add(clear);
+        topButtonPanel.add(clear);
         clear.addActionListener(this);
+
+        this.add(topButtonPanel);
 
         for (JButton b : buttons) {
             buttonPanel.add(b);
@@ -111,7 +117,6 @@ public class Frame extends JFrame implements ActionListener {
         }
 
         getContentPane().setBackground(Color.decode("#08082f"));
-        this.setLayout(null);
         this.add(buttonPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(350, 450);
@@ -136,46 +141,7 @@ public class Frame extends JFrame implements ActionListener {
                 }
                 break;
             case "=":
-                break;
-
-            case "1":
-                inputText.setText(current + "1");
-                break;
-            case "2":
-                inputText.setText(current + "2");
-                break;
-            case "3":
-                inputText.setText(current + "3");
-                break;
-            case "4":
-                inputText.setText(current + "4");
-                break;
-            case "5":
-                inputText.setText(current + "5");
-                break;
-            case "6":
-                inputText.setText(current + "6");
-                break;
-            case "7":
-                inputText.setText(current + "7");
-                break;
-            case "8":
-                inputText.setText(current + "8");
-                break;
-            case "9":
-                inputText.setText(current + "9");
-                break;
-            case "0":
-                inputText.setText(current + "0");
-                break;
-            case ".":
-                inputText.setText(current + ".");
-                break;
-            case "+":
-                inputText.setText(current + "+");
-                break;
-            case "-":
-                inputText.setText(current + "-");
+                outputText.setText(evaluate(current));
                 break;
             case "×":
                 inputText.setText(current + "*");
@@ -184,7 +150,104 @@ public class Frame extends JFrame implements ActionListener {
                 inputText.setText(current + "/");
                 break;
             default:
+                inputText.setText(current + label);
                 break;
+        }
+    }
+
+    public static String evaluate(String expr) {
+        try {
+            // Clean up display symbols just in case
+            expr = expr.replace("×", "*").replace("÷", "/");
+            double result = new ExprParser(expr).parse();
+            // Return without unnecessary trailing ".0"
+            if (result == Math.floor(result) && !Double.isInfinite(result))
+                return String.valueOf((long) result);
+            return String.valueOf(result);
+        } catch (ArithmeticException e) {
+            return "Error";
+        } catch (Exception e) {
+            return "Syntax Error";
+        }
+    }
+
+    static class ExprParser {
+        private final String input;
+        private int pos = 0;
+
+        ExprParser(String input) {
+            this.input = input.trim();
+        }
+
+        double parse() {
+            double result = parseExpr();
+            if (pos < input.length())
+                throw new RuntimeException("Unexpected character: " + input.charAt(pos));
+            return result;
+        }
+
+        // Handles + and -
+        private double parseExpr() {
+            double left = parseTerm();
+            while (pos < input.length()) {
+                char op = input.charAt(pos);
+                if (op == '+' || op == '-') {
+                    pos++;
+                    double right = parseTerm();
+                    left = (op == '+') ? left + right : left - right;
+                } else
+                    break;
+            }
+            return left;
+        }
+
+        // Handles * and /
+        private double parseTerm() {
+            double left = parseFactor();
+            while (pos < input.length()) {
+                char op = input.charAt(pos);
+                if (op == '*' || op == '/') {
+                    pos++;
+                    double right = parseFactor();
+                    if (op == '/' && right == 0)
+                        throw new ArithmeticException("Division by zero");
+                    left = (op == '*') ? left * right : left / right;
+                } else
+                    break;
+            }
+            return left;
+        }
+
+        // Handles unary minus, parentheses, and numbers
+        private double parseFactor() {
+            if (pos >= input.length())
+                throw new RuntimeException("Unexpected end of expression");
+
+            char ch = input.charAt(pos);
+
+            // Unary minus
+            if (ch == '-') {
+                pos++;
+                return -parseFactor();
+            }
+
+            // Parentheses
+            if (ch == '(') {
+                pos++;
+                double val = parseExpr();
+                if (pos >= input.length() || input.charAt(pos) != ')')
+                    throw new RuntimeException("Missing closing parenthesis");
+                pos++;
+                return val;
+            }
+
+            // Number
+            int start = pos;
+            while (pos < input.length() && (Character.isDigit(input.charAt(pos)) || input.charAt(pos) == '.'))
+                pos++;
+            if (start == pos)
+                throw new RuntimeException("Expected number at pos " + pos);
+            return Double.parseDouble(input.substring(start, pos));
         }
     }
 }
