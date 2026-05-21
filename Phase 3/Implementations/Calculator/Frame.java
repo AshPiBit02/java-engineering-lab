@@ -38,16 +38,9 @@ public class Frame extends JFrame implements ActionListener {
         sub = new JButton("-");
         add = new JButton("+");
         del = new JButton("DEL");
-        mod = new JButton("%");
-        expo = new JButton("x10ˣ");
-        squr = new JButton("x²");
-        zerozero = new JButton("00");
-        left = new JButton("(");
-        right = new JButton(")");
 
-        JButton[] buttons = { seven, eight, nine, add, four, five, six, sub, one, two, three, mul, zero, zerozero, dot,
-                div,
-                mod, expo, squr, result };
+        JButton[] buttons = { seven, eight, nine, add, four, five, six, sub, one, two, three, mul, zero, dot,
+                div, result };
 
         // resultPanel setup
         resultPanel = new JPanel();
@@ -60,7 +53,7 @@ public class Frame extends JFrame implements ActionListener {
         inputText.setFont(new Font("Monospaced", Font.BOLD, 18));
         inputText.setBorder(null);
 
-        // outputText 
+        // outputText
         outputText = new JTextField("0");
         outputText.setFont(new Font("Monospaced", Font.BOLD, 18));
         outputText.setHorizontalAlignment(JTextField.RIGHT);
@@ -74,26 +67,11 @@ public class Frame extends JFrame implements ActionListener {
         this.add(resultPanel);
 
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        buttonPanel.setBounds(20, 150, 290, 300);
+        buttonPanel.setBounds(20, 150, 290, 250);
         buttonPanel.setBackground(Color.GRAY);
         buttonPanel.setOpaque(true);
-        buttonPanel.setLayout(new GridLayout(5, 4, 5, 5));
+        buttonPanel.setLayout(new GridLayout(4, 4, 5, 5));
         buttonPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 4));
-
-        // parentheses
-        left.setBounds(22, 105, 68, 40);
-        left.setFocusable(false);
-        left.setBorder(new LineBorder(Color.GRAY, 4));
-        left.setBackground(new Color(233, 223, 204));
-        left.addActionListener(this);
-
-        right.setBounds(95, 105, 68, 40);
-        right.setFocusable(false);
-        right.setBorder(new LineBorder(Color.GRAY, 4));
-        right.setBackground(new Color(233, 223, 204));
-        right.addActionListener(this);
-        this.add(left);
-        this.add(right);
 
         // del button added to panel
         del.setBounds(167, 105, 68, 40);
@@ -122,7 +100,7 @@ public class Frame extends JFrame implements ActionListener {
         this.setLayout(null);
         this.add(buttonPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(350, 500);
+        this.setSize(350, 450);
         this.setResizable(false);
         this.setVisible(true);
     }
@@ -144,20 +122,6 @@ public class Frame extends JFrame implements ActionListener {
                 }
                 break;
             case "=":
-                try {
-                    String expr = current.trim();
-                    double evalResult = evaluate(expr);
-
-                    // Display as integer if result is a whole number (e.g. 6.0 → 6)
-                    if (evalResult == (long) evalResult)
-                        outputText.setText(String.valueOf((long) evalResult));
-                    else
-                        outputText.setText(String.valueOf(evalResult));
-
-                } catch (Exception ex) {
-                    outputText.setText("Syntax Error");
-                    ex.printStackTrace();
-                }
                 break;
 
             case "1":
@@ -190,14 +154,8 @@ public class Frame extends JFrame implements ActionListener {
             case "0":
                 inputText.setText(current + "0");
                 break;
-            case "00":
-                inputText.setText(current + "00");
-                break;
             case ".":
                 inputText.setText(current + ".");
-                break;
-            case "%":
-                inputText.setText(current + "%");
                 break;
             case "+":
                 inputText.setText(current + "+");
@@ -211,90 +169,8 @@ public class Frame extends JFrame implements ActionListener {
             case "÷":
                 inputText.setText(current + "/");
                 break;
-            case "x²":
-                inputText.setText("Math.pow(" + current + ",2)");
-                break;
-            case "x10ˣ":
-                inputText.setText(current + "*Math.pow(10,");
-                break;
-            case "(":
-                inputText.setText(current + "(");
-                break;
-            case ")":
-                inputText.setText(current + ")");
-                break;
             default:
                 break;
         }
-    }
-
-    /** Entry point: strips whitespace and starts parsing from position 0. */
-    private double evaluate(String expr) {
-        return parseAddSub(expr.replaceAll("\\s+", ""), new int[] { 0 });
-    }
-
-    /** Handles addition and subtraction (lowest precedence). */
-    private double parseAddSub(String expr, int[] pos) {
-        double leftVal = parseMulDiv(expr, pos);
-        while (pos[0] < expr.length()) {
-            char op = expr.charAt(pos[0]);
-            if (op == '+' || op == '-') {
-                pos[0]++;
-                double rightVal = parseMulDiv(expr, pos);
-                leftVal = (op == '+') ? leftVal + rightVal : leftVal - rightVal;
-            } else {
-                break;
-            }
-        }
-        return leftVal;
-    }
-
-    /** Handles multiplication and division (medium precedence). */
-    private double parseMulDiv(String expr, int[] pos) {
-        double leftVal = parsePrimary(expr, pos);
-        while (pos[0] < expr.length()) {
-            char op = expr.charAt(pos[0]);
-            if (op == '*' || op == '/') {
-                pos[0]++;
-                double rightVal = parsePrimary(expr, pos);
-                leftVal = (op == '*') ? leftVal * rightVal : leftVal / rightVal;
-            } else {
-                break;
-            }
-        }
-        return leftVal;
-    }
-
-    private double parsePrimary(String expr, int[] pos) {
-        // Math.pow(base, exponent)
-        if (expr.startsWith("Math.pow(", pos[0])) {
-            pos[0] += 9; // skip "Math.pow("
-            double base = parseAddSub(expr, pos);
-            pos[0]++; // skip ','
-            double exp = parseAddSub(expr, pos);
-            pos[0]++; // skip ')'
-            return Math.pow(base, exp);
-        }
-
-        if (expr.charAt(pos[0]) == '-') {
-            pos[0]++;
-            return -parsePrimary(expr, pos);
-        }
-
-        // Parenthesised expression
-        if (expr.charAt(pos[0]) == '(') {
-            pos[0]++; // skip '('
-            double val = parseAddSub(expr, pos);
-            pos[0]++; // skip ')'
-            return val;
-        }
-
-        // Numeric literal (integer or decimal)
-        int start = pos[0];
-        while (pos[0] < expr.length() &&
-                (Character.isDigit(expr.charAt(pos[0])) || expr.charAt(pos[0]) == '.')) {
-            pos[0]++;
-        }
-        return Double.parseDouble(expr.substring(start, pos[0]));
     }
 }
