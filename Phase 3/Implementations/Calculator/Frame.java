@@ -1,6 +1,7 @@
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
@@ -17,6 +18,8 @@ public class Frame extends JFrame implements ActionListener {
 
     JTextField inputText;
     JTextField outputText;
+
+    JLabel name;
 
     Frame() {
 
@@ -46,12 +49,12 @@ public class Frame extends JFrame implements ActionListener {
         resultPanel = new JPanel();
         resultPanel.setBounds(10, 20, 300, 80);
         resultPanel.setLayout(new GridLayout(2, 1));
-        resultPanel.setBackground(Color.WHITE);
 
         // inputText
         inputText = new JTextField();
         inputText.setFont(new Font("Monospaced", Font.BOLD, 18));
         inputText.setBorder(null);
+        inputText.setBackground(new Color(210, 180, 140));
 
         // outputText
         outputText = new JTextField("0");
@@ -59,24 +62,35 @@ public class Frame extends JFrame implements ActionListener {
         outputText.setHorizontalAlignment(JTextField.RIGHT);
         outputText.setBorder(null);
         outputText.setEditable(false);
-        outputText.setBackground(Color.WHITE);
+        outputText.setBackground(new Color(210, 180, 140));
 
         // add in order
         resultPanel.add(inputText);
         resultPanel.add(outputText);
         this.add(resultPanel);
 
+        // Calculator name label
+        name = new JLabel();
+        name.setText("Juj Calci");
+        name.setBounds(20, 100, 120, 50);
+        name.setHorizontalAlignment(JLabel.CENTER);
+        name.setVerticalAlignment(JLabel.CENTER);
+        name.setBorder(null);
+        name.setFont(new Font("Edwardian Script ITC", Font.BOLD, 35));
+        name.setForeground(new Color(0, 0, 0));
+        this.add(name);
+
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.setBounds(20, 150, 290, 250);
-        buttonPanel.setBackground(Color.GRAY);
+        buttonPanel.setBackground(new Color(139, 69, 19));
         buttonPanel.setOpaque(true);
         buttonPanel.setLayout(new GridLayout(4, 4, 5, 5));
-        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 4));
+        buttonPanel.setBorder(BorderFactory.createLineBorder(new Color(139, 69, 19), 4));
 
         // del button added to panel
         del.setBounds(167, 105, 68, 40);
         del.setFocusable(false);
-        del.setBorder(new LineBorder(Color.GRAY, 4));
+        del.setBorder(new LineBorder(new Color(139, 69, 19), 4));
         del.setBackground(new Color(233, 223, 204));
         this.add(del);
         del.addActionListener(this);
@@ -84,7 +98,7 @@ public class Frame extends JFrame implements ActionListener {
         // Clear button added to panel
         clear.setBounds(240, 105, 70, 40);
         clear.setFocusable(false);
-        clear.setBorder(new LineBorder(Color.GRAY, 4));
+        clear.setBorder(new LineBorder(new Color(139, 69, 19), 4));
         clear.setBackground(new Color(233, 223, 204));
         this.add(clear);
         clear.addActionListener(this);
@@ -96,7 +110,7 @@ public class Frame extends JFrame implements ActionListener {
             b.addActionListener(this);
         }
 
-        getContentPane().setBackground(new Color(102, 102, 102));
+        getContentPane().setBackground(new Color(160, 82, 45));
         this.setLayout(null);
         this.add(buttonPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
