@@ -1,11 +1,9 @@
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import javax.swing.event.*;
 
 import java.awt.*;
-import java.awt.event.*;
 
-public class Converter extends JFrame implements ActionListener {
+public class Converter extends JFrame {
     JFrame frame;
     JLabel title;
     String[] temps = { "Celsius(°C)", "Fahrenheit(°F)", "Kelvin(K)", "Rankine(°R)", "Réaumur(R°é)" };
@@ -56,8 +54,8 @@ public class Converter extends JFrame implements ActionListener {
         rightText.setBorder(BorderFactory.createLineBorder(Color.decode("#6d8242"), 4));
 
         // Input Validation
-        attachValidation(leftText);
-        attachValidation(rightText);
+        attachValidation(leftText, rightText);
+        attachValidation(rightText, leftText);
 
         // Dynamic Info Dialog
         infoDialog = new JDialog();
@@ -82,30 +80,37 @@ public class Converter extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    private void attachValidation(JTextField field) {
-        field.getDocument().addDocumentListener(new DocumentListener() {
+    boolean isUpdating = false; // Denotes if any input is updating to prevent infinite loop
+
+    private void attachValidation(JTextField source, JTextField target) {
+        source.getDocument().addDocumentListener(new DocumentListener() {
             public void insertUpdate(DocumentEvent e) {
-                validateInput(field);
+                validateInput(source, target);
             }
 
             public void removeUpdate(DocumentEvent e) {
-                validateInput(field);
+                validateInput(source, target);
             }
 
             public void changedUpdate(DocumentEvent e) {
-                validateInput(field);
+                validateInput(source, target);
             }
 
-            private void validateInput(JTextField f) {
-                String text = f.getText();
-                if ("".equals(text)) {
+            private void validateInput(JTextField src, JTextField trgt) {
+                if (isUpdating)
+                    return; // Prevent infinite loop if other inputField is in use
+                String text = src.getText();
+                if (text.isEmpty()) {
                     closeDialog();
                     return;
                 }
                 boolean isValid = true;
                 try {
-                    Double.parseDouble(text);
+                    double value = Double.parseDouble(text);
                     closeDialog();
+                    isUpdating = true;
+                    trgt.setText(String.valueOf(convert(value)));
+                    isUpdating = false;
                 } catch (NumberFormatException ex) {
                     isValid = false;
                 }
@@ -125,9 +130,50 @@ public class Converter extends JFrame implements ActionListener {
         infoDialog.setVisible(false);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    private double convert(double value) {
+        int fromIndex = left.getSelectedIndex();
+        int toIndex = right.getSelectedIndex();
+        double celsius;
+        if (fromIndex == toIndex) {
+            return value;
+        }
+
+        // Convert from source to celsius
+        switch (fromIndex) {
+            case 0:
+                celsius = value;
+                break;
+            case 1:
+                celsius = ((9.0 / 5.0) * value) + 32;
+                break;
+            case 2:
+                celsius = value + 273.15;
+                break;
+            case 3:
+                celsius = (value + 273.15) * (9.0 / 5.0);
+                break;
+            case 4:
+                celsius = value * (4.0 / 5.0);
+                break;
+            default:
+                celsius = value;
+        }
+
+        // Convert from Celsius to target
+        switch (toIndex) {
+            case 0:
+                return celsius;
+            case 1:
+                return (celsius * 9.0 / 5.0) + 32;
+            case 2:
+                return celsius + 273.15;
+            case 3:
+                return (celsius + 273.15) * 9.0 / 5.0;
+            case 4:
+                return celsius * 4.0 / 5.0;
+            default:
+                return 0;
+        }
 
     }
-
 }
