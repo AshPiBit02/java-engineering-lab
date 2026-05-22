@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.event.*;
 
 import java.awt.*;
@@ -44,15 +45,15 @@ public class Converter extends JFrame implements ActionListener {
 
         leftText = new JTextField();
         leftText.setFont(new Font("Monospaced", Font.BOLD, 18));
-        leftText.setBounds(100, 75, 60, 30);
+        leftText.setBounds(90, 75, 80, 30);
         leftText.setHorizontalAlignment(JTextField.CENTER);
-        leftText.setBorder(null);
+        leftText.setBorder(BorderFactory.createLineBorder(Color.decode("#6d8242"), 4));
 
         rightText = new JTextField();
         rightText.setFont(new Font("Dialog", Font.BOLD, 18));
-        rightText.setBounds(325, 75, 60, 30);
+        rightText.setBounds(315, 75, 80, 30);
         rightText.setHorizontalAlignment(JTextField.CENTER);
-        rightText.setBorder(null);
+        rightText.setBorder(BorderFactory.createLineBorder(Color.decode("#6d8242"), 4));
 
         // Input Validation
         attachValidation(leftText);
@@ -64,6 +65,7 @@ public class Converter extends JFrame implements ActionListener {
         infoDialog.setLayout(new FlowLayout());
         dialogText = new JLabel();
         dialogText.setText("⚠︎ Warning Invalid Input!");
+        dialogText.setHorizontalAlignment(JLabel.CENTER);
         dialogText.setFont(new Font("Monospaced", Font.BOLD, 16));
         infoDialog.add(dialogText);
         infoDialog.setSize(300, 100);
