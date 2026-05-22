@@ -109,7 +109,7 @@ public class Converter extends JFrame {
                     double value = Double.parseDouble(text);
                     closeDialog();
                     isUpdating = true;
-                    trgt.setText(String.valueOf(convert(value)));
+                    trgt.setText(String.format("%.2f", convert(value)));
                     isUpdating = false;
                 } catch (NumberFormatException ex) {
                     isValid = false;
@@ -144,13 +144,13 @@ public class Converter extends JFrame {
                 celsius = value;
                 break;
             case 1:
-                celsius = ((9.0 / 5.0) * value) + 32;
+                celsius = (value - 32) * (5.0 / 9.0); // Correct
                 break;
             case 2:
-                celsius = value + 273.15;
+                celsius = value - 273.15;
                 break;
             case 3:
-                celsius = (value + 273.15) * (9.0 / 5.0);
+                celsius = (value - 491.67) * (5.0 / 9.0);
                 break;
             case 4:
                 celsius = value * (4.0 / 5.0);
