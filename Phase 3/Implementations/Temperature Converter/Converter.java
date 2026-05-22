@@ -1,6 +1,6 @@
 import javax.swing.*;
 import javax.swing.event.*;
-
+import java.awt.event.*;
 import java.awt.*;
 
 public class Converter extends JFrame {
@@ -56,6 +56,36 @@ public class Converter extends JFrame {
         // Input Validation
         attachValidation(leftText, rightText);
         attachValidation(rightText, leftText);
+
+        left.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                String text = leftText.getText();
+                if (!text.isEmpty()) {
+                    try {
+                        double value = Double.parseDouble(text);
+                        isUpdating = true;
+                        rightText.setText(String.format("%.2f", convert(value)));
+                        isUpdating = false;
+                    } catch (NumberFormatException ignored) {
+                    }
+                }
+            }
+        });
+
+        right.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                String text = leftText.getText();
+                if (!text.isEmpty()) {
+                    try {
+                        double value = Double.parseDouble(text);
+                        isUpdating = true;
+                        rightText.setText(String.format("%.2f", convert(value)));
+                        isUpdating = false;
+                    } catch (NumberFormatException ignored) {
+                    }
+                }
+            }
+        });
 
         // Dynamic Info Dialog
         infoDialog = new JDialog();
