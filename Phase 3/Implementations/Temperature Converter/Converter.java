@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Converter extends JFrame {
+public class Converter extends JFrame implements ActionListener {
     JFrame frame;
     JLabel title;
     String[] temps = { "Celsius(°C)", "Fahrenheit(°F)", "Kelvin(K)", "Rankine(°R)", "Réaumur(R°é)" };
@@ -55,6 +55,25 @@ public class Converter extends JFrame {
         this.add(left);
         this.add(title);
         this.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String empty = "";
+        String leftValue = leftText.getText();
+        String rightValue = rightText.getText();
+
+        // if true then only calculation is performed
+        boolean flag = false;
+
+        // allows only integers and floating values
+        try {
+            double num1 = Double.parseDouble(leftValue);
+            double num2 = Double.parseDouble(rightValue);
+            flag = true;
+        } catch (NumberFormatException e) {
+
+        }
     }
 
 }
