@@ -20,13 +20,14 @@ public class Converter extends JFrame {
         this.setLayout(null);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setBackground(Color.decode("#d5e27e"));
+        this.setResizable(false);
+        getContentPane().setBackground(Color.decode("#818a46"));
 
         title = new JLabel();
         title.setBounds(50, 0, 400, 80);
         title.setText("Dynamic Temperature Converter");
-        title.setForeground(Color.decode("#020226"));
-        title.setFont(new Font("Arabic Typesetting", Font.BOLD, 25));
+        title.setForeground(Color.decode("#060620"));
+        title.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 25));
 
         left = new JComboBox<>(temps);
         left.setBounds(75, 115, 120, 30);
@@ -43,20 +44,21 @@ public class Converter extends JFrame {
 
         leftText = new JTextField();
         leftText.setFont(new Font("Monospaced", Font.BOLD, 18));
-        leftText.setBounds(90, 75, 80, 30);
+        leftText.setBounds(85, 75, 90, 32);
         leftText.setHorizontalAlignment(JTextField.CENTER);
-        leftText.setBorder(BorderFactory.createLineBorder(Color.decode("#6d8242"), 4));
+        leftText.setBorder(BorderFactory.createLineBorder(Color.decode("#5e6d3f"), 2));
 
         rightText = new JTextField();
         rightText.setFont(new Font("Dialog", Font.BOLD, 18));
-        rightText.setBounds(315, 75, 80, 30);
+        rightText.setBounds(310, 75, 90, 32);
         rightText.setHorizontalAlignment(JTextField.CENTER);
-        rightText.setBorder(BorderFactory.createLineBorder(Color.decode("#6d8242"), 4));
+        rightText.setBorder(BorderFactory.createLineBorder(Color.decode("#5e6d3f"), 2));
 
         // Input Validation
         attachValidation(leftText, rightText);
         attachValidation(rightText, leftText);
 
+        // When Scale Change values will also change
         left.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 String text = leftText.getText();
@@ -132,6 +134,7 @@ public class Converter extends JFrame {
                 String text = src.getText();
                 if (text.isEmpty()) {
                     closeDialog();
+                    trgt.setText("");
                     return;
                 }
                 boolean isValid = true;
