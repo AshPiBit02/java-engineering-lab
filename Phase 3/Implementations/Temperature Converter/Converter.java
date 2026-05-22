@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -10,6 +12,8 @@ public class Converter extends JFrame implements ActionListener {
     JComboBox<String> right;
     JTextField leftText;
     JTextField rightText;
+    JDialog infoDialog;
+    JLabel dialogText;
 
     Converter() {
         this.setTitle("Temperature Converter");
@@ -39,15 +43,34 @@ public class Converter extends JFrame implements ActionListener {
         right.setFocusable(false);
 
         leftText = new JTextField();
-        leftText.setFont(new Font("Monospaced", Font.BOLD, 14));
+        leftText.setFont(new Font("Monospaced", Font.BOLD, 18));
         leftText.setBounds(100, 75, 60, 30);
+        leftText.setHorizontalAlignment(JTextField.CENTER);
         leftText.setBorder(null);
 
         rightText = new JTextField();
-        rightText.setFont(new Font("Monospaced", Font.BOLD, 14));
+        rightText.setFont(new Font("Dialog", Font.BOLD, 18));
         rightText.setBounds(325, 75, 60, 30);
+        rightText.setHorizontalAlignment(JTextField.CENTER);
         rightText.setBorder(null);
-        // rightText.setOpaque(true);
+
+        // Input Validation
+        attachValidation(leftText);
+        attachValidation(rightText);
+
+        // Dynamic Info Dialog
+        infoDialog = new JDialog();
+        infoDialog.setTitle("Warning!");
+        infoDialog.setLayout(new FlowLayout());
+        dialogText = new JLabel();
+        dialogText.setText("⚠︎ Warning Invalid Input!");
+        dialogText.setFont(new Font("Monospaced", Font.BOLD, 16));
+        infoDialog.add(dialogText);
+        infoDialog.setSize(300, 100);
+        infoDialog.setLocation(500, 200);
+        infoDialog.setFocusableWindowState(false);
+        infoDialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        infoDialog.setVisible(false);
 
         this.add(rightText);
         this.add(leftText);
@@ -57,23 +80,48 @@ public class Converter extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    private void attachValidation(JTextField field) {
+        field.getDocument().addDocumentListener(new DocumentListener() {
+            public void insertUpdate(DocumentEvent e) {
+                validateInput(field);
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                validateInput(field);
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                validateInput(field);
+            }
+
+            private void validateInput(JTextField f) {
+                String text = f.getText();
+                boolean isValid = true;
+                try {
+                    Double.parseDouble(text);
+                    closeDialog();
+                } catch (NumberFormatException ex) {
+                    isValid = false;
+                }
+                if (!isValid) {
+                    showDialog();
+                }
+            }
+        });
+
+    }
+
+    private void showDialog() {
+        infoDialog.setVisible(true);
+    }
+
+    private void closeDialog() {
+        infoDialog.setVisible(false);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        String empty = "";
-        String leftValue = leftText.getText();
-        String rightValue = rightText.getText();
 
-        // if true then only calculation is performed
-        boolean flag = false;
-
-        // allows only integers and floating values
-        try {
-            double num1 = Double.parseDouble(leftValue);
-            double num2 = Double.parseDouble(rightValue);
-            flag = true;
-        } catch (NumberFormatException e) {
-
-        }
     }
 
 }
