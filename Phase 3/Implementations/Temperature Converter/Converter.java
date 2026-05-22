@@ -30,13 +30,13 @@ public class Converter extends JFrame implements ActionListener {
         title.setFont(new Font("Arabic Typesetting", Font.BOLD, 25));
 
         left = new JComboBox<>(temps);
-        left.setBounds(75, 110, 120, 30);
+        left.setBounds(75, 115, 120, 30);
         left.setBackground(Color.decode("#d9e7bd"));
         left.setBorder(null);
         left.setFocusable(false);
 
         right = new JComboBox<>(temps);
-        right.setBounds(300, 110, 120, 30);
+        right.setBounds(300, 115, 120, 30);
         right.setSelectedIndex(1);
         right.setBackground(Color.decode("#d9e7bd"));
         right.setBorder(null);
@@ -96,6 +96,10 @@ public class Converter extends JFrame implements ActionListener {
 
             private void validateInput(JTextField f) {
                 String text = f.getText();
+                if ("".equals(text)) {
+                    closeDialog();
+                    return;
+                }
                 boolean isValid = true;
                 try {
                     Double.parseDouble(text);
