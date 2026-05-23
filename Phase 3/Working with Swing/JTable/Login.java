@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -10,7 +9,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,6 +36,17 @@ public class Login extends JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Login Button
+        login = new JButton("LogIn");
+        login.setBounds(100, 170, 200, 30);
+        login.setFont(new Font("Arial", Font.PLAIN, 18));
+        Color clrs = Color.decode("#0071ea");
+        login.setBackground(new Color(clrs.getRed(), clrs.getGreen(), clrs.getBlue(), 40));
+        login.setForeground(Color.WHITE);
+        login.setFocusable(false);
+        login.setFocusPainted(false);
+        login.setBorderPainted(false);
+
         // Load and scale image to fit screen
         icon = new ImageIcon("background.jpg"); // replace with your image path
         Image img = icon.getImage();
@@ -53,7 +62,6 @@ public class Login extends JFrame {
 
         // Set as content pane
         this.setContentPane(background);
-        // this.setVisible(true);
 
         username = new JLabel("Username: ");
         username.setBounds(50, 50, 120, 30);
@@ -129,6 +137,7 @@ public class Login extends JFrame {
         logPanel.add(password);
         logPanel.add(userField);
         logPanel.add(passField);
+        logPanel.add(login);
 
         Color base = Color.decode("#a5d0e4");
         Color transparent = new Color(base.getRed(), base.getGreen(), base.getBlue(), 20);
