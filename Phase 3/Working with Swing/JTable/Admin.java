@@ -14,7 +14,8 @@ public class Admin extends JFrame {
     JDialog logoutDialog;
 
     Admin() {
-        this.setSize(500, 500);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
 

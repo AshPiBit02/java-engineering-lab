@@ -150,7 +150,7 @@ public class Login extends JFrame {
         loginDialog = new JDialog();
         loginDialog.setTitle("Loggedin Successful");
         loginDialog.setLayout(new FlowLayout());
-        loginDialog.setSize(300, 150);
+        loginDialog.setBounds(500, 50, 300, 150);
         loginDialog.setLocationRelativeTo(this);
 
         login.addMouseListener(new java.awt.event.MouseAdapter() {
