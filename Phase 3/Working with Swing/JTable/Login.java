@@ -163,6 +163,21 @@ public class Login extends JFrame {
             }
         });
 
+        // Login Button Listener
+        login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String UserName = userField.getText();
+                char[] pass = passField.getPassword();
+                String UserPassword = new String(pass);
+                if (UserName.equals("Admin") && UserPassword.equals("admin123")) {
+                    new Admin(); // Open Admin frame
+                    dispose(); // Close the current login frame
+                }
+
+            }
+
+        });
         // Login panel
         logPanel = new JPanel() {
             @Override
