@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -25,7 +27,8 @@ public class Login extends JFrame {
     JTextField userField;
     JPasswordField passField;
     ImageIcon icon;
-    ImageIcon show;
+    ImageIcon icon1;
+    ImageIcon icon2;
 
     Login() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -64,8 +67,9 @@ public class Login extends JFrame {
         password.setFont(new Font("Arial", Font.PLAIN, 20));
 
         // Adding Icon to showpassword button
-        show = new ImageIcon("show.jpg");
-        showpassword = new JButton(show);
+        icon1 = new ImageIcon("show.jpg");
+        icon2 = new ImageIcon("hide.jpg");
+        showpassword = new JButton(icon2);
         showpassword.setBounds(125, 2, 30, 20);
         showpassword.setFocusable(false);
         showpassword.setBorder(null);
@@ -121,8 +125,26 @@ public class Login extends JFrame {
         if (password.isEmpty()) {
             showpassword.setVisible(false);
         } else {
-            showpassword.setVisible(true);
-            // if()
+            passwordHandler();
         }
+    }
+
+    private boolean toggle = false;
+
+    private void passwordHandler() {
+        showpassword.setVisible(true);
+        showpassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (toggle) {
+                    showpassword.setIcon(icon1);
+                } else {
+                    showpassword.setIcon(icon2);
+                }
+                toggle = !toggle;
+
+            }
+        });
+
     }
 }
