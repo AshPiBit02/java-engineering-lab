@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -74,6 +75,10 @@ public class Login extends JFrame {
         showpassword.setFocusable(false);
         showpassword.setBorder(null);
         showpassword.setVisible(false);
+        showpassword.setFocusPainted(false);
+        showpassword.setBorderPainted(false);
+        showpassword.setContentAreaFilled(false);
+        showpassword.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
         passField = new JPasswordField();
         passField.setBounds(175, 103, 150, 25);
