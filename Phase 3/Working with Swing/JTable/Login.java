@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class Login extends JFrame {
     JLabel username;
@@ -63,16 +65,34 @@ public class Login extends JFrame {
 
         // Adding Icon to showpassword button
         show = new ImageIcon("show.jpg");
-
         showpassword = new JButton(show);
         showpassword.setBounds(125, 2, 30, 20);
-        showpassword.setText("show");
         showpassword.setFocusable(false);
         showpassword.setBorder(null);
+        showpassword.setVisible(false);
 
         passField = new JPasswordField();
         passField.setBounds(175, 103, 150, 25);
         passField.setFont(new Font("Arial", Font.PLAIN, 16));
+
+        // Adding Document listener for continuous checking of passwordField
+        passField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updatePass();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updatePass();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updatePass();
+            }
+
+        });
         passField.add(showpassword);
 
         logPanel = new JPanel();
@@ -94,4 +114,15 @@ public class Login extends JFrame {
         this.setVisible(true);
     }
 
+    private void updatePass() {
+        // access password
+        char[] pwd = passField.getPassword();
+        String password = new String(pwd);
+        if (password.isEmpty()) {
+            showpassword.setVisible(false);
+        } else {
+            showpassword.setVisible(true);
+            // if()
+        }
+    }
 }
