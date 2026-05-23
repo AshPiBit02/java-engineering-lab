@@ -29,26 +29,16 @@ public class Login extends JFrame {
     ImageIcon icon1;
     ImageIcon icon2;
 
+    private String Fieldpassword = "";
+    private boolean toggle = false;
+
     Login() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // Login Button
-        login = new JButton("LogIn");
-        login.setBounds(100, 170, 200, 30);
-        login.setFont(new Font("Arial", Font.PLAIN, 18));
-        Color clrs = Color.decode("#0071ea");
-        login.setBackground(new Color(clrs.getRed(), clrs.getGreen(), clrs.getBlue(), 40));
-        login.setForeground(Color.WHITE);
-        login.setFocusable(false);
-        login.setFocusPainted(false);
-        login.setBorderPainted(false);
 
         // Load and scale image to fit screen
-        icon = new ImageIcon("background.jpg"); // replace with your image path
+        icon = new ImageIcon("background.jpg");
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(
                 Toolkit.getDefaultToolkit().getScreenSize().width,
@@ -58,24 +48,27 @@ public class Login extends JFrame {
 
         // Set background label
         JLabel background = new JLabel(scaledIcon);
-        background.setLayout(null); // allow manual positioning of components
-
-        // Set as content pane
+        background.setLayout(null);
         this.setContentPane(background);
 
+        // Username label
         username = new JLabel("Username: ");
         username.setBounds(50, 50, 120, 30);
         username.setFont(new Font("Arial", Font.PLAIN, 20));
+        username.setForeground(Color.white);
 
+        // Username field
         userField = new JTextField();
         userField.setBounds(175, 53, 150, 25);
         userField.setFont(new Font("Arial", Font.PLAIN, 16));
 
+        // Password label
         password = new JLabel("Password: ");
         password.setBounds(50, 100, 120, 30);
         password.setFont(new Font("Arial", Font.PLAIN, 20));
+        password.setForeground(Color.white);
 
-        // Adding Icon to showpassword button
+        // Show/hide password button
         icon1 = new ImageIcon("show.jpg");
         icon2 = new ImageIcon("hide.jpg");
         showpassword = new JButton(icon2);
@@ -92,25 +85,22 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (toggle) {
-                    passField.setEchoChar((char) 0); // shows plain text(visible password)
+                    passField.setEchoChar((char) 0);
                     showpassword.setIcon(icon1);
                 } else {
-                    passField.setEchoChar('•'); // restore masking
+                    passField.setEchoChar('•');
                     showpassword.setIcon(icon2);
-
                 }
-
                 toggle = !toggle;
-
             }
         });
 
+        // Password field
         passField = new JPasswordField();
         passField.setBounds(175, 103, 150, 25);
         passField.setFont(new Font("Arial", Font.PLAIN, 16));
         passField.add(showpassword);
 
-        // Adding Document listener for continuous checking of passwordField
         passField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -126,32 +116,78 @@ public class Login extends JFrame {
             public void removeUpdate(DocumentEvent e) {
                 updatePass();
             }
-
         });
 
-        logPanel = new JPanel();
+        // Login button
+        login = new JButton("LogIn") {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
+                g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING,
+                        java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10);
+                g2.dispose();
+                super.paintComponent(g);
+            }
+        };
+        login.setBounds(100, 170, 200, 30);
+        login.setFont(new Font("Arial", Font.PLAIN, 18));
+        login.setBackground(new Color(0, 113, 234, 60));
+        login.setForeground(Color.WHITE);
+        login.setOpaque(false);
+        login.setContentAreaFilled(false);
+        login.setFocusable(false);
+        login.setFocusPainted(false);
+        login.setBorderPainted(false);
+
+        login.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                login.setBackground(new Color(0, 113, 234, 80));
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                login.setBackground(new Color(0, 113, 234, 60));
+            }
+
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent e) {
+                login.setBackground(new Color(0, 113, 234, 120));
+            }
+
+            @Override
+            public void mouseReleased(java.awt.event.MouseEvent e) {
+                login.setBackground(new Color(0, 113, 234, 60));
+            }
+        });
+
+        // Login panel
+        logPanel = new JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                g.setColor(getBackground());
+                g.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
         logPanel.setBounds(450, 200, 400, 240);
         logPanel.setLayout(null);
+        logPanel.setOpaque(false);
         logPanel.setBorder(BorderFactory.createLineBorder(Color.decode("#96b1bd"), 5));
+        Color base = Color.decode("#a5d0e4");
+        logPanel.setBackground(new Color(base.getRed(), base.getGreen(), base.getBlue(), 20));
         logPanel.add(username);
         logPanel.add(password);
         logPanel.add(userField);
         logPanel.add(passField);
         logPanel.add(login);
 
-        Color base = Color.decode("#a5d0e4");
-        Color transparent = new Color(base.getRed(), base.getGreen(), base.getBlue(), 20);
-        logPanel.setBackground(transparent);
-
         this.add(logPanel);
         this.setVisible(true);
     }
 
-    private String Fieldpassword = "";
-    private boolean toggle = false;
-
     private void updatePass() {
-        // access password
         char[] pwd = passField.getPassword();
         Fieldpassword = new String(pwd);
         if (Fieldpassword.isEmpty()) {
