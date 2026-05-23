@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,10 +18,12 @@ public class Login extends JFrame {
     JLabel username;
     JLabel password;
     JButton login;
+    JButton showpassword;
     JPanel logPanel;
     JTextField userField;
     JPasswordField passField;
     ImageIcon icon;
+    ImageIcon show;
 
     Login() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -30,7 +33,7 @@ public class Login extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Load and scale image to fit screen
-        ImageIcon icon = new ImageIcon("background.jpg"); // replace with your image path
+        icon = new ImageIcon("background.jpg"); // replace with your image path
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(
                 Toolkit.getDefaultToolkit().getScreenSize().width,
@@ -58,16 +61,19 @@ public class Login extends JFrame {
         password.setBounds(50, 100, 120, 30);
         password.setFont(new Font("Arial", Font.PLAIN, 20));
 
+        // Adding Icon to showpassword button
+        show = new ImageIcon("show.jpg");
+
+        showpassword = new JButton(show);
+        showpassword.setBounds(125, 2, 30, 20);
+        showpassword.setText("show");
+        showpassword.setFocusable(false);
+        showpassword.setBorder(null);
+
         passField = new JPasswordField();
         passField.setBounds(175, 103, 150, 25);
         passField.setFont(new Font("Arial", Font.PLAIN, 16));
-        // passField.addActionListener(e -> {
-        // if (showPassword.isSelected()) {
-        // passwordField.setEchoChar((char) 0); // show text
-        // } else {
-        // passwordField.setEchoChar('*'); // mask text
-        // }
-        // });
+        passField.add(showpassword);
 
         logPanel = new JPanel();
         logPanel.setBounds(450, 200, 400, 240);
