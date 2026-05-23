@@ -71,7 +71,7 @@ public class Login extends JFrame {
         icon1 = new ImageIcon("show.jpg");
         icon2 = new ImageIcon("hide.jpg");
         showpassword = new JButton(icon2);
-        showpassword.setBounds(125, 2, 30, 20);
+        showpassword.setBounds(123, 2, 30, 20);
         showpassword.setFocusable(false);
         showpassword.setBorder(null);
         showpassword.setVisible(false);
@@ -80,9 +80,27 @@ public class Login extends JFrame {
         showpassword.setContentAreaFilled(false);
         showpassword.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
+        showpassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (toggle) {
+                    passField.setEchoChar((char) 0); // shows plain text(visible password)
+                    showpassword.setIcon(icon1);
+                } else {
+                    passField.setEchoChar('•'); // restore masking
+                    showpassword.setIcon(icon2);
+
+                }
+
+                toggle = !toggle;
+
+            }
+        });
+
         passField = new JPasswordField();
         passField.setBounds(175, 103, 150, 25);
         passField.setFont(new Font("Arial", Font.PLAIN, 16));
+        passField.add(showpassword);
 
         // Adding Document listener for continuous checking of passwordField
         passField.getDocument().addDocumentListener(new DocumentListener() {
@@ -102,7 +120,6 @@ public class Login extends JFrame {
             }
 
         });
-        passField.add(showpassword);
 
         logPanel = new JPanel();
         logPanel.setBounds(450, 200, 400, 240);
@@ -118,38 +135,23 @@ public class Login extends JFrame {
         logPanel.setBackground(transparent);
 
         this.add(logPanel);
-        // this.add(username);
-        // this.add(password);
         this.setVisible(true);
     }
+
+    private String Fieldpassword = "";
+    private boolean toggle = false;
 
     private void updatePass() {
         // access password
         char[] pwd = passField.getPassword();
-        String password = new String(pwd);
-        if (password.isEmpty()) {
+        Fieldpassword = new String(pwd);
+        if (Fieldpassword.isEmpty()) {
             showpassword.setVisible(false);
+            toggle = false;
+            passField.setEchoChar('•');
         } else {
-            passwordHandler();
+            showpassword.setVisible(true);
         }
     }
 
-    private boolean toggle = false;
-
-    private void passwordHandler() {
-        showpassword.setVisible(true);
-        showpassword.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (toggle) {
-                    showpassword.setIcon(icon1);
-                } else {
-                    showpassword.setIcon(icon2);
-                }
-                toggle = !toggle;
-
-            }
-        });
-
-    }
 }
