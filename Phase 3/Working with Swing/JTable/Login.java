@@ -1,14 +1,18 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,6 +32,8 @@ public class Login extends JFrame {
     ImageIcon icon;
     ImageIcon icon1;
     ImageIcon icon2;
+    JDialog loginDialog;
+    JDialog logoutDialog;
 
     private String Fieldpassword = "";
     private boolean toggle = false;
@@ -141,6 +147,12 @@ public class Login extends JFrame {
         login.setFocusPainted(false);
         login.setBorderPainted(false);
 
+        loginDialog = new JDialog();
+        loginDialog.setTitle("Loggedin Successful");
+        loginDialog.setLayout(new FlowLayout());
+        loginDialog.setSize(300, 150);
+        loginDialog.setLocationRelativeTo(this);
+
         login.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
@@ -170,9 +182,8 @@ public class Login extends JFrame {
                 String UserName = userField.getText();
                 char[] pass = passField.getPassword();
                 String UserPassword = new String(pass);
-                if (UserName.equals("Admin") && UserPassword.equals("admin123")) {
-                    new Admin(); // Open Admin frame
-                    dispose(); // Close the current login frame
+                if (UserName.equals("Admin") && UserPassword.equals("123")) {
+                    LoggingDailog(UserName);
                 }
 
             }
@@ -212,6 +223,18 @@ public class Login extends JFrame {
         } else {
             showpassword.setVisible(true);
         }
+    }
+
+    private void LoggingDailog(String name) {
+        loginDialog.add(new JLabel("Hello, " + name + "!"));
+        loginDialog.setVisible(true);
+        Timer time = new Timer(1000, e -> {
+            loginDialog.dispose();
+            new Admin(); // Open Admin frame
+            dispose(); // Close the current login frame
+        });
+        time.setRepeats(false); // run only once
+        time.start();
     }
 
 }
