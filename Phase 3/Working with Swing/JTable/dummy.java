@@ -1,4 +1,4 @@
-salesBtn = new JButton("salesBtn") {
+logBtn = new JButton("logBtn") {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
                 java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
@@ -11,34 +11,34 @@ salesBtn = new JButton("salesBtn") {
             }
         };
 
-        salesBtn.setBounds(100, 170, 200, 30);
-        salesBtn.setFont(new Font("Arial", Font.PLAIN, 18));
-        salesBtn.setBackground(new Color(0, 113, 234, 60));
-        salesBtn.setForeground(Color.WHITE);
-        salesBtn.setOpaque(false);
-        salesBtn.setContentAreaFilled(false);
-        salesBtn.setFocusable(false);
-        salesBtn.setFocusPainted(false);
-        salesBtn.setBorderPainted(false);
+        logBtn.setBounds(100, 170, 200, 30);
+        logBtn.setFont(new Font("Arial", Font.PLAIN, 18));
+        logBtn.setBackground(new Color(0, 113, 234, 60));
+        logBtn.setForeground(Color.WHITE);
+        logBtn.setOpaque(false);
+        logBtn.setContentAreaFilled(false);
+        logBtn.setFocusable(false);
+        logBtn.setFocusPainted(false);
+        logBtn.setBorderPainted(false);
 
-        salesBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        logBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
-                salesBtn.setBackground(new Color(0, 113, 234, 80));
+                logBtn.setBackground(new Color(0, 113, 234, 80));
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
-                salesBtn.setBackground(new Color(0, 113, 234, 60));
+                logBtn.setBackground(new Color(0, 113, 234, 60));
             }
 
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
-                salesBtn.setBackground(new Color(0, 113, 234, 120));
+                logBtn.setBackground(new Color(0, 113, 234, 120));
             }
 
             @Override
             public void mouseReleased(java.awt.event.MouseEvent e) {
-                salesBtn.setBackground(new Color(0, 113, 234, 60));
+                logBtn.setBackground(new Color(0, 113, 234, 60));
             }
         });
