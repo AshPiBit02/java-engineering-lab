@@ -1,8 +1,11 @@
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -17,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -25,6 +29,7 @@ public class Login extends JFrame {
     JLabel username;
     JLabel password;
     JButton login;
+    JButton registerBtn;
     JButton showpassword;
     JPanel logPanel;
     JTextField userField;
@@ -131,7 +136,7 @@ public class Login extends JFrame {
         loginDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
 
         // Login button
-        login = new JButton("LogIn") {
+        login = new JButton("Login") {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
                 java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
@@ -157,7 +162,7 @@ public class Login extends JFrame {
         login.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
-                login.setBackground(new Color(0, 113, 234, 80));
+                login.setBackground(Color.decode("#050791"));
             }
 
             @Override
@@ -167,7 +172,7 @@ public class Login extends JFrame {
 
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
-                login.setBackground(new Color(0, 113, 234, 120));
+                login.setBackground(Color.decode("#0008fa"));
             }
 
             @Override
@@ -198,7 +203,7 @@ public class Login extends JFrame {
                 g.fillRect(0, 0, getWidth(), getHeight());
             }
         };
-        logPanel.setBounds(450, 200, 400, 240);
+        logPanel.setBounds(450, 200, 400, 270);
         logPanel.setLayout(null);
         logPanel.setOpaque(false);
         logPanel.setBorder(BorderFactory.createLineBorder(Color.decode("#96b1bd"), 5));
@@ -208,8 +213,62 @@ public class Login extends JFrame {
         logPanel.add(password);
         logPanel.add(userField);
         logPanel.add(passField);
-        logPanel.add(login);
 
+        // Line between login and register btn
+        JSeparator separator = new JSeparator();
+        separator.setBounds(90, 210, 220, 1);
+        separator.setForeground(Color.BLACK);
+        separator.setBackground(Color.BLACK);
+        logPanel.add(separator);
+
+        // Register Button
+        registerBtn = new JButton("Register") {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
+                g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING,
+                        java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10);
+                g2.dispose();
+                super.paintComponent(g);
+            }
+        };
+
+        registerBtn.setBounds(100, 220, 200, 30);
+        registerBtn.setFont(new Font("Arial", Font.PLAIN, 18));
+        registerBtn.setBackground(Color.decode("#046813"));
+        registerBtn.setForeground(Color.WHITE);
+        registerBtn.setOpaque(false);
+        registerBtn.setContentAreaFilled(false);
+        registerBtn.setFocusable(false);
+        registerBtn.setFocusPainted(false);
+        registerBtn.setBorderPainted(false);
+
+        registerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                registerBtn.setBackground(Color.decode("#00a118"));
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                registerBtn.setBackground(Color.decode("#046813"));
+            }
+
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent e) {
+                registerBtn.setBackground(Color.decode("#00ff26"));
+            }
+
+            @Override
+            public void mouseReleased(java.awt.event.MouseEvent e) {
+                registerBtn.setBackground(Color.decode("#046813"));
+            }
+        });
+
+        logPanel.add(login);
+        logPanel.add(registerBtn);
         this.add(logPanel);
         this.setVisible(true);
     }
