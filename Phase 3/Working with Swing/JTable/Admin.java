@@ -1,29 +1,11 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
-
 import java.io.*;
 import java.util.*;
-
-import javax.swing.JTable;
 
 public class Admin extends JFrame {
     JButton logout;
@@ -84,7 +66,7 @@ public class Admin extends JFrame {
         };
         logout.setBounds(50, 675, 200, 50);
         logout.setFont(new Font("Arial", Font.PLAIN, 25));
-        logout.setBackground(Color.decode("#1d0000"));
+        logout.setBackground(Color.decode("#a21d1d"));
         logout.setForeground(Color.WHITE);
         logout.setOpaque(false);
         logout.setContentAreaFilled(false);
@@ -103,25 +85,25 @@ public class Admin extends JFrame {
         logoutDialog.add(msg);
         logoutDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
 
-        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+        logout.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseEntered(java.awt.event.MouseEvent e) {
+            public void mouseEntered(MouseEvent e) {
+                logout.setBackground(Color.decode("#9f0505"));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
                 logout.setBackground(Color.decode("#a21d1d"));
             }
 
             @Override
-            public void mouseExited(java.awt.event.MouseEvent e) {
-                logout.setBackground(Color.decode("#db5050"));
-            }
-
-            @Override
-            public void mousePressed(java.awt.event.MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 logout.setBackground(Color.decode("#f00000"));
             }
 
             @Override
-            public void mouseReleased(java.awt.event.MouseEvent e) {
-                logout.setBackground(Color.decode("#db5050"));
+            public void mouseReleased(MouseEvent e) {
+                logout.setBackground(Color.decode("#a21d1d"));
             }
         });
         logout.addActionListener(new ActionListener() {
@@ -285,7 +267,7 @@ public class Admin extends JFrame {
         table.getTableHeader().setPreferredSize(new Dimension(0, 37));
         String filePath = "demo.csv";
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            List<String[]> rows = new ArrayList<>();
+            ArrayList<String[]> rows = new ArrayList<>();
             String line;
             boolean firstLine = true;
             while ((line = br.readLine()) != null) {
