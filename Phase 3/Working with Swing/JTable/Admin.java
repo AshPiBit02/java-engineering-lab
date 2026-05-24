@@ -32,6 +32,8 @@ public class Admin extends JFrame {
     JPanel tablePanel;
     ImageIcon icon;
     JTable table;
+    JPanel menuPanel;
+    JLabel adminUsage;
 
     Admin() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -52,7 +54,7 @@ public class Admin extends JFrame {
         this.setContentPane(background);
 
         headerLabel = new JLabel();
-        headerLabel.setBounds(550, 10, 400, 100);
+        headerLabel.setBounds(700, 10, 400, 100);
         headerLabel.setText("Sales Details");
         headerLabel.setFont(new Font("Arial", Font.BOLD, 45));
         headerLabel.setLayout(new FlowLayout());
@@ -69,7 +71,7 @@ public class Admin extends JFrame {
                 super.paintComponent(g);
             }
         };
-        logout.setBounds(575, 675, 200, 50);
+        logout.setBounds(50, 675, 200, 50);
         logout.setFont(new Font("Arial", Font.PLAIN, 20));
         logout.setBackground(Color.decode("#db5050"));
         logout.setForeground(Color.WHITE);
@@ -111,7 +113,7 @@ public class Admin extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 logoutDialog.setVisible(true);
-                Timer time = new Timer(1000, ev -> {
+                Timer time = new Timer(500, ev -> {
                     logoutDialog.dispose();
                     new Login();
                     dispose();
@@ -122,8 +124,28 @@ public class Admin extends JFrame {
 
         });
 
+        adminUsage = new JLabel();
+        adminUsage.setBounds(0, 0, 297, 50);
+        adminUsage.setText("Admin Interface");
+        adminUsage.setHorizontalAlignment(JLabel.CENTER);
+        adminUsage.setFont(new Font("Arial", Font.BOLD, 25));
+        adminUsage.setForeground(Color.WHITE);
+        adminUsage.setBackground(Color.decode("#003df4"));
+        adminUsage.setOpaque(true);
+        adminUsage.setLayout(null);
+
+        menuPanel = new JPanel();
+        menuPanel.setBounds(0, 0, 300, Toolkit.getDefaultToolkit().getScreenSize().height);
+        menuPanel.setBackground(Color.RED);
+        menuPanel.setBorder(BorderFactory.createLineBorder(Color.decode("#747c87"), 3));
+        menuPanel.setOpaque(true);
+        menuPanel.setLayout(null);
+        menuPanel.add(adminUsage);
+        menuPanel.add(logout);
+        this.add(menuPanel);
+
         tablePanel = new JPanel();
-        tablePanel.setBounds(200, 100, 950, 550);
+        tablePanel.setBounds(350, 100, 950, 550);
         // tablePanel.setBackground(Color.RED);
         tablePanel.setOpaque(false);
 
@@ -177,7 +199,6 @@ public class Admin extends JFrame {
         tablePanel.add(scrollPane, BorderLayout.CENTER);
         this.add(tablePanel);
         this.add(headerLabel);
-        this.add(logout);
         this.setVisible(true);
 
     }

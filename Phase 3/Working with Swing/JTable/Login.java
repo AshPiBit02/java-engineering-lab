@@ -125,6 +125,10 @@ public class Login extends JFrame {
                 updatePass();
             }
         });
+        loginDialog = new JDialog();
+        loginDialog.setTitle("Loggedin Successful");
+        loginDialog.setLayout(new FlowLayout());
+        loginDialog.setBounds(500, 50, 300, 150);
 
         // Login button
         login = new JButton("LogIn") {
@@ -139,10 +143,6 @@ public class Login extends JFrame {
                 super.paintComponent(g);
             }
         };
-        loginDialog = new JDialog();
-        loginDialog.setTitle("Loggedin Successful");
-        loginDialog.setLayout(new FlowLayout());
-        loginDialog.setBounds(500, 50, 300, 150);
 
         login.setBounds(100, 170, 200, 30);
         login.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -229,7 +229,7 @@ public class Login extends JFrame {
     private void LoggingDailog(String name) {
         loginDialog.add(new JLabel("Hello, " + name + "!"));
         loginDialog.setVisible(true);
-        Timer time = new Timer(1000, e -> {
+        Timer time = new Timer(500, e -> {
             loginDialog.dispose();
             adminFrame = new Admin(); // Open Admin frame
             dispose(); // Close the current login frame
