@@ -19,7 +19,7 @@ public class Admin extends JFrame {
     JButton logout;
     JDialog logoutDialog;
     JLabel headerLabel;
-
+    JPanel tablePanel;
     ImageIcon icon;
 
     Admin() {
@@ -58,7 +58,7 @@ public class Admin extends JFrame {
                 super.paintComponent(g);
             }
         };
-        logout.setBounds(575, 650, 200, 50);
+        logout.setBounds(575, 675, 200, 50);
         logout.setFont(new Font("Arial", Font.PLAIN, 20));
         logout.setBackground(Color.decode("#db5050"));
         logout.setForeground(Color.WHITE);
@@ -111,6 +111,12 @@ public class Admin extends JFrame {
 
         });
 
+        tablePanel = new JPanel();
+        tablePanel.setBounds(200, 100, 950, 550);
+        // tablePanel.setBackground(Color.RED);
+        tablePanel.setOpaque(false);
+
+        this.add(tablePanel);
         this.add(headerLabel);
         this.add(logout);
         this.setVisible(true);
