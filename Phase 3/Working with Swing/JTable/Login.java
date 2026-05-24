@@ -32,6 +32,7 @@ public class Login extends JFrame {
     JButton registerBtn;
     JButton showpassword;
     JPanel logPanel;
+    JPanel regPanel;
     JTextField userField;
     JPasswordField passField;
     ImageIcon icon;
@@ -259,6 +260,7 @@ public class Login extends JFrame {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
                 registerBtn.setBackground(Color.decode("#00ff26"));
+                Register();
             }
 
             @Override
@@ -266,9 +268,12 @@ public class Login extends JFrame {
                 registerBtn.setBackground(Color.decode("#046813"));
             }
         });
+        // Register Panel
+        regPanel = new JPanel();
 
         logPanel.add(login);
         logPanel.add(registerBtn);
+        this.add(regPanel);
         this.add(logPanel);
         this.setVisible(true);
     }
@@ -300,6 +305,16 @@ public class Login extends JFrame {
         });
         time.setRepeats(false); // run only once
         time.start();
+    }
+
+    private void Register() {
+        logPanel.setVisible(false);
+        regPanel.setBounds(475, 50, 400, 650);
+        regPanel.setLayout(null);
+        Color clrs = Color.decode("#0015ff");
+        regPanel.setBackground(new Color(clrs.getRed(), clrs.getGreen(), clrs.getBlue(), 20));
+        regPanel.setVisible(true);
+
     }
 
 }
