@@ -1,6 +1,7 @@
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -211,8 +212,13 @@ public class Login extends JFrame {
         logHeader.setText("Login");
         logHeader.setBounds(155, 10, 100, 40);
         logHeader.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        logHeader.setForeground(Color.decode("#b7ff00"));
+        logHeader.setForeground(Color.decode("#c5ff06"));
         logHeader.setHorizontalAlignment(JLabel.CENTER);
+
+        JSeparator logSeparator = new JSeparator();
+        logSeparator.setBounds(135, 50, 130, 1);
+        logSeparator.setForeground(Color.BLACK);
+        logSeparator.setBackground(Color.BLACK);
 
         logPanel.setBounds(450, 200, 400, 270);
         logPanel.setLayout(null);
@@ -220,13 +226,15 @@ public class Login extends JFrame {
         logPanel.setBorder(BorderFactory.createLineBorder(Color.decode("#96b1bd"), 5));
         Color base = Color.decode("#a5d0e4");
         logPanel.setBackground(new Color(base.getRed(), base.getGreen(), base.getBlue(), 20));
+
         logPanel.add(logHeader);
+        logPanel.add(logSeparator);
         logPanel.add(username);
         logPanel.add(password);
         logPanel.add(userField);
         logPanel.add(passField);
 
-        // Line between login and register btn
+        // Line separator
         JSeparator separator = new JSeparator();
         separator.setBounds(90, 210, 220, 1);
         separator.setForeground(Color.BLACK);
@@ -244,10 +252,16 @@ public class Login extends JFrame {
         signHeader.setText("Signup");
         signHeader.setBounds(150, 10, 100, 40);
         signHeader.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        signHeader.setForeground(Color.decode("#00ff26"));
+        signHeader.setForeground(Color.decode("#23aa05"));
         signHeader.setHorizontalAlignment(JLabel.CENTER);
         signPanel.setVisible(false);
 
+        JSeparator signSeparator = new JSeparator();
+        signSeparator.setBounds(30, 55, 340, 1);
+        signSeparator.setForeground(Color.WHITE);
+        signSeparator.setBackground(Color.WHITE);
+
+        signPanel.add(signSeparator);
         signPanel.add(signHeader);
 
         // Register Button
