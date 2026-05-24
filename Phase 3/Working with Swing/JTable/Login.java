@@ -35,6 +35,8 @@ public class Login extends JFrame {
     JDialog loginDialog;
     JDialog logoutDialog;
 
+    JFrame adminFrame;
+
     private String Fieldpassword = "";
     private boolean toggle = false;
 
@@ -230,7 +232,7 @@ public class Login extends JFrame {
         loginDialog.setVisible(true);
         Timer time = new Timer(1000, e -> {
             loginDialog.dispose();
-            new Admin(); // Open Admin frame
+            adminFrame = new Admin(); // Open Admin frame
             dispose(); // Close the current login frame
         });
         time.setRepeats(false); // run only once
