@@ -29,16 +29,18 @@ public class Login extends JFrame {
     JLabel username;
     JLabel password;
     JButton login;
-    JButton registerBtn;
+    JButton signupBtn;
     JButton showpassword;
     JPanel logPanel;
-    JPanel regPanel;
+    JPanel signPanel;
     JTextField userField;
     JPasswordField passField;
     ImageIcon icon;
     ImageIcon icon1;
     ImageIcon icon2;
     JDialog loginDialog;
+    JLabel signHeader;
+    JLabel logHeader;
 
     JFrame adminFrame;
 
@@ -66,18 +68,18 @@ public class Login extends JFrame {
 
         // Username label
         username = new JLabel("Username: ");
-        username.setBounds(50, 50, 120, 30);
+        username.setBounds(50, 70, 120, 30);
         username.setFont(new Font("Arial", Font.PLAIN, 20));
         username.setForeground(Color.white);
 
         // Username field
         userField = new JTextField();
-        userField.setBounds(175, 53, 150, 25);
+        userField.setBounds(175, 73, 150, 25);
         userField.setFont(new Font("Arial", Font.PLAIN, 16));
 
         // Password label
         password = new JLabel("Password: ");
-        password.setBounds(50, 100, 120, 30);
+        password.setBounds(50, 120, 120, 30);
         password.setFont(new Font("Arial", Font.PLAIN, 20));
         password.setForeground(Color.white);
 
@@ -110,7 +112,7 @@ public class Login extends JFrame {
 
         // Password field
         passField = new JPasswordField();
-        passField.setBounds(175, 103, 150, 25);
+        passField.setBounds(175, 123, 150, 25);
         passField.setFont(new Font("Arial", Font.PLAIN, 16));
         passField.add(showpassword);
 
@@ -204,12 +206,21 @@ public class Login extends JFrame {
                 g.fillRect(0, 0, getWidth(), getHeight());
             }
         };
+
+        logHeader = new JLabel();
+        logHeader.setText("Login");
+        logHeader.setBounds(155, 10, 100, 40);
+        logHeader.setFont(new Font("Times New Roman", Font.BOLD, 30));
+        logHeader.setForeground(Color.decode("#b7ff00"));
+        logHeader.setHorizontalAlignment(JLabel.CENTER);
+
         logPanel.setBounds(450, 200, 400, 270);
         logPanel.setLayout(null);
         logPanel.setOpaque(false);
         logPanel.setBorder(BorderFactory.createLineBorder(Color.decode("#96b1bd"), 5));
         Color base = Color.decode("#a5d0e4");
         logPanel.setBackground(new Color(base.getRed(), base.getGreen(), base.getBlue(), 20));
+        logPanel.add(logHeader);
         logPanel.add(username);
         logPanel.add(password);
         logPanel.add(userField);
@@ -222,8 +233,25 @@ public class Login extends JFrame {
         separator.setBackground(Color.BLACK);
         logPanel.add(separator);
 
+        // Register Panel
+        signPanel = new JPanel();
+        signPanel.setBounds(475, 50, 400, 650);
+        signPanel.setLayout(null);
+        Color clrs = Color.decode("#0015ff");
+        signPanel.setBackground(new Color(clrs.getRed(), clrs.getGreen(), clrs.getBlue(), 20));
+
+        signHeader = new JLabel();
+        signHeader.setText("Signup");
+        signHeader.setBounds(150, 10, 100, 40);
+        signHeader.setFont(new Font("Times New Roman", Font.BOLD, 30));
+        signHeader.setForeground(Color.decode("#00ff26"));
+        signHeader.setHorizontalAlignment(JLabel.CENTER);
+        signPanel.setVisible(false);
+
+        signPanel.add(signHeader);
+
         // Register Button
-        registerBtn = new JButton("Register") {
+        signupBtn = new JButton("Signup") {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
                 java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
@@ -236,44 +264,42 @@ public class Login extends JFrame {
             }
         };
 
-        registerBtn.setBounds(100, 220, 200, 30);
-        registerBtn.setFont(new Font("Arial", Font.PLAIN, 18));
-        registerBtn.setBackground(Color.decode("#046813"));
-        registerBtn.setForeground(Color.WHITE);
-        registerBtn.setOpaque(false);
-        registerBtn.setContentAreaFilled(false);
-        registerBtn.setFocusable(false);
-        registerBtn.setFocusPainted(false);
-        registerBtn.setBorderPainted(false);
+        signupBtn.setBounds(100, 220, 200, 30);
+        signupBtn.setFont(new Font("Arial", Font.PLAIN, 18));
+        signupBtn.setBackground(Color.decode("#046813"));
+        signupBtn.setForeground(Color.WHITE);
+        signupBtn.setOpaque(false);
+        signupBtn.setContentAreaFilled(false);
+        signupBtn.setFocusable(false);
+        signupBtn.setFocusPainted(false);
+        signupBtn.setBorderPainted(false);
 
-        registerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        signupBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
-                registerBtn.setBackground(Color.decode("#00a118"));
+                signupBtn.setBackground(Color.decode("#00a118"));
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
-                registerBtn.setBackground(Color.decode("#046813"));
+                signupBtn.setBackground(Color.decode("#046813"));
             }
 
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
-                registerBtn.setBackground(Color.decode("#00ff26"));
+                signupBtn.setBackground(Color.decode("#00ff26"));
                 Register();
             }
 
             @Override
             public void mouseReleased(java.awt.event.MouseEvent e) {
-                registerBtn.setBackground(Color.decode("#046813"));
+                signupBtn.setBackground(Color.decode("#046813"));
             }
         });
-        // Register Panel
-        regPanel = new JPanel();
 
         logPanel.add(login);
-        logPanel.add(registerBtn);
-        this.add(regPanel);
+        logPanel.add(signupBtn);
+        this.add(signPanel);
         this.add(logPanel);
         this.setVisible(true);
     }
@@ -309,11 +335,7 @@ public class Login extends JFrame {
 
     private void Register() {
         logPanel.setVisible(false);
-        regPanel.setBounds(475, 50, 400, 650);
-        regPanel.setLayout(null);
-        Color clrs = Color.decode("#0015ff");
-        regPanel.setBackground(new Color(clrs.getRed(), clrs.getGreen(), clrs.getBlue(), 20));
-        regPanel.setVisible(true);
+        signPanel.setVisible(true);
 
     }
 
