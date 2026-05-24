@@ -28,7 +28,8 @@ import javax.swing.JTable;
 public class Admin extends JFrame {
     JButton logout;
     JDialog logoutDialog;
-    JLabel headerLabel;
+    JLabel salesheaderLabel;
+    JLabel logheaderLabel;
     JPanel tablePanel;
     ImageIcon icon;
     JTable table;
@@ -55,11 +56,19 @@ public class Admin extends JFrame {
         background.setLayout(null);
         this.setContentPane(background);
 
-        headerLabel = new JLabel();
-        headerLabel.setBounds(700, 10, 400, 100);
-        headerLabel.setText("Sales Details");
-        headerLabel.setFont(new Font("Arial", Font.BOLD, 45));
-        headerLabel.setLayout(new FlowLayout());
+        salesheaderLabel = new JLabel();
+        salesheaderLabel.setBounds(700, 10, 400, 100);
+        salesheaderLabel.setText("Sales Details");
+        salesheaderLabel.setFont(new Font("Arial", Font.BOLD, 45));
+        salesheaderLabel.setLayout(new FlowLayout());
+        salesheaderLabel.setVisible(false);
+
+        logheaderLabel = new JLabel();
+        logheaderLabel.setBounds(700, 10, 400, 100);
+        logheaderLabel.setText("Log Details");
+        logheaderLabel.setFont(new Font("Arial", Font.BOLD, 45));
+        logheaderLabel.setLayout(new FlowLayout());
+        logheaderLabel.setVisible(false);
 
         logout = new JButton("Logout") {
             @Override
@@ -240,7 +249,6 @@ public class Admin extends JFrame {
 
         tablePanel = new JPanel();
         tablePanel.setBounds(350, 100, 950, 550);
-        // tablePanel.setBackground(Color.RED);
         tablePanel.setOpaque(false);
 
         DefaultTableModel model = new DefaultTableModel();
@@ -291,8 +299,10 @@ public class Admin extends JFrame {
         scrollPane.setBackground(Color.decode("#47477e"));
         tablePanel.setLayout(new BorderLayout());
         tablePanel.add(scrollPane, BorderLayout.CENTER);
+        tablePanel.setVisible(false);
         this.add(tablePanel);
-        this.add(headerLabel);
+        this.add(salesheaderLabel);
+        this.add(logheaderLabel);
         this.setVisible(true);
 
     }
