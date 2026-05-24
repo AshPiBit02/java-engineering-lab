@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
@@ -7,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -15,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.Timer;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 import java.io.*;
@@ -126,6 +129,25 @@ public class Admin extends JFrame {
 
         DefaultTableModel model = new DefaultTableModel();
         table = new JTable(model);
+        table.setGridColor(Color.RED);
+
+        table.setSelectionBackground(Color.BLUE);
+        table.setSelectionForeground(Color.WHITE);
+        table.setBackground(Color.decode("#95a9dc"));
+
+        table.getTableHeader().setBackground(Color.decode("#040051"));
+        table.getTableHeader().setForeground(Color.WHITE);
+
+        table.setBorder(BorderFactory.createLineBorder(Color.decode("#4a4a4e"), 3));
+
+        Border outer = BorderFactory.createLineBorder(Color.decode("#4a4a4e"), 3);
+        Border inner = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+        table.setBorder(BorderFactory.createCompoundBorder(outer, inner));
+
+        table.setFont(new Font("Serif", Font.PLAIN, 25));
+        table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 30));
+        table.setRowHeight(32);
+        table.getTableHeader().setPreferredSize(new Dimension(0, 37));
         String filePath = "demo.csv";
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             List<String[]> rows = new ArrayList<>();
@@ -150,6 +172,7 @@ public class Admin extends JFrame {
         }
 
         JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBackground(Color.decode("#47477e"));
         tablePanel.setLayout(new BorderLayout());
         tablePanel.add(scrollPane, BorderLayout.CENTER);
         this.add(tablePanel);
