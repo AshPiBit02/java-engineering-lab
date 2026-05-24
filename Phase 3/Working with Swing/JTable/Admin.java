@@ -13,7 +13,14 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+
+import java.io.*;
+import java.util.*;
+
+import javax.swing.JTable;
 
 public class Admin extends JFrame {
     JButton logout;
@@ -21,6 +28,7 @@ public class Admin extends JFrame {
     JLabel headerLabel;
     JPanel tablePanel;
     ImageIcon icon;
+    JTable table;
 
     Admin() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -116,6 +124,34 @@ public class Admin extends JFrame {
         // tablePanel.setBackground(Color.RED);
         tablePanel.setOpaque(false);
 
+        DefaultTableModel model = new DefaultTableModel();
+        table = new JTable(model);
+        String filePath = "demo.csv";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            List<String[]> rows = new ArrayList<>();
+            String line;
+            boolean firstLine = true;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                if (firstLine) {
+                    for (String header : values) {
+                        model.addColumn(header);
+                    }
+                    firstLine = false;
+                } else {
+                    rows.add(values);
+                }
+            }
+            for (String[] row : rows) {
+                model.addRow(row);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        tablePanel.setLayout(new BorderLayout());
+        tablePanel.add(scrollPane, BorderLayout.CENTER);
         this.add(tablePanel);
         this.add(headerLabel);
         this.add(logout);
