@@ -33,7 +33,6 @@ public class Login extends JFrame {
     ImageIcon icon1;
     ImageIcon icon2;
     JDialog loginDialog;
-    JDialog logoutDialog;
 
     JFrame adminFrame;
 
@@ -127,8 +126,9 @@ public class Login extends JFrame {
         });
         loginDialog = new JDialog();
         loginDialog.setTitle("Loggedin Successful");
-        loginDialog.setLayout(new FlowLayout());
         loginDialog.setBounds(500, 50, 300, 150);
+        loginDialog.getContentPane().setBackground(Color.decode("#191932"));
+        loginDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
 
         // Login button
         login = new JButton("LogIn") {
@@ -227,7 +227,12 @@ public class Login extends JFrame {
     }
 
     private void LoggingDailog(String name) {
-        loginDialog.add(new JLabel("Hello, " + name + "!"));
+        JLabel msg = new JLabel(
+                "<html><div style='text-align: center;'>Greetings Sir, " + name
+                        + "!<br>Welcome to the system.</div></html>");
+        msg.setFont(new Font("Arial", Font.BOLD, 14));
+        msg.setForeground(Color.WHITE);
+        loginDialog.add(msg);
         loginDialog.setVisible(true);
         Timer time = new Timer(500, e -> {
             loginDialog.dispose();

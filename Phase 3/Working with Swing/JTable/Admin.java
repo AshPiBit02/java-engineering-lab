@@ -83,8 +83,8 @@ public class Admin extends JFrame {
             }
         };
         logout.setBounds(50, 675, 200, 50);
-        logout.setFont(new Font("Arial", Font.PLAIN, 20));
-        logout.setBackground(Color.decode("#db5050"));
+        logout.setFont(new Font("Arial", Font.PLAIN, 25));
+        logout.setBackground(Color.decode("#1d0000"));
         logout.setForeground(Color.WHITE);
         logout.setOpaque(false);
         logout.setContentAreaFilled(false);
@@ -94,9 +94,14 @@ public class Admin extends JFrame {
 
         logoutDialog = new JDialog();
         logoutDialog.setTitle("Logout Successfully");
-        logoutDialog.add(new JLabel("Logged from Admin"));
         logoutDialog.setBounds(500, 50, 300, 150);
-        logoutDialog.setLayout(new FlowLayout());
+        logoutDialog.getContentPane().setBackground(Color.decode("#2c1515"));
+        JLabel msg = new JLabel(
+                "<html><div style='text-align: center;'>LoggedOut<br>from Admin System!</div></html>");
+        msg.setFont(new Font("Arial", Font.BOLD, 14));
+        msg.setForeground(Color.WHITE);
+        logoutDialog.add(msg);
+        logoutDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
 
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -254,7 +259,7 @@ public class Admin extends JFrame {
         this.add(menuPanel);
 
         tablePanel = new JPanel();
-        tablePanel.setBounds(350, 100, 950, 550);
+        tablePanel.setBounds(305, 125, 1060, 680);
         tablePanel.setOpaque(false);
 
         DefaultTableModel model = new DefaultTableModel();
