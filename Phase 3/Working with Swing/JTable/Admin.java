@@ -230,6 +230,9 @@ public class Admin extends JFrame {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
                 logBtn.setBackground(new Color(0, 113, 234, 120));
+                salesheaderLabel.setVisible(false);
+                tablePanel.setVisible(false);
+                logheaderLabel.setVisible(true);
             }
 
             @Override
