@@ -139,6 +139,11 @@ public class Login extends JFrame {
                 super.paintComponent(g);
             }
         };
+        loginDialog = new JDialog();
+        loginDialog.setTitle("Loggedin Successful");
+        loginDialog.setLayout(new FlowLayout());
+        loginDialog.setBounds(500, 50, 300, 150);
+
         login.setBounds(100, 170, 200, 30);
         login.setFont(new Font("Arial", Font.PLAIN, 18));
         login.setBackground(new Color(0, 113, 234, 60));
@@ -148,12 +153,6 @@ public class Login extends JFrame {
         login.setFocusable(false);
         login.setFocusPainted(false);
         login.setBorderPainted(false);
-
-        loginDialog = new JDialog();
-        loginDialog.setTitle("Loggedin Successful");
-        loginDialog.setLayout(new FlowLayout());
-        loginDialog.setBounds(500, 50, 300, 150);
-        loginDialog.setLocationRelativeTo(this);
 
         login.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
