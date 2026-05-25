@@ -34,7 +34,8 @@ public class Login extends JFrame {
     JDialog emptyDialog;
 
     private String Fieldpassword = "";
-    private boolean toggle = false;
+
+    private boolean isPasswordVisible = false;
 
     Login() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -96,17 +97,17 @@ public class Login extends JFrame {
         showpassword.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (toggle) {
-                    passField.setEchoChar((char) 0);
+                isPasswordVisible = !isPasswordVisible; // toggle state first
+
+                if (isPasswordVisible) {
+                    passField.setEchoChar((char) 0); // show password
                     showpassword.setIcon(icon1);
                     bearLabel.setIcon(bearshow);
-
                 } else {
                     passField.setEchoChar('•');
                     showpassword.setIcon(icon2);
                     bearLabel.setIcon(bearhide);
                 }
-                toggle = !toggle;
             }
         });
 
@@ -341,14 +342,14 @@ public class Login extends JFrame {
     private void updatePass() {
         char[] pwd = passField.getPassword();
         Fieldpassword = new String(pwd);
+
         if (Fieldpassword.isEmpty()) {
-            bearLabel.setIcon(bearhide);
+            isPasswordVisible = false;
+            passField.setEchoChar('•');
             showpassword.setIcon(icon2);
             showpassword.setVisible(false);
+            bearLabel.setIcon(bearhide);
             bearLabel.setVisible(false);
-
-            toggle = false;
-            passField.setEchoChar('•');
         } else {
             showpassword.setVisible(true);
             bearLabel.setVisible(true);
