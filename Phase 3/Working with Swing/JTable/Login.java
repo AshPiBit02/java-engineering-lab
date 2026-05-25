@@ -145,9 +145,15 @@ public class Login extends JFrame {
         // Empty Field Dialog
         emptyDialog = new JDialog();
         emptyDialog.setTitle("Empty Field Error");
-        emptyDialog.setBounds(500, 50, 300, 150);
-        emptyDialog.getContentPane().setBackground(Color.decode("#e14e4e"));
-        emptyDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
+        emptyDialog.setBounds(500, 50, 200, 100);
+        emptyDialog.getContentPane().setBackground(Color.decode("#ffffff"));
+        emptyDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
+
+        JLabel emptyMsg = new JLabel(
+                "<html><div style='text-align: center;'>Fields Can't be Empty!</div></html>");
+        emptyMsg.setFont(new Font("Arial", Font.PLAIN, 18));
+        emptyMsg.setForeground(Color.BLACK);
+        emptyDialog.add(emptyMsg);
 
         login.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -322,18 +328,10 @@ public class Login extends JFrame {
     }
 
     private void EmptyDialog() {
-        JLabel msg = new JLabel(
-                "<html><div style='text-align: center;'>Fields Can't be Empty!, "
-                        + "</div></html>");
-        msg.setFont(new Font("Arial", Font.BOLD, 14));
-        msg.setForeground(Color.WHITE);
-        emptyDialog.add(msg);
         emptyDialog.setVisible(true);
-        Timer time = new Timer(2000, e -> emptyDialog.setVisible(false));
-        time.setRepeats(false); // run only once
+        Timer time = new Timer(1000, e -> emptyDialog.setVisible(false));
+        time.setRepeats(false);
         time.start();
-        emptyDialog.setVisible(false);
-
     }
 
     private void LoggingDailog(String name) {
