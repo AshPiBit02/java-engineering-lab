@@ -1,8 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.awt.Toolkit;
-import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -331,7 +329,7 @@ public class Login extends JFrame {
         msg.setForeground(Color.WHITE);
         emptyDialog.add(msg);
         emptyDialog.setVisible(true);
-        Timer time = new Timer(500, null);
+        Timer time = new Timer(2000, e -> emptyDialog.setVisible(false));
         time.setRepeats(false); // run only once
         time.start();
         emptyDialog.setVisible(false);
