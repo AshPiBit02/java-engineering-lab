@@ -5,24 +5,28 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class Login extends JFrame {
+
+    // Login Panel Components
+    JPanel logPanel;
     JLabel username;
     JLabel password;
-    JButton login;
-    JButton signupBtn;
-    JButton showpassword;
-    JPanel logPanel;
-    JPanel signPanel;
-    JTextField userField;
-    JPasswordField passField;
-    ImageIcon icon;
-    ImageIcon icon1;
     ImageIcon icon2;
-    JDialog loginDialog;
-    JLabel signHeader;
+    JButton showpassword;
+    JTextField userField;
+    ImageIcon icon1;
+    JPasswordField passField;
+    JButton login;
     JLabel logHeader;
-    JDialog emptyDialog;
-
+    JDialog loginDialog;
     JFrame adminFrame;
+
+    ImageIcon icon;
+
+    // Signup Panel Components
+    JButton signupBtn;
+    JPanel signPanel;
+    JLabel signHeader;
+    JDialog emptyDialog;
 
     private String Fieldpassword = "";
     private boolean toggle = false;
@@ -204,16 +208,16 @@ public class Login extends JFrame {
         };
 
         logHeader = new JLabel();
-        logHeader.setText("Login");
+        logHeader.setText("Log in");
         logHeader.setBounds(155, 10, 100, 40);
-        logHeader.setFont(new Font("Times New Roman", Font.BOLD, 30));
+        logHeader.setFont(new Font("Times New Roman", Font.PLAIN, 30));
         logHeader.setForeground(Color.decode("#c5ff06"));
         logHeader.setHorizontalAlignment(JLabel.CENTER);
 
         JSeparator logSeparator = new JSeparator();
-        logSeparator.setBounds(135, 50, 130, 1);
-        logSeparator.setForeground(Color.BLACK);
-        logSeparator.setBackground(Color.BLACK);
+        logSeparator.setBounds(135, 48, 130, 1);
+        logSeparator.setForeground(Color.decode("#0f2541"));
+        logSeparator.setBackground(Color.decode("#0f2541"));
 
         logPanel.setBounds(450, 200, 400, 270);
         logPanel.setLayout(null);
@@ -244,17 +248,17 @@ public class Login extends JFrame {
         signPanel.setBackground(new Color(clrs.getRed(), clrs.getGreen(), clrs.getBlue(), 20));
 
         signHeader = new JLabel();
-        signHeader.setText("Signup");
+        signHeader.setText("Sign up");
         signHeader.setBounds(150, 10, 100, 40);
-        signHeader.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        signHeader.setForeground(Color.decode("#23aa05"));
+        signHeader.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        signHeader.setForeground(Color.decode("#ffffff"));
         signHeader.setHorizontalAlignment(JLabel.CENTER);
         signPanel.setVisible(false);
 
         JSeparator signSeparator = new JSeparator();
         signSeparator.setBounds(30, 55, 340, 1);
-        signSeparator.setForeground(Color.WHITE);
-        signSeparator.setBackground(Color.WHITE);
+        signSeparator.setForeground(Color.decode("#bdff8e"));
+        signSeparator.setBackground(Color.decode("#bdff8e"));
 
         // Signup Components
 
