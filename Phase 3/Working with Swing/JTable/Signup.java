@@ -14,6 +14,7 @@ public class Signup extends Login {
     JLabel signUser;
     JTextField signUsername;
     JLabel emailAdd;
+    JTextField email;
     JPasswordField signPass;
     JPasswordField signCPass;
     JButton signup;
@@ -45,10 +46,25 @@ public class Signup extends Login {
         signUsername.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         signUsername.setForeground(Color.BLACK);
 
+        emailAdd = new JLabel("Email Address");
+        emailAdd.setBounds(50, 275, 150, 30);
+        emailAdd.setFont(new Font("Arial", Font.PLAIN, 20));
+        emailAdd.setLayout(null);
+        emailAdd.setForeground(Color.WHITE);
+        emailAdd.setVisible(true);
+
+        email = new JTextField();
+        email.setBounds(70, 310, 260, 25);
+        email.setLayout(new FlowLayout());
+        email.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        email.setForeground(Color.BLACK);
+
         signPanel.add(fname);
         signPanel.add(fullName);
         signPanel.add(signUser);
         signPanel.add(signUsername);
+        signPanel.add(emailAdd);
+        signPanel.add(email);
 
         logPanel.setVisible(false);
         signPanel.setVisible(true);
