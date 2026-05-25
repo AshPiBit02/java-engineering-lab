@@ -23,6 +23,8 @@ public class Login extends JFrame {
     ImageIcon icon;
     ImageIcon bearshow;
     ImageIcon bearhide;
+    ImageIcon bearbase;
+    ImageIcon bearlog;
 
     // bear label
     JLabel bearLabel;
@@ -43,7 +45,7 @@ public class Login extends JFrame {
         this.setLayout(null);
 
         // Load and scale image to fit screen
-        icon = new ImageIcon("background.jpg");
+        icon = new ImageIcon("Images/background.jpg");
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(
                 Toolkit.getDefaultToolkit().getScreenSize().width,
@@ -54,10 +56,12 @@ public class Login extends JFrame {
         // Bear label
         bearLabel = new JLabel();
         bearLabel.setBounds(600, 113, 100, 100);
-        bearhide = new ImageIcon("bhide.png");
-        bearshow = new ImageIcon("bshow.png");
-        bearLabel.setIcon(bearhide);
-        bearLabel.setVisible(false);
+        bearbase = new ImageIcon("Images/bbase.png");
+        bearhide = new ImageIcon("Images/bhide.png");
+        bearshow = new ImageIcon("Images/bshow.png");
+        bearlog = new ImageIcon("Images/bnice.png");
+        bearLabel.setIcon(bearbase);
+        bearLabel.setVisible(true);
 
         // Set background label
         JLabel background = new JLabel(scaledIcon);
@@ -82,8 +86,8 @@ public class Login extends JFrame {
         password.setForeground(Color.white);
 
         // Show/hide password button
-        icon1 = new ImageIcon("show.jpg");
-        icon2 = new ImageIcon("hide.jpg");
+        icon1 = new ImageIcon("Images/show.jpg");
+        icon2 = new ImageIcon("Images/hide.jpg");
         showpassword = new JButton(icon2);
         showpassword.setBounds(123, 2, 30, 20);
         showpassword.setFocusable(false);
@@ -116,6 +120,22 @@ public class Login extends JFrame {
         passField.setBounds(175, 123, 150, 25);
         passField.setFont(new Font("Arial", Font.PLAIN, 16));
         passField.add(showpassword);
+
+        passField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (Fieldpassword.isEmpty()) {
+                    bearLabel.setIcon(bearhide); // field selected but empty → hide bear
+                } else {
+                    bearLabel.setIcon(isPasswordVisible ? bearshow : bearhide);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                bearLabel.setIcon(bearbase); // back to base when field deselected
+            }
+        });
 
         passField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -209,6 +229,7 @@ public class Login extends JFrame {
                 char[] pass = passField.getPassword();
                 String UserPassword = new String(pass);
                 if (UserName.equals("Admin") && UserPassword.equals("123")) {
+                    bearLabel.setIcon(bearlog);
                     LoggingDailog(UserName);
                 }
 
@@ -348,11 +369,12 @@ public class Login extends JFrame {
             passField.setEchoChar('•');
             showpassword.setIcon(icon2);
             showpassword.setVisible(false);
-            bearLabel.setIcon(bearhide);
-            bearLabel.setVisible(false);
+            bearLabel.setIcon(bearhide); // focused + empty = bearhide
+            bearLabel.setVisible(true); // keep visible, field is focused
         } else {
             showpassword.setVisible(true);
             bearLabel.setVisible(true);
+            bearLabel.setIcon(isPasswordVisible ? bearshow : bearhide);
         }
     }
 

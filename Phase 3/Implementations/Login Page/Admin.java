@@ -25,7 +25,7 @@ public class Admin extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Sales Record");
         // Load and scale image to fit screen
-        icon = new ImageIcon("inventory.jpg");
+        icon = new ImageIcon("Images/inventory.jpg");
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(
                 Toolkit.getDefaultToolkit().getScreenSize().width,
