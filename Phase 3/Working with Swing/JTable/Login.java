@@ -249,8 +249,8 @@ public class Login extends JFrame {
 
         signHeader = new JLabel();
         signHeader.setText("Sign up");
-        signHeader.setBounds(150, 10, 100, 40);
-        signHeader.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        signHeader.setBounds(140, 10, 120, 40);
+        signHeader.setFont(new Font("Times New Roman", Font.PLAIN, 35));
         signHeader.setForeground(Color.decode("#ffffff"));
         signHeader.setHorizontalAlignment(JLabel.CENTER);
         signPanel.setVisible(false);
@@ -303,7 +303,7 @@ public class Login extends JFrame {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
                 signupBtn.setBackground(Color.decode("#00ff26"));
-                Register();
+                new Signup();
             }
 
             @Override
@@ -353,12 +353,6 @@ public class Login extends JFrame {
         });
         time.setRepeats(false); // run only once
         time.start();
-    }
-
-    private void Register() {
-        logPanel.setVisible(false);
-        signPanel.setVisible(true);
-
     }
 
 }
