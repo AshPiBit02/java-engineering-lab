@@ -87,6 +87,53 @@ public class Signup extends Login {
         signCPass.setLayout(new FlowLayout());
         signCPass.setForeground(Color.BLACK);
 
+        signup = new JButton("Sign up") {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
+                g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING,
+                        java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10);
+                g2.dispose();
+                super.paintComponent(g);
+            }
+        };
+
+        signup.setBounds(65, 580, 270, 40);
+        signup.setFont(new Font("Arial", Font.PLAIN, 18));
+        signup.setBackground(Color.decode("#09b422"));
+        signup.setForeground(Color.WHITE);
+        signup.setOpaque(false);
+        signup.setContentAreaFilled(false);
+        signup.setFocusable(false);
+        signup.setFocusPainted(false);
+        signup.setBorderPainted(false);
+
+        signup.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                signup.setBackground(Color.decode("#00510c"));
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                signup.setBackground(Color.decode("#09b422"));
+            }
+
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent e) {
+                signup.setBackground(Color.decode("#00ff26"));
+                dispose();
+                new Signup();
+            }
+
+            @Override
+            public void mouseReleased(java.awt.event.MouseEvent e) {
+                signup.setBackground(Color.decode("#09b422"));
+            }
+        });
+
         signPanel.add(fname);
         signPanel.add(fullName);
         signPanel.add(signUser);
@@ -97,6 +144,7 @@ public class Signup extends Login {
         signPanel.add(signpass);
         signPanel.add(signCpassLbl);
         signPanel.add(signCPass);
+        signPanel.add(signup);
 
         logPanel.setVisible(false);
         signPanel.setVisible(true);

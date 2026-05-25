@@ -208,7 +208,7 @@ public class Login extends JFrame {
         };
 
         logHeader = new JLabel();
-        logHeader.setText("Log in");
+        logHeader.setText("Login");
         logHeader.setBounds(155, 10, 100, 40);
         logHeader.setFont(new Font("Times New Roman", Font.PLAIN, 30));
         logHeader.setForeground(Color.decode("#c5ff06"));
@@ -248,7 +248,7 @@ public class Login extends JFrame {
         signPanel.setBackground(new Color(clrs.getRed(), clrs.getGreen(), clrs.getBlue(), 20));
 
         signHeader = new JLabel();
-        signHeader.setText("Sign up");
+        signHeader.setText("Signup");
         signHeader.setBounds(140, 10, 120, 40);
         signHeader.setFont(new Font("Times New Roman", Font.PLAIN, 35));
         signHeader.setForeground(Color.decode("#ffffff"));
@@ -266,7 +266,7 @@ public class Login extends JFrame {
         signPanel.add(signHeader);
 
         // Register Button
-        signupBtn = new JButton("Signup") {
+        signupBtn = new JButton("Sign up") {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
                 java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
