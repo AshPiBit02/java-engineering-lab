@@ -22,6 +22,7 @@ public class Login extends JFrame {
     JDialog loginDialog;
     JLabel signHeader;
     JLabel logHeader;
+    JDialog emptyDialog;
 
     JFrame adminFrame;
 
@@ -143,6 +144,13 @@ public class Login extends JFrame {
         login.setFocusPainted(false);
         login.setBorderPainted(false);
 
+        // Empty Field Dialog
+        emptyDialog = new JDialog();
+        emptyDialog.setTitle("Empty Field Error");
+        emptyDialog.setBounds(500, 50, 300, 150);
+        emptyDialog.getContentPane().setBackground(Color.decode("#e14e4e"));
+        emptyDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
+
         login.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
@@ -157,6 +165,9 @@ public class Login extends JFrame {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
                 login.setBackground(Color.decode("#0008fa"));
+                if (userField.getText().isEmpty() || Fieldpassword.isEmpty()) {
+                    EmptyDialog();
+                }
             }
 
             @Override
@@ -221,7 +232,7 @@ public class Login extends JFrame {
         separator.setBackground(Color.BLACK);
         logPanel.add(separator);
 
-        // Register Panel
+        // Signup Panel
         signPanel = new JPanel();
         signPanel.setBounds(475, 50, 400, 650);
         signPanel.setLayout(null);
@@ -240,6 +251,8 @@ public class Login extends JFrame {
         signSeparator.setBounds(30, 55, 340, 1);
         signSeparator.setForeground(Color.WHITE);
         signSeparator.setBackground(Color.WHITE);
+
+        // Signup Components
 
         signPanel.add(signSeparator);
         signPanel.add(signHeader);
@@ -308,6 +321,21 @@ public class Login extends JFrame {
         } else {
             showpassword.setVisible(true);
         }
+    }
+
+    private void EmptyDialog() {
+        JLabel msg = new JLabel(
+                "<html><div style='text-align: center;'>Fields Can't be Empty!, "
+                        + "</div></html>");
+        msg.setFont(new Font("Arial", Font.BOLD, 14));
+        msg.setForeground(Color.WHITE);
+        emptyDialog.add(msg);
+        emptyDialog.setVisible(true);
+        Timer time = new Timer(500, null);
+        time.setRepeats(false); // run only once
+        time.start();
+        emptyDialog.setVisible(false);
+
     }
 
     private void LoggingDailog(String name) {
