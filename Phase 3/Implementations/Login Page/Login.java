@@ -53,7 +53,7 @@ public class Login extends JFrame {
 
         // Bear label
         bearLabel = new JLabel();
-        bearLabel.setBounds(600, 110, 100, 100);
+        bearLabel.setBounds(600, 113, 100, 100);
         bearhide = new ImageIcon("bhide.png");
         bearshow = new ImageIcon("bshow.png");
         bearLabel.setIcon(bearhide);
