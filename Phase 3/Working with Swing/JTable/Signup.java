@@ -23,6 +23,7 @@ public class Signup extends Login {
     JButton signup;
 
     Signup() {
+
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
         fullName.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -72,8 +73,19 @@ public class Signup extends Login {
         signpass = new JPasswordField();
         signpass.setBounds(70, 395, 260, 25);
         signpass.setLayout(new FlowLayout());
-        // signpass.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         signpass.setForeground(Color.BLACK);
+
+        signCpassLbl = new JLabel("Confirm Password");
+        signCpassLbl.setBounds(50, 445, 200, 30);
+        signCpassLbl.setFont(new Font("Arial", Font.PLAIN, 20));
+        signCpassLbl.setLayout(null);
+        signCpassLbl.setForeground(Color.WHITE);
+        signCpassLbl.setVisible(true);
+
+        signCPass = new JPasswordField();
+        signCPass.setBounds(70, 480, 260, 25);
+        signCPass.setLayout(new FlowLayout());
+        signCPass.setForeground(Color.BLACK);
 
         signPanel.add(fname);
         signPanel.add(fullName);
@@ -83,6 +95,8 @@ public class Signup extends Login {
         signPanel.add(email);
         signPanel.add(signPassLbl);
         signPanel.add(signpass);
+        signPanel.add(signCpassLbl);
+        signPanel.add(signCPass);
 
         logPanel.setVisible(false);
         signPanel.setVisible(true);
