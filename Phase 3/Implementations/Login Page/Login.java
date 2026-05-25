@@ -134,9 +134,9 @@ public class Login extends JFrame {
         });
         loginDialog = new JDialog();
         loginDialog.setTitle("Loggedin Successful");
-        loginDialog.setBounds(500, 50, 300, 150);
-        loginDialog.getContentPane().setBackground(Color.decode("#191932"));
-        loginDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
+        loginDialog.setBounds(550, 20, 200, 100);
+        loginDialog.getContentPane().setBackground(Color.WHITE);
+        loginDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
 
         // Login button
         login = new JButton("Login") {
@@ -165,13 +165,13 @@ public class Login extends JFrame {
         // Empty Field Dialog
         emptyDialog = new JDialog();
         emptyDialog.setTitle("Empty Field Error");
-        emptyDialog.setBounds(500, 50, 200, 100);
+        emptyDialog.setBounds(550, 20, 200, 100);
         emptyDialog.getContentPane().setBackground(Color.decode("#ffffff"));
         emptyDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
 
         JLabel emptyMsg = new JLabel(
                 "<html><div style='text-align: center;'>Fields Can't be Empty!</div></html>");
-        emptyMsg.setFont(new Font("Arial", Font.PLAIN, 18));
+        emptyMsg.setFont(new Font("Arial", Font.PLAIN, 14));
         emptyMsg.setForeground(Color.BLACK);
         emptyDialog.add(emptyMsg);
 
@@ -342,6 +342,8 @@ public class Login extends JFrame {
         char[] pwd = passField.getPassword();
         Fieldpassword = new String(pwd);
         if (Fieldpassword.isEmpty()) {
+            bearLabel.setIcon(bearhide);
+            showpassword.setIcon(icon2);
             showpassword.setVisible(false);
             bearLabel.setVisible(false);
 
@@ -364,8 +366,8 @@ public class Login extends JFrame {
         JLabel msg = new JLabel(
                 "<html><div style='text-align: center;'>Greetings Sir, " + name
                         + "!<br>Welcome to the system.</div></html>");
-        msg.setFont(new Font("Arial", Font.BOLD, 14));
-        msg.setForeground(Color.WHITE);
+        msg.setFont(new Font("Arial", Font.PLAIN, 14));
+        msg.setForeground(Color.BLACK);
         loginDialog.add(msg);
         loginDialog.setVisible(true);
         Timer time = new Timer(500, e -> {
