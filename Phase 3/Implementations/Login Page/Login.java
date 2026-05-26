@@ -281,7 +281,6 @@ public class Login extends JFrame {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
                 signupBtn.setBackground(Color.decode("#00ff26"));
-                dispose();
                 new Signup();
             }
 
