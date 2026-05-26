@@ -6,7 +6,6 @@ import javax.swing.event.DocumentListener;
 
 public class Login extends JFrame {
 
-    // Login Panel Components
     JPanel logPanel;
     JLabel username;
     JLabel password;
@@ -26,17 +25,14 @@ public class Login extends JFrame {
     ImageIcon bearbase;
     ImageIcon bearlog;
 
-    // bear label
     JLabel bearLabel;
 
-    // Signup Panel Components
     JButton signupBtn;
     JPanel signPanel;
     JLabel signHeader;
     JDialog emptyDialog;
 
     private String Fieldpassword = "";
-
     private boolean isPasswordVisible = false;
 
     Login() {
@@ -44,7 +40,6 @@ public class Login extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
 
-        // Load and scale image to fit screen
         icon = new ImageIcon("Images/background.jpg");
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(
@@ -53,7 +48,6 @@ public class Login extends JFrame {
                 Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImg);
 
-        // Bear label
         bearLabel = new JLabel();
         bearLabel.setBounds(600, 113, 100, 100);
         bearbase = new ImageIcon("Images/bbase.png");
@@ -63,70 +57,41 @@ public class Login extends JFrame {
         bearLabel.setIcon(bearbase);
         bearLabel.setVisible(true);
 
-        // Set background label
         JLabel background = new JLabel(scaledIcon);
         background.setLayout(null);
         this.setContentPane(background);
 
-        // Username label
         username = new JLabel("Username: ");
         username.setBounds(50, 70, 120, 30);
         username.setFont(new Font("Arial", Font.PLAIN, 20));
         username.setForeground(Color.white);
 
-        // Username field
         userField = new JTextField();
         userField.setBounds(175, 73, 150, 25);
         userField.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        // Password label
         password = new JLabel("Password: ");
         password.setBounds(50, 120, 120, 30);
         password.setFont(new Font("Arial", Font.PLAIN, 20));
         password.setForeground(Color.white);
 
-        // Show/hide password button
         icon1 = new ImageIcon("Images/show.jpg");
         icon2 = new ImageIcon("Images/hide.jpg");
 
-        showpassword = new JButton(icon2);
-        showpassword.setBounds(123, 2, 30, 20);
-        showpassword.setFocusable(false);
-        showpassword.setBorder(null);
-        showpassword.setVisible(false);
-        showpassword.setFocusPainted(false);
-        showpassword.setBorderPainted(false);
-        showpassword.setContentAreaFilled(false);
-        showpassword.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-
-        showpassword.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                isPasswordVisible = !isPasswordVisible; // toggle state first
-
-                if (isPasswordVisible) {
-                    passField.setEchoChar((char) 0); // show password
-                    showpassword.setIcon(icon1);
-                    bearLabel.setIcon(bearshow);
-                } else {
-                    passField.setEchoChar('•');
-                    showpassword.setIcon(icon2);
-                    bearLabel.setIcon(bearhide);
-                }
-            }
-        });
-
-        // Password field
+        // Password field first, then button
         passField = new JPasswordField();
         passField.setBounds(175, 123, 150, 25);
         passField.setFont(new Font("Arial", Font.PLAIN, 16));
+
+        // Generic show button for password field
+        showpassword = createShowPassBtn(passField, true);
         passField.add(showpassword);
 
         passField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
                 if (Fieldpassword.isEmpty()) {
-                    bearLabel.setIcon(bearhide); // field selected but empty → hide bear
+                    bearLabel.setIcon(bearhide);
                 } else {
                     bearLabel.setIcon(isPasswordVisible ? bearshow : bearhide);
                 }
@@ -134,33 +99,16 @@ public class Login extends JFrame {
 
             @Override
             public void focusLost(FocusEvent e) {
-                bearLabel.setIcon(bearbase); // back to base when field deselected
+                bearLabel.setIcon(bearbase);
             }
         });
 
-        passField.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                updatePass();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                updatePass();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                updatePass();
-            }
-        });
         loginDialog = new JDialog();
         loginDialog.setTitle("Loggedin Successful");
         loginDialog.setBounds(550, 20, 200, 100);
         loginDialog.getContentPane().setBackground(Color.WHITE);
         loginDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
 
-        // Login button
         login = new JButton("Login") {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -184,7 +132,6 @@ public class Login extends JFrame {
         login.setFocusPainted(false);
         login.setBorderPainted(false);
 
-        // Empty Field Dialog
         emptyDialog = new JDialog();
         emptyDialog.setTitle("Empty Field Error");
         emptyDialog.setBounds(550, 20, 200, 100);
@@ -220,10 +167,8 @@ public class Login extends JFrame {
             public void mouseReleased(java.awt.event.MouseEvent e) {
                 login.setBackground(new Color(0, 113, 234, 60));
             }
-
         });
 
-        // Login Button Listener
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -231,13 +176,12 @@ public class Login extends JFrame {
                 char[] pass = passField.getPassword();
                 String UserPassword = new String(pass);
                 if (UserName.equals("Admin") && UserPassword.equals("123")) {
+                    bearLabel.setIcon(bearlog);
                     LoggingDailog(UserName);
                 }
-
             }
-
         });
-        // Login panel
+
         logPanel = new JPanel() {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -272,14 +216,12 @@ public class Login extends JFrame {
         logPanel.add(userField);
         logPanel.add(passField);
 
-        // Line separator
         JSeparator separator = new JSeparator();
         separator.setBounds(90, 210, 220, 1);
         separator.setForeground(Color.BLACK);
         separator.setBackground(Color.BLACK);
         logPanel.add(separator);
 
-        // Signup Panel
         signPanel = new JPanel();
         signPanel.setBounds(475, 50, 400, 650);
         signPanel.setLayout(null);
@@ -299,12 +241,9 @@ public class Login extends JFrame {
         signSeparator.setForeground(Color.decode("#bdff8e"));
         signSeparator.setBackground(Color.decode("#bdff8e"));
 
-        // Signup Components
-
         signPanel.add(signSeparator);
         signPanel.add(signHeader);
 
-        // Register Button
         signupBtn = new JButton("Sign up") {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -361,22 +300,98 @@ public class Login extends JFrame {
         this.setVisible(true);
     }
 
-    private void updatePass() {
-        char[] pwd = passField.getPassword();
-        Fieldpassword = new String(pwd);
+    protected JButton createShowPassBtn(JPasswordField targetField, boolean updateBear) {
+        JButton btn = new JButton(icon2);
+        btn.setBounds(123, 2, 30, 20);
+        btn.setFocusable(false);
+        btn.setBorder(null);
+        btn.setVisible(false);
+        btn.setFocusPainted(false);
+        btn.setBorderPainted(false);
+        btn.setContentAreaFilled(false);
+        btn.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
-        if (Fieldpassword.isEmpty()) {
-            isPasswordVisible = false;
-            passField.setEchoChar('•');
-            showpassword.setIcon(icon2);
-            showpassword.setVisible(false);
-            bearLabel.setIcon(bearhide); // focused + empty = bearhide
-            bearLabel.setVisible(true); // keep visible, field is focused
-        } else {
-            showpassword.setVisible(true);
-            bearLabel.setVisible(true);
-            bearLabel.setIcon(isPasswordVisible ? bearshow : bearhide);
-        }
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (updateBear) {
+                    isPasswordVisible = !isPasswordVisible;
+                    if (isPasswordVisible) {
+                        targetField.setEchoChar((char) 0);
+                        btn.setIcon(icon1);
+                        bearLabel.setIcon(bearshow);
+                    } else {
+                        targetField.setEchoChar('•');
+                        btn.setIcon(icon2);
+                        bearLabel.setIcon(bearhide);
+                    }
+                } else {
+                    // plain toggle — own local state via array
+                    boolean[] visible = getClientProperty(btn);
+                    visible[0] = !visible[0];
+                    if (visible[0]) {
+                        targetField.setEchoChar((char) 0);
+                        btn.setIcon(icon1);
+                    } else {
+                        targetField.setEchoChar('•');
+                        btn.setIcon(icon2);
+                    }
+                }
+            }
+        });
+
+        // Mirrors original updatePass() DocumentListener
+        boolean[] localVisible = { false };
+        btn.putClientProperty("localVisible", localVisible);
+
+        targetField.getDocument().addDocumentListener(new DocumentListener() {
+            void update() {
+                char[] pwd = targetField.getPassword();
+                String text = new String(pwd);
+
+                if (text.isEmpty()) {
+                    if (updateBear)
+                        isPasswordVisible = false;
+                    else
+                        localVisible[0] = false;
+                    targetField.setEchoChar('•');
+                    btn.setIcon(icon2);
+                    btn.setVisible(false);
+                    if (updateBear) {
+                        bearLabel.setIcon(bearhide);
+                        bearLabel.setVisible(true);
+                    }
+                } else {
+                    btn.setVisible(true);
+                    if (updateBear) {
+                        bearLabel.setVisible(true);
+                        bearLabel.setIcon(isPasswordVisible ? bearshow : bearhide);
+                    }
+                }
+
+                if (updateBear)
+                    Fieldpassword = text; // keep Fieldpassword in sync for focusGained
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                update();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                update();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                update();
+            }
+        });
+
+        return btn;
+    }
+
+    // helper to retrieve localVisible from btn clientProperty
+    private boolean[] getClientProperty(JButton btn) {
+        return (boolean[]) btn.getClientProperty("localVisible");
     }
 
     private void EmptyDialog() {
@@ -396,62 +411,10 @@ public class Login extends JFrame {
         loginDialog.setVisible(true);
         Timer time = new Timer(500, e -> {
             loginDialog.dispose();
-            adminFrame = new Admin(); // Open Admin frame
-            dispose(); // Close the current login frame
+            adminFrame = new Admin();
+            dispose();
         });
-        time.setRepeats(false); // run only once
+        time.setRepeats(false);
         time.start();
     }
-
-    // Generic button for password field
-    protected JButton createShowPassBtn(JPasswordField targetField) {
-        JButton btn = new JButton(icon2);
-        btn.setBounds(123, 2, 30, 20);
-        btn.setFocusable(false);
-        btn.setBorder(null);
-        btn.setVisible(false);
-        btn.setFocusPainted(false);
-        btn.setBorderPainted(false);
-        btn.setContentAreaFilled(false);
-        btn.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-
-        boolean[] visible = { false }; // local toggle state
-
-        btn.addActionListener(e -> {
-            visible[0] = !visible[0];
-            if (visible[0]) {
-                targetField.setEchoChar((char) 0);
-                btn.setIcon(icon1);
-            } else {
-                targetField.setEchoChar('•');
-                btn.setIcon(icon2);
-            }
-        });
-
-        targetField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-            void update() {
-                btn.setVisible(targetField.getPassword().length > 0);
-                if (targetField.getPassword().length == 0) {
-                    visible[0] = false;
-                    targetField.setEchoChar('•');
-                    btn.setIcon(icon2);
-                }
-            }
-
-            public void insertUpdate(javax.swing.event.DocumentEvent e) {
-                update();
-            }
-
-            public void removeUpdate(javax.swing.event.DocumentEvent e) {
-                update();
-            }
-
-            public void changedUpdate(javax.swing.event.DocumentEvent e) {
-                update();
-            }
-        });
-
-        return btn;
-    }
-
 }
