@@ -75,6 +75,7 @@ public class Signup extends Login {
         signpass.setBounds(70, 395, 260, 25);
         signpass.setLayout(new FlowLayout());
         signpass.setForeground(Color.BLACK);
+        signpass.add(showpassword);
 
         signCpassLbl = new JLabel("Confirm Password");
         signCpassLbl.setBounds(50, 445, 200, 30);

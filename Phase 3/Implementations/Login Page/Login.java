@@ -88,6 +88,7 @@ public class Login extends JFrame {
         // Show/hide password button
         icon1 = new ImageIcon("Images/show.jpg");
         icon2 = new ImageIcon("Images/hide.jpg");
+
         showpassword = new JButton(icon2);
         showpassword.setBounds(123, 2, 30, 20);
         showpassword.setFocusable(false);
@@ -400,6 +401,57 @@ public class Login extends JFrame {
         });
         time.setRepeats(false); // run only once
         time.start();
+    }
+
+    // Generic button for password field
+    protected JButton createShowPassBtn(JPasswordField targetField) {
+        JButton btn = new JButton(icon2);
+        btn.setBounds(123, 2, 30, 20);
+        btn.setFocusable(false);
+        btn.setBorder(null);
+        btn.setVisible(false);
+        btn.setFocusPainted(false);
+        btn.setBorderPainted(false);
+        btn.setContentAreaFilled(false);
+        btn.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+        boolean[] visible = { false }; // local toggle state
+
+        btn.addActionListener(e -> {
+            visible[0] = !visible[0];
+            if (visible[0]) {
+                targetField.setEchoChar((char) 0);
+                btn.setIcon(icon1);
+            } else {
+                targetField.setEchoChar('•');
+                btn.setIcon(icon2);
+            }
+        });
+
+        targetField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            void update() {
+                btn.setVisible(targetField.getPassword().length > 0);
+                if (targetField.getPassword().length == 0) {
+                    visible[0] = false;
+                    targetField.setEchoChar('•');
+                    btn.setIcon(icon2);
+                }
+            }
+
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                update();
+            }
+
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                update();
+            }
+
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                update();
+            }
+        });
+
+        return btn;
     }
 
 }
