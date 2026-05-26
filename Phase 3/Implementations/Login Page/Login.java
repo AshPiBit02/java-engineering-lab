@@ -84,7 +84,7 @@ public class Login extends JFrame {
         passField.setFont(new Font("Arial", Font.PLAIN, 16));
 
         // Generic show button for password field
-        showpassword = createShowPassBtn(passField, true);
+        showpassword = createShowPassBtn(passField, true, null);
         passField.add(showpassword);
 
         passField.addFocusListener(new FocusAdapter() {
@@ -299,7 +299,7 @@ public class Login extends JFrame {
         this.setVisible(true);
     }
 
-    protected JButton createShowPassBtn(JPasswordField targetField, boolean updateBear) {
+    protected JButton createShowPassBtn(JPasswordField targetField, boolean updateBear, String passType) {
         JButton btn = new JButton(icon2);
         if (updateBear) {
             btn.setBounds(123, 2, 30, 20);
@@ -374,6 +374,9 @@ public class Login extends JFrame {
 
                 if (updateBear)
                     Fieldpassword = text; // keep Fieldpassword in sync for focusGained
+                else {
+
+                }
             }
 
             public void insertUpdate(DocumentEvent e) {
