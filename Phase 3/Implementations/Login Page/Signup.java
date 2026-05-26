@@ -1,11 +1,7 @@
 import java.awt.*;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JSeparator;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Signup extends Login {
@@ -20,10 +16,19 @@ public class Signup extends Login {
     JLabel signCpassLbl;
     JPasswordField signCPass;
 
+    JButton showpass;
+    JButton showCpass;
     JButton signup;
 
     Signup() {
+        // logPanel.setVisible(false);
         bearLabel.setVisible(false);
+
+        // button for passwordfield
+        showpass = new JButton();
+
+        // button for ConfirmpasswordField
+        showCpass = new JButton();
 
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
@@ -75,7 +80,9 @@ public class Signup extends Login {
         signpass.setBounds(70, 395, 260, 25);
         signpass.setLayout(new FlowLayout());
         signpass.setForeground(Color.BLACK);
-        // signpass.add(showpassword);
+
+        createShowPassBtn(signpass, false);
+        signCPass.add(showpass);
 
         signCpassLbl = new JLabel("Confirm Password");
         signCpassLbl.setBounds(50, 445, 200, 30);
@@ -88,6 +95,9 @@ public class Signup extends Login {
         signCPass.setBounds(70, 480, 260, 25);
         signCPass.setLayout(new FlowLayout());
         signCPass.setForeground(Color.BLACK);
+
+        createShowPassBtn(signCPass, false);
+        signCPass.add(showCpass);
 
         signup = new JButton("Sign up") {
             @Override
@@ -148,7 +158,6 @@ public class Signup extends Login {
         signPanel.add(signCPass);
         signPanel.add(signup);
 
-        logPanel.setVisible(false);
         signPanel.setVisible(true);
 
     }
