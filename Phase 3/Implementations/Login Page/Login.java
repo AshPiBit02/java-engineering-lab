@@ -301,7 +301,11 @@ public class Login extends JFrame {
 
     protected JButton createShowPassBtn(JPasswordField targetField, boolean updateBear) {
         JButton btn = new JButton(icon2);
-        btn.setBounds(123, 2, 30, 20);
+        if (updateBear) {
+            btn.setBounds(123, 2, 30, 20);
+        } else {
+            btn.setBounds(230, 2, 30, 20);
+        }
         btn.setFocusable(false);
         btn.setBorder(null);
         btn.setVisible(false);

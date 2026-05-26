@@ -71,7 +71,6 @@ public class Signup extends Login {
 
         signpass = new JPasswordField();
         signpass.setBounds(70, 395, 260, 25);
-        signpass.setLayout(new FlowLayout());
         signpass.setForeground(Color.BLACK);
 
         showpass = createShowPassBtn(signpass, false);
@@ -86,7 +85,6 @@ public class Signup extends Login {
 
         signCPass = new JPasswordField();
         signCPass.setBounds(70, 480, 260, 25);
-        signCPass.setLayout(new FlowLayout());
         signCPass.setForeground(Color.BLACK);
 
         showCpass = createShowPassBtn(signCPass, false);
