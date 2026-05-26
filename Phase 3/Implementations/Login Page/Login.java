@@ -32,6 +32,9 @@ public class Login extends JFrame {
     JLabel signHeader;
     JDialog emptyDialog;
 
+    // for generic popup
+    JLabel emptyMsg;
+
     private String Fieldpassword = "";
     private boolean isPasswordVisible = false;
     protected String signPassword;
@@ -140,11 +143,11 @@ public class Login extends JFrame {
         emptyDialog.getContentPane().setBackground(Color.decode("#ffffff"));
         emptyDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
 
-        JLabel emptyMsg = new JLabel(
+        // Generic message
+        emptyMsg = new JLabel(
                 "<html><div style='text-align: center;'>Fields Can't be Empty!</div></html>");
         emptyMsg.setFont(new Font("Arial", Font.PLAIN, 14));
         emptyMsg.setForeground(Color.BLACK);
-        emptyDialog.add(emptyMsg);
 
         login.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -161,7 +164,7 @@ public class Login extends JFrame {
             public void mousePressed(java.awt.event.MouseEvent e) {
                 login.setBackground(Color.decode("#0008fa"));
                 if (userField.getText().isEmpty() || Fieldpassword.isEmpty()) {
-                    EmptyDialog();
+                    EmptyDialog(null, false); // Displays default general dialog
                 }
             }
 
@@ -407,7 +410,12 @@ public class Login extends JFrame {
         return (boolean[]) btn.getClientProperty("localVisible");
     }
 
-    protected void EmptyDialog() {
+    protected void EmptyDialog(JLabel msg, boolean isMsg) {
+        if (isMsg) {
+            emptyDialog.add(msg);
+        } else {
+            emptyDialog.add(emptyMsg);
+        }
         emptyDialog.setVisible(true);
         Timer time = new Timer(1000, e -> emptyDialog.setVisible(false));
         time.setRepeats(false);

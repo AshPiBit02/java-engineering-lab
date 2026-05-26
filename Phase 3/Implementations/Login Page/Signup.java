@@ -129,7 +129,14 @@ public class Signup extends Login {
                 signup.setBackground(Color.decode("#00ff26"));
                 if (fname.getText().isEmpty() || signUsername.getText().isEmpty() || email.getText().isEmpty()
                         || signPassword.isEmpty() || signConfirmPassword.isEmpty()) {
-                    EmptyDialog();
+                    EmptyDialog(null, false); // displays general defualt dialog
+                } else if (!signPassword.equals(signConfirmPassword)) {
+                    emptyDialog.setTitle("Password Match Error!!!");
+                    emptyDialog.setBounds(550, 20, 250, 100);
+                    JLabel msg = new JLabel(
+                            "<html><div style='text-align: center;'>Password and Confirm password <br> didn't match!</div></html>");
+                    emptyDialog.add(msg);
+                    EmptyDialog(msg, true);
                 }
 
             }
