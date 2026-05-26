@@ -82,8 +82,8 @@ public class Admin extends JFrame {
                 "<html><div style='text-align: center;'>LoggedOut<br>from Admin System!</div></html>");
         msg.setFont(new Font("Arial", Font.BOLD, 14));
         msg.setForeground(Color.WHITE);
-        logoutDialog.add(msg);
         logoutDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
+        logoutDialog.add(msg);
 
         logout.addMouseListener(new MouseAdapter() {
             @Override

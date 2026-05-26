@@ -21,14 +21,7 @@ public class Signup extends Login {
     JButton signup;
 
     Signup() {
-        // logPanel.setVisible(false);
         bearLabel.setVisible(false);
-
-        // button for passwordfield
-        showpass = new JButton();
-
-        // button for ConfirmpasswordField
-        showCpass = new JButton();
 
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
@@ -81,8 +74,8 @@ public class Signup extends Login {
         signpass.setLayout(new FlowLayout());
         signpass.setForeground(Color.BLACK);
 
-        createShowPassBtn(signpass, false);
-        signCPass.add(showpass);
+        showpass = createShowPassBtn(signpass, false);
+        signpass.add(showpass);
 
         signCpassLbl = new JLabel("Confirm Password");
         signCpassLbl.setBounds(50, 445, 200, 30);
@@ -96,7 +89,7 @@ public class Signup extends Login {
         signCPass.setLayout(new FlowLayout());
         signCPass.setForeground(Color.BLACK);
 
-        createShowPassBtn(signCPass, false);
+        showCpass = createShowPassBtn(signCPass, false);
         signCPass.add(showCpass);
 
         signup = new JButton("Sign up") {
@@ -136,8 +129,8 @@ public class Signup extends Login {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
                 signup.setBackground(Color.decode("#00ff26"));
-                dispose();
-                new Signup();
+                // dispose();
+                // new Signup();
             }
 
             @Override
@@ -158,6 +151,7 @@ public class Signup extends Login {
         signPanel.add(signCPass);
         signPanel.add(signup);
 
+        logPanel.setVisible(false);
         signPanel.setVisible(true);
 
     }
