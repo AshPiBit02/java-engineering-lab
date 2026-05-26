@@ -73,7 +73,7 @@ public class Signup extends Login {
         signpass.setBounds(70, 395, 260, 25);
         signpass.setForeground(Color.BLACK);
 
-        showpass = createShowPassBtn(signpass, false);
+        showpass = createShowPassBtn(signpass, false, "signPassword");
         signpass.add(showpass);
 
         signCpassLbl = new JLabel("Confirm Password");
@@ -87,7 +87,7 @@ public class Signup extends Login {
         signCPass.setBounds(70, 480, 260, 25);
         signCPass.setForeground(Color.BLACK);
 
-        showCpass = createShowPassBtn(signCPass, false);
+        showCpass = createShowPassBtn(signCPass, false, "signConfirmPassword");
         signCPass.add(showCpass);
 
         signup = new JButton("Sign up") {
@@ -127,8 +127,11 @@ public class Signup extends Login {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
                 signup.setBackground(Color.decode("#00ff26"));
-                // dispose();
-                // new Signup();
+                if (fname.getText().isEmpty() || signUsername.getText().isEmpty() || email.getText().isEmpty()
+                        || signPassword.isEmpty() || signConfirmPassword.isEmpty()) {
+                    EmptyDialog();
+                }
+
             }
 
             @Override

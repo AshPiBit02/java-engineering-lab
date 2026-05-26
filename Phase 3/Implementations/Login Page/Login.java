@@ -34,6 +34,8 @@ public class Login extends JFrame {
 
     private String Fieldpassword = "";
     private boolean isPasswordVisible = false;
+    protected String signPassword;
+    protected String signConfirmPassword;
 
     Login() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -375,6 +377,11 @@ public class Login extends JFrame {
                 if (updateBear)
                     Fieldpassword = text; // keep Fieldpassword in sync for focusGained
                 else {
+                    if (passType.equals("signPassword")) {
+                        signPassword = text;
+                    } else if (passType.equals("signConfirmPassword")) { // or else for now
+                        signConfirmPassword = text;
+                    }
 
                 }
             }
@@ -400,7 +407,7 @@ public class Login extends JFrame {
         return (boolean[]) btn.getClientProperty("localVisible");
     }
 
-    private void EmptyDialog() {
+    protected void EmptyDialog() {
         emptyDialog.setVisible(true);
         Timer time = new Timer(1000, e -> emptyDialog.setVisible(false));
         time.setRepeats(false);
