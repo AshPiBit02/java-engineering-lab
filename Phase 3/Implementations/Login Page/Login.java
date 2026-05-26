@@ -219,6 +219,7 @@ public class Login extends JFrame {
             public void mouseReleased(java.awt.event.MouseEvent e) {
                 login.setBackground(new Color(0, 113, 234, 60));
             }
+
         });
 
         // Login Button Listener
@@ -229,7 +230,6 @@ public class Login extends JFrame {
                 char[] pass = passField.getPassword();
                 String UserPassword = new String(pass);
                 if (UserName.equals("Admin") && UserPassword.equals("123")) {
-                    bearLabel.setIcon(bearlog);
                     LoggingDailog(UserName);
                 }
 

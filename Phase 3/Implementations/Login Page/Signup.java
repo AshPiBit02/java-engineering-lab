@@ -23,6 +23,7 @@ public class Signup extends Login {
     JButton signup;
 
     Signup() {
+        bearLabel.setVisible(false);
 
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
