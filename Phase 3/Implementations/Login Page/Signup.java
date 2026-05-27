@@ -22,6 +22,10 @@ public class Signup extends Login {
     JLabel errorDialog = new JLabel(
             "<html><div style='text-align: center;'>Error!</div></html>");
 
+    JDialog signedDialog;
+    JLabel signedMessage = new JLabel(
+            "<html><div style='text-align: center;'>Signed in Successsfully<br>Welcome to the System</div></html>");
+
     JButton showpass;
     JButton showCpass;
     JButton signup;
@@ -144,10 +148,12 @@ public class Signup extends Login {
                 if (fname.getText().isEmpty() || signUsername.getText().isEmpty() || email.getText().isEmpty()
                         || signPassword.isEmpty() || signConfirmPassword.isEmpty()) {
                     signDialog.setTitle("Empty Field Error");
-                    signDialogfunc();
+                    signDialogfunc(signDialog);
                 } else if (!signPassword.equals(signConfirmPassword)) {
                     signDialog.setTitle("Password Match Error!!!");
-                    signDialogfunc();
+                    signDialogfunc(signDialog);
+                } else { // Register
+                    signDialogfunc(signedDialog);
                 }
 
             }
@@ -157,6 +163,16 @@ public class Signup extends Login {
                 signup.setBackground(Color.decode("#09b422"));
             }
         });
+
+        signedDialog = new JDialog();
+        signedDialog.setTitle("Signed In ✅");
+        signedDialog.setBounds(550, 20, 250, 100);
+        signedDialog.getContentPane().setBackground(Color.decode("#ffffff"));
+        signedMessage.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
+        signedMessage.setFont(new Font("Arial", Font.PLAIN, 18));
+        signedMessage.setForeground(Color.BLACK);
+        signDialog.add(signedMessage);
+
         bearLabel.setVisible(false);
         logPanel.setVisible(false);
         signPanel.setVisible(true);
@@ -178,9 +194,9 @@ public class Signup extends Login {
 
     }
 
-    private void signDialogfunc() {
-        signDialog.setVisible(true);
-        Timer time = new Timer(1000, e -> signDialog.setVisible(false));
+    private void signDialogfunc(JDialog dial) {
+        dial.setVisible(true);
+        Timer time = new Timer(1000, e -> dial.setVisible(false));
         time.setRepeats(false);
         time.start();
 
