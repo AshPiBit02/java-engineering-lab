@@ -196,10 +196,16 @@ public class Signup extends Login {
 
     private void signDialogfunc(JDialog dial) {
         dial.setVisible(true);
-        Timer time = new Timer(1000, e -> dial.setVisible(false));
+        Timer time = new Timer(1000, e -> {
+            dial.setVisible(false);
+
+        });
         time.setRepeats(false);
         time.start();
-
+        if (dial == signedDialog) { // Registration success open login panel
+            dispose();
+            new Login();
+        }
     }
 
 }
