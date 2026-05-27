@@ -7,18 +7,22 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class RegisterFile {
-    int userId;
+    private static final String ID_FILE = "DataFiles/id.txt";
+    private static final String REGISTER_FILE = "DataFiles/registeredUsers.csv";
 
     RegisterFile(String fullname, String Username, String email, String password, String Cpassword) {
         try {
-            File regfile = new File("DataFiles/registeredUsers.csv");
+            // Auto User Id
+            int userId = getId();
+
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             String timestamp = now.format(formatter);
 
-            //
-            FileWriter writer = new FileWriter(regfile, true);
-            writer.write("\nUserId,Username,Full Name,Email,Password,Confirm Password,Registered At");
+            File regfile = new File(REGISTER_FILE);
+            FileWriter writer = new FileWriter(REGISTER_FILE, true);
+            writer.write("\n" + userId + "," + Username + "," + fullname + "," + email + "," + password + ","
+                    + Cpassword + "," + timestamp);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -27,7 +31,7 @@ public class RegisterFile {
     }
 
     private static int getId() throws IOException {
-        File idfile = new File("DataFiles/idfile.txt");
+        File idfile = new File(ID_FILE);
         int id;
         if (idfile.exists()) {
             BufferedReader reader = new BufferedReader(new FileReader(idfile));
