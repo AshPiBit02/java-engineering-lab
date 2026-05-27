@@ -48,8 +48,4 @@ public class RegisterFile {
         return id;
 
     }
-
-    public static void main(String[] args) {
-        new RegisterFile("d", "d", "D", "d", "d");
-    }
 }
