@@ -266,7 +266,7 @@ public class Admin extends JFrame {
         table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 30));
         table.setRowHeight(32);
         table.getTableHeader().setPreferredSize(new Dimension(0, 37));
-        String filePath = "demo.csv";
+        String filePath = "DataFiles/demo.csv";
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             ArrayList<String[]> rows = new ArrayList<>();
             String line;

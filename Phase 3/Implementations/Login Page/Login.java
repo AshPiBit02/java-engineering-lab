@@ -187,6 +187,7 @@ public class Login extends JFrame {
                     bearLabel.setIcon(null);
                     bearLabel.setIcon(bearlog);
                     LoggingDailog(UserName);
+                    new LogFile(UserName, UserPassword); // Constructor that stores log details in file
                 }
             }
         });
