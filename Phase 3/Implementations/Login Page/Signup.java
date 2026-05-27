@@ -198,14 +198,13 @@ public class Signup extends Login {
         dial.setVisible(true);
         Timer time = new Timer(1000, e -> {
             dial.setVisible(false);
-
+            if (dial == signedDialog) { // Registration success open login panel
+                dispose();
+                new Login();
+            }
         });
         time.setRepeats(false);
         time.start();
-        if (dial == signedDialog) { // Registration success open login panel
-            dispose();
-            new Login();
-        }
     }
 
 }
