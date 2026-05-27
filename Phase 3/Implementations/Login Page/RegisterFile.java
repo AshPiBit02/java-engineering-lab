@@ -20,7 +20,7 @@ public class RegisterFile {
             String timestamp = now.format(formatter);
 
             File regfile = new File(REGISTER_FILE);
-            FileWriter writer = new FileWriter(REGISTER_FILE, true);
+            FileWriter writer = new FileWriter(regfile, true);
             writer.write("\n" + userId + "," + Username + "," + fullname + "," + email + "," + password + ","
                     + Cpassword + "," + timestamp);
             writer.close();
@@ -47,5 +47,9 @@ public class RegisterFile {
         writer.close();
         return id;
 
+    }
+
+    public static void main(String[] args) {
+        new RegisterFile("d", "d", "D", "d", "d");
     }
 }
