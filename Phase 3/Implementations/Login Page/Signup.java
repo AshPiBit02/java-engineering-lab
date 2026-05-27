@@ -1,8 +1,10 @@
 import java.awt.*;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 
 public class Signup extends Login {
     JLabel fullName;
@@ -15,6 +17,10 @@ public class Signup extends Login {
     JPasswordField signpass;
     JLabel signCpassLbl;
     JPasswordField signCPass;
+
+    JDialog signDialog;
+    JLabel emptyFields;
+    JLabel passwordnotMatch;
 
     JButton showpass;
     JButton showCpass;
@@ -90,6 +96,12 @@ public class Signup extends Login {
         showCpass = createShowPassBtn(signCPass, false, "signConfirmPassword");
         signCPass.add(showCpass);
 
+        // Dialogs for signup panel
+        signDialog = new JDialog();
+        signDialog.setBounds(550, 20, 200, 100);
+        signDialog.getContentPane().setBackground(Color.decode("#ffffff"));
+        signDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
+
         signup = new JButton("Sign up") {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -129,14 +141,17 @@ public class Signup extends Login {
                 signup.setBackground(Color.decode("#00ff26"));
                 if (fname.getText().isEmpty() || signUsername.getText().isEmpty() || email.getText().isEmpty()
                         || signPassword.isEmpty() || signConfirmPassword.isEmpty()) {
-                    EmptyDialog(null, false); // displays general defualt dialog
+                    signDialog.setTitle("Empty Field Error");
+                    emptyFields = new JLabel(
+                            "<html><div style='text-align: center;'>Fields Can't be Empty!</div></html>");
+                    signDialogfunc();
                 } else if (!signPassword.equals(signConfirmPassword)) {
-                    emptyDialog.setTitle("Password Match Error!!!");
-                    emptyDialog.setBounds(550, 20, 250, 100);
-                    JLabel msg = new JLabel(
+                    signDialog.setTitle("Password Match Error!!!");
+                    signDialog.setBounds(550, 20, 250, 100);
+                    emptyFields = new JLabel(
                             "<html><div style='text-align: center;'>Password and Confirm password <br> didn't match!</div></html>");
-                    emptyDialog.add(msg);
-                    EmptyDialog(msg, true);
+
+                    signDialogfunc();
                 }
 
             }
@@ -158,9 +173,22 @@ public class Signup extends Login {
         signPanel.add(signCpassLbl);
         signPanel.add(signCPass);
         signPanel.add(signup);
+        signPanel.add(signDialog);
 
         logPanel.setVisible(false);
         signPanel.setVisible(true);
+
+    }
+
+    private void signDialogfunc() {
+        emptyFields.setFont(new Font("Arial", Font.PLAIN, 14));
+        emptyFields.setForeground(Color.BLACK);
+        signDialog.add(emptyFields);
+        signPanel.add(signDialog);
+        signDialog.setVisible(true);
+        Timer time = new Timer(1000, e -> emptyDialog.setVisible(false));
+        time.setRepeats(false);
+        time.start();
 
     }
 
