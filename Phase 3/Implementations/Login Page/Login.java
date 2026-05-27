@@ -180,6 +180,7 @@ public class Login extends JFrame {
                 char[] pass = passField.getPassword();
                 String UserPassword = new String(pass);
                 if (UserName.equals("Admin") && UserPassword.equals("123")) {
+                    bearLabel.setIcon(null);
                     bearLabel.setIcon(bearlog);
                     LoggingDailog(UserName);
                 }
@@ -285,7 +286,7 @@ public class Login extends JFrame {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
                 signupBtn.setBackground(Color.decode("#00ff26"));
-                new Signup();
+                Signup singUpPanel = new Signup(Login.this);
             }
 
             @Override

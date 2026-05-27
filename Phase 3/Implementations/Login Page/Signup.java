@@ -26,8 +26,7 @@ public class Signup extends Login {
     JButton showCpass;
     JButton signup;
 
-    Signup() {
-        bearLabel.setVisible(false);
+    Signup(Login existingLogin) {
 
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
@@ -101,6 +100,8 @@ public class Signup extends Login {
         signDialog.setBounds(550, 20, 200, 100);
         signDialog.getContentPane().setBackground(Color.decode("#ffffff"));
         signDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
+        emptyFields.setFont(new Font("Arial", Font.PLAIN, 14));
+        emptyFields.setForeground(Color.BLACK);
 
         signup = new JButton("Sign up") {
             @Override
@@ -144,12 +145,14 @@ public class Signup extends Login {
                     signDialog.setTitle("Empty Field Error");
                     emptyFields = new JLabel(
                             "<html><div style='text-align: center;'>Fields Can't be Empty!</div></html>");
+                    signDialog.add(emptyFields);
                     signDialogfunc();
                 } else if (!signPassword.equals(signConfirmPassword)) {
                     signDialog.setTitle("Password Match Error!!!");
                     signDialog.setBounds(550, 20, 250, 100);
                     emptyFields = new JLabel(
                             "<html><div style='text-align: center;'>Password and Confirm password <br> didn't match!</div></html>");
+                    signDialog.add(emptyFields);
 
                     signDialogfunc();
                 }
@@ -161,30 +164,29 @@ public class Signup extends Login {
                 signup.setBackground(Color.decode("#09b422"));
             }
         });
+        existingLogin.bearLabel.setVisible(false);
+        existingLogin.logPanel.setVisible(false);
+        existingLogin.signPanel.setVisible(true);
 
-        signPanel.add(fname);
-        signPanel.add(fullName);
-        signPanel.add(signUser);
-        signPanel.add(signUsername);
-        signPanel.add(emailAdd);
-        signPanel.add(email);
-        signPanel.add(signPassLbl);
-        signPanel.add(signpass);
-        signPanel.add(signCpassLbl);
-        signPanel.add(signCPass);
-        signPanel.add(signup);
-        signPanel.add(signDialog);
+        existingLogin.signPanel.add(fname);
+        existingLogin.signPanel.add(fullName);
+        existingLogin.signPanel.add(signUser);
+        existingLogin.signPanel.add(signUsername);
+        existingLogin.signPanel.add(emailAdd);
+        existingLogin.signPanel.add(email);
+        existingLogin.signPanel.add(signPassLbl);
+        existingLogin.signPanel.add(signpass);
+        existingLogin.signPanel.add(signCpassLbl);
+        existingLogin.signPanel.add(signCPass);
+        existingLogin.signPanel.add(signup);
+        existingLogin.signPanel.add(signDialog);
 
-        logPanel.setVisible(false);
-        signPanel.setVisible(true);
+        existingLogin.signPanel.revalidate();
+        existingLogin.signPanel.repaint();
 
     }
 
     private void signDialogfunc() {
-        emptyFields.setFont(new Font("Arial", Font.PLAIN, 14));
-        emptyFields.setForeground(Color.BLACK);
-        signDialog.add(emptyFields);
-        signPanel.add(signDialog);
         signDialog.setVisible(true);
         Timer time = new Timer(1000, e -> emptyDialog.setVisible(false));
         time.setRepeats(false);
