@@ -5,6 +5,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class Login extends JFrame {
+    protected Login(boolean dummy) { // dummy constructor
+
+    }
 
     JPanel logPanel;
     JLabel username;
@@ -176,6 +179,7 @@ public class Login extends JFrame {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("Login Button clicked");
                 String UserName = userField.getText();
                 char[] pass = passField.getPassword();
                 String UserPassword = new String(pass);
@@ -271,6 +275,12 @@ public class Login extends JFrame {
         signupBtn.setFocusable(false);
         signupBtn.setFocusPainted(false);
         signupBtn.setBorderPainted(false);
+        // Remove the mouseListener for mousePressed logic, use this:
+        signupBtn.addActionListener(e -> {
+            System.out.println("Signup clicked");
+            dispose();
+            new Signup();
+        });
 
         signupBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -286,7 +296,7 @@ public class Login extends JFrame {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
                 signupBtn.setBackground(Color.decode("#00ff26"));
-                Signup singUpPanel = new Signup(Login.this);
+                System.out.println("Signup button clicked");
             }
 
             @Override

@@ -110,6 +110,7 @@ public class Admin extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("Logout Button Clicked");
                 logoutDialog.setVisible(true);
                 Timer time = new Timer(500, ev -> {
                     logoutDialog.dispose();

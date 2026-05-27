@@ -19,14 +19,14 @@ public class Signup extends Login {
     JPasswordField signCPass;
 
     JDialog signDialog;
-    JLabel emptyFields;
-    JLabel passwordnotMatch;
+    JLabel errorDialog = new JLabel(
+            "<html><div style='text-align: center;'>Error!</div></html>");
 
     JButton showpass;
     JButton showCpass;
     JButton signup;
 
-    Signup(Login existingLogin) {
+    Signup() {
 
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
@@ -97,11 +97,12 @@ public class Signup extends Login {
 
         // Dialogs for signup panel
         signDialog = new JDialog();
-        signDialog.setBounds(550, 20, 200, 100);
+        signDialog.setBounds(550, 20, 250, 100);
         signDialog.getContentPane().setBackground(Color.decode("#ffffff"));
         signDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
-        emptyFields.setFont(new Font("Arial", Font.PLAIN, 14));
-        emptyFields.setForeground(Color.BLACK);
+        errorDialog.setFont(new Font("Arial", Font.PLAIN, 18));
+        errorDialog.setForeground(Color.BLACK);
+        signDialog.add(errorDialog);
 
         signup = new JButton("Sign up") {
             @Override
@@ -143,17 +144,9 @@ public class Signup extends Login {
                 if (fname.getText().isEmpty() || signUsername.getText().isEmpty() || email.getText().isEmpty()
                         || signPassword.isEmpty() || signConfirmPassword.isEmpty()) {
                     signDialog.setTitle("Empty Field Error");
-                    emptyFields = new JLabel(
-                            "<html><div style='text-align: center;'>Fields Can't be Empty!</div></html>");
-                    signDialog.add(emptyFields);
                     signDialogfunc();
                 } else if (!signPassword.equals(signConfirmPassword)) {
                     signDialog.setTitle("Password Match Error!!!");
-                    signDialog.setBounds(550, 20, 250, 100);
-                    emptyFields = new JLabel(
-                            "<html><div style='text-align: center;'>Password and Confirm password <br> didn't match!</div></html>");
-                    signDialog.add(emptyFields);
-
                     signDialogfunc();
                 }
 
@@ -164,31 +157,30 @@ public class Signup extends Login {
                 signup.setBackground(Color.decode("#09b422"));
             }
         });
-        existingLogin.bearLabel.setVisible(false);
-        existingLogin.logPanel.setVisible(false);
-        existingLogin.signPanel.setVisible(true);
+        bearLabel.setVisible(false);
+        logPanel.setVisible(false);
+        signPanel.setVisible(true);
 
-        existingLogin.signPanel.add(fname);
-        existingLogin.signPanel.add(fullName);
-        existingLogin.signPanel.add(signUser);
-        existingLogin.signPanel.add(signUsername);
-        existingLogin.signPanel.add(emailAdd);
-        existingLogin.signPanel.add(email);
-        existingLogin.signPanel.add(signPassLbl);
-        existingLogin.signPanel.add(signpass);
-        existingLogin.signPanel.add(signCpassLbl);
-        existingLogin.signPanel.add(signCPass);
-        existingLogin.signPanel.add(signup);
-        existingLogin.signPanel.add(signDialog);
+        signPanel.add(fname);
+        signPanel.add(fullName);
+        signPanel.add(signUser);
+        signPanel.add(signUsername);
+        signPanel.add(emailAdd);
+        signPanel.add(email);
+        signPanel.add(signPassLbl);
+        signPanel.add(signpass);
+        signPanel.add(signCpassLbl);
+        signPanel.add(signCPass);
+        signPanel.add(signup);
 
-        existingLogin.signPanel.revalidate();
-        existingLogin.signPanel.repaint();
+        signPanel.revalidate();
+        signPanel.repaint();
 
     }
 
     private void signDialogfunc() {
         signDialog.setVisible(true);
-        Timer time = new Timer(1000, e -> emptyDialog.setVisible(false));
+        Timer time = new Timer(1000, e -> signDialog.setVisible(false));
         time.setRepeats(false);
         time.start();
 
