@@ -43,6 +43,9 @@ public class Login extends JFrame {
     // for generic popup
     JLabel emptyMsg;
 
+    // for inField message
+    JLabel inFieldLabel;
+
     private String Fieldpassword = "";
     private boolean isPasswordVisible = false;
     protected String signPassword;
@@ -122,6 +125,15 @@ public class Login extends JFrame {
         loginDialog.getContentPane().setBackground(Color.WHITE);
         loginDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
 
+        // Infield messages
+        inFieldLabel = new JLabel();
+        inFieldLabel.setBorder(null);
+        inFieldLabel.setLayout(null);
+        inFieldLabel.setForeground(Color.RED);
+        inFieldLabel.setFont(new Font("Arial", Font.PLAIN, 10));
+        inFieldLabel.setHorizontalAlignment(JLabel.RIGHT);
+        inFieldLabel.setVerticalAlignment(JLabel.CENTER);
+
         login = new JButton("Login") {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -189,10 +201,15 @@ public class Login extends JFrame {
                 char[] pass = passField.getPassword();
                 String UserPassword = new String(pass);
                 if (UserName.equals("Admin") && UserPassword.equals("123")) {
+                    inFieldLabel.setVisible(false);
                     bearLabel.setIcon(null);
                     bearLabel.setIcon(bearlog);
                     LoggingDailog(UserName);
                     new LogFile(UserName, "Loged In"); // Constructor that stores log details in file
+                } else if (!UserName.equals("Admin") && !UserName.isEmpty()) {
+                    showInFieldMessage("username");
+                } else if (!UserPassword.equals("Admin") && !UserPassword.isEmpty()) {
+                    showInFieldMessage("password");
                 }
             }
         });
@@ -230,6 +247,7 @@ public class Login extends JFrame {
         logPanel.add(password);
         logPanel.add(userField);
         logPanel.add(passField);
+        logPanel.add(inFieldLabel);
 
         JSeparator separator = new JSeparator();
         separator.setBounds(90, 210, 220, 1);
@@ -448,5 +466,16 @@ public class Login extends JFrame {
         });
         time.setRepeats(false);
         time.start();
+    }
+
+    private void showInFieldMessage(String type) {
+        if (type.equals("username")) {
+            inFieldLabel.setBounds(215, 98, 105, 14);
+            inFieldLabel.setText("Unknow user!");
+        } else if (type.equals("password")) {
+            inFieldLabel.setBounds(215, 148, 105, 14);
+            inFieldLabel.setText("Incorrect password!");
+        }
+        inFieldLabel.setVisible(true);
     }
 }
