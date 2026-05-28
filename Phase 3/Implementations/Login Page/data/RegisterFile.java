@@ -12,7 +12,7 @@ public class RegisterFile {
     private static final String ID_FILE = "DataFiles/id.txt";
     private static final String REGISTER_FILE = "DataFiles/registeredUsers.csv";
 
-    public RegisterFile(String fullname, String Username, String email, String password, String Cpassword) {
+    public RegisterFile(String fullname, String Username, String email, String password) {
         try {
             // Auto User Id
             int userId = getId();
@@ -23,8 +23,8 @@ public class RegisterFile {
 
             File regfile = new File(REGISTER_FILE);
             FileWriter writer = new FileWriter(regfile, true);
-            writer.write("\n" + userId + "," + Username + "," + fullname + "," + email + "," + password + ","
-                    + Cpassword + "," + timestamp);
+            writer.write(
+                    "\n" + userId + "," + Username + "," + fullname + "," + email + "," + password + "," + timestamp);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();

@@ -157,9 +157,8 @@ public class Signup extends Login {
                     signDialog.setTitle("Password Match Error!!!");
                     signDialogfunc(signDialog);
                 } else { // Register
-                    new RegisterFile(fname.getText(), signUser.getText(), email.getText(), signPassword,
-                            signConfirmPassword);// Registers
-                    // valid User
+                    new RegisterFile(fname.getText(), signUser.getText(), email.getText(), signPassword);// Registers
+                                                                                                         // valid User
                     signDialogfunc(signedDialog);
                     System.out.println("Registered");
                 }
