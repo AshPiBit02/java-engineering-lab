@@ -8,7 +8,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
-import data.RegisterFile;
+import data.RegisteredUserFile;
 
 public class Signup extends Login {
     JLabel fullName;
@@ -157,8 +157,8 @@ public class Signup extends Login {
                     signDialog.setTitle("Password Match Error!!!");
                     signDialogfunc(signDialog);
                 } else { // Register
-                    new RegisterFile(fname.getText(), signUser.getText(), email.getText(), signPassword);// Registers
-                                                                                                         // valid User
+                    new RegisteredUserFile(fname.getText(), signUser.getText(), email.getText(), signPassword);// Registers
+                    // valid User
                     signDialogfunc(signedDialog);
                     System.out.println("Registered");
                 }
