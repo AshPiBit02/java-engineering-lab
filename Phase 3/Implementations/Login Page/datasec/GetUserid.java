@@ -1,4 +1,4 @@
-// package datasec;
+package datasec;
 
 import java.security.MessageDigest;
 import java.math.BigInteger;
@@ -24,7 +24,7 @@ public class GetUserid {
         nameChars = nameChars.toLowerCase(); // string of chars from first and last name
         String hash = null;
         try {
-            hash = getUserId(username).substring(0, 7);
+            hash = getHash(username).substring(0, 7);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -34,7 +34,7 @@ public class GetUserid {
 
     }
 
-    public static String getUserId(String input) throws Exception {
+    public static String getHash(String input) throws Exception {
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         byte[] digest = md.digest(input.getBytes());
@@ -48,10 +48,4 @@ public class GetUserid {
         return hexString.toString();
 
     }
-
-    public static void main(String[] args) {
-        String UserId = getCommonUserId("ashpibit", "Aashish K Chaudhary", "aashishchaudhari249@gmail.com");
-        System.out.println("User ID: " + UserId);
-    }
-
 }

@@ -1,5 +1,7 @@
 package data;
 
+import datasec.GetUserid;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,13 +11,21 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class RegisterFile {
-    private static final String ID_FILE = "DataFiles/id.txt";
     private static final String REGISTER_FILE = "DataFiles/registeredUsers.csv";
+    private static final String USER_PASS = "DataFiles/user_pass.csv";
 
     public RegisterFile(String fullname, String Username, String email, String password) {
         try {
-            // Auto User Id
-            int userId = getId();
+
+            // Generate unique userId for UserEnd
+            String userId = GetUserid.getCommonUserId(Username, fullname, email);
+
+            String hashedPassword = null;
+            try {
+                hashedPassword = GetUserid.getHash(password);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -24,30 +34,12 @@ public class RegisterFile {
             File regfile = new File(REGISTER_FILE);
             FileWriter writer = new FileWriter(regfile, true);
             writer.write(
-                    "\n" + userId + "," + Username + "," + fullname + "," + email + "," + password + "," + timestamp);
+                    "\n" + timestamp + "," + userId + "," + Username + "," + fullname + "," + email + ","
+                            + hashedPassword);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }
-
-    private static int getId() throws IOException {
-        File idfile = new File(ID_FILE);
-        int id;
-        if (idfile.exists()) {
-            BufferedReader reader = new BufferedReader(new FileReader(idfile));
-            String line = reader.readLine();
-            reader.close();
-            id = Integer.parseInt(line.trim());
-        } else {
-            // If file doesn't exists, start with 37009
-            id = 37009;
-        }
-        FileWriter writer = new FileWriter(idfile, false); // Override old id
-        writer.write(String.valueOf(id + 1)); // Save new id for new Register user
-        writer.close();
-        return id;
 
     }
 }
