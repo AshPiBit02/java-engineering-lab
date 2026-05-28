@@ -10,11 +10,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class RegisteredUserFile {
+public class RegisterFile {
     private static final String REGISTER_FILE = "DataFiles/registeredUsers.csv";
     private static final String USER_PASS = "DataFiles/user_pass.csv";
 
-    public RegisteredUserFile(String fullname, String Username, String email, String password) {
+    public RegisterFile(String fullname, String Username, String email, String password) {
         try {
 
             // Generate unique userId for UserEnd
