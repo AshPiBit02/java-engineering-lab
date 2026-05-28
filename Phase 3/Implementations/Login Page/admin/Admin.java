@@ -8,6 +8,7 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 import auth.Login;
+import data.LogFile;
 
 import java.io.*;
 import java.util.*;
@@ -118,6 +119,7 @@ public class Admin extends JFrame {
                 System.out.println("Logout Button Clicked");
                 logoutDialog.setVisible(true);
                 Timer time = new Timer(500, ev -> {
+                    new LogFile("Admin", "Logged Out");
                     logoutDialog.dispose();
                     new Login();
                     dispose();

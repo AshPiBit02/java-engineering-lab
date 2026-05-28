@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class LogFile {
-    public LogFile(String user, String password) {
+    public LogFile(String user, String opertion) {
 
         try {
             File logfile = new File("DataFiles/logs.csv");
@@ -20,7 +20,7 @@ public class LogFile {
             String timestamp = now.format(formatter);
 
             FileWriter writer = new FileWriter(logfile, true);// true=append mode
-            writer.write("\n" + timestamp + "," + user + "," + password);
+            writer.write("\n" + timestamp + "," + user + "," + opertion);
             writer.close();
             System.out.println("LogFile Updated!");
 
