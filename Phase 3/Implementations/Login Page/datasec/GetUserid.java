@@ -14,6 +14,8 @@ public class GetUserid {
         String Lemail = null;
         if (spaceIdx != -1) {
             LnameChar = fullname.charAt(spaceIdx + 1);
+        } else {
+            LnameChar = 'x';
         }
         if (eIdx != -1) {
             int startIdx = eIdx - 2;
