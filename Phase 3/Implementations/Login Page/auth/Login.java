@@ -130,7 +130,7 @@ public class Login extends JFrame {
         inFieldLabel.setBorder(null);
         inFieldLabel.setLayout(null);
         inFieldLabel.setForeground(Color.RED);
-        inFieldLabel.setFont(new Font("Arial", Font.PLAIN, 10));
+        inFieldLabel.setFont(new Font("Neue Frutiger", Font.PLAIN, 10));
         inFieldLabel.setHorizontalAlignment(JLabel.RIGHT);
         inFieldLabel.setVerticalAlignment(JLabel.CENTER);
 
