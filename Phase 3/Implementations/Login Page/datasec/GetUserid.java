@@ -4,13 +4,33 @@ import java.security.MessageDigest;
 import java.math.BigInteger;
 
 public class GetUserid {
-    public GetUserid(String username, String fullname, String email) {
-        int spaceIndex = fullname.lastIndexOf(" "); // get index of space so that we can access the first char of last
-                                                    // name if any.
-        if (spaceIndex != -1) {
-            char LnameChar = fullname.charAt(spaceIndex + 1);
-            System.out.println(LnameChar);
+    public static String getCommonUserId(String username, String fullname, String email) {
+        // get index of space so that we can access the first char of lastname if any.
+        int spaceIdx = fullname.lastIndexOf(" ");
+        int eIdx = email.indexOf("@");
+        char Fname = fullname.charAt(0);
+
+        char LnameChar = 0;
+        String Lemail = null;
+        if (spaceIdx != -1) {
+            LnameChar = fullname.charAt(spaceIdx + 1);
         }
+        if (eIdx != -1) {
+            int startIdx = eIdx - 2;
+            Lemail = email.substring(startIdx, eIdx);
+        }
+        String nameChars = "" + Fname + LnameChar;
+
+        nameChars = nameChars.toLowerCase(); // string of chars from first and last name
+        String hash = null;
+        try {
+            hash = getUserId(username).substring(0, 7);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String userid = nameChars + hash + Lemail;
+
+        return userid;
 
     }
 
@@ -30,13 +50,8 @@ public class GetUserid {
     }
 
     public static void main(String[] args) {
-        new GetUserid("ddafa", "Aashish Chaudhary", "fasdfa");
-        try {
-            String hash = getUserId("Aashish");
-            System.out.println(hash);
-        } catch (Exception e) {
-
-        }
+        String UserId = getCommonUserId("ashpibit", "Aashish K Chaudhary", "aashishchaudhari249@gmail.com");
+        System.out.println("User ID: " + UserId);
     }
 
 }
