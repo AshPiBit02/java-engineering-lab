@@ -1,3 +1,5 @@
+package data;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,7 +12,7 @@ public class RegisterFile {
     private static final String ID_FILE = "DataFiles/id.txt";
     private static final String REGISTER_FILE = "DataFiles/registeredUsers.csv";
 
-    RegisterFile(String fullname, String Username, String email, String password, String Cpassword) {
+    public RegisterFile(String fullname, String Username, String email, String password, String Cpassword) {
         try {
             // Auto User Id
             int userId = getId();

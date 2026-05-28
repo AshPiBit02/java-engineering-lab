@@ -1,9 +1,14 @@
+package admin;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
+
+import auth.Login;
+
 import java.io.*;
 import java.util.*;
 
@@ -20,7 +25,7 @@ public class Admin extends JFrame {
     JButton salesBtn;
     JButton logBtn;
 
-    Admin() {
+    public Admin() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Sales Record");

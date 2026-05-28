@@ -1,8 +1,13 @@
+package auth;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import admin.Admin;
+import data.LogFile;
 
 public class Login extends JFrame {
     protected Login(boolean dummy) { // dummy constructor
@@ -43,7 +48,7 @@ public class Login extends JFrame {
     protected String signPassword;
     protected String signConfirmPassword;
 
-    Login() {
+    public Login() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);

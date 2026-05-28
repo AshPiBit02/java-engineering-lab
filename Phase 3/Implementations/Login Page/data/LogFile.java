@@ -1,3 +1,5 @@
+package data;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -5,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class LogFile {
-    LogFile(String user, String password) {
+    public LogFile(String user, String password) {
 
         try {
             File logfile = new File("DataFiles/logs.csv");
