@@ -1,16 +1,15 @@
 package Users;
 
-import java.awt.Image;
-import java.awt.Toolkit;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import java.awt.*;
+import javax.swing.*;
 
 public class User extends JFrame {
     ImageIcon icon;
+    JPanel leftRectPanel;
 
-    public User(String userid) {
+    public User(String firstname) {
+
+        // Set backgound image
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("PI Corporation");
@@ -25,7 +24,15 @@ public class User extends JFrame {
         JLabel background = new JLabel(scaledIcon);
         background.setLayout(null);
         this.setContentPane(background);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Setting Panel for user interaction
+        leftRectPanel = new JPanel();
+        leftRectPanel.setBounds(0, 0, 250, Toolkit.getDefaultToolkit().getScreenSize().height);
+        leftRectPanel.setBackground(new Color(195, 88, 29, 200));
+        leftRectPanel.setOpaque(true);
+
+        this.add(leftRectPanel);
         this.setVisible(true);
     }
 
