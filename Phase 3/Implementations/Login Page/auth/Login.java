@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import Users.User;
 import admin.Admin;
 import data.LogFile;
 import datasec.GetUserid;
@@ -201,22 +202,23 @@ public class Login extends JFrame {
                 String UserName = userField.getText();
                 char[] pass = passField.getPassword();
                 String plainPassword = new String(pass);
+                String Hashedpass = null;
                 try {
-                    String Hashedpass = GetUserid.getHash(plainPassword);
+                    Hashedpass = GetUserid.getHash(plainPassword);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
-
-                if (UserName.equals("Admin") && UserPassword.equals("123")) {
+                validate validObj = new validate(UserName, Hashedpass);
+                if (validObj.isAuthorized(UserName, Hashedpass)) {
                     inFieldLabel.setVisible(false);
                     bearLabel.setIcon(null);
                     bearLabel.setIcon(bearlog);
                     LoggingDailog(UserName);
-                    new LogFile(UserName, "Loged In"); // Constructor that stores log details in file
-                } else if (!UserName.equals("Admin") && !UserName.isEmpty()) {
-                    showInFieldMessage("username");
-                } else if (!UserPassword.equals("Admin") && !UserPassword.isEmpty()) {
+                    new LogFile(UserName, "Logeed In"); // Constructor that stores log details in file
+                } else if (validObj.isValid(UserName)) {
                     showInFieldMessage("password");
+                } else {
+                    showInFieldMessage("username");
                 }
             }
         });
@@ -468,7 +470,11 @@ public class Login extends JFrame {
         loginDialog.setVisible(true);
         Timer time = new Timer(500, e -> {
             loginDialog.dispose();
-            adminFrame = new Admin();
+            if (name.equals("Admin")) {
+                adminFrame = new Admin();
+            } else {
+                new User(name);
+            }
             dispose();
         });
         time.setRepeats(false);
