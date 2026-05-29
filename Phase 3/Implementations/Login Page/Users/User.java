@@ -6,6 +6,7 @@ import javax.swing.*;
 public class User extends JFrame {
     ImageIcon icon;
     JPanel leftRectPanel;
+    JLabel greet;
 
     public User(String firstname) {
 
@@ -31,7 +32,16 @@ public class User extends JFrame {
         leftRectPanel.setBounds(0, 0, 250, Toolkit.getDefaultToolkit().getScreenSize().height);
         leftRectPanel.setBackground(new Color(195, 88, 29, 200));
         leftRectPanel.setOpaque(true);
+        leftRectPanel.setLayout(null);
 
+        greet = new JLabel();
+        greet.setBounds(5, 5, 200, 40);
+        greet.setText("Hello, " + firstname);
+        greet.setForeground(Color.BLACK);
+        greet.setFont(new Font("Helvetica Now", Font.PLAIN, 25));
+        greet.setHorizontalAlignment(JLabel.LEFT);
+
+        leftRectPanel.add(greet);
         this.add(leftRectPanel);
         this.setVisible(true);
     }
