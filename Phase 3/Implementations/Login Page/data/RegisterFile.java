@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import Users.User;
+
 public class RegisterFile {
     private static final String REGISTER_FILE = "DataFiles/registeredUsers.csv";
     private static final String USER_PASS = "DataFiles/user_pass.csv";
@@ -33,7 +35,7 @@ public class RegisterFile {
             }
 
             try (FileWriter userpassWriter = new FileWriter(USER_PASS, true)) {
-                userpassWriter.write("\n" + hashedUserId + "," + hashedPassword);
+                userpassWriter.write("\n" + Username + "," + hashedPassword);
             }
 
             // Stores registration log in log file

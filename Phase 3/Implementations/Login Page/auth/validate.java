@@ -14,6 +14,7 @@ public class validate {
         String filePath = "DataFiles/user_pass.csv";
         credentials = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            br.readLine();
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
