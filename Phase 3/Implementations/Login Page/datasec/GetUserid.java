@@ -31,7 +31,6 @@ public class GetUserid {
             e.printStackTrace();
         }
         String userid = nameChars + hash + Lemail;
-
         return userid;
 
     }

@@ -16,30 +16,28 @@ public class RegisterFile {
 
     public RegisterFile(String fullname, String Username, String email, String password) {
         try {
-
-            // Generate unique userId for UserEnd
             String userId = GetUserid.getCommonUserId(Username, fullname, email);
 
-            String hashedPassword = null;
-            try {
-                hashedPassword = GetUserid.getHash(password);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            String hashedPassword = GetUserid.getHash(password); // Let exception propagate
+            String hashedUserId = GetUserid.getHash(Username);
 
             LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            String timestamp = now.format(formatter);
+            String timestamp = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
-            File regfile = new File(REGISTER_FILE);
-            FileWriter writer = new FileWriter(regfile, true);
-            writer.write(
-                    "\n" + timestamp + "," + userId + "," + Username + "," + fullname + "," + email + ","
-                            + hashedPassword);
-            writer.close();
-        } catch (IOException e) {
+            // Ensure directory exists
+            new File("DataFiles").mkdirs();
+
+            try (FileWriter writer = new FileWriter(REGISTER_FILE, true)) {
+                writer.write("\n" + timestamp + "," + userId + "," + Username + ","
+                        + fullname + "," + email + "," + hashedPassword);
+            }
+
+            try (FileWriter userpassWriter = new FileWriter(USER_PASS, true)) {
+                userpassWriter.write("\n" + hashedUserId + "," + hashedPassword);
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }
