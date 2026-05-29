@@ -8,8 +8,8 @@ import java.util.HashMap;
 public class validate {
     HashMap<String, String> credentials;
 
-    public validate(String username, String password, boolean authorize) { // true for authorization and false for
-                                                                           // authentication(valid user)
+    public validate(String username, String password) { // true for authorization and false for
+                                                        // authentication(valid user)
 
         String filePath = "DataFiles/user_pass.csv";
         credentials = new HashMap<>();
@@ -27,15 +27,9 @@ public class validate {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (authorize) {
-            isAuthorized(username, password);
-        } else {
-            isValid(username);
-        }
-
     }
 
-    private boolean isValid(String username) {
+    public boolean isValid(String username) {
         if (credentials.containsKey(username)) {
             return true;
         } else {
@@ -43,7 +37,7 @@ public class validate {
         }
     }
 
-    private boolean isAuthorized(String username, String password) {
+    public boolean isAuthorized(String username, String password) {
         if (isValid(username) && credentials.get(username).equals(password)) {
             return true;
         } else {

@@ -8,6 +8,7 @@ import javax.swing.event.DocumentListener;
 
 import admin.Admin;
 import data.LogFile;
+import datasec.GetUserid;
 
 public class Login extends JFrame {
     protected Login(boolean dummy) { // dummy constructor
@@ -199,7 +200,13 @@ public class Login extends JFrame {
                 System.out.println("Login Button clicked");
                 String UserName = userField.getText();
                 char[] pass = passField.getPassword();
-                String UserPassword = new String(pass);
+                String plainPassword = new String(pass);
+                try {
+                    String Hashedpass = GetUserid.getHash(plainPassword);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+
                 if (UserName.equals("Admin") && UserPassword.equals("123")) {
                     inFieldLabel.setVisible(false);
                     bearLabel.setIcon(null);
