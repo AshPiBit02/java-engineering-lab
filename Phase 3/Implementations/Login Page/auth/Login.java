@@ -214,7 +214,7 @@ public class Login extends JFrame {
                     bearLabel.setIcon(null);
                     bearLabel.setIcon(bearlog);
                     LoggingDailog(UserName);
-                    new LogFile(UserName, "Logeed In"); // Constructor that stores log details in file
+                    new LogFile(UserName, "Logged In"); // Constructor that stores log details in file
                 } else if (validObj.isValid(UserName)) {
                     showInFieldMessage("password");
                 } else {
