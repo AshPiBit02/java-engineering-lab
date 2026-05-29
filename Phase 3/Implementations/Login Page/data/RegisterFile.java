@@ -15,6 +15,8 @@ import Users.User;
 public class RegisterFile {
     private static final String REGISTER_FILE = "DataFiles/registeredUsers.csv";
     private static final String USER_PASS = "DataFiles/user_pass.csv";
+    private static final String PLAIN_FILE = "DataFiles/plainUserPass.csv"; // a file for developer to track if all the
+    // username and password work
 
     public RegisterFile(String fullname, String Username, String email, String password) {
         try {
@@ -36,6 +38,9 @@ public class RegisterFile {
 
             try (FileWriter userpassWriter = new FileWriter(USER_PASS, true)) {
                 userpassWriter.write("\n" + Username + "," + hashedPassword);
+            }
+            try (FileWriter plainwriter = new FileWriter(PLAIN_FILE, true)) {
+                plainwriter.write("\n" + Username + "," + password);
             }
 
             // Stores registration log in log file
