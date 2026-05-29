@@ -36,6 +36,9 @@ public class RegisterFile {
                 userpassWriter.write("\n" + hashedUserId + "," + hashedPassword);
             }
 
+            // Stores registration log in log file
+            new LogFile(Username, "Registration");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
