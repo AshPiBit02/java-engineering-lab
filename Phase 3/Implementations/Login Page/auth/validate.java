@@ -8,13 +8,11 @@ import java.util.HashMap;
 public class validate {
     HashMap<String, String> credentials;
     HashMap<String, String> credentials2;
-    String firstname = null;
 
-    public validate(String username, String password) { // true for authorization and false for
-                                                        // authentication(valid user)
-
+    public validate() {
         String filePath = "DataFiles/registeredUsers.csv";
         credentials = new HashMap<>();
+        credentials2 = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             br.readLine();
             String line;
@@ -23,8 +21,10 @@ public class validate {
                 if (parts.length == 6) {
                     String user = parts[2].trim();
                     String pass = parts[5].trim();
-                    // String firstname=parts[]/
                     credentials.put(user, pass);
+                    String firstname = parts[3].trim();
+                    int endIdx = firstname.indexOf(" ");
+                    credentials2.put(user, endIdx != -1 ? firstname.substring(0, endIdx) : firstname);
                 }
             }
         } catch (IOException e) {
@@ -46,6 +46,11 @@ public class validate {
         } else {
             return false;
         }
+    }
+
+    public String getfirstname(String username) {
+        return credentials2.get(username);
+
     }
 
 }

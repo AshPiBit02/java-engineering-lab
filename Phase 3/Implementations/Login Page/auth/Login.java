@@ -12,6 +12,8 @@ import data.LogFile;
 import datasec.GetUserid;
 
 public class Login extends JFrame {
+    validate validObj;
+
     protected Login(boolean dummy) { // dummy constructor
 
     }
@@ -208,7 +210,7 @@ public class Login extends JFrame {
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
-                validate validObj = new validate(UserName, Hashedpass);
+                validObj = new validate();
                 if (validObj.isAuthorized(UserName, Hashedpass)) {
                     inFieldLabel.setVisible(false);
                     bearLabel.setIcon(null);
@@ -473,7 +475,8 @@ public class Login extends JFrame {
             if (name.equals("Admin")) {
                 adminFrame = new Admin();
             } else {
-                new User(name);
+                // new User("Name");
+                new User(validObj.getfirstname(name));
             }
             dispose();
         });
