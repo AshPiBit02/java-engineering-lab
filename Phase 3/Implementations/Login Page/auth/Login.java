@@ -484,15 +484,16 @@ public class Login extends JFrame {
         time.start();
     }
 
-    private void showInFieldMessage(String type) {
+    void showInFieldMessage(String type) {
         if (type.equals("username")) {
             inFieldLabel.setBounds(215, 98, 105, 14);
-            inFieldLabel.setText("Unknow user!");
+            inFieldLabel.setText("Unknown user!");
         } else if (type.equals("password")) {
             inFieldLabel.setBounds(215, 148, 105, 14);
             inFieldLabel.setText("Incorrect password!");
-        } else if (type.equals("username")) {
-
+        } else if (type.equals("usernametaken")) {
+            inFieldLabel.setBounds(120, 270, 180, 14);
+            inFieldLabel.setText("Username not available!");
         }
         inFieldLabel.setVisible(true);
     }

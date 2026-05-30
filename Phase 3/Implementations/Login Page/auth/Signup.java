@@ -1,6 +1,8 @@
 package auth;
 
 import java.awt.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -65,30 +67,29 @@ public class Signup extends Login {
         signUsername.setForeground(Color.BLACK);
         signUsername.getDocument().addDocumentListener(new DocumentListener() {
             void usernameUpdate() {
-                if (!signUsername.getText().isEmpty() && validObj.isValid(signUsername.getText())) {
-                    signup.setEnabled(true);
+                if (signUsername.getText().isEmpty()) {
+                    signup.setEnabled(false); // or true, depending on UX — but don't allow empty
+                } else if (validObj.isValid(signUsername.getText())) {
+                    signup.setEnabled(false); // username taken
+                    showInFieldMessage("usernametaken");
                 } else {
-                    signup.setEnabled(false);
+                    signup.setEnabled(true); // username available
                 }
-
             }
 
             @Override
             public void insertUpdate(DocumentEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'insertUpdate'");
+                usernameUpdate();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'removeUpdate'");
+                usernameUpdate();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'changedUpdate'");
+                usernameUpdate();
             }
 
         });
