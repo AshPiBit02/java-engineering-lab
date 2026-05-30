@@ -227,6 +227,7 @@ public class Signup extends Login {
         signPanel.add(signCpassLbl);
         signPanel.add(signCPass);
         signPanel.add(signup);
+        signPanel.add(inFieldLabel);
 
         signPanel.revalidate();
         signPanel.repaint();

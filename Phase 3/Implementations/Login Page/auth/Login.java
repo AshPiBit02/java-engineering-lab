@@ -12,12 +12,7 @@ import data.LogFile;
 import datasec.GetUserid;
 
 public class Login extends JFrame {
-    validate validObj;
-
-    protected Login(boolean dummy) { // dummy constructor
-
-    }
-
+    validate validObj = new validate();
     JPanel logPanel;
     JLabel username;
     JLabel password;
@@ -210,7 +205,6 @@ public class Login extends JFrame {
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
-                validObj = new validate();
                 if (validObj.isAuthorized(UserName, Hashedpass)) {
                     inFieldLabel.setVisible(false);
                     bearLabel.setIcon(null);
