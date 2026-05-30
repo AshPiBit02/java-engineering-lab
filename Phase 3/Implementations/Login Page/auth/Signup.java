@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import data.RegisterFile;
 
@@ -61,6 +63,35 @@ public class Signup extends Login {
         signUsername.setLayout(new FlowLayout());
         signUsername.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         signUsername.setForeground(Color.BLACK);
+        signUsername.getDocument().addDocumentListener(new DocumentListener() {
+            void usernameUpdate() {
+                if (!signUsername.getText().isEmpty() && validObj.isValid(signUsername.getText())) {
+                    signup.setEnabled(true);
+                } else {
+                    signup.setEnabled(false);
+                }
+
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'insertUpdate'");
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'removeUpdate'");
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'changedUpdate'");
+            }
+
+        });
 
         emailAdd = new JLabel("Email Address");
         emailAdd.setBounds(50, 270, 150, 30);

@@ -491,6 +491,8 @@ public class Login extends JFrame {
         } else if (type.equals("password")) {
             inFieldLabel.setBounds(215, 148, 105, 14);
             inFieldLabel.setText("Incorrect password!");
+        } else if (type.equals("username")) {
+
         }
         inFieldLabel.setVisible(true);
     }
