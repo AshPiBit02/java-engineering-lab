@@ -37,7 +37,20 @@ public class Signup extends Login {
     JButton showCpass;
     JButton signup;
 
+    // infield message label
+    JLabel signInFieldLabel;
+
     Signup() {
+
+        // Initialize signInFieldLabel
+        signInFieldLabel = new JLabel();
+        signInFieldLabel.setBorder(null);
+        signInFieldLabel.setLayout(null);
+        signInFieldLabel.setForeground(Color.RED);
+        signInFieldLabel.setFont(new Font("Neue Frutiger", Font.PLAIN, 10));
+        signInFieldLabel.setHorizontalAlignment(JLabel.RIGHT);
+        signInFieldLabel.setVerticalAlignment(JLabel.CENTER);
+        signInFieldLabel.setVisible(false);
 
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
@@ -70,7 +83,7 @@ public class Signup extends Login {
                     signup.setEnabled(false); // or true, depending on UX — but don't allow empty
                 } else if (validObj.isValid(signUsername.getText())) {
                     signup.setEnabled(false); // username taken
-                    showInFieldMessage("usernametaken");
+                    showSignInFieldMessage("username");
                 } else {
                     // Hide signInFieldLabel when username becomes available again
                     signInFieldLabel.setVisible(false);
@@ -228,6 +241,7 @@ public class Signup extends Login {
         signPanel.add(signCpassLbl);
         signPanel.add(signCPass);
         signPanel.add(signup);
+        signPanel.add(signInFieldLabel);
 
         signPanel.revalidate();
         signPanel.repaint();
@@ -245,6 +259,14 @@ public class Signup extends Login {
         });
         time.setRepeats(false);
         time.start();
+    }
+
+    void showSignInFieldMessage(String type) {
+        if (type.equals("username")) {
+            signInFieldLabel.setBounds(120, 248, 180, 14);
+            signInFieldLabel.setText("Username not available");
+            signInFieldLabel.setVisible(true);
+        }
     }
 
 }

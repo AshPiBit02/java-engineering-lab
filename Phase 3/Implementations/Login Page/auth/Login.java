@@ -124,6 +124,15 @@ public class Login extends JFrame {
         loginDialog.getContentPane().setBackground(Color.WHITE);
         loginDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
 
+        // Infield messages
+        inFieldLabel = new JLabel();
+        inFieldLabel.setBorder(null);
+        inFieldLabel.setLayout(null);
+        inFieldLabel.setForeground(Color.RED);
+        inFieldLabel.setFont(new Font("Neue Frutiger", Font.PLAIN, 10));
+        inFieldLabel.setHorizontalAlignment(JLabel.RIGHT);
+        inFieldLabel.setVerticalAlignment(JLabel.CENTER);
+
         login = new JButton("Login") {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -468,7 +477,7 @@ public class Login extends JFrame {
         time.start();
     }
 
-    void showInFieldMessage(String type) {
+    private void showInFieldMessage(String type) {
         if (type.equals("username")) {
             inFieldLabel.setBounds(215, 98, 105, 14);
             inFieldLabel.setText("Unknown user!");
