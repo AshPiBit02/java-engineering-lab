@@ -1,7 +1,6 @@
 package auth;
 
 import java.awt.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -73,6 +72,8 @@ public class Signup extends Login {
                     signup.setEnabled(false); // username taken
                     showInFieldMessage("usernametaken");
                 } else {
+                    // FIX 3: Hide signInFieldLabel when username becomes available again
+                    signInFieldLabel.setVisible(false);
                     signup.setEnabled(true); // username available
                 }
             }
@@ -144,6 +145,21 @@ public class Signup extends Login {
         errorDialog.setForeground(Color.BLACK);
         signDialog.add(errorDialog);
 
+        // FIX 4: Moved signedDialog initialization to BEFORE signup mouseListener.
+        // Previously signedDialog was null when mousePressed fired on registration.
+        signedDialog = new JDialog();
+        signedDialog.setTitle("Signed In ✅");
+        signedDialog.setBounds(550, 20, 250, 100);
+        signedDialog.getContentPane().setBackground(Color.decode("#ffffff"));
+        signedMessage.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
+        signedMessage.setFont(new Font("Arial", Font.PLAIN, 18));
+        signedMessage.setForeground(Color.BLACK);
+        // FIX 5: Changed signDialog.add(signedMessage) →
+        // signedDialog.add(signedMessage)
+        // signedMessage was being added to the error dialog instead of the success
+        // dialog
+        signedDialog.add(signedMessage);
+
         signup = new JButton("Sign up") {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -181,8 +197,11 @@ public class Signup extends Login {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
                 signup.setBackground(Color.decode("#00ff26"));
+                // FIX 6: Added null checks for signPassword and signConfirmPassword.
+                // These are null if the user never typed in the password fields, causing NPE.
                 if (fname.getText().isEmpty() || signUsername.getText().isEmpty() || email.getText().isEmpty()
-                        || signPassword.isEmpty() || signConfirmPassword.isEmpty()) {
+                        || signPassword == null || signPassword.isEmpty()
+                        || signConfirmPassword == null || signConfirmPassword.isEmpty()) {
                     signDialog.setTitle("Empty Field Error");
                     signDialogfunc(signDialog);
                 } else if (!signPassword.equals(signConfirmPassword)) {
@@ -203,15 +222,6 @@ public class Signup extends Login {
             }
         });
 
-        signedDialog = new JDialog();
-        signedDialog.setTitle("Signed In ✅");
-        signedDialog.setBounds(550, 20, 250, 100);
-        signedDialog.getContentPane().setBackground(Color.decode("#ffffff"));
-        signedMessage.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
-        signedMessage.setFont(new Font("Arial", Font.PLAIN, 18));
-        signedMessage.setForeground(Color.BLACK);
-        signDialog.add(signedMessage);
-
         bearLabel.setVisible(false);
         logPanel.setVisible(false);
         signPanel.setVisible(true);
@@ -227,7 +237,9 @@ public class Signup extends Login {
         signPanel.add(signCpassLbl);
         signPanel.add(signCPass);
         signPanel.add(signup);
-        signPanel.add(inFieldLabel);
+        // FIX 7: Removed signPanel.add(inFieldLabel) — inFieldLabel belongs to
+        // logPanel.
+        // signInFieldLabel is already added to signPanel inside Login() constructor.
 
         signPanel.revalidate();
         signPanel.repaint();
