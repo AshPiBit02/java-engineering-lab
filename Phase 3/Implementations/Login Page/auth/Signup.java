@@ -1,24 +1,16 @@
 package auth;
 
 import java.awt.*;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.Timer;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import data.RegisterFile;
 
 public class Signup extends Login {
-
-    JPanel InfoPanel;
-
     JLabel fullName;
     JTextField fname;
     JLabel signUser;
@@ -38,34 +30,11 @@ public class Signup extends Login {
     JLabel signedMessage = new JLabel(
             "<html><div style='text-align: center;'>Signed in Successsfully<br>Welcome to the System</div></html>");
 
-    JLabel usernamenotavail = new JLabel("<html><div style='text-align: center;'>Username not Available!</div></html>");
-
     JButton showpass;
     JButton showCpass;
     JButton signup;
 
-    // infield message label
-    JLabel signInFieldLabel;
-
     Signup() {
-        InfoPanel = new JPanel();
-        InfoPanel.setBounds(950, 700, 400, 25);
-        InfoPanel.setBackground(Color.GREEN);
-        InfoPanel.setLayout(null);
-
-        // Initialize signInFieldLabel
-        signInFieldLabel = new JLabel();
-        signInFieldLabel.setBounds(100, 800, 180, 14);
-        signInFieldLabel.setBorder(null);
-        signInFieldLabel.setLayout(null);
-        signInFieldLabel.setForeground(Color.RED);
-        signInFieldLabel.setFont(new Font("Neue Frutiger", Font.PLAIN, 10));
-        signInFieldLabel.setBackground(Color.RED);
-        signInFieldLabel.setOpaque(true);
-        signInFieldLabel.setFocusable(false);
-        signInFieldLabel.setHorizontalAlignment(JLabel.RIGHT);
-        signInFieldLabel.setVerticalAlignment(JLabel.CENTER);
-        signInFieldLabel.setVisible(true);
 
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
@@ -143,19 +112,6 @@ public class Signup extends Login {
         errorDialog.setForeground(Color.BLACK);
         signDialog.add(errorDialog);
 
-        signedDialog = new JDialog();
-        signedDialog.setTitle("Signed In ✅");
-        signedDialog.setBounds(550, 20, 250, 100);
-        signedDialog.getContentPane().setBackground(Color.decode("#ffffff"));
-        signedMessage.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
-        signedMessage.setFont(new Font("Arial", Font.PLAIN, 18));
-        signedMessage.setForeground(Color.BLACK);
-        signedDialog.add(signedMessage);
-
-        usernamenotavail.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
-        usernamenotavail.setFont(new Font("Arial", Font.PLAIN, 18));
-        usernamenotavail.setForeground(Color.BLACK);
-
         signup = new JButton("Sign up") {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -194,16 +150,12 @@ public class Signup extends Login {
             public void mousePressed(java.awt.event.MouseEvent e) {
                 signup.setBackground(Color.decode("#00ff26"));
                 if (fname.getText().isEmpty() || signUsername.getText().isEmpty() || email.getText().isEmpty()
-                        || signPassword == null || signPassword.isEmpty()
-                        || signConfirmPassword == null || signConfirmPassword.isEmpty()) {
+                        || signPassword.isEmpty() || signConfirmPassword.isEmpty()) {
                     signDialog.setTitle("Empty Field Error");
                     signDialogfunc(signDialog);
                 } else if (!signPassword.equals(signConfirmPassword)) {
                     signDialog.setTitle("Password Match Error!!!");
                     signDialogfunc(signDialog);
-                } else if (validObj.isValid(signUsername.getText())) { // If the username is already taken
-                    // signDialogfunc(usernameExists);
-
                 } else { // Register
                     new RegisterFile(fname.getText(), signUsername.getText(), email.getText(), signPassword);// Registers
                     // valid User
@@ -218,32 +170,15 @@ public class Signup extends Login {
                 signup.setBackground(Color.decode("#09b422"));
             }
         });
-        signUsername.getDocument().addDocumentListener(new DocumentListener() {
-            void usernameUpdate() {
-                if (signUsername.getText().isEmpty()) {
-                    System.out.println("Empty");
-                    signup.setEnabled(false);
-                } else if (validObj.isValid(signUsername.getText())) {
-                    System.out.println("Already Taken");
-                    // signDialogfunc(usernameExists);
-                } else {
-                    System.out.println("Available");
-                    signup.setEnabled(true);
-                }
-            }
 
-            public void insertUpdate(DocumentEvent e) {
-                usernameUpdate();
-            }
-
-            public void removeUpdate(DocumentEvent e) {
-                usernameUpdate();
-            }
-
-            public void changedUpdate(DocumentEvent e) {
-                usernameUpdate();
-            }
-        });
+        signedDialog = new JDialog();
+        signedDialog.setTitle("Signed In ✅");
+        signedDialog.setBounds(550, 20, 250, 100);
+        signedDialog.getContentPane().setBackground(Color.decode("#ffffff"));
+        signedMessage.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
+        signedMessage.setFont(new Font("Arial", Font.PLAIN, 18));
+        signedMessage.setForeground(Color.BLACK);
+        signDialog.add(signedMessage);
 
         bearLabel.setVisible(false);
         logPanel.setVisible(false);
@@ -261,9 +196,8 @@ public class Signup extends Login {
         signPanel.add(signCPass);
         signPanel.add(signup);
 
-        InfoPanel.setVisible(true);
-        this.add(InfoPanel);
-        this.setVisible(true); // resume rendering after all components added
+        signPanel.revalidate();
+        signPanel.repaint();
 
     }
 

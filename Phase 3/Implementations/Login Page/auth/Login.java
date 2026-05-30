@@ -12,7 +12,12 @@ import data.LogFile;
 import datasec.GetUserid;
 
 public class Login extends JFrame {
-    validate validObj = new validate();
+    validate validObj;
+
+    protected Login(boolean dummy) { // dummy constructor
+
+    }
+
     JPanel logPanel;
     JLabel username;
     JLabel password;
@@ -205,6 +210,7 @@ public class Login extends JFrame {
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
+                validObj = new validate();
                 if (validObj.isAuthorized(UserName, Hashedpass)) {
                     inFieldLabel.setVisible(false);
                     bearLabel.setIcon(null);
@@ -469,6 +475,7 @@ public class Login extends JFrame {
             if (name.equals("Admin")) {
                 adminFrame = new Admin();
             } else {
+                // new User("Name");
                 new User(validObj.getfirstname(name));
             }
             dispose();
@@ -480,12 +487,11 @@ public class Login extends JFrame {
     private void showInFieldMessage(String type) {
         if (type.equals("username")) {
             inFieldLabel.setBounds(215, 98, 105, 14);
-            inFieldLabel.setText("Unknown user!");
-            inFieldLabel.setVisible(true);
+            inFieldLabel.setText("Unknow user!");
         } else if (type.equals("password")) {
             inFieldLabel.setBounds(215, 148, 105, 14);
             inFieldLabel.setText("Incorrect password!");
-            inFieldLabel.setVisible(true);
         }
+        inFieldLabel.setVisible(true);
     }
 }
