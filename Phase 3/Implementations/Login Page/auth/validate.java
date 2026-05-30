@@ -7,20 +7,23 @@ import java.util.HashMap;
 
 public class validate {
     HashMap<String, String> credentials;
+    HashMap<String, String> credentials2;
+    String firstname = null;
 
     public validate(String username, String password) { // true for authorization and false for
                                                         // authentication(valid user)
 
-        String filePath = "DataFiles/user_pass.csv";
+        String filePath = "DataFiles/registeredUsers.csv";
         credentials = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             br.readLine();
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 2) {
-                    String user = parts[0].trim();
-                    String pass = parts[1].trim();
+                if (parts.length == 6) {
+                    String user = parts[2].trim();
+                    String pass = parts[5].trim();
+                    // String firstname=parts[]/
                     credentials.put(user, pass);
                 }
             }
