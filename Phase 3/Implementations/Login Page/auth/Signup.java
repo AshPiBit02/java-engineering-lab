@@ -44,10 +44,13 @@ public class Signup extends Login {
 
         // Initialize signInFieldLabel
         signInFieldLabel = new JLabel();
+        signInFieldLabel.setBounds(120, 248, 180, 14);
         signInFieldLabel.setBorder(null);
         signInFieldLabel.setLayout(null);
         signInFieldLabel.setForeground(Color.RED);
         signInFieldLabel.setFont(new Font("Neue Frutiger", Font.PLAIN, 10));
+        signInFieldLabel.setFocusable(false);
+        // signInFieldLabel.set;
         signInFieldLabel.setHorizontalAlignment(JLabel.RIGHT);
         signInFieldLabel.setVerticalAlignment(JLabel.CENTER);
         signInFieldLabel.setVisible(false);
@@ -80,14 +83,14 @@ public class Signup extends Login {
         signUsername.getDocument().addDocumentListener(new DocumentListener() {
             void usernameUpdate() {
                 if (signUsername.getText().isEmpty()) {
-                    signup.setEnabled(false); // or true, depending on UX — but don't allow empty
+                    signup.setEnabled(false);
+                    signInFieldLabel.setVisible(false); // ← add this
                 } else if (validObj.isValid(signUsername.getText())) {
-                    signup.setEnabled(false); // username taken
-                    showSignInFieldMessage("username");
+                    signup.setEnabled(false);
+                    // showSignInFieldMessage("username");
                 } else {
-                    // Hide signInFieldLabel when username becomes available again
-                    signInFieldLabel.setVisible(false);
-                    signup.setEnabled(true); // username available
+                    signInFieldLabel.setVisible(false); // already here
+                    signup.setEnabled(true);
                 }
             }
 
@@ -230,6 +233,8 @@ public class Signup extends Login {
         logPanel.setVisible(false);
         signPanel.setVisible(true);
 
+        this.setVisible(false); // pause rendering before adding components
+
         signPanel.add(fname);
         signPanel.add(fullName);
         signPanel.add(signUser);
@@ -243,8 +248,7 @@ public class Signup extends Login {
         signPanel.add(signup);
         signPanel.add(signInFieldLabel);
 
-        signPanel.revalidate();
-        signPanel.repaint();
+        this.setVisible(true); // resume rendering after all components added
 
     }
 
@@ -263,7 +267,6 @@ public class Signup extends Login {
 
     void showSignInFieldMessage(String type) {
         if (type.equals("username")) {
-            signInFieldLabel.setBounds(120, 248, 180, 14);
             signInFieldLabel.setText("Username not available");
             signInFieldLabel.setVisible(true);
         }
