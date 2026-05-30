@@ -44,9 +44,6 @@ public class Login extends JFrame {
 
     // for inField message
     JLabel inFieldLabel;
-    // FIX 1: Added signInFieldLabel — separate label for signup panel.
-    // inFieldLabel belongs to logPanel; a Swing component can only have one parent.
-    JLabel signInFieldLabel;
 
     private String Fieldpassword = "";
     private boolean isPasswordVisible = false;
@@ -127,24 +124,6 @@ public class Login extends JFrame {
         loginDialog.getContentPane().setBackground(Color.WHITE);
         loginDialog.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
 
-        // Infield messages
-        inFieldLabel = new JLabel();
-        inFieldLabel.setBorder(null);
-        inFieldLabel.setLayout(null);
-        inFieldLabel.setForeground(Color.RED);
-        inFieldLabel.setFont(new Font("Neue Frutiger", Font.PLAIN, 10));
-        inFieldLabel.setHorizontalAlignment(JLabel.RIGHT);
-        inFieldLabel.setVerticalAlignment(JLabel.CENTER);
-
-        // FIX 1: Initialize signInFieldLabel with same style as inFieldLabel
-        signInFieldLabel = new JLabel();
-        signInFieldLabel.setBorder(null);
-        signInFieldLabel.setLayout(null);
-        signInFieldLabel.setForeground(Color.RED);
-        signInFieldLabel.setFont(new Font("Neue Frutiger", Font.PLAIN, 10));
-        signInFieldLabel.setHorizontalAlignment(JLabel.RIGHT);
-        signInFieldLabel.setVerticalAlignment(JLabel.CENTER);
-
         login = new JButton("Login") {
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -217,9 +196,6 @@ public class Login extends JFrame {
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
-                // FIX 2: Removed redundant `validObj = new validate()` here.
-                // validObj is already initialized at field level; re-creating on every
-                // login click was wasteful (re-read CSV every time).
                 if (validObj.isAuthorized(UserName, Hashedpass)) {
                     inFieldLabel.setVisible(false);
                     bearLabel.setIcon(null);
@@ -296,8 +272,6 @@ public class Login extends JFrame {
 
         signPanel.add(signSeparator);
         signPanel.add(signHeader);
-        // FIX 1: signInFieldLabel added to signPanel here (its correct parent)
-        signPanel.add(signInFieldLabel);
 
         signupBtn = new JButton("Sign up") {
             @Override
@@ -486,7 +460,6 @@ public class Login extends JFrame {
             if (name.equals("Admin")) {
                 adminFrame = new Admin();
             } else {
-                // new User("Name");
                 new User(validObj.getfirstname(name));
             }
             dispose();
@@ -504,11 +477,6 @@ public class Login extends JFrame {
             inFieldLabel.setBounds(215, 148, 105, 14);
             inFieldLabel.setText("Incorrect password!");
             inFieldLabel.setVisible(true);
-        } else if (type.equals("usernametaken")) {
-            // FIX 1: Use signInFieldLabel instead of inFieldLabel for signup message
-            signInFieldLabel.setBounds(120, 270, 180, 14);
-            signInFieldLabel.setText("Username not available!");
-            signInFieldLabel.setVisible(true);
         }
     }
 }
