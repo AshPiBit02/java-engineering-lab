@@ -253,7 +253,7 @@ public class Admin extends JFrame {
         this.add(menuPanel);
 
         tablePanel = new JPanel();
-        tablePanel.setBounds(305, 125, 1060, 680);
+        tablePanel.setBounds(305, 125, 1060, 620);
         tablePanel.setOpaque(false);
 
         DefaultTableModel model = new DefaultTableModel();
@@ -308,7 +308,7 @@ public class Admin extends JFrame {
 
         // Log table
         logtablePanel = new JPanel();
-        logtablePanel.setBounds(305, 125, 1060, 680);
+        logtablePanel.setBounds(405, 125, 860, 620);
         tablePanel.setOpaque(false);
 
         DefaultTableModel logmodel = new DefaultTableModel();
