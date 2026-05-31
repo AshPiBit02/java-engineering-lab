@@ -306,6 +306,7 @@ public class Admin extends JFrame {
         tablePanel.add(scrollPane, BorderLayout.CENTER);
         tablePanel.setVisible(false);
 
+        // Log table
         logtablePanel = new JPanel();
         logtablePanel.setBounds(305, 125, 1060, 680);
         tablePanel.setOpaque(false);
@@ -330,7 +331,7 @@ public class Admin extends JFrame {
         logtable.setFont(new Font("Serif", Font.PLAIN, 25));
         logtable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 30));
         logtable.setRowHeight(32);
-        table.getTableHeader().setPreferredSize(new Dimension(0, 37));
+        logtable.getTableHeader().setPreferredSize(new Dimension(0, 37));
         String logfilePath = "DataFiles/logs.csv";
         try (BufferedReader br = new BufferedReader(new FileReader(logfilePath))) {
             ArrayList<String[]> rows = new ArrayList<>();
@@ -340,7 +341,7 @@ public class Admin extends JFrame {
                 String[] values = line.split(",");
                 if (firstLine) {
                     for (String header : values) {
-                        model.addColumn(header);
+                        logmodel.addColumn(header);
                     }
                     firstLine = false;
                 } else {
@@ -348,7 +349,7 @@ public class Admin extends JFrame {
                 }
             }
             for (String[] row : rows) {
-                model.addRow(row);
+                logmodel.addRow(row);
             }
         } catch (IOException e) {
             e.printStackTrace();
