@@ -19,8 +19,10 @@ public class Admin extends JFrame {
     JLabel salesheaderLabel;
     JLabel logheaderLabel;
     JPanel tablePanel;
+    JPanel logtablePanel;
     ImageIcon icon;
     JTable table;
+    JTable logtable;
     JPanel menuPanel;
     JLabel adminUsage;
     JButton salesBtn;
@@ -301,6 +303,61 @@ public class Admin extends JFrame {
         tablePanel.setLayout(new BorderLayout());
         tablePanel.add(scrollPane, BorderLayout.CENTER);
         tablePanel.setVisible(false);
+
+        logtablePanel = new JPanel();
+        logtablePanel.setBounds(305, 125, 1060, 680);
+        tablePanel.setOpaque(false);
+
+        DefaultTableModel logmodel = new DefaultTableModel();
+        logtable = new JTable(logmodel);
+        logtable.setGridColor(Color.RED);
+
+        logtable.setSelectionBackground(Color.BLUE);
+        logtable.setSelectionForeground(Color.WHITE);
+        logtable.setBackground(Color.decode("#95a9dc"));
+
+        logtable.getTableHeader().setBackground(Color.decode("#040051"));
+        logtable.getTableHeader().setForeground(Color.WHITE);
+
+        logtable.setBorder(BorderFactory.createLineBorder(Color.decode("#4a4a4e"), 3));
+
+        Border logouter = BorderFactory.createLineBorder(Color.decode("#4a4a4e"), 3);
+        Border loginner = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+        logtable.setBorder(BorderFactory.createCompoundBorder(logouter, loginner));
+
+        logtable.setFont(new Font("Serif", Font.PLAIN, 25));
+        logtable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 30));
+        logtable.setRowHeight(32);
+        table.getTableHeader().setPreferredSize(new Dimension(0, 37));
+        String logfilePath = "DataFiles/logs.csv";
+        try (BufferedReader br = new BufferedReader(new FileReader(logfilePath))) {
+            ArrayList<String[]> rows = new ArrayList<>();
+            String line;
+            boolean firstLine = true;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                if (firstLine) {
+                    for (String header : values) {
+                        model.addColumn(header);
+                    }
+                    firstLine = false;
+                } else {
+                    rows.add(values);
+                }
+            }
+            for (String[] row : rows) {
+                model.addRow(row);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JScrollPane logscrollPane = new JScrollPane(logtable);
+        logscrollPane.setBackground(Color.decode("#47477e"));
+        logtablePanel.setLayout(new BorderLayout());
+        logtablePanel.add(logscrollPane, BorderLayout.CENTER);
+        logtablePanel.setVisible(false);
+
+        this.add(logtablePanel);
         this.add(tablePanel);
         this.add(salesheaderLabel);
         this.add(logheaderLabel);
