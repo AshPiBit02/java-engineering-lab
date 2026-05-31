@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.Timer;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
@@ -253,8 +254,10 @@ public class Admin extends JFrame {
         this.add(menuPanel);
 
         tablePanel = new JPanel();
-        tablePanel.setBounds(305, 125, 1060, 620);
-        tablePanel.setOpaque(false);
+        tablePanel.setBounds(305, 125, 1055, 620);
+        tablePanel.setBackground(Color.BLACK);
+        tablePanel.setOpaque(true);
+        tablePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 
         DefaultTableModel model = new DefaultTableModel();
         table = new JTable(model);
@@ -266,12 +269,6 @@ public class Admin extends JFrame {
 
         table.getTableHeader().setBackground(Color.decode("#040051"));
         table.getTableHeader().setForeground(Color.WHITE);
-
-        table.setBorder(BorderFactory.createLineBorder(Color.decode("#4a4a4e"), 3));
-
-        Border outer = BorderFactory.createLineBorder(Color.decode("#4a4a4e"), 3);
-        Border inner = BorderFactory.createEmptyBorder(10, 10, 10, 10);
-        table.setBorder(BorderFactory.createCompoundBorder(outer, inner));
 
         table.setFont(new Font("Serif", Font.PLAIN, 25));
         table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 30));
@@ -309,7 +306,9 @@ public class Admin extends JFrame {
         // Log table
         logtablePanel = new JPanel();
         logtablePanel.setBounds(405, 125, 860, 620);
-        tablePanel.setOpaque(false);
+        logtablePanel.setBackground(Color.BLACK);
+        logtablePanel.setOpaque(true);
+        logtablePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 
         DefaultTableModel logmodel = new DefaultTableModel();
         logtable = new JTable(logmodel);
@@ -321,12 +320,6 @@ public class Admin extends JFrame {
 
         logtable.getTableHeader().setBackground(Color.decode("#040051"));
         logtable.getTableHeader().setForeground(Color.WHITE);
-
-        logtable.setBorder(BorderFactory.createLineBorder(Color.decode("#4a4a4e"), 3));
-
-        Border logouter = BorderFactory.createLineBorder(Color.decode("#4a4a4e"), 3);
-        Border loginner = BorderFactory.createEmptyBorder(10, 10, 10, 10);
-        logtable.setBorder(BorderFactory.createCompoundBorder(logouter, loginner));
 
         logtable.setFont(new Font("Serif", Font.PLAIN, 25));
         logtable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 30));
