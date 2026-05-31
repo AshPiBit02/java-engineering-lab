@@ -9,6 +9,7 @@ public class JTextFieldDemo extends JFrame {
 
         add(new JLabel("Username:"));
         JTextField userTF = new JTextField(15);
+        userTF.setToolTipText("Enter your username here");
         add(userTF);
 
         add(new JLabel("Email:"));
