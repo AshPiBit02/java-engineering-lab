@@ -189,7 +189,7 @@ public class Signup extends Login {
                 } else if (!signPassword.equals(signConfirmPassword)) {
                     signDialog.setTitle("Password Match Error!!!");
                     signDialogfunc(signDialog);
-                } else { // Register
+              else { // Register
                     new RegisterFile(fname.getText(), signUsername.getText(), email.getText(), signPassword);// Registers
                     // valid User
                     signDialogfunc(signedDialog);
@@ -201,34 +201,6 @@ public class Signup extends Login {
             @Override
             public void mouseReleased(java.awt.event.MouseEvent e) {
                 signup.setBackground(Color.decode("#09b422"));
-            }
-        });
-        signUsername.getDocument().addDocumentListener(new DocumentListener() {
-            void usernameUpdate() {
-                if (validObj.isValid(signUsername.getText())) {
-                    signDialog.setTitle("Username not available!");
-                    signDialogfunc(signDialog);
-
-                }
-
-            }
-
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'insertUpdate'");
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'removeUpdate'");
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'changedUpdate'");
             }
         });
 
