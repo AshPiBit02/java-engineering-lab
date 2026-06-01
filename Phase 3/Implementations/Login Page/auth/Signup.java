@@ -4,9 +4,12 @@ import java.awt.*;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import data.RegisterFile;
 
@@ -23,9 +26,10 @@ public class Signup extends Login {
     JPasswordField signCPass;
 
     // Infield messages
-    JLabel usernameMessage;
-    JLabel emailMessage;
-    JLabel confirmpassMessage;
+    // JLabel usernameMessage;
+    // JLabel emailMessage;
+    // JLabel confirmpassMessage;
+    // JPanel InfieldMessagePanel;
 
     JDialog signDialog;
     JLabel errorDialog = new JLabel(
@@ -40,28 +44,33 @@ public class Signup extends Login {
     JButton signup;
 
     public Signup() {
-        // Infield username message
-        usernameMessage = new JLabel("Username not available!");
-        usernameMessage.setBounds(150, 245, 175, 15);
-        usernameMessage.setForeground(Color.RED);
-        usernameMessage.setFont(new Font("Arial", Font.PLAIN, 10));
-        usernameMessage.setHorizontalAlignment(JLabel.RIGHT);
-        usernameMessage.setVisible(false);
+        // InfieldMessagePanel = new JPanel();
+        // InfieldMessagePanel.setBounds(500, 500, 400, 25);
+        // InfieldMessagePanel.setBackground(Color.RED);
+        // InfieldMessagePanel.setOpaque(true);
 
-        // Infield email message
-        emailMessage = new JLabel("Email already in use!");
-        emailMessage.setBounds(150, 330, 175, 15);
-        emailMessage.setForeground(Color.RED);
-        emailMessage.setFont(new Font("Arial", Font.PLAIN, 10));
-        emailMessage.setHorizontalAlignment(JLabel.RIGHT);
+        // // Infield username message
+        // usernameMessage = new JLabel("Username not available!");
+        // usernameMessage.setBounds(150, 245, 175, 15);
+        // usernameMessage.setForeground(Color.RED);
+        // usernameMessage.setFont(new Font("Arial", Font.PLAIN, 10));
+        // usernameMessage.setHorizontalAlignment(JLabel.RIGHT);
+        // usernameMessage.setVisible(false);
 
-        // Infield confirmpassword Message
-        confirmpassMessage = new JLabel("Password didn't matched!");
-        confirmpassMessage.setBounds(150, 508, 175, 15);
-        confirmpassMessage.setForeground(Color.RED);
-        confirmpassMessage.setFont(new Font("Arial", Font.PLAIN, 10));
-        confirmpassMessage.setHorizontalAlignment(JLabel.RIGHT);
-        confirmpassMessage.setVisible(false);
+        // // Infield email message
+        // emailMessage = new JLabel("Email already in use!");
+        // emailMessage.setBounds(150, 330, 175, 15);
+        // emailMessage.setForeground(Color.RED);
+        // emailMessage.setFont(new Font("Arial", Font.PLAIN, 10));
+        // emailMessage.setHorizontalAlignment(JLabel.RIGHT);
+
+        // // Infield confirmpassword Message
+        // confirmpassMessage = new JLabel("Password didn't matched!");
+        // confirmpassMessage.setBounds(150, 508, 175, 15);
+        // confirmpassMessage.setForeground(Color.RED);
+        // confirmpassMessage.setFont(new Font("Arial", Font.PLAIN, 10));
+        // confirmpassMessage.setHorizontalAlignment(JLabel.RIGHT);
+        // confirmpassMessage.setVisible(false);
 
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
@@ -173,18 +182,12 @@ public class Signup extends Login {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
                 signup.setBackground(Color.decode("#00ff26"));
-                usernameMessage.setVisible(false);
-                emailMessage.setVisible(false);
-                confirmpassMessage.setVisible(false);
                 if (fname.getText().isEmpty() || signUsername.getText().isEmpty() || email.getText().isEmpty()
                         || signPassword.isEmpty() || signConfirmPassword.isEmpty()) {
                     signDialog.setTitle("Empty Field Error");
                     signDialogfunc(signDialog);
                 } else if (!signPassword.equals(signConfirmPassword)) {
                     signDialog.setTitle("Password Match Error!!!");
-                    confirmpassMessage.setVisible(true);
-                    signPanel.revalidate();
-                    signPanel.repaint();
                     signDialogfunc(signDialog);
                 } else { // Register
                     new RegisterFile(fname.getText(), signUsername.getText(), email.getText(), signPassword);// Registers
@@ -198,6 +201,34 @@ public class Signup extends Login {
             @Override
             public void mouseReleased(java.awt.event.MouseEvent e) {
                 signup.setBackground(Color.decode("#09b422"));
+            }
+        });
+        signUsername.getDocument().addDocumentListener(new DocumentListener() {
+            void usernameUpdate() {
+                if (validObj.isValid(signUsername.getText())) {
+                    signDialog.setTitle("Username not available!");
+                    signDialogfunc(signDialog);
+
+                }
+
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'insertUpdate'");
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'removeUpdate'");
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'changedUpdate'");
             }
         });
 
@@ -225,10 +256,10 @@ public class Signup extends Login {
         signPanel.add(signUser);
         signPanel.add(fname);
         signPanel.add(fullName);
-        signPanel.add(confirmpassMessage);
-        signPanel.add(emailMessage);
-        signPanel.add(usernameMessage);
-
+        // signPanel.add(InfieldMessagePanel);
+        // signPanel.add(confirmpassMessage);
+        // signPanel.add(emailMessage);
+        // signPanel.add(usernameMessage);
         signPanel.setVisible(true);
 
         // signPanel.revalidate();
