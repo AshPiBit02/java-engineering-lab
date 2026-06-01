@@ -22,6 +22,9 @@ public class Signup extends Login {
     JLabel signCpassLbl;
     JPasswordField signCPass;
 
+    JLabel usernameLabel;
+    JTextField usernameMessage;
+
     JDialog signDialog;
     JLabel errorDialog = new JLabel(
             "<html><div style='text-align: center;'>Error!</div></html>");
@@ -34,7 +37,7 @@ public class Signup extends Login {
     JButton showCpass;
     JButton signup;
 
-    Signup() {
+    public Signup() {
 
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
@@ -61,6 +64,24 @@ public class Signup extends Login {
         signUsername.setLayout(new FlowLayout());
         signUsername.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         signUsername.setForeground(Color.BLACK);
+
+        usernameLabel = new JLabel();
+        usernameLabel.setBounds(150, 245, 175, 20);
+        usernameLabel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        usernameLabel.setBackground(null);
+
+        usernameMessage = new JTextField();
+        usernameMessage.setBounds(150, 245, 175, 15);
+        usernameMessage.setText("Username not available!");
+        usernameMessage.setForeground(Color.RED);
+        usernameMessage.setFont(new Font("Arial", Font.PLAIN, 10));
+        // usernameMessage.setLayout(null);
+        usernameMessage.setHorizontalAlignment(JTextField.RIGHT);
+        usernameMessage.setBackground(null);
+        usernameMessage.setOpaque(false);
+        usernameMessage.setBorder(null);
+        // usernameMessage.setOpaque(true);
+        // usernameLabel.add(usernameMessage);
 
         emailAdd = new JLabel("Email Address");
         emailAdd.setBounds(50, 270, 150, 30);
@@ -182,8 +203,8 @@ public class Signup extends Login {
 
         bearLabel.setVisible(false);
         logPanel.setVisible(false);
-        signPanel.setVisible(true);
 
+        signPanel.add(usernameMessage);
         signPanel.add(fname);
         signPanel.add(fullName);
         signPanel.add(signUser);
@@ -196,8 +217,10 @@ public class Signup extends Login {
         signPanel.add(signCPass);
         signPanel.add(signup);
 
-        signPanel.revalidate();
-        signPanel.repaint();
+        signPanel.setVisible(true);
+
+        // signPanel.revalidate();
+        // signPanel.repaint();
 
     }
 
