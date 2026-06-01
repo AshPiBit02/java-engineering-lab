@@ -77,7 +77,13 @@ public class Login extends JFrame {
         bearLabel.setIcon(bearbase);
         bearLabel.setVisible(true);
 
-        JLabel background = new JLabel(scaledIcon);
+        JPanel background = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(scaledIcon.getImage(), 0, 0, null);
+            }
+        };
         background.setLayout(null);
         this.setContentPane(background);
 

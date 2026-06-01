@@ -72,7 +72,6 @@ public class Signup extends Login {
 
         fname = new JTextField();
         fname.setBounds(70, 135, 260, 25);
-        fname.setLayout(new FlowLayout());
         fname.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         fname.setForeground(Color.BLACK);
 
@@ -85,7 +84,6 @@ public class Signup extends Login {
 
         signUsername = new JTextField();
         signUsername.setBounds(70, 220, 260, 25);
-        signUsername.setLayout(new FlowLayout());
         signUsername.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         signUsername.setForeground(Color.BLACK);
 
@@ -98,7 +96,6 @@ public class Signup extends Login {
 
         email = new JTextField();
         email.setBounds(70, 305, 260, 25);
-        email.setLayout(new FlowLayout());
         email.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         email.setForeground(Color.BLACK);
 
