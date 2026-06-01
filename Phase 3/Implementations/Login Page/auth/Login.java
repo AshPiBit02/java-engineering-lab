@@ -272,7 +272,15 @@ public class Login extends JFrame {
         separator.setBackground(Color.BLACK);
         logPanel.add(separator);
 
-        signPanel = new JPanel();
+        signPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                System.out.println("SignPanel Painting");
+                g.setColor(getBackground());
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
         signPanel.setBounds(475, 50, 400, 650);
         signPanel.setLayout(null);
         Color clrs = Color.decode("#0015ff");

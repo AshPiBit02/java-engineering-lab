@@ -183,6 +183,7 @@ public class Signup extends Login {
                 } else if (!signPassword.equals(signConfirmPassword)) {
                     signDialog.setTitle("Password Match Error!!!");
                     confirmpassMessage.setVisible(true);
+                    signPanel.revalidate();
                     signPanel.repaint();
                     signDialogfunc(signDialog);
                 } else { // Register
@@ -212,20 +213,21 @@ public class Signup extends Login {
         bearLabel.setVisible(false);
         logPanel.setVisible(false);
 
-        signPanel.add(usernameMessage);
-        signPanel.add(emailMessage);
-        signPanel.add(confirmpassMessage);
+        // Add in this exact order (fields first, labels on top)
+        signPanel.add(signup);
+        signPanel.add(signCPass);
+        signPanel.add(signCpassLbl);
+        signPanel.add(signpass);
+        signPanel.add(signPassLbl);
+        signPanel.add(email);
+        signPanel.add(emailAdd);
+        signPanel.add(signUsername);
+        signPanel.add(signUser);
         signPanel.add(fname);
         signPanel.add(fullName);
-        signPanel.add(signUser);
-        signPanel.add(signUsername);
-        signPanel.add(emailAdd);
-        signPanel.add(email);
-        signPanel.add(signPassLbl);
-        signPanel.add(signpass);
-        signPanel.add(signCpassLbl);
-        signPanel.add(signCPass);
-        signPanel.add(signup);
+        signPanel.add(confirmpassMessage);
+        signPanel.add(emailMessage);
+        signPanel.add(usernameMessage);
 
         signPanel.setVisible(true);
 
