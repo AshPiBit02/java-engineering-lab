@@ -22,8 +22,9 @@ public class Signup extends Login {
     JLabel signCpassLbl;
     JPasswordField signCPass;
 
-    JLabel usernameLabel;
-    JTextField usernameMessage;
+    // Infield messages
+    JLabel usernameMessage;
+    JLabel emailMessage;
 
     JDialog signDialog;
     JLabel errorDialog = new JLabel(
@@ -38,6 +39,18 @@ public class Signup extends Login {
     JButton signup;
 
     public Signup() {
+        usernameMessage = new JLabel("Username not available!");
+        usernameMessage.setBounds(150, 245, 175, 15);
+        usernameMessage.setForeground(Color.RED);
+        usernameMessage.setFont(new Font("Arial", Font.PLAIN, 10));
+        usernameMessage.setHorizontalAlignment(JLabel.RIGHT);
+        // No background/opaque settings needed — JLabel is transparent by default
+
+        emailMessage = new JLabel("Email already in use!");
+        emailMessage.setBounds(150, 330, 175, 15);
+        emailMessage.setForeground(Color.RED);
+        emailMessage.setFont(new Font("Arial", Font.PLAIN, 10));
+        emailMessage.setHorizontalAlignment(JLabel.RIGHT);
 
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
@@ -64,24 +77,6 @@ public class Signup extends Login {
         signUsername.setLayout(new FlowLayout());
         signUsername.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         signUsername.setForeground(Color.BLACK);
-
-        usernameLabel = new JLabel();
-        usernameLabel.setBounds(150, 245, 175, 20);
-        usernameLabel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        usernameLabel.setBackground(null);
-
-        usernameMessage = new JTextField();
-        usernameMessage.setBounds(150, 245, 175, 15);
-        usernameMessage.setText("Username not available!");
-        usernameMessage.setForeground(Color.RED);
-        usernameMessage.setFont(new Font("Arial", Font.PLAIN, 10));
-        // usernameMessage.setLayout(null);
-        usernameMessage.setHorizontalAlignment(JTextField.RIGHT);
-        usernameMessage.setBackground(null);
-        usernameMessage.setOpaque(false);
-        usernameMessage.setBorder(null);
-        // usernameMessage.setOpaque(true);
-        // usernameLabel.add(usernameMessage);
 
         emailAdd = new JLabel("Email Address");
         emailAdd.setBounds(50, 270, 150, 30);
@@ -205,6 +200,7 @@ public class Signup extends Login {
         logPanel.setVisible(false);
 
         signPanel.add(usernameMessage);
+        signPanel.add(emailMessage);
         signPanel.add(fname);
         signPanel.add(fullName);
         signPanel.add(signUser);
