@@ -25,6 +25,7 @@ public class Signup extends Login {
     // Infield messages
     JLabel usernameMessage;
     JLabel emailMessage;
+    JLabel confirmpassMessage;
 
     JDialog signDialog;
     JLabel errorDialog = new JLabel(
@@ -39,18 +40,27 @@ public class Signup extends Login {
     JButton signup;
 
     public Signup() {
+        // Infield username message
         usernameMessage = new JLabel("Username not available!");
         usernameMessage.setBounds(150, 245, 175, 15);
         usernameMessage.setForeground(Color.RED);
         usernameMessage.setFont(new Font("Arial", Font.PLAIN, 10));
         usernameMessage.setHorizontalAlignment(JLabel.RIGHT);
-        // No background/opaque settings needed — JLabel is transparent by default
+        usernameMessage.setVisible(false);
 
+        // Infield email message
         emailMessage = new JLabel("Email already in use!");
         emailMessage.setBounds(150, 330, 175, 15);
         emailMessage.setForeground(Color.RED);
         emailMessage.setFont(new Font("Arial", Font.PLAIN, 10));
         emailMessage.setHorizontalAlignment(JLabel.RIGHT);
+
+        // Infield confirmpassword Message
+        confirmpassMessage = new JLabel("Password didn't matched!");
+        confirmpassMessage.setBounds(150, 505, 175, 15);
+        confirmpassMessage.setForeground(Color.RED);
+        confirmpassMessage.setFont(new Font("Arial", Font.PLAIN, 10));
+        confirmpassMessage.setHorizontalAlignment(JLabel.RIGHT);
 
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
@@ -201,6 +211,7 @@ public class Signup extends Login {
 
         signPanel.add(usernameMessage);
         signPanel.add(emailMessage);
+        signPanel.add(confirmpassMessage);
         signPanel.add(fname);
         signPanel.add(fullName);
         signPanel.add(signUser);
