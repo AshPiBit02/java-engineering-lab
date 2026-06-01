@@ -57,10 +57,11 @@ public class Signup extends Login {
 
         // Infield confirmpassword Message
         confirmpassMessage = new JLabel("Password didn't matched!");
-        confirmpassMessage.setBounds(150, 505, 175, 15);
+        confirmpassMessage.setBounds(150, 508, 175, 15);
         confirmpassMessage.setForeground(Color.RED);
         confirmpassMessage.setFont(new Font("Arial", Font.PLAIN, 10));
         confirmpassMessage.setHorizontalAlignment(JLabel.RIGHT);
+        confirmpassMessage.setVisible(false);
 
         fullName = new JLabel("Full Name");
         fullName.setBounds(50, 100, 100, 30);
@@ -175,12 +176,17 @@ public class Signup extends Login {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
                 signup.setBackground(Color.decode("#00ff26"));
+                usernameMessage.setVisible(false);
+                emailMessage.setVisible(false);
+                confirmpassMessage.setVisible(false);
                 if (fname.getText().isEmpty() || signUsername.getText().isEmpty() || email.getText().isEmpty()
                         || signPassword.isEmpty() || signConfirmPassword.isEmpty()) {
                     signDialog.setTitle("Empty Field Error");
                     signDialogfunc(signDialog);
                 } else if (!signPassword.equals(signConfirmPassword)) {
                     signDialog.setTitle("Password Match Error!!!");
+                    confirmpassMessage.setVisible(true);
+                    signPanel.repaint();
                     signDialogfunc(signDialog);
                 } else { // Register
                     new RegisterFile(fname.getText(), signUsername.getText(), email.getText(), signPassword);// Registers
