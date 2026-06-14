@@ -53,7 +53,7 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] 1.3 Packages and Data Types
 - [x] 1.4 Conditional Statements
 - [x] 1.5 Access Modifiers
-- [ ] 1.6 Exception Handling
+- [x] 1.6 Exception Handling
 - [ ] 1.7 Java Collections
 
 ---
@@ -65,7 +65,7 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] 2.3 Types of inheritance
 - [x] 2.4 Extends and super keyword
 - [x] 2.5 Overriding / Overloading
-- [ ] 2.6 Final classes and methods
+- [x] 2.6 Final classes and methods
 - [x] 2.7 Abstract classes and methods
 - [x] 2.8 Upcasting vs Down casting
 - [x] 2.9 Interfaces and Implementations
@@ -75,12 +75,12 @@ By the end of the course, students will be proficient in Java programming — eq
 ### Phase 3 · Building Components using Swing and JavaFX
 
 - [x] 3.1 Introduction to AWT and Swing — Concept, Applets, Swing Class Hierarchy, Components/Containers
-- [ ] 3.2 Layout Management
-- [ ] 3.3 GUI Controls
-- [ ] 3.4 Menu Elements and Tooltips
-- [ ] 3.5 Dialogs and Frames
-- [ ] 3.6 Event handling and Listener Interfaces
-- [ ] 3.7 Handling Action Events
+- [x] 3.2 Layout Management
+- [x] 3.3 GUI Controls
+- [x] 3.4 Menu Elements and Tooltips
+- [x] 3.5 Dialogs and Frames
+- [x] 3.6 Event handling and Listener Interfaces
+- [x] 3.7 Handling Action Events
 - [ ] 3.8 JavaFX vs Swing
 - [ ] 3.9 JavaFX Layouts
 - [ ] 3.10 JavaFX UI Controls
