@@ -29,7 +29,7 @@
 |                        CLIENT JVM                             |
 |                                                               |
 |   Client Code                                                 |
-|   remoteObj.add(5, 3)  <-- looks like a local call           |
+|   remoteObj.add(5, 3)  <-- looks like a local call            |
 |         |                                                     |
 |      [ STUB ]          <-- client-side proxy                  |
 |         |                                                     |
@@ -42,10 +42,10 @@
           |
           |  byte stream → unmarshals args
 +---------|-----------------------------------------------------+
-|      [ SKELETON ]      <-- server-side dispatcher            |
+|      [ SKELETON ]      <-- server-side dispatcher             |
 |         |                                                     |
-|   [ Remote Object ]    <-- actual implementation             |
-|   add(5, 3) → 8                                              |
+|   [ Remote Object ]    <-- actual implementation              |
+|   add(5, 3) → 8                                               |
 |                                                               |
 |                        SERVER JVM                             |
 +---------------------------------------------------------------+
@@ -65,8 +65,8 @@ CLIENT SIDE                              SERVER SIDE
 +--------+----------+                  +----------+--------+
          |                                        |
 +--------+----------+                  +----------+--------+
-|   Stub / Proxy    |                  |  Skeleton/Dispatch |
-| (Remote Ref Layer)|                  | (Remote Ref Layer) |
+|   Stub / Proxy    |                  |  Skeleton/Dispatch|
+| (Remote Ref Layer)|                  | (Remote Ref Layer)|
 +--------+----------+                  +----------+--------+
          |                                        |
 +--------+----------+                  +----------+--------+
@@ -98,11 +98,11 @@ The **RMI Registry** is a separate process (or embedded service) that acts as a 
 +------------------+                                         +--------+---------+
                                                                       |
 +------------------+          lookup("Calculator")                    |
-|   CLIENT         |  <--------------------------------------------- |
-|                  |                                                   |
+|   CLIENT         |  <---------------------------------------------  |
+|                  |                                                  |
 |  Gets Stub       |         returns stub                             |
-|  Calls methods   |                                                   |
-+------------------+                                                   |
+|  Calls methods   |                                                  |
++------------------+                                                  |
                                                              +------------------+
                                                              | Default Port: 1099|
                                                              +------------------+
@@ -198,15 +198,15 @@ obj.method(arg)                         stub.method(arg)
      |                               server receives
      |                                       |
      v                                  unmarshal
-  return value                              |
+  return value                               |
      |                               execute method
      v                                       |
   caller gets result                   marshal result
-                                            |
+                                             |
                                        TCP send back
-                                            |
+                                             |
                                       unmarshal result
-                                            |
+                                             |
                                       caller gets result
 ```
 
