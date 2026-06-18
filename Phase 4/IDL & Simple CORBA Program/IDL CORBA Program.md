@@ -1,5 +1,6 @@
 # IDL and Simple CORBA Programs
 
+
 ## Table of Contents
 1. [IDL Overview](#idl-overview)
 2. [IDL Syntax & Elements](#idl-syntax--elements)
