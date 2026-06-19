@@ -12,3 +12,32 @@ JLabel Demo/
 Swing Registration From/
 JFrameDemo/
 AllComponentsDemo/
+
+# Maven
+target/
+*.jar
+*.class
+*.log
+
+# Maven temporary files
+maven-status/
+generated-sources/
+dependency-reduced-pom.xml
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build outputs
+out/
+bin/
+
+# Local only
+*.txt   # remove this if you want to keep important .txt files
