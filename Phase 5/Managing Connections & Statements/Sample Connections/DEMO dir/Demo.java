@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class Demo{
     public static void main(String[] args) throws Exception{
-        System.out.print("Enter product id to retrieve data: ");
-        Scanner sc=new Scanner(System.in);
-        int value=sc.nextInt();
+//        System.out.print("Enter product id to retrieve data: ");
+//        Scanner sc=new Scanner(System.in);
+//        int value=sc.nextInt();
         String url="jdbc:postgresql://localhost:5432/explore_psql";
         String username="postgres";
         String password="2426";
@@ -19,7 +19,7 @@ public class Demo{
         Connection conn=DriverManager.getConnection(url,username,password);
         Statement st=conn.createStatement();
         ResultSet rs=st.executeQuery(sql);
-        ResultSet rs2=st.executeQuery(sql2)
+        ResultSet rs2=st.executeQuery(sql2);
 
         while(rs.next()){
             // Retrieving single record value(s)
