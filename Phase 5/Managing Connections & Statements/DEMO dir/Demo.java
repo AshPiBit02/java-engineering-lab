@@ -13,9 +13,11 @@ public class Demo{
         Connection conn=DriverManager.getConnection(url,username,password);
         Statement st=conn.createStatement();
         ResultSet rs=st.executeQuery(sql);
-        while(rs.next()){
-            System.out.println(rs.getString("name"));
-        }
+
+        rs.next(); // Points to record
+        // operations
+
+        conn.close();
 
 
     }
