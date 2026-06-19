@@ -12,11 +12,14 @@ public class Demo{
         String url="jdbc:postgresql://localhost:5432/explore_psql";
         String username="postgres";
         String password="2426";
+
+        String sql2="SELECT * FROM inventory";
         String sql="SELECT * FROM inventory WHERE id=14";
 
         Connection conn=DriverManager.getConnection(url,username,password);
         Statement st=conn.createStatement();
         ResultSet rs=st.executeQuery(sql);
+        ResultSet rs2=st.executeQuery(sql2)
 
         while(rs.next()){
             // Retrieving single record value(s)
@@ -27,9 +30,10 @@ public class Demo{
             int warranty=rs.getInt(5);
 
             System.out.printf("Id: %d   Product: %s   Type: %s    Location: %s      Warranty: %d years",id,product,type,location,warranty);
-        }
-        conn.close();
 
+        }
+
+        conn.close();
 
     }
 }
