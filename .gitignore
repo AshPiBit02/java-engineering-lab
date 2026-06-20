@@ -12,6 +12,7 @@ JLabel Demo/
 Swing Registration From/
 JFrameDemo/
 AllComponentsDemo/
+*.dm
 
 # Maven
 target/
