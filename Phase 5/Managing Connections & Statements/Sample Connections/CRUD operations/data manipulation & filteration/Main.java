@@ -4,8 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class Main {
-    static ResultSet rs1, rs2, rs3;
-    static PreparedStatement ps1, ps2, ps3;
+    static ResultSet rs, rs1, rs2, rs3, rs4;
+    static PreparedStatement ps1, ps2, ps3, ps4;
     static Connection con;
 
     public static void main(String[] args) throws Exception {
@@ -29,7 +29,7 @@ public class Main {
 
         System.out.println("Data after update: ");
         reload_resultset();
-        display(rs1);
+        display(rs);
 
         // Marks Update
         ps3 = con.prepareStatement("UPDATE students\n" + //
@@ -40,6 +40,25 @@ public class Main {
                 "            END RETURNING student_id");
         rs3 = ps3.executeQuery();
         affected_std(rs3);
+
+        // Grade Update
+        PreparedStatement ps4 = con.prepareStatement(
+                "UPDATE students " +
+                        "SET grade = CASE " +
+                        "   WHEN marks > 80 THEN 'A' " +
+                        "   WHEN marks BETWEEN 70 AND 80 THEN 'B' " +
+                        "   WHEN marks BETWEEN 50 AND 69 THEN 'C' " +
+                        "   WHEN marks BETWEEN 40 AND 49 THEN 'D' " +
+                        "   ELSE 'F' END " +
+                        "RETURNING student_id");
+        rs4 = ps4.executeQuery();
+        affected_std(rs4);
+
+        // Result
+        System.out.println("Final result: ");
+        System.out.println("*".repeat(100));
+        reload_resultset();
+        display(rs);
 
         con.close();
 
