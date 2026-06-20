@@ -4,8 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class Main {
-    static ResultSet rs, rs1, rs2, rs3, rs4;
-    static PreparedStatement ps1, ps2, ps3, ps4;
+    static ResultSet rs;
+    static PreparedStatement ps;
     static Connection con;
 
     public static void main(String[] args) throws Exception {
@@ -15,34 +15,33 @@ public class Main {
 
         // Initail SELECT
         con = DriverManager.getConnection(url, username, password);
-        ps1 = con.prepareStatement("SELECT * FROM students");
-        rs1 = ps1.executeQuery();
         System.out.println("Data before Update: ");
-        display(rs1);
+        reload_resultset();
+        display(rs);
 
         // UPDATE
 
         // Empty faculty -> Engineering
-        ps2 = con.prepareStatement("UPDATE students SET faculty = 'Engineering' WHERE faculty='' RETURNING student_id");
-        rs2 = ps2.executeQuery(); // returns student_id of affected records
-        affected_std(rs2);
+        ps = con.prepareStatement("UPDATE students SET faculty = 'Engineering' WHERE faculty='' RETURNING student_id");
+        rs = ps.executeQuery(); // returns student_id of affected records
+        affected_std(rs);
 
         System.out.println("Data after update: ");
         reload_resultset();
         display(rs);
 
         // Marks Update
-        ps3 = con.prepareStatement("UPDATE students\n" + //
+        ps = con.prepareStatement("UPDATE students\n" + //
                 "SET marks = CASE\n" + //
                 "               WHEN marks < 0 OR marks IS NULL THEN 0\n" + //
                 "               WHEN marks > 100 THEN 100\n" + //
                 "               ELSE marks\n" + //
                 "            END RETURNING student_id");
-        rs3 = ps3.executeQuery();
-        affected_std(rs3);
+        rs = ps.executeQuery();
+        affected_std(rs);
 
         // Grade Update
-        PreparedStatement ps4 = con.prepareStatement(
+        ps = con.prepareStatement(
                 "UPDATE students " +
                         "SET grade = CASE " +
                         "   WHEN marks > 80 THEN 'A' " +
@@ -51,12 +50,12 @@ public class Main {
                         "   WHEN marks BETWEEN 40 AND 49 THEN 'D' " +
                         "   ELSE 'F' END " +
                         "RETURNING student_id");
-        rs4 = ps4.executeQuery();
-        affected_std(rs4);
+        rs = ps.executeQuery();
+        affected_std(rs);
 
         // Result
-        System.out.println("Final result: ");
-        System.out.println("*".repeat(100));
+        System.out.println("\nFinal result: ");
+        System.out.println("-".repeat(100));
         reload_resultset();
         display(rs);
 
@@ -74,8 +73,8 @@ public class Main {
     }
 
     static void reload_resultset() throws Exception {
-        ps1 = con.prepareStatement("SELECT * FROM students ORDER BY student_id");
-        rs1 = ps1.executeQuery();
+        ps = con.prepareStatement("SELECT * FROM students ORDER BY student_id");
+        rs = ps.executeQuery();
 
     }
 
