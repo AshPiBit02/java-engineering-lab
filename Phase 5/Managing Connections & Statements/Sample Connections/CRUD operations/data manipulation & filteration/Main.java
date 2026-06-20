@@ -79,11 +79,11 @@ public class Main {
     }
 
     static void affected_std(ResultSet rs) throws Exception {
-        System.out.print("Affected Student(s) ID: ");
+        System.out.print("\nAffected Student(s) ID: ");
         while (rs.next()) {
             System.out.print(" " + rs.getInt("student_id"));
         }
-        reload_resultset();
+        // reload_resultset();
     }
 
 }
