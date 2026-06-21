@@ -35,8 +35,11 @@ public class insertion {
 
             insertData(id, uname, upass, email);
 
-            System.out.print("Register more user(s)[No -> 0]: ");
-            more_data = sc.nextInt();
+            System.out.print("\nRegister more user(s)? [No -> 0 | Yes -> any integer]: ");
+
+            if ((more_data = sc.nextInt()) == 0) {
+                System.out.println("/n" + "*".repeat(15) + "Exit" + "*".repeat(15));
+            }
             sc.nextLine();
 
         } while (more_data != 0);
@@ -49,6 +52,7 @@ public class insertion {
         pst.setString(3, password);
         pst.setString(4, email);
         pst.executeUpdate();
+        System.out.println("-".repeat(100));
         System.out.println(username + "'s Data inserted.");
 
     }
