@@ -22,6 +22,7 @@ public class insertion {
         do {
             System.out.print("UserId: ");
             int id = sc.nextInt();
+            sc.nextLine();
 
             System.out.print("Username: ");
             String uname = sc.nextLine();
@@ -33,9 +34,10 @@ public class insertion {
             String email = sc.nextLine();
 
             insertData(id, uname, upass, email);
-            
+
             System.out.print("Register more user(s)[No -> 0]: ");
             more_data = sc.nextInt();
+            sc.nextLine();
 
         } while (more_data != 0);
 
