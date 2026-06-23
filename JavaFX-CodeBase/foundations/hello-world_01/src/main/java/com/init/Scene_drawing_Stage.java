@@ -3,12 +3,8 @@ package com.init;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -52,6 +48,13 @@ public class Scene_drawing_Stage {
         triangle.getPoints().setAll(100.0, 100.0, 000.0, 200.0, 300.0, 200.0);
         triangle.setFill(Color.YELLOW);
 
+        Circle circle = new Circle();
+        circle.setCenterX(350);
+        circle.setCenterY(350);
+        circle.setRadius(200);
+        circle.setFill(Color.ORANGE);
+
+        root.getChildren().add(circle);
         root.getChildren().add(triangle);
         root.getChildren().add(rect);
         root.getChildren().add(line);
