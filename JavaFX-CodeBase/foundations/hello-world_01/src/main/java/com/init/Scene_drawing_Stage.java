@@ -3,6 +3,8 @@ package com.init;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.text.Font;
@@ -54,11 +56,17 @@ public class Scene_drawing_Stage {
         circle.setRadius(200);
         circle.setFill(Color.ORANGE);
 
+        Image image = new Image(getClass().getResourceAsStream("/showw.jpg"));
+        ImageView imgview = new ImageView(image);
+        imgview.setX(350);
+        imgview.setY(200);
+
         root.getChildren().add(circle);
         root.getChildren().add(triangle);
         root.getChildren().add(rect);
         root.getChildren().add(line);
         root.getChildren().add(text);
+        root.getChildren().add(imgview);
         stage.setScene(scene);
         stage.show();
     }
