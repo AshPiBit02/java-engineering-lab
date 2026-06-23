@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -36,6 +37,17 @@ public class Scene_drawing_Stage {
         line.setOpacity(0.5);
         line.setRotate(45);
 
+        Rectangle rect = new Rectangle();
+        rect.setX(300);
+        rect.setY(250);
+        rect.setWidth(150);
+        rect.setHeight(90);
+        rect.setFill(Color.RED);
+        rect.setStrokeWidth(5);
+        rect.setStroke(Color.BLACK);
+        rect.setRotate(50);
+        
+        root.getChildren().add(rect);
         root.getChildren().add(line);
         root.getChildren().add(text);
         stage.setScene(scene);
