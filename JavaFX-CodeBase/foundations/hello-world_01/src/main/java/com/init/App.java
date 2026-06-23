@@ -11,6 +11,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // new MainStage().show();
-        new Scene_drawing_Stage().show();
+        // new Scene_drawing_Stage().show();
+        new Starting_with_sceneBuilder().show();
     }
 }
