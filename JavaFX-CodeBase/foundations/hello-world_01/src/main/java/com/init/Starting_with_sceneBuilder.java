@@ -13,7 +13,7 @@ public class Starting_with_sceneBuilder {
     Starting_with_sceneBuilder() throws IOException {
         stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/new.fxml"));
-        Scene scene = new Scene(root, 400, 400);
+        Scene scene = new Scene(root);
 
         stage.setScene(scene);
     }
