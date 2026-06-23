@@ -15,24 +15,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Group root = new Group();
-        Scene scene = new Scene(root, Color.BROWN);
-
-        Image icon = new Image(getClass().getResourceAsStream("/showw.jpg"));
-
-        stage.getIcons().add(icon);
-        stage.setTitle("First stage");
-        stage.setWidth(420);
-        stage.setHeight(300);
-        stage.setResizable(false);
-        // stage.setX(50);
-        // stage.setY(50);
-        stage.setFullScreen(true); // by default exit with esc.
-        stage.setFullScreenExitHint("You can't escape unless you press q");
-        stage.setFullScreenExitKeyCombination(KeyCombination.valueOf("q"));
-
-        stage.setScene(scene);
-        stage.show();
+        new MainStage().show();
         new SecondStage().show();
     }
 }
