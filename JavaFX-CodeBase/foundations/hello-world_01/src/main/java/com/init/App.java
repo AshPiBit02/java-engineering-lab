@@ -21,6 +21,11 @@ public class App extends Application {
 
         stage.getIcons().add(icon);
         stage.setTitle("First stage");
+        stage.setWidth(420);
+        stage.setHeight(300);
+        stage.setResizable(false);
+        stage.setX(50);
+        stage.setY(50);
 
         stage.setScene(scene);
         stage.show();
