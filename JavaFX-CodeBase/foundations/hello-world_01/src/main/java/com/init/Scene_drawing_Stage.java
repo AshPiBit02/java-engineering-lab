@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class SecondStage {
+public class Scene_drawing_Stage {
     public void show() {
         Group root = new Group();
         Text text = new Text();
@@ -31,6 +31,10 @@ public class SecondStage {
 
         line.setEndX(500);
         line.setEndY(100);
+        line.setStrokeWidth(10);
+        line.setStroke(Color.RED);
+        line.setOpacity(0.5);
+        line.setRotate(45);
 
         root.getChildren().add(line);
         root.getChildren().add(text);
