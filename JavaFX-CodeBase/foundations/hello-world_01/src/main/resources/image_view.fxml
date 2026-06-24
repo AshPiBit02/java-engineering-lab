@@ -5,12 +5,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="413.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="413.0"
+   xmlns="http://javafx.com/javafx/26"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.init.ImageViewController">
    <children>
-      <Button layoutX="99.0" layoutY="277.0" mnemonicParsing="false" text="Previous" />
-      <Button layoutX="256.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Next" />
-      <ImageView fitHeight="180.0" fitWidth="241.0" layoutX="86.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
-      <Slider layoutX="347.0" layoutY="70.0" orientation="VERTICAL" prefHeight="187.0" prefWidth="50.0" />
+      <Button fx:id="PrevBtn" layoutX="99.0" layoutY="277.0" mnemonicParsing="false" text="Previous" />
+      <Button fx:id="NxtBtn" layoutX="256.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Next" />
+      <Button fx:id="PrevBtn" layoutX="99.0" layoutY="277.0" mnemonicParsing="false" text="Previous" onAction="#handlePrevious" />
+      <Button fx:id="NxtBtn" layoutX="256.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Next" onAction="#handleNext" />
+      <ImageView fx:id="imageView" fitHeight="180.0" fitWidth="241.0" layoutX="86.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+      <Slider fx:id="zoomSlider" layoutX="347.0" layoutY="70.0" orientation="VERTICAL" prefHeight="187.0" prefWidth="50.0" />
    </children>
 </AnchorPane>

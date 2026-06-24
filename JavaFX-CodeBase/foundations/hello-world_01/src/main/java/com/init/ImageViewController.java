@@ -15,13 +15,13 @@ public class ImageViewController {
     @FXML
     private Button PrevBtn;
     @FXML
-    private Slider zooSlider;
+    private Slider zoomSlider;
 
     private LinkedList<Image> images = new LinkedList<>();
     private ListIterator<Image> iterator;
 
     @FXML
-    public void initailize() {
+    public void initialize() {
         images.add(new Image(getClass().getResourceAsStream("/ImageViewer_Imgs/one.png")));
         images.add(new Image(getClass().getResourceAsStream("/ImageViewer_Imgs/two.png")));
         images.add(new Image(getClass().getResourceAsStream("/ImageViewer_Imgs/three.png")));
@@ -34,6 +34,34 @@ public class ImageViewController {
         images.add(new Image(getClass().getResourceAsStream("/ImageViewer_Imgs/ten.png")));
         images.add(new Image(getClass().getResourceAsStream("/ImageViewer_Imgs/eleven.png")));
         images.add(new Image(getClass().getResourceAsStream("/ImageViewer_Imgs/twelve.png")));
+
+        iterator = images.listIterator();
+        if (iterator.hasNext()) {
+            imageView.setImage(iterator.next());
+        }
+
+        zoomSlider.setMin(0.5);
+        zoomSlider.setMax(3.0);
+        zoomSlider.setValue(1.0);
+        zoomSlider.valueProperty().addListener((obs, odlVal, newVal) -> {
+            imageView.setScaleX(newVal.doubleValue());
+            imageView.setScaleY(newVal.doubleValue());
+        });
+
+    }
+
+    @FXML
+    private void handleNext() {
+        if (iterator.hasNext()) {
+            imageView.setImage(iterator.next());
+        }
+    }
+
+    @FXML
+    private void handlePrevious() {
+        if (iterator.hasPrevious()) {
+            imageView.setImage(iterator.previous());
+        }
     }
 
 }
