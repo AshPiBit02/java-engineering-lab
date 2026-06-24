@@ -56,7 +56,7 @@ public class Scene_drawing_Stage {
         circle.setRadius(200);
         circle.setFill(Color.ORANGE);
 
-        Image image = new Image(getClass().getResourceAsStream("/showw.jpg"));
+        Image image = new Image(getClass().getResourceAsStream("/Images/showw.jpg"));
         ImageView imgview = new ImageView(image);
         imgview.setX(350);
         imgview.setY(200);
