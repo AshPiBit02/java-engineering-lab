@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="622.0" prefWidth="274.0" style="-fx-background-color: green;">
+         <children>
+            <Button layoutX="28.0" layoutY="565.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="219.0" style="-fx-background-color: yellow;" text="Select">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="28.0" layoutY="517.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="219.0" style="-fx-background-color: yellow;" text="Delete">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="28.0" layoutY="472.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="219.0" style="-fx-background-color: yellow;" text="Alter">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="28.0" layoutY="426.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="219.0" style="-fx-background-color: yellow;" text="Update">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <TableView layoutX="278.0" layoutY="-3.0" prefHeight="628.0" prefWidth="424.0">
+        <columns>
+          <TableColumn id="userid" prefWidth="75.0" style="-fx-background-color: gray;" text="User ID" />
+          <TableColumn id="username" prefWidth="101.0" style="-fx-background-color: gray;" text="Username" />
+            <TableColumn id="password" prefWidth="93.0" style="-fx-background-color: gray;" text="Password" />
+            <TableColumn id="email" prefWidth="154.0" style="-fx-background-color: gray;" text="Email" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

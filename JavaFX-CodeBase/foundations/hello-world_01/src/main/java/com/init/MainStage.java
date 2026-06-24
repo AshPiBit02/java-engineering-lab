@@ -15,7 +15,7 @@ public class MainStage {
         Group root = new Group();
         Scene scene = new Scene(root, Color.BROWN);
 
-        Image icon = new Image(getClass().getResourceAsStream("/showw.jpg"));
+        Image icon = new Image(getClass().getResourceAsStream("/Images/showw.jpg"));
 
         stage.getIcons().add(icon);
         stage.setTitle("First stage");
