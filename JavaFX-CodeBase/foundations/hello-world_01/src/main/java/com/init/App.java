@@ -12,6 +12,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         // new MainStage().show();
         // new Scene_drawing_Stage().show();
-        new Starting_with_sceneBuilder().show();
+        // new Starting_with_sceneBuilder().show();
+        new ImageViewer().show();
     }
 }
