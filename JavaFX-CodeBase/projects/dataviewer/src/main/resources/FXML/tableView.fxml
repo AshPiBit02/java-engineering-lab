@@ -8,8 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.init.Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="624.0"
+   xmlns="http://javafx.com/javafx/26"
+   xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="titleLabel" alignment="CENTER" layoutX="54.0" layoutY="7.0" prefHeight="17.0" prefWidth="516.0" text="JAVAFX-JDBC-POSTGESQL" textAlignment="CENTER" textFill="#4a0303" wrapText="true">
          <font>
@@ -17,26 +18,26 @@
          </font>
       </Label>
       <TableView layoutY="144.0" prefHeight="452.0" prefWidth="624.0">
-        <columns>
-          <TableColumn fx:id="stuId" prefWidth="75.0" style="-fx-background-color: green;" text="Student ID" />
-          <TableColumn fx:id="fullname" prefWidth="227.0" style="-fx-background-color: green;" text="Full Name" />
+         <columns>
+            <TableColumn fx:id="stuId" prefWidth="75.0" style="-fx-background-color: green;" text="Student ID" />
+            <TableColumn fx:id="fullname" prefWidth="227.0" style="-fx-background-color: green;" text="Full Name" />
             <TableColumn fx:id="course" prefWidth="122.0" style="-fx-background-color: green;" text="Course" />
             <TableColumn fx:id="faculty" prefWidth="111.0" style="-fx-background-color: green;" text="Faculty" />
             <TableColumn fx:id="level" prefWidth="87.0" style="-fx-background-color: green;" text="Level" />
-        </columns>
+         </columns>
       </TableView>
       <Label fx:id="cmdLabel" contentDisplay="CENTER" layoutX="14.0" layoutY="64.0" prefHeight="37.0" prefWidth="107.0" text="SQL Command">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="140.0" layoutY="70.0" prefHeight="25.0" prefWidth="456.0" />
-      <Button fx:id="enterBtn" layoutX="185.0" layoutY="101.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" style="-fx-background-color: yellow;" text="Enter">
+      <TextField fx:id="sqlField" layoutX="140.0" layoutY="70.0" prefHeight="25.0" prefWidth="456.0" />
+      <Button fx:id="enterBtn" layoutX="185.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleEnter" prefHeight="25.0" prefWidth="151.0" style="-fx-background-color: yellow;" text="Enter">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="refreshBtn" layoutX="393.0" layoutY="101.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" style="-fx-background-color: yellow;" text="Refresh">
+      <Button fx:id="refreshBtn" layoutX="393.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="25.0" prefWidth="151.0" style="-fx-background-color: yellow;" text="Refresh">
          <font>
             <Font size="13.0" />
          </font>
