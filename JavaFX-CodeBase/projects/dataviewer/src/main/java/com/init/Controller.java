@@ -60,4 +60,17 @@ public class Controller {
 
     }
 
+    @FXML
+    public void handleEnter() {
+        String sql = sqlField.getText().trim();
+        if (!sql.isEmpty()) {
+            loadData(sql);
+        }
+    }
+
+    @FXML
+    public void handleRefresh() {
+        loadData("Select * FROM studentInfo");
+    }
+
 }
