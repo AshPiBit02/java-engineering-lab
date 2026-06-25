@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.swing.table.TableColumn;
+import javafx.scene.control.TableColumn;
 
 public class Controller {
     @FXML
@@ -32,7 +32,7 @@ public class Controller {
     @FXML
     private Button refreshBtn;
 
-    private ObservableList<Student> studentList = FXCollections.observableListArrayList();
+    private ObservableList<Student> studentList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
