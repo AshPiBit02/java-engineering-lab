@@ -10,11 +10,11 @@ public class Student {
     private StringProperty level;
 
     public Student(int id, String name, String course, String faculty, String level) {
-        this.id = id;
-        this.name = nmae;
-        this.course = course;
-        this.faculty = faculty;
-        this.level = level;
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.course = new SimpleStringProperty(course);
+        this.faculty = new SimpleStringProperty(faculty);
+        this.level = new SimpleStringProperty(level);
     }
 
     public int getId() {
