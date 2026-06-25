@@ -37,10 +37,10 @@ public class Controller {
     @FXML
     public void initialize() {
         stuId.setCellValueFactory(data -> data.getValue().idProperty().asObject());
-        fullname.setCellValueFactory(data -> data.getValue().nameProperty().asObject());
-        course.setCellValueFactory(data -> data.getValue().courseProperty().asObject());
-        faculty.setCellValueFactory(data -> data.getValue().facultyProperty().asObject());
-        level.setCellValueFactory(data -> data.getValue().levelProperty().asObject());
+        fullname.setCellValueFactory(data -> data.getValue().nameProperty());
+        course.setCellValueFactory(data -> data.getValue().courseProperty());
+        faculty.setCellValueFactory(data -> data.getValue().facultyProperty());
+        level.setCellValueFactory(data -> data.getValue().levelProperty());
         loadData("SELECT * FROM studentInfo");
     }
 
