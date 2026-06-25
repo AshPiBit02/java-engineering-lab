@@ -17,7 +17,7 @@
             <Font name="MS Outlook" size="39.0" />
          </font>
       </Label>
-      <TableView layoutY="144.0" prefHeight="452.0" prefWidth="624.0">
+      <TableView fx:id="TableView" layoutY="144.0" prefHeight="452.0" prefWidth="624.0">
          <columns>
             <TableColumn fx:id="stuId" prefWidth="75.0" style="-fx-background-color: green;" text="Student ID" />
             <TableColumn fx:id="fullname" prefWidth="227.0" style="-fx-background-color: green;" text="Full Name" />
