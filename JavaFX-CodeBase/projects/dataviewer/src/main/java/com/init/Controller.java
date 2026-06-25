@@ -41,7 +41,7 @@ public class Controller {
         course.setCellValueFactory(data -> data.getValue().courseProperty());
         faculty.setCellValueFactory(data -> data.getValue().facultyProperty());
         level.setCellValueFactory(data -> data.getValue().levelProperty());
-        loadData("SELECT * FROM studentinfo");
+        loadData("SELECT * FROM studentinfo ORDER BY id");
     }
 
     private void loadData(String sql) {
@@ -70,7 +70,8 @@ public class Controller {
 
     @FXML
     public void handleRefresh() {
-        loadData("Select * FROM studentinfo");
+        sqlField.clear();
+        loadData("Select * FROM studentinfo ORDER BY id");
     }
 
 }
