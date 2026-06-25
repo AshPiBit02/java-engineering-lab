@@ -13,6 +13,7 @@ public class App extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/FXML/tableView.fxml"));
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/CSS/style.css").toExternalForm());
             stage.setTitle("Tabel Viewer from Postgresql");
             stage.setScene(scene);
             stage.show();
