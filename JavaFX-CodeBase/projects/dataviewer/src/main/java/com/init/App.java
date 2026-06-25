@@ -15,6 +15,7 @@ public class App extends Application {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/CSS/style.css").toExternalForm());
             stage.setTitle("Tabel Viewer from Postgresql");
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
