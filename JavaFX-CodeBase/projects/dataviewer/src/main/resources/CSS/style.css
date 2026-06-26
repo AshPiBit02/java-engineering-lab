@@ -62,3 +62,6 @@
     -fx-max-height:0;
     -fx-pref-height:0;
 }
+.dialog-pane{
+    -fx-font-size: 40px;
+}

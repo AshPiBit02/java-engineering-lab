@@ -44,7 +44,7 @@ public class Controller {
         course.setCellValueFactory(data -> data.getValue().courseProperty());
         faculty.setCellValueFactory(data -> data.getValue().facultyProperty());
         level.setCellValueFactory(data -> data.getValue().levelProperty());
-        loadData("SELECT * FROM studentinfo ORDER BY id", null);
+        loadData("SELECT * FROM studentinfo ORDER BY id", "empty");
     }
 
     private void loadData(String sql, String type) {
@@ -57,10 +57,10 @@ public class Controller {
                         rs.getString("faculty"), rs.getString("level")));
             }
             TableView.setItems(studentList);
-            if (type.equals("enter")) {
-                queryMessage.sqlMessage("Query run successfully");
-            } else {
+            if (type.equals("refresh")) {
                 queryMessage.sqlMessage("Data refreshed");
+            } else {
+                queryMessage.sqlMessage("Query run successfully");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,7 +80,7 @@ public class Controller {
     @FXML
     public void handleRefresh() {
         sqlField.clear();
-        loadData("Select * FROM studentinfo ORDER BY id", null);
+        loadData("Select * FROM studentinfo ORDER BY id", "refresh");
     }
 
 }
