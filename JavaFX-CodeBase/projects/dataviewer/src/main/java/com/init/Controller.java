@@ -10,8 +10,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.Alert;
 
 public class Controller {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
     @FXML
     private TableView<Student> TableView;
     @FXML
@@ -41,10 +44,10 @@ public class Controller {
         course.setCellValueFactory(data -> data.getValue().courseProperty());
         faculty.setCellValueFactory(data -> data.getValue().facultyProperty());
         level.setCellValueFactory(data -> data.getValue().levelProperty());
-        loadData("SELECT * FROM studentinfo ORDER BY id");
+        loadData("SELECT * FROM studentinfo ORDER BY id", "empty");
     }
 
-    private void loadData(String sql) {
+    private void loadData(String sql, String type) {
         studentList.clear();
         try (Connection conn = DBConnection.getConnection();
                 Statement st = conn.createStatement();
@@ -54,8 +57,14 @@ public class Controller {
                         rs.getString("faculty"), rs.getString("level")));
             }
             TableView.setItems(studentList);
+            if (type.equals("refresh")) {
+                queryMessage.sqlMessage("Data refreshed");
+            } else {
+                queryMessage.sqlMessage("Query run successfully");
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            queryMessage.sqlMessage("Query run failed!");
         }
 
     }
@@ -64,14 +73,14 @@ public class Controller {
     public void handleEnter() {
         String sql = sqlField.getText().trim();
         if (!sql.isEmpty()) {
-            loadData(sql);
+            loadData(sql, "enter");
         }
     }
 
     @FXML
     public void handleRefresh() {
         sqlField.clear();
-        loadData("Select * FROM studentinfo ORDER BY id");
+        loadData("Select * FROM studentinfo ORDER BY id", "refresh");
     }
 
 }

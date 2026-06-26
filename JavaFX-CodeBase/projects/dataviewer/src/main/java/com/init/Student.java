@@ -17,25 +17,25 @@ public class Student {
         this.level = new SimpleStringProperty(level);
     }
 
-    public int getId() {
-        return id.get();
-    }
+    // public int getId() {
+    // return id.get();
+    // }
 
-    public String getName() {
-        return name.get();
-    }
+    // public String getName() {
+    // return name.get();
+    // }
 
-    public String getCourse() {
-        return course.get();
-    }
+    // public String getCourse() {
+    // return course.get();
+    // }
 
-    public String getFaculty() {
-        return faculty.get();
-    }
+    // public String getFaculty() {
+    // return faculty.get();
+    // }
 
-    public String getLevel() {
-        return level.get();
-    }
+    // public String getLevel() {
+    // return level.get();
+    // }
 
     public IntegerProperty idProperty() {
         return id;
