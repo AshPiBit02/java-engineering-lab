@@ -10,8 +10,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.Alert;
 
 public class Controller {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
     @FXML
     private TableView<Student> TableView;
     @FXML
@@ -56,6 +59,8 @@ public class Controller {
             TableView.setItems(studentList);
         } catch (Exception e) {
             e.printStackTrace();
+            alert.setContentText("Query run failed!");
+            alert.show();
         }
 
     }
