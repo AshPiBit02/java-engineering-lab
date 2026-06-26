@@ -57,10 +57,10 @@ public class Controller {
                         rs.getString("faculty"), rs.getString("level")));
             }
             TableView.setItems(studentList);
+            queryMessage.sqlMessage("Query run successfully");
         } catch (Exception e) {
             e.printStackTrace();
-            alert.setContentText("Query run failed!");
-            alert.show();
+            queryMessage.sqlMessage("Query run failed!");
         }
 
     }
