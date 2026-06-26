@@ -34,7 +34,7 @@ A **Web Application** is a software program that runs on a web server and is acc
 | **Real-Time Updates** | Server changes immediately visible to all users |
 | **Scalability** | Can handle thousands of concurrent users |
 
-### Advantages vs Desktop Applications
+### Web Applications vs Desktop Applications
 
 | Aspect | Web App | Desktop App |
 |---|---|---|
