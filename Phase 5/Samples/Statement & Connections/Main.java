@@ -14,6 +14,8 @@ public class Main {
         String query1 = "SELECT * FROM employees";
         String query2 = "SELECT * FROM employees WHERE department='Engineering'";
         String query3 = "SELECT * FROM employees WHERE department=?";
+        String query4 = "SELECT * FROM employees WHERE salary>?";
+
         try (Connection con = DriverManager.getConnection(url, username, password)) {
             if (con.isValid(2)) {
                 displayMetadata(con);
@@ -34,6 +36,25 @@ public class Main {
 
                 System.out.println("\nHR Department");
                 pst.setString(1, "HR");
+                displayHeader();
+                displayRows(pst.executeQuery());
+
+            }
+            try (PreparedStatement pst = con.prepareStatement(query4)) {
+                System.out
+                        .println("\n\n\n\n" + "-".repeat(27) + " Reusing PreparedStatementf " + "-".repeat(27) + "\n");
+                System.out.println("\n Employees having salary greater than $50000");
+                pst.setFloat(1, 50000);
+                displayHeader();
+                displayRows(pst.executeQuery());
+
+                System.out.println("\n Employees having salary greater than $70000");
+                pst.setFloat(1, 70000);
+                displayHeader();
+                displayRows(pst.executeQuery());
+
+                System.out.println("\n Employees having salary greater than $90000");
+                pst.setFloat(1, 90000);
                 displayHeader();
                 displayRows(pst.executeQuery());
 
