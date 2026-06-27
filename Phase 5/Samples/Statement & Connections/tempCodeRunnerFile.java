@@ -102,8 +102,8 @@ public class Main {
                     System.out.println("Transaction committed successfully");
                 } else {
 
+                    throw new RuntimeException("Simulated failure");
                 }
-                throw new RuntimeException("Simulated failure");
             } catch (SQLException | RuntimeException e) {
                 try {
                     con.rollback();
