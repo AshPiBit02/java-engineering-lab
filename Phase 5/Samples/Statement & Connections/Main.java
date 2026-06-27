@@ -15,6 +15,7 @@ public class Main {
         String query2 = "SELECT * FROM employees WHERE department='Engineering'";
         String query3 = "SELECT * FROM employees WHERE department=?";
         String query4 = "SELECT * FROM employees WHERE salary>?";
+        String query5 = "UPDATE employees SET salary = 68000.00 WHERE name=? ";
 
         try (Connection con = DriverManager.getConnection(url, username, password)) {
             if (con.isValid(2)) {
@@ -55,6 +56,19 @@ public class Main {
 
                 System.out.println("\n Employees having salary greater than $90000");
                 pst.setFloat(1, 90000);
+                displayHeader();
+                displayRows(pst.executeQuery());
+
+            }
+
+            try (PreparedStatement pst = con.prepareStatement(query5)) {
+                System.out.println("\n\n\n" + "-".repeat(18) + "executeUpdate vs executeQuery" + "-".repeat(18) + "\n");
+                pst.setString(1, "Eva Green");
+                System.out.println("Affected row(s): " + pst.executeUpdate());
+                displayHeader();
+            }
+            try (PreparedStatement pst = con.prepareStatement(query1)) {
+                System.out.println("\n Updated Data");
                 displayHeader();
                 displayRows(pst.executeQuery());
 
