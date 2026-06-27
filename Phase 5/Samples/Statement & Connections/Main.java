@@ -81,33 +81,45 @@ public class Main {
             con.setAutoCommit(false);
             try {
                 PreparedStatement pst = con.prepareStatement(query6);
-                int count = 0;
-                try {
-                    pst.executeUpdate();
-                    System.out.println("INSERT Successful");
-                    count++;
-                } catch (SQLException e) {
-                    System.out.println("INSERT Failed!");
-                }
-                pst = con.prepareStatement(query7);
-                try {
-                    pst.executeUpdate();
-                    System.out.println("UPDATE Successful");
-                    count++;
-                } catch (SQLException e) {
-                    System.out.println("UPDATE Failed!");
-                }
-                if (count == 2) {
-                    con.commit();
-                    System.out.println("Transaction committed successfully");
-                } else {
+                pst.executeUpdate();
+                System.out.println("INSERT successful");
 
-                }
-                throw new RuntimeException("Simulated failure");
+                pst = con.prepareStatement(query7);
+                pst.executeUpdate();
+                System.out.println("UPDATE successful");
+
+                throw new RuntimeException("Simulated failure"); // PATH 1: rollback
+                // con.commit(); // PATH 2: commit (swap these)
+
             } catch (SQLException | RuntimeException e) {
+                System.out.println("Transaction failed: " + e.getMessage());
                 try {
                     con.rollback();
-                    System.out.println("Rollback Successful");
+                    System.out.println("Rollback successful");
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            } finally {
+                con.setAutoCommit(true);
+            }
+            con.setAutoCommit(false);
+            try {
+                PreparedStatement pst = con.prepareStatement(query6);
+                pst.executeUpdate();
+                System.out.println("INSERT successful");
+
+                pst = con.prepareStatement(query7);
+                pst.executeUpdate();
+                System.out.println("UPDATE successful");
+
+                // throw new RuntimeException("Simulated failure"); // PATH 1: rollback
+                con.commit(); // PATH 2: commit (swap these)
+
+            } catch (SQLException | RuntimeException e) {
+                System.out.println("Transaction failed: " + e.getMessage());
+                try {
+                    con.rollback();
+                    System.out.println("Rollback successful");
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
