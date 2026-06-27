@@ -1,4 +1,7 @@
 import java.sql.Statement;
+
+import javax.management.RuntimeErrorException;
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -16,6 +19,8 @@ public class Main {
         String query3 = "SELECT * FROM employees WHERE department=?";
         String query4 = "SELECT * FROM employees WHERE salary>?";
         String query5 = "UPDATE employees SET salary = 68000.00 WHERE name=? ";
+        String query6 = "INSERT INTO employees(name,department,salary,joined_date) VALUES('Henry Ford','Engineering',71000.00,'2024-01-01')";
+        String query7 = "UPDATE employees SET salary = 49000.00 WHERE name='David Brown'";
 
         try (Connection con = DriverManager.getConnection(url, username, password)) {
             if (con.isValid(2)) {
@@ -72,6 +77,28 @@ public class Main {
                 displayHeader();
                 displayRows(pst.executeQuery());
 
+            }
+            con.setAutoCommit(false);
+            try {
+                PreparedStatement pst = con.prepareStatement(query6);
+                pst.executeUpdate();
+                System.out.println("INSERT Successful");
+                pst = con.prepareStatement(query7);
+                pst.executeUpdate();
+                System.out.println("UPDATE Successful");
+                // con.commit();
+                // System.out.println("Transaction committed successfully");
+
+                throw new RuntimeException("Simulated failure");
+            } catch (SQLException | RuntimeException e) {
+                try {
+                    con.rollback();
+                    System.out.println("Rollback Successful");
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            } finally {
+                con.setAutoCommit(true);
             }
         } catch (SQLException e) {
             e.printStackTrace();
