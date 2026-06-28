@@ -87,7 +87,7 @@ public class Main {
         pst.setString(1, name);
         pst.setString(2, dept);
         pst.setString(3, course);
-        pst.setString(4, salary);
+        pst.setFloat(4, salary);
         pst.executeUpdate();
     }
 
