@@ -1,5 +1,6 @@
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.ResultSet;
@@ -71,7 +72,6 @@ public class Main {
     }
 
     static void addTeacher(Connection con, Scanner sc) throws SQLException {
-
         System.out.println("-".repeat(10) + "Insert new teacher details" + "-".repeat(10));
         System.out.print("Name: ");
         String name = sc.nextLine();
@@ -82,13 +82,27 @@ public class Main {
         System.out.print("Salary: ");
         Float salary = Float.parseFloat(sc.nextLine());
 
-        PreparedStatement pst = con
-                .prepareStatement("INSERT INTO teacher(name,department,course,salary) VALUES(?,?,?,?)");
-        pst.setString(1, name);
-        pst.setString(2, dept);
-        pst.setString(3, course);
-        pst.setFloat(4, salary);
-        pst.executeUpdate();
+        con.setAutoCommit(false);
+        try (PreparedStatement pst = con
+                .prepareStatement("INSERT INTO teacher(name,department,course,salary) VALUES(?,?,?,?)",
+                        Statement.RETURN_GENERATED_KEYS)) {
+            pst.setString(1, name);
+            pst.setString(2, dept);
+            pst.setString(3, course);
+            pst.setFloat(4, salary);
+            pst.executeUpdate();
+
+            ResultSet keys = pst.getGeneratedKeys();
+            if (keys.next()) {
+                int generatedId = keys.getInt(1);
+                logAudit(con, "INSERT", generatedId);
+            }
+            con.commit();
+        } catch (SQLException e) {
+            con.rollback();
+        } finally {
+            con.setAutoCommit(true);
+        }
     }
 
     static void UpdatedSalary(Connection con, Scanner sc) throws SQLException {
@@ -110,6 +124,15 @@ public class Main {
         PreparedStatement pst = con.prepareStatement("DELETE FROM teacher WHERE teacher_id=?");
         pst.setInt(1, id);
         pst.executeUpdate();
+    }
+
+    static void logAudit(Connection con, String action, int affectedId) throws SQLException {
+        try (PreparedStatement pst = con
+                .prepareStatement("INSERT INTO audit_log(action,affected_table,affected_id) VALUES(?,'teacher',?)")) {
+            pst.setString(1, action);
+            pst.setInt(2, affectedId);
+            pst.executeUpdate();
+        }
     }
 
 }
