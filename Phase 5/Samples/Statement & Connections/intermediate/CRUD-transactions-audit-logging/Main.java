@@ -1,0 +1,60 @@
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class Main {
+    static final String url = "jdbc:postgresql://localhost:5432/java_conn_state";
+    static final String username = "postgres";
+    static final String password = "2426";
+
+    public static void main(String[] args) throws SQLException {
+        Scanner sc = new Scanner(System.in);
+        try (Connection con = DriverManager.getConnection(url, username, password)) {
+            while (true) {
+                showMenu();
+                int choice = Integer.parseInt(sc.nextLine());
+                switch (choice) {
+                    case 1 -> listAll(con);
+                    // case 2 -> searchByDepartment(con, sc);
+                    // case 3 -> addTeacher(con, sc);
+                    // case 4 -> UpdatedSalary(con, sc);
+                    // case 5 -> deleteById(con, sc);
+                    case 6 -> {
+                        System.out.println("Exit!");
+                        return;
+                    }
+                    default -> System.out.println("Invalid choice!!!");
+                }
+            }
+        }
+    }
+
+    static void showMenu() {
+        System.out.println();
+        System.out.println("-".repeat(15) + " MENU " + "-".repeat(15));
+        System.out.printf(" %-10s%n %-10s%n %-10s%n %-10s%n %-10s%n %-10s%n", "1. List all records",
+                "2. Search by department", "3. Add new teacher", "4. Update Salary", "5. Delete by id", "6. Exit");
+        System.out.print("Your choice: ");
+    }
+
+    static void listAll(Connection con) throws SQLException {
+        PreparedStatement pst = con.prepareStatement("SELECT * FROM teacher ORDER BY teacher_id");
+        Header();
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            System.out.printf("%-10d %-17s %-20s %-28s $%-15.2f %n", rs.getInt("teacher_id"), rs.getString("name"),
+                    rs.getString("department"), rs.getString("course"), rs.getFloat("salary"));
+
+        }
+    }
+
+    static void Header() {
+        System.out.printf("%-10s %-17s %-20s %-28s %-15s %n", "ID", "Name", "Department", "Course", "Salary");
+        System.out.println("-".repeat(100));
+    }
+
+}
