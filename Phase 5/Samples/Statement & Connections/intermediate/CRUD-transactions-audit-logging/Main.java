@@ -186,12 +186,12 @@ public class Main {
     static void viewAuditLog(Connection con) throws SQLException {
         try (PreparedStatement pst = con.prepareStatement("SELECT * FROM audit_log")) {
             ResultSet rs = pst.executeQuery();
-            System.out.printf("%-10d %-10s %-10s %-10d %-10s %n", "ID", "Action", "Affected Table", "Affected ID",
+            System.out.printf("%-10s %-10s %-17s %-15s %-10s %n", "ID", "Action", "Affected Table", "Affected ID",
                     "Performed At");
-            System.out.println("-".repeat(55));
+            System.out.println("-".repeat(85));
             while (rs.next()) {
-                System.out.printf("%-10d %-10s %-10s %-10d %-10s %n", rs.getInt("id"), rs.getString("action"),
-                        rs.getString("affected_table"), rs.getInt("affected_id"), rs.getDate("performed_at"));
+                System.out.printf("%-10d %-10s %-17s %-15d %-10s %n", rs.getInt("id"), rs.getString("action"),
+                        rs.getString("affected_table"), rs.getInt("affected_id"), rs.getTimestamp("performed_at"));
             }
 
         } catch (SQLException e) {
