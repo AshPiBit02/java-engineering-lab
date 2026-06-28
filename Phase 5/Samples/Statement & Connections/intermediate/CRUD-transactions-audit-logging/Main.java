@@ -1,6 +1,6 @@
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.beans.Statement;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.ResultSet;
@@ -144,7 +144,7 @@ public class Main {
             ResultSet keys = pst.getGeneratedKeys();
             if (keys.next()) {
                 int generatedId = keys.getInt(1);
-                audit_log(con, "DELETE", generatedId);
+                logAudit(con, "DELETE", generatedId);
             }
             con.commit();
         } catch (SQLException e) {
