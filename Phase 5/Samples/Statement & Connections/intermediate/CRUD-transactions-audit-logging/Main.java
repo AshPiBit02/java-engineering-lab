@@ -21,7 +21,7 @@ public class Main {
                     case 1 -> listAll(con);
                     case 2 -> searchByDepartment(con, sc);
                     case 3 -> addTeacher(con, sc);
-                    // case 4 -> UpdatedSalary(con, sc);
+                    case 4 -> UpdatedSalary(con, sc);
                     // case 5 -> deleteById(con, sc);
                     case 6 -> {
                         System.out.println("Exit!");
@@ -88,6 +88,18 @@ public class Main {
         pst.setString(2, dept);
         pst.setString(3, course);
         pst.setString(4, salary);
+        pst.executeUpdate();
+    }
+
+    static void UpdatedSalary(Connection con, Scanner sc) throws SQLException {
+        System.out.print("Enter name of teacher whose salary is to be updated: ");
+        String name = sc.nextLine();
+        System.out.print("Enter updated salary: ");
+        Float sal = Float.parseFloat(sc.nextLine());
+
+        PreparedStatement pst = con.prepareStatement("UPDATE teacher SET salary = ? WHERE name= ?");
+        pst.setFloat(1, sal);
+        pst.setString(2, name);
         pst.executeUpdate();
     }
 
