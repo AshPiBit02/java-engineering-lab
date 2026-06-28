@@ -24,7 +24,8 @@ public class Main {
                     case 3 -> addTeacher(con, sc);
                     case 4 -> UpdatedSalary(con, sc);
                     case 5 -> deleteById(con, sc);
-                    case 6 -> {
+                    case 6 -> viewAuditLog(con);
+                    case 7 -> {
                         System.out.println("Exit!");
                         return;
                     }
@@ -37,8 +38,9 @@ public class Main {
     static void showMenu() {
         System.out.println();
         System.out.println("-".repeat(15) + " MENU " + "-".repeat(15));
-        System.out.printf(" %-10s%n %-10s%n %-10s%n %-10s%n %-10s%n %-10s%n", "1. List all records",
-                "2. Search by department", "3. Add new teacher", "4. Update Salary", "5. Delete by id", "6. Exit");
+        System.out.printf(" %-10s%n %-10s%n %-10s%n %-10s%n %-10s%n %-10s%n %-10s%n", "1. List all records",
+                "2. Search by department", "3. Add new teacher", "4. Update Salary", "5. Delete by id",
+                "6. View Audit Log", "7. Exit");
         System.out.print("Your choice: ");
     }
 
@@ -176,6 +178,24 @@ public class Main {
             pst.setString(1, action);
             pst.setInt(2, affectedId);
             pst.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Audit log updation failed: " + e.getMessage());
+        }
+    }
+
+    static void viewAuditLog(Connection con) throws SQLException {
+        try (PreparedStatement pst = con.prepareStatement("SELECT * FROM audit_log")) {
+            ResultSet rs = pst.executeQuery();
+            System.out.printf("%-10d %-10s %-10s %-10d %-10s %n", "ID", "Action", "Affected Table", "Affected ID",
+                    "Performed At");
+            System.out.println("-".repeat(55));
+            while (rs.next()) {
+                System.out.printf("%-10d %-10s %-10s %-10d %-10s %n", rs.getInt("id"), rs.getString("action"),
+                        rs.getString("affected_table"), rs.getInt("affected_id"), rs.getDate("performed_at"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Audit log failed to display: " + e.getMessage());
         }
     }
 

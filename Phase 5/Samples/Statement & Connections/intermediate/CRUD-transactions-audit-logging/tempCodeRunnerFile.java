@@ -1,4 +1,4 @@
-artment(con, sc);
-                    // case 3 -> addTeacher(con, sc);
-                    // case 4 -> UpdatedSalary(con, sc);
-                    // case 5 -> deleteById(con, sc);
+
+                System.out.printf("%-10d %-10s %-10s %-10d %-10s %n", rs.getInt("id"), rs.getString("action"),
+                        rs.getString("affected_table"), rs.getInt("affected_id"), rs.getDate("performed_at"));
+            
