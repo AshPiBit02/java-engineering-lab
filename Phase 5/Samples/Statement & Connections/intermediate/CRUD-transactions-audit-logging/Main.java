@@ -111,19 +111,47 @@ public class Main {
         System.out.print("Enter updated salary: ");
         Float sal = Float.parseFloat(sc.nextLine());
 
-        PreparedStatement pst = con.prepareStatement("UPDATE teacher SET salary = ? WHERE name= ?");
-        pst.setFloat(1, sal);
-        pst.setString(2, name);
-        pst.executeUpdate();
+        con.setAutoCommit(false);
+        try (PreparedStatement pst = con.prepareStatement("UPDATE teacher SET salary = ? WHERE name= ?",
+                Statement.RETURN_GENERATED_KEYS)) {
+            pst.setFloat(1, sal);
+            pst.setString(2, name);
+            pst.executeUpdate();
+
+            ResultSet keys = pst.getGeneratedKeys();
+            if (keys.next()) {
+                int generatedId = keys.getInt(1);
+                logAudit(con, "UPDATE", generatedId);
+            }
+            con.commit();
+        } catch (SQLException e) {
+            con.rollback();
+        } finally {
+            con.setAutoCommit(true);
+        }
     }
 
     static void deleteById(Connection con, Scanner sc) throws SQLException {
         System.out.print("Enter teacher id whose records are to be deleted: ");
         int id = Integer.parseInt(sc.nextLine());
 
-        PreparedStatement pst = con.prepareStatement("DELETE FROM teacher WHERE teacher_id=?");
-        pst.setInt(1, id);
-        pst.executeUpdate();
+        con.setAutoCommit(false);
+        try (PreparedStatement pst = con.prepareStatement("DELETE FROM teacher WHERE teacher_id=?",
+                Statement.RETURN_GENERATED_KEYS)) {
+            pst.setInt(1, id);
+            pst.executeUpdate();
+
+            ResultSet keys = pst.getGeneratedKeys();
+            if (keys.next()) {
+                int generatedId = keys.getInt(1);
+                audit_log(con, "DELETE", generatedId);
+            }
+            con.commit();
+        } catch (SQLException e) {
+            con.rollback();
+        } finally {
+            con.setAutoCommit(true);
+        }
     }
 
     static void logAudit(Connection con, String action, int affectedId) throws SQLException {
