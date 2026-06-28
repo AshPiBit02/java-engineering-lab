@@ -56,18 +56,23 @@ public class Main {
     }
 
     static void listAll(Connection con) throws SQLException {
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM teacher ORDER BY teacher_id");
-        ResultSet rs = pst.executeQuery();
-        showRecords(rs);
+        try (PreparedStatement pst = con.prepareStatement("SELECT * FROM teacher ORDER BY teacher_id")) {
+            showRecords(pst.executeQuery());
+        } catch (SQLException e) {
+            System.out.println("Record fetching failed: " + e.getMessage());
+        }
     }
 
     static void searchByDepartment(Connection con, Scanner sc) throws SQLException {
         System.out.print("Enter department:  ");
         String depart = sc.nextLine();
-        PreparedStatement pst = con.prepareStatement("SELECT * FROM teacher WHERE department=? ORDER BY teacher_id");
-        pst.setString(1, depart);
-        ResultSet rs = pst.executeQuery();
-        showRecords(rs);
+        try (PreparedStatement pst = con
+                .prepareStatement("SELECT * FROM teacher WHERE department=? ORDER BY teacher_id")) {
+            pst.setString(1, depart);
+            showRecords(pst.executeQuery());
+        } catch (SQLException e) {
+            System.out.println("Record fetching failed: " + e.getMessage());
+        }
 
     }
 
