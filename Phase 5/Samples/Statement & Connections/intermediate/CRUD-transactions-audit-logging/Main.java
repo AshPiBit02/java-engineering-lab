@@ -22,7 +22,7 @@ public class Main {
                     case 2 -> searchByDepartment(con, sc);
                     case 3 -> addTeacher(con, sc);
                     case 4 -> UpdatedSalary(con, sc);
-                    // case 5 -> deleteById(con, sc);
+                    case 5 -> deleteById(con, sc);
                     case 6 -> {
                         System.out.println("Exit!");
                         return;
@@ -100,6 +100,15 @@ public class Main {
         PreparedStatement pst = con.prepareStatement("UPDATE teacher SET salary = ? WHERE name= ?");
         pst.setFloat(1, sal);
         pst.setString(2, name);
+        pst.executeUpdate();
+    }
+
+    static void deleteById(Connection con, Scanner sc) throws SQLException {
+        System.out.print("Enter teacher id whose records are to be deleted: ");
+        int id = Integer.parseInt(sc.nextLine());
+
+        PreparedStatement pst = con.prepareStatement("DELETE FROM teacher WHERE teacher_id=?");
+        pst.setInt(1, id);
         pst.executeUpdate();
     }
 
