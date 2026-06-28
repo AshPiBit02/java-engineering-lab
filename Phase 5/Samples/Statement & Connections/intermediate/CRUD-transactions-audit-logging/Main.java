@@ -111,21 +111,28 @@ public class Main {
         System.out.print("Enter updated salary: ");
         Float sal = Float.parseFloat(sc.nextLine());
 
+        int id = -1;
+        try (PreparedStatement fetch = con.prepareStatement("SELECT teacher_id FROM teacher WHERE name=?")) {
+            fetch.setString(1, name);
+            ResultSet rs = fetch.executeQuery();
+            if (!rs.next()) {
+                System.out.println("Teacher not found!");
+                return;
+            }
+            id = rs.getInt("teacher_id");
+        }
+
         con.setAutoCommit(false);
-        try (PreparedStatement pst = con.prepareStatement("UPDATE teacher SET salary = ? WHERE name= ?",
-                Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement pst = con.prepareStatement("UPDATE teacher SET salary = ? WHERE name= ?")) {
             pst.setFloat(1, sal);
             pst.setString(2, name);
             pst.executeUpdate();
 
-            ResultSet keys = pst.getGeneratedKeys();
-            if (keys.next()) {
-                int generatedId = keys.getInt(1);
-                logAudit(con, "UPDATE", generatedId);
-            }
+            logAudit(con, "UPDATE", id);
             con.commit();
         } catch (SQLException e) {
             con.rollback();
+            System.out.println("Update failed: " + e.getMessage());
         } finally {
             con.setAutoCommit(true);
         }
@@ -135,20 +142,24 @@ public class Main {
         System.out.print("Enter teacher id whose records are to be deleted: ");
         int id = Integer.parseInt(sc.nextLine());
 
+        try (PreparedStatement fetch = con.prepareStatement("SELECT teacher_id FROM teacher WHERE teacher_id =?")) {
+            fetch.setInt(1, id);
+            ResultSet rs = fetch.executeQuery();
+            if (!rs.next()) {
+                System.out.println("ID not found!");
+                return;
+            }
+        }
         con.setAutoCommit(false);
-        try (PreparedStatement pst = con.prepareStatement("DELETE FROM teacher WHERE teacher_id=?",
-                Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement pst = con.prepareStatement("DELETE FROM teacher WHERE teacher_id=?")) {
             pst.setInt(1, id);
             pst.executeUpdate();
 
-            ResultSet keys = pst.getGeneratedKeys();
-            if (keys.next()) {
-                int generatedId = keys.getInt(1);
-                logAudit(con, "DELETE", generatedId);
-            }
+            logAudit(con, "DELETE", id);
             con.commit();
         } catch (SQLException e) {
             con.rollback();
+            System.out.println("Delete failed: " + e.getMessage());
         } finally {
             con.setAutoCommit(true);
         }
