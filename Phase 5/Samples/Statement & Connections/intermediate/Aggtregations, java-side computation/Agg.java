@@ -17,14 +17,14 @@ public class Agg {
                 showRows(rs);
             }
             try (PreparedStatement pst = con.prepareStatement(
-                    "SELECT COUNT(*) AS total_product, AVG(price) AS avg_price, MAX(price) AS max_price,MIN(price) AS min_price,SUM(stock) AS total_stock,SUM(total_units_sold) AS total_unit_sold,AVG(rating) as avg_rating) FROM product")) {
+                    "SELECT COUNT(*) AS total_product, AVG(price) AS avg_price, MAX(price) AS max_price,MIN(price) AS min_price,SUM(stock) AS total_stock,SUM(units_sold) AS total_unit_sold,AVG(rating) as avg_rating FROM product")) {
                 ResultSet rs = pst.executeQuery();
                 ResultSetMetaData meta = rs.getMetaData();
                 showHeader(meta, meta.getColumnCount());
                 rs.next();
-                System.out.printf("%-15d %-15.2f %-15.2f %-15.2f %-15d %-15d %-15.2f", rs.getInt("total_product"),
+                System.out.printf("%-16d $%-15.2f $%-15.2f $%-15.2f %-16d %-16d %-17.2f", rs.getInt("total_product"),
                         rs.getFloat("avg_price"), rs.getFloat("max_price"), rs.getFloat("min_price"),
-                        rs.getInt("total_stock"), rs.getInt("total_units_sold"), rs.getFloat("avg_rating"));
+                        rs.getInt("total_stock"), rs.getInt("total_unit_sold"), rs.getFloat("avg_rating"));
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
@@ -33,6 +33,7 @@ public class Agg {
 
     private static void showHeader(ResultSetMetaData meta,
             int colCount) throws SQLException {
+        System.out.println();
         for (int i = 1; i <= colCount; i++) {
             System.out.printf("%-17s", meta.getColumnName(i));
         }
