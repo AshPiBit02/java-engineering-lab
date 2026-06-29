@@ -23,15 +23,15 @@ public class Agg {
     private static void showHeader(ResultSetMetaData meta,
             int colCount) throws SQLException {
         for (int i = 1; i <= colCount; i++) {
-            System.out.printf("%-12s", meta.getColumnName(i));
+            System.out.printf("%-17s", meta.getColumnName(i));
         }
         System.out.println();
-        System.out.println("-".repeat(12 * colCount));
+        System.out.println("-".repeat(17 * colCount));
     }
 
     public static void showRows(ResultSet rs) throws SQLException {
         while (rs.next()) {
-            System.out.printf("%-12s %-12d %-12f %-12f %-12f %-12d %-12d %-12f", rs.getString("category"),
+            System.out.printf("%-17s %-15d $%-15.2f $%-15.2f $%-16.2f %-15d %-16d %-15.2f", rs.getString("category"),
                     rs.getInt("total_products"), rs.getFloat("avg_price"), rs.getFloat("max_price"),
                     rs.getFloat("min_price"), rs.getInt("total_stock"), rs.getInt("total_sold"),
                     rs.getFloat("avg_rating"));
