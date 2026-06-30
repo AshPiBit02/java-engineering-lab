@@ -1,12 +1,10 @@
 import java.sql.PreparedStatement;
-import java.beans.Statement;
-import java.lang.Thread.State;
+import java.sql.Statement;
 import java.net.CacheRequest;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.naming.spi.DirStateFactory.Result;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetProvider;
 
@@ -129,8 +127,8 @@ public class BankingManager {
         try {
             con.setAutoCommit(false);
             debitPst = con.prepareStatement(
-                    "INSERT INTO transactions(accound_id,type,amount,note) VALUES(?,'DEBIT',?,?)",
-                    Statement.RETURN_GENERATE_KEYS);
+                    "INSERT INTO transactions(account_id,type,amount,note) VALUES(?,'DEBIT',?,?)",
+                    Statement.RETURN_GENERATED_KEYS);
             debitPst.setInt(1, 10);
             debitPst.setDouble(2, 5000);
             debitPst.setString(3, "Transfer to account 1");
@@ -145,8 +143,8 @@ public class BankingManager {
             debitKeys.close();
 
             creditPst = con.prepareStatement(
-                    "INSERT INTO transactions(account_id,type,amount,note)VALUES(?,'CREDIT',?,?",
-                    Statement.RETURN_GENERATE_KEYS);
+                    "INSERT INTO transactions(account_id,type,amount,note)VALUES(?,'CREDIT',?,?)",
+                    Statement.RETURN_GENERATED_KEYS);
             creditPst.setInt(1, 1);
             creditPst.setDouble(2, 5000);
             creditPst.setString(3, "Transfer from account 10");
@@ -165,7 +163,7 @@ public class BankingManager {
 
             creditBalance = con.prepareStatement("UPDATE accounts SET balance=balance+? WHERE id=?");
             creditBalance.setDouble(1, 5000);
-            creditBalance.setINt(2, 1);
+            creditBalance.setInt(2, 1);
             creditBalance.executeUpdate();
 
             con.commit();
@@ -184,6 +182,7 @@ public class BankingManager {
             if (creditBalance != null)
                 creditBalance.close();
         }
+
     }
 
 }
