@@ -1,9 +1,12 @@
 import java.sql.PreparedStatement;
-import java.beans.Statement;
+import java.net.CacheRequest;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.function.BooleanSupplier;
+
+import javax.sql.rowset.CachedRowSet;
+import javax.sql.rowset.RowSetProvider;
+
 import java.sql.DriverManager;
 
 public class BankingManager {
@@ -15,6 +18,7 @@ public class BankingManager {
         try (Connection con = DriverManager.getConnection(url, username, password)) {
             printTopandBottomAccounts(con);
             flagAndFreezeAccounts(con);
+            generateOfflineReport(con);
         }
     }
 
@@ -77,6 +81,38 @@ public class BankingManager {
             System.out.printf("%-12s %-15s $%-10.2f %-10s%n", rs.getString("holder_name"), rs.getString("account_type"),
                     rs.getFloat("balance"), rs.getBoolean("is_active"));
         }
+
+    }
+
+    private static void generateOfflineReport(Connection con) throws SQLException {
+        CachedRowSet crs = RowSetProvider.newFactory().createCachedRowSet();
+        PreparedStatement pst = con.prepareStatement(
+                "SELECT a.holder_name,a.account_type,a.balance,COALESCE(SUM(t.amount),0) AS total_transacted FROM accounts a LEFT JOIN transactions t ON a.id=t.account_id GROUP BY a.id,a.holder_name,a.account_type,a.balance");
+        ResultSet rs = pst.executeQuery();
+        crs.populate(rs); // holds all data independent of rs/con
+        rs.close();
+        pst.close();
+
+        System.out.println();
+        System.out.println("Offline Account Report");
+        System.out.printf("%-12s %-15s %-10s %-15s%n", "Holder Name", "Account Type", "Balance", "Total Transacted");
+        System.out.println("-".repeat(60));
+
+        while (crs.next()) {
+            System.out.printf("%-12s %-15s $%-10.2f $%-15.2f%n", crs.getString("holder_name"),
+                    crs.getString("account_type"), crs.getDouble("balance"), crs.getDouble("total_transacted"));
+        }
+
+        crs.moveToInsertRow();
+        crs.updateString("holder_name", "SYSTEM SUMMARY");
+        crs.updateString("account_type", "N/A");
+        crs.updateDouble("balance", 0);
+        crs.updateDouble("total_transacted", 0);
+        crs.insertRow();
+        crs.moveToCurrentRow();
+
+        crs.last();
+        System.out.println("Total rows: " + crs.getRow());
 
     }
 
