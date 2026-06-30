@@ -89,7 +89,7 @@ By the end of the course, students will be proficient in Java programming — eq
 
 ### Phase 4 · Distributed Network Programming 
 
-- [ ] 4.1 TCP, UDP, IP Address and Ports
+- [x] 4.1 TCP, UDP, IP Address and Ports
 - [ ] 4.2 Socket Programming using TCP and UDP
 - [ ] 4.3 Working with URLs and URL Connection Class
 - [ ] 4.4 Email Handling using Java Mail API
@@ -106,11 +106,11 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] 5.1 JDBC Architecture
 - [x] 5.2 JDBC Driver Types and Configuration
 - [x] 5.3 Managing Connections and Statements
-- [ ] 5.4 Result Sets and Exception Handling
+- [x] 5.4 Result Sets and Exception Handling
 - [x] 5.5 DDL and DML Operations
-- [ ] 5.6 SQL Injection and Prepared Statements
-- [ ] 5.7 Row Sets and Transactions
-- [ ] 5.8 SQL Escapes
+- [x] 5.6 SQL Injection and Prepared Statements
+- [x] 5.7 Row Sets and Transactions
+- [x] 5.8 SQL Escapes
 
 ---
 
@@ -149,9 +149,9 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] **T06** · Access Modifiers — public, private, protected, default
 - [x] **T07** · Exception Handling — try-catch, checked vs unchecked exceptions
 - [x] **T08** · Working with Files in Java (Java I/O)
-- [ ] **T09** · Java Collections Framework — ArrayList, LinkedList, HashMap
+- [x] **T09** · Java Collections Framework — ArrayList, LinkedList, HashMap
 - [x] **T10** · Object-Oriented Concepts — inheritance, polymorphism, encapsulation, abstraction
-- [ ] **T11** · Advanced Inheritance and Interfaces
+- [x] **T11** · Advanced Inheritance and Interfaces
 - [x] **T12** · GUIs with Swing — components, event handling, layout management
 - [x] **T13** · Introduction to JavaFX — scene graphs, UI controls, event handling
 - [ ] **T14** · Network Programming with Sockets — TCP and UDP
