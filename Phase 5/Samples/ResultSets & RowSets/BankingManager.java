@@ -1,6 +1,5 @@
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.net.CacheRequest;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -182,6 +181,19 @@ public class BankingManager {
             if (creditBalance != null)
                 creditBalance.close();
         }
+        PreparedStatement verifyPst = con.prepareStatement(
+                "SELECT id, holder_name, balance FROM accounts WHERE id IN (10, 1)");
+        ResultSet rs = verifyPst.executeQuery();
+
+        System.out.println();
+        System.out.println("Updated Balances");
+        System.out.println("-".repeat(40));
+        while (rs.next()) {
+            System.out.printf("[%d] %-15s $%.2f%n", rs.getInt("id"), rs.getString("holder_name"),
+                    rs.getDouble("balance"));
+        }
+        rs.close();
+        verifyPst.close();
 
     }
 
