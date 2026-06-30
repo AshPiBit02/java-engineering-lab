@@ -35,6 +35,9 @@ public class LoginSecurity {
             searchUserByName(con, "100%user");
             searchUserByName(con, "100\\%user");
 
+            System.out.println();
+            insertUserSafely(con, "o'hara", "ohara89", "harOhara78@gmail.com");
+
         }
 
     }
@@ -83,6 +86,23 @@ public class LoginSecurity {
         } else {
             System.out.println("No such username!");
         }
+        rs.close();
+        pst.close();
+    }
+
+    private static void insertUserSafely(Connection con, String username, String password, String email)
+            throws SQLException {
+        String sql = "INSERT INTO users(username,password,email,role) VALUES(?.?,?,'USER') ESCAPE '\\'";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, username);
+        pst.setString(2, password);
+        pst.setString(3, email);
+        ResultSet rs = pst.executeQuery();
+
+        // System.out.println();
+        // System.out.println("(Schema After Insertion)");
+        // System.out.printf("%-10s %-15s %-10s
+        // %-10s%n","Username","Password","Email","Role");
 
     }
 
