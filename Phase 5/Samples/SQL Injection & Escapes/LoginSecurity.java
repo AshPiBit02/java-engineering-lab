@@ -92,18 +92,17 @@ public class LoginSecurity {
 
     private static void insertUserSafely(Connection con, String username, String password, String email)
             throws SQLException {
-        String sql = "INSERT INTO users(username,password,email,role) VALUES(?.?,?,'USER') ESCAPE '\\'";
+        String sql = "INSERT INTO users(username,password,email,role) VALUES(?,?,?,'USER')";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, username);
         pst.setString(2, password);
         pst.setString(3, email);
-        ResultSet rs = pst.executeQuery();
-
-        // System.out.println();
-        // System.out.println("(Schema After Insertion)");
-        // System.out.printf("%-10s %-15s %-10s
-        // %-10s%n","Username","Password","Email","Role");
-
+        int updated = pst.executeUpdate();
+        if (updated > 0) {
+            System.out.println(username + " added.");
+        } else {
+            System.out.println("Insertion Failed!");
+        }
     }
 
 }
