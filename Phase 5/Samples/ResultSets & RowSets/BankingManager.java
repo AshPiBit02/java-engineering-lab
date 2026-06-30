@@ -1,9 +1,12 @@
 import java.sql.PreparedStatement;
+import java.beans.Statement;
+import java.lang.Thread.State;
 import java.net.CacheRequest;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetProvider;
 
@@ -19,6 +22,7 @@ public class BankingManager {
             printTopandBottomAccounts(con);
             flagAndFreezeAccounts(con);
             generateOfflineReport(con);
+            processTransfer(con);
         }
     }
 
@@ -114,6 +118,41 @@ public class BankingManager {
         crs.last();
         System.out.println("Total rows: " + crs.getRow());
 
+    }
+
+    private static void processTransfer(Connection con) throws SQLException{
+        PreparedStatement debitPst=null;
+        PreparedStatement creditPst=null;
+        PreparedStatement debitBalance=null;
+        PreparedStatement creditBalance=null;
+
+        try{
+            con.setAutoCommit(false);
+            debitPst=con.prepareStatement("INSERT INTO transactions(accound_id,type,amount,note) VALUES(?,'DEBIT',?,?)",Statement.RETURN_GENERATE_KEYS);
+            debitPst.setInt(1,10);
+            debitPst.setDouble(2, 5000);
+            debitPst.setString(3,"Transfer to account 1");
+            debitPst.executeUpdate();
+
+            ResultSet debitKeys=debitPst.getGeneratedKeys();{
+                if(debitKeys.next()){
+                    System.out.println("Debit transaction ID: "+debitKeys.getInt(1));
+                }
+            }
+            debitKeys.close();
+
+            creditPst=con.prepareStatement("INSERT INTO transactions(account_id,type,amount,note)VALUES(?,'CREDIT',?,?",Statement.RETURN_GENERATE_KEYS);
+            creditPst.setInt(1,1);
+            creditPst.setDouble(2, 5000);
+            creditPst.setString(3,"Transfer from account 10");
+            creditPst.executeUpdate();
+
+            ResultSet creditKeys=creditPst.getGeneratedKeys();
+            if(creditKeys.next()){
+                System.out.println("Credit transaction ID: "+ creditKeys.getInt(1));
+            }
+            creditKeys.close();
+        }
     }
 
 }
