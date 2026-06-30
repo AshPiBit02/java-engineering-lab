@@ -20,6 +20,16 @@ public class LoginSecurity {
             System.out.println("-------- Injection attempt --------");
             vunerableLogin(con, "admin' --", "dummy_password");
 
+            System.out.println();
+            System.out.println();
+            System.out.println("-------- SafePlay via PreparedStatement-----------");
+
+            System.out.println("(Normal credentails)");
+            secureLogin(con,"jdoe","pass456");
+            System.out.println("(Injection Payload)");
+            secureLogin(con,"admin' --","anything");
+
+
         }
 
     }
@@ -38,6 +48,22 @@ public class LoginSecurity {
         }
         rs.close();
         st.close();
+    }
+
+    private static void secureLogin(Connection con, String username, String password) throws SQLException {
+        String sql = "SELECT * FROM users WHERE username=? AND password=?";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, username);
+        pst.setString(2, password);
+        ResultSet rs = pst.executeQuery();
+        if (rs.next()) {
+            System.out
+                    .println("Login SUCCESS for : " + rs.getString("username") + " |   Role: " + rs.getString("role"));
+        } else {
+            System.out.println("Login Failed!");
+        }
+        rs.close();
+        pst.close();
     }
 
 }
