@@ -54,7 +54,7 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] 1.4 Conditional Statements
 - [x] 1.5 Access Modifiers
 - [x] 1.6 Exception Handling
-- [ ] 1.7 Java Collections
+- [x] 1.7 Java Collections
 
 ---
 
