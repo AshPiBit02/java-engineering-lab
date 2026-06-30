@@ -120,38 +120,69 @@ public class BankingManager {
 
     }
 
-    private static void processTransfer(Connection con) throws SQLException{
-        PreparedStatement debitPst=null;
-        PreparedStatement creditPst=null;
-        PreparedStatement debitBalance=null;
-        PreparedStatement creditBalance=null;
+    private static void processTransfer(Connection con) throws SQLException {
+        PreparedStatement debitPst = null;
+        PreparedStatement creditPst = null;
+        PreparedStatement debitBalance = null;
+        PreparedStatement creditBalance = null;
 
-        try{
+        try {
             con.setAutoCommit(false);
-            debitPst=con.prepareStatement("INSERT INTO transactions(accound_id,type,amount,note) VALUES(?,'DEBIT',?,?)",Statement.RETURN_GENERATE_KEYS);
-            debitPst.setInt(1,10);
+            debitPst = con.prepareStatement(
+                    "INSERT INTO transactions(accound_id,type,amount,note) VALUES(?,'DEBIT',?,?)",
+                    Statement.RETURN_GENERATE_KEYS);
+            debitPst.setInt(1, 10);
             debitPst.setDouble(2, 5000);
-            debitPst.setString(3,"Transfer to account 1");
+            debitPst.setString(3, "Transfer to account 1");
             debitPst.executeUpdate();
 
-            ResultSet debitKeys=debitPst.getGeneratedKeys();{
-                if(debitKeys.next()){
-                    System.out.println("Debit transaction ID: "+debitKeys.getInt(1));
+            ResultSet debitKeys = debitPst.getGeneratedKeys();
+            {
+                if (debitKeys.next()) {
+                    System.out.println("Debit transaction ID: " + debitKeys.getInt(1));
                 }
             }
             debitKeys.close();
 
-            creditPst=con.prepareStatement("INSERT INTO transactions(account_id,type,amount,note)VALUES(?,'CREDIT',?,?",Statement.RETURN_GENERATE_KEYS);
-            creditPst.setInt(1,1);
+            creditPst = con.prepareStatement(
+                    "INSERT INTO transactions(account_id,type,amount,note)VALUES(?,'CREDIT',?,?",
+                    Statement.RETURN_GENERATE_KEYS);
+            creditPst.setInt(1, 1);
             creditPst.setDouble(2, 5000);
-            creditPst.setString(3,"Transfer from account 10");
+            creditPst.setString(3, "Transfer from account 10");
             creditPst.executeUpdate();
 
-            ResultSet creditKeys=creditPst.getGeneratedKeys();
-            if(creditKeys.next()){
-                System.out.println("Credit transaction ID: "+ creditKeys.getInt(1));
+            ResultSet creditKeys = creditPst.getGeneratedKeys();
+            if (creditKeys.next()) {
+                System.out.println("Credit transaction ID: " + creditKeys.getInt(1));
             }
             creditKeys.close();
+
+            debitBalance = con.prepareStatement("UPDATE accounts SET balance=balance-? WHERE id=?");
+            debitBalance.setDouble(1, 5000);
+            debitBalance.setInt(2, 10);
+            debitBalance.executeUpdate();
+
+            creditBalance = con.prepareStatement("UPDATE accounts SET balance=balance+? WHERE id=?");
+            creditBalance.setDouble(1, 5000);
+            creditBalance.setINt(2, 1);
+            creditBalance.executeUpdate();
+
+            con.commit();
+            System.out.println("Amount transfer successfully.");
+        } catch (SQLException e) {
+            con.rollback();
+            System.out.println("Transfer failed, rolled back: " + e.getMessage());
+        } finally {
+            con.setAutoCommit(true);
+            if (debitPst != null)
+                debitPst.close();
+            if (creditPst != null)
+                creditPst.close();
+            if (debitBalance != null)
+                debitBalance.close();
+            if (creditBalance != null)
+                creditBalance.close();
         }
     }
 
