@@ -33,6 +33,7 @@ public class LoginSecurity {
             System.out.println("(Search user by pattern)");
             searchUserByName(con, "%user%");
             searchUserByName(con, "100%user");
+            searchUserByName(con, "100\\%user");
 
         }
 
@@ -71,7 +72,7 @@ public class LoginSecurity {
     }
 
     private static void searchUserByName(Connection con, String pattern) throws SQLException {
-        String sql = "SELECT username,email FROM users WHERE username LIKE ?";
+        String sql = "SELECT username,email FROM users WHERE username LIKE ? ESCAPE '\\'";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, pattern);
         ResultSet rs = pst.executeQuery();
