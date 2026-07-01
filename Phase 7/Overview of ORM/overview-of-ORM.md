@@ -213,6 +213,33 @@ Student s = entityManager.find(Student.class, studentId);
 | MyBatis | Semi-ORM — maps SQL results to objects but keeps SQL explicit |
 | Spring Data JPA | Adds repository abstraction on top of JPA/Hibernate |
 
+### Quick Reference — Each Framework at a Glance
+
+**Hibernate**
+- Intro: Full-featured Java ORM, most widely used, implements JPA.
+- Edge: Automatic dirty checking, two-level caching, HQL — very mature ecosystem.
+- Use case: Default choice for most Java enterprise apps needing full ORM.
+
+**JPA (Java Persistence API)**
+- Intro: A *specification*, not a library — defines annotations and interfaces (`@Entity`, `EntityManager`, etc.).
+- Edge: Vendor-neutral — code stays portable across providers (Hibernate, EclipseLink).
+- Use case: Write against JPA when you want to avoid locking into one ORM implementation.
+
+**EclipseLink**
+- Intro: Reference implementation of JPA, built by the Eclipse Foundation.
+- Edge: Strong support for advanced JPA features and NoSQL/XML mapping (via EclipseLink MOXy).
+- Use case: Projects needing strict JPA-spec compliance or non-relational data mapping.
+
+**MyBatis**
+- Intro: "Semi-ORM" — SQL is written explicitly, MyBatis just maps results to objects.
+- Edge: Full control over SQL (good for complex/optimized queries); less "magic" than Hibernate.
+- Use case: Teams that want ORM convenience but need hand-tuned SQL for performance-critical queries.
+
+**Spring Data JPA**
+- Intro: A Spring module built on top of JPA/Hibernate, not a separate ORM engine.
+- Edge: Auto-generates repository/query code from method names (e.g., `findByDept(String dept)`) — near-zero boilerplate.
+- Use case: Spring Boot apps (Phase 7.4) where rapid CRUD repository setup is the priority.
+
 ---
 
 ## 9. C++ vs Java — Persistence Approach
