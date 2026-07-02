@@ -1,4 +1,4 @@
-package com.tutorial;
+package com.tutorial2;
 
 import static org.junit.Assert.assertTrue;
 

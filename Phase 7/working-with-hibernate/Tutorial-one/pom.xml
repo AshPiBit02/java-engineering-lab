@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.tutorial</groupId>
-  <artifactId>Tutorial-one</artifactId>
+  <artifactId>tutorial-one</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>Tutorial-one</name>
+  <name>tutorial-one</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
