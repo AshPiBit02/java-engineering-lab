@@ -1,6 +1,9 @@
 package com.tutorial;
 
+import java.util.List;
+
 import org.hibernate.*;
+import org.hibernate.query.Query;
 import com.tutorial.entities.Student;
 import com.tutorial.util.HibernateUtil;
 
@@ -56,4 +59,27 @@ public class StudentService {
             transaction.commit();
         }
     }
+
+    // Get all student using hql
+    public List<Student> getAllStudentsHQL() {
+        try (Session session = sessionFactory.openSession()) {
+            String getHQL = "FROM Student";
+            Query<Student> query = session.createQuery(getHQL, Student.class);
+            return query.list();
+        }
+    }
+
+    // Get student by name
+    public Student gerStudentByNameHQL(String name) {
+        try (Session session = sessionFactory.openSession()) {
+            String getByNameHql = "FROM Student WHERE name =: studentName";
+            Query<Student> query = session.createQuery(getByNameHql, Student.class);
+            query.setParameter("studentName", name);
+            return query.uniqueResult();
+
+        }
+    }
+
+    // Criteria API
+    
 }
