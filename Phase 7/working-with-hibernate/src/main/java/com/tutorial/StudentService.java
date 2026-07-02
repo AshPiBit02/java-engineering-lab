@@ -4,8 +4,13 @@ import java.util.List;
 
 import org.hibernate.*;
 import org.hibernate.query.Query;
+import org.hibernate.query.criteria.HibernateCriteriaBuilder;
+
 import com.tutorial.entities.Student;
 import com.tutorial.util.HibernateUtil;
+
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 
 public class StudentService {
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -72,7 +77,7 @@ public class StudentService {
     // Get student by name
     public Student gerStudentByNameHQL(String name) {
         try (Session session = sessionFactory.openSession()) {
-            String getByNameHql = "FROM Student WHERE name =: studentName";
+            String getByNameHql = "FROM Student WHERE name = :studentName";
             Query<Student> query = session.createQuery(getByNameHql, Student.class);
             query.setParameter("studentName", name);
             return query.uniqueResult();
@@ -81,5 +86,15 @@ public class StudentService {
     }
 
     // Criteria API
-    
+    public List<Student> getStudentsByCollegeCriteria(String college) {
+        try (Session session = sessionFactory.openSession()) {
+            HibernateCriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Student> query = criteriaBuilder.createQuery(Student.class);
+            Root<Student> root = query.from(Student.class);
+            query.select(root).where(criteriaBuilder.equal(root.get("college"), college));
+            Query<Student> query2 = session.createQuery(query);
+            return query2.getResultList();
+        }
+    }
+
 }

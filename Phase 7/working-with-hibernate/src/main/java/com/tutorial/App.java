@@ -12,11 +12,13 @@ public class App {
         System.out.println("Hello World!");
 
         Student student = new Student();
-        student.setName("Juj Khan");
-        student.setCollege("PEC");
-        student.setContact("98XXXXXXXX");
-        student.setEmail("jujkhan@123");
-        student.setAbout("His name is mr.Khan from khansar");
+        student.setName("Jon Snow");
+        student.setCollege("TUE");
+        student.setContact("98X245XXX");
+        student.setEmail("jonsnownorth@gmail.com");
+        student.setAbout("King in the north");
+
+        StudentService stuService = new StudentService();
 
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
@@ -25,6 +27,7 @@ public class App {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
+            stuService.saveStudent(student);
             // session.persist(student);
             transaction.commit();
 
