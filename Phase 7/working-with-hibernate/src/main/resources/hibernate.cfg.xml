@@ -15,5 +15,7 @@
         <property name="hibernate.format_sql">true</property>
 
         <mapping class="com.tutorial.entities.Student"/>
+        <mapping class="com.tutorial.entities.Certificate"/>
+
     </session-factory>
 </hibernate-configuration>

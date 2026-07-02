@@ -1,5 +1,7 @@
 package com.tutorial.util;
 
+import java.security.cert.Certificate;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 

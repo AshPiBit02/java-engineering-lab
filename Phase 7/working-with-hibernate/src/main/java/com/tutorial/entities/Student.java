@@ -1,12 +1,9 @@
 package com.tutorial.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "student")
@@ -28,6 +25,9 @@ public class Student {
     private String email;
 
     private boolean active = true;
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Certificate> certificate = new ArrayList<>();
 
     @Lob
     private String about;

@@ -1,6 +1,5 @@
 package com.tutorial;
 
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -26,7 +25,7 @@ public class App {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.persist(student);
+            // session.persist(student);
             transaction.commit();
 
             System.out.println("Student saved successfully");
@@ -37,6 +36,8 @@ public class App {
             }
             e.printStackTrace();
 
+        } finally {
+            session.close();
         }
     }
 }
