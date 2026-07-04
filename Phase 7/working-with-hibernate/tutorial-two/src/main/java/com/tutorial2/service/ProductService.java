@@ -21,4 +21,12 @@ public class ProductService {
             }
         }
     }
+
+//    public Student getById(long id){
+//        try(Session session=sessionFactory.openSession()){
+//            try{
+//
+//            }
+//        }
+//    }
 }
