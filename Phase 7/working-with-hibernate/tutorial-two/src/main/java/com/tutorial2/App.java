@@ -12,10 +12,13 @@ public class App
 //        addProduct("MacBook Pro M4",269990,1,"16GB Unified RAM,512GB SSD,Chip M4(10-CPU Core, 10-GPU Core,16-NPU Core)","Electronics");
 //        addProduct("Chips",80,23,"Lays Family Pack","Fast Food");
 //        addProduct("Galaxy S26 Ultra",204990,2,"12GB RAM, 512GB Storage, SAmoled display","Electronics");
+//        addProduct("Scambler 400X",845990,3,"37.5Nm Torque,398.8cc Capacity, Scambler","Vehicle");
 //        getProductById(3);
 //        showProductData(productService.getAllProducts());
 //        productService.updateProductField(2L,"caegoy","Junk Food");
-        productService.updateProductField(2L,"category","Fast Food");
+//        productService.updateProductField(2L,"category","Fast Food");
+        productService.deleteProductById(6);
+        showProductData(productService.getAllProducts());
     }
 
     private static void addProduct(String name,double price,int quantity,String description,String category){

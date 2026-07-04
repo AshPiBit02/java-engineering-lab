@@ -2,9 +2,11 @@ package com.tutorial2.service;
 
 import com.tutorial2.entities.Product;
 import com.tutorial2.util.HibernateUtil;
+import org.hibernate.FetchNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.annotations.NotFound;
 import org.hibernate.query.Query;
 import java.util.*;
 
@@ -66,5 +68,27 @@ public class ProductService {
                     throw e;
                 }
             }
+    }
+
+    public void deleteProductById(long id){
+        try(Session session=sessionFactory.openSession()){
+            Transaction tx=session.beginTransaction();
+            try{
+                Product product=session.find(Product.class,id);
+                if(product==null){
+                    throw new IllegalArgumentException("Product not found with id: "+id);
+                }else{
+                    session.remove(product);
+                }
+                tx.commit();
+                System.out.println("Product removed from record with ID: "+id);
+            }catch (IllegalArgumentException e){
+                tx.rollback();
+                System.out.println("Delete failed: "+e.getMessage());
+            }catch(Exception e){
+                tx.rollback();
+                System.out.println("Error:  "+e.getMessage());
+            }
         }
+    }
 }
