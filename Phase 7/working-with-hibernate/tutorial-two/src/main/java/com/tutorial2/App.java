@@ -12,8 +12,9 @@ public class App
 //        addProduct("MacBook Pro M4",269990,1,"16GB Unified RAM,512GB SSD,Chip M4(10-CPU Core, 10-GPU Core,16-NPU Core)","Electronics");
 //        addProduct("Chips",80,23,"Lays Family Pack","Fast Food");
 //        addProduct("Galaxy S26 Ultra",204990,2,"12GB RAM, 512GB Storage, SAmoled display","Electronics");
-        getProductById(3);
-        showProductData(productService.getAllProducts());
+//        getProductById(3);
+//        showProductData(productService.getAllProducts());
+        productService.updateProductField(2L,"categoy","Junk Food");
     }
 
     private static void addProduct(String name,double price,int quantity,String description,String category){

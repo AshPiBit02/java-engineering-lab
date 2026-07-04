@@ -37,4 +37,29 @@ public class ProductService {
             return query.list();
         }
     }
+
+    public void updateProductField(long id,String fieldName,Object value) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx = session.beginTransaction();
+            try {
+                Product product = session.find(Product.class, id);
+                if (product != null) {
+                    switch (fieldName) {
+                        case "name" -> product.setName((String) value);
+                        case "price" -> product.setPrice((double) value);
+                        case "quantity" -> product.setQuantity((Integer) value);
+                        case "description" -> product.setDescription((String) value);
+                        case "category" -> product.setCategory((String) value);
+                        default -> System.out.println("Unknown Field!!!");
+                    }
+                }
+                tx.commit();
+                System.out.println("Updated successfully");
+            } catch (Exception e) {
+                tx.rollback();
+                System.out.println("Product Not Found!");
+                throw e;
+            }
+        }
+    }
 }
