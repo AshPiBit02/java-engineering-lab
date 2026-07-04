@@ -20,7 +20,8 @@ public class App
 //        productService.deleteProductById(6);
 //        showProductData(productService.getAllProducts());
 //        showProductByCategory(productService.findByCategory("Electronics"),"Electronics");
-        showProductByPriceRange(productService.findByPriceRange(30,30000000),30,30000000);
+//        showProductByPriceRange(productService.findByPriceRange(30,30000000),30,30000000);
+        showLowStockProduct(productService.findLowStock(5));
     }
 
     private static void addProduct(String name,double price,int quantity,String description,String category){
@@ -74,6 +75,16 @@ public class App
             System.out.printf("%-2sProducts in Range(%.2f,%.2f)%-10s%n","",min,max,"");
             System.out.println("-".repeat(40));
             products.forEach(p->System.out.printf("%-7s %s%n","",p.getName()));
+        }
+    }
+
+    private static void showLowStockProduct(List<Product> products){
+        if(products.isEmpty()){
+            System.out.println("No products found with low stock");
+        }else{
+            System.out.println("Products with low stock");
+            System.out.println("-".repeat(20));
+            products.forEach(p->System.out.printf("  %s(%d)%n",p.getName(),p.getQuantity()));
         }
     }
 }

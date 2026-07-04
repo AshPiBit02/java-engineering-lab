@@ -107,4 +107,12 @@ public class ProductService {
             return query.list();
         }
     }
+
+    public List<Product> findLowStock(int threshold){
+        try(Session session=sessionFactory.openSession()){
+            String hql="FROM Product WHERE quantity<:threshold";
+            Query<Product>query= session.createQuery(hql,Product.class).setParameter("threshold",threshold);
+            return query.list();
+        }
+    }
 }
