@@ -39,27 +39,32 @@ public class ProductService {
     }
 
     public void updateProductField(long id,String fieldName,Object value) {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction tx = session.beginTransaction();
-            try {
-                Product product = session.find(Product.class, id);
-                if (product != null) {
-                    switch (fieldName) {
-                        case "name" -> product.setName((String) value);
-                        case "price" -> product.setPrice((double) value);
-                        case "quantity" -> product.setQuantity((Integer) value);
-                        case "description" -> product.setDescription((String) value);
-                        case "category" -> product.setCategory((String) value);
-                        default -> System.out.println("Unknown Field!!!");
+            try (Session session = sessionFactory.openSession()) {
+                Transaction tx = session.beginTransaction();
+                try {
+                    Product product = session.find(Product.class, id);
+                    if (product == null) {
+                        throw new IllegalArgumentException("Product not found with id: " + id);
+                    } else {
+                        switch (fieldName) {
+                            case "name" -> product.setName((String) value);
+                            case "price" -> product.setPrice((double) value);
+                            case "quantity" -> product.setQuantity((Integer) value);
+                            case "description" -> product.setDescription((String) value);
+                            case "category" -> product.setCategory((String) value);
+                            default -> throw new IllegalArgumentException("Unknown Field: "+fieldName);
+                        }
                     }
+                    tx.commit();
+                    System.out.println("Updated successfully");
+                }catch (IllegalArgumentException e){
+                    System.out.println("Invalid Field! "+e.getMessage());
                 }
-                tx.commit();
-                System.out.println("Updated successfully");
-            } catch (Exception e) {
-                tx.rollback();
-                System.out.println("Product Not Found!");
-                throw e;
+                catch (Exception e) {
+                    tx.rollback();
+                    System.out.println("Product Not Found!");
+                    throw e;
+                }
             }
         }
-    }
 }

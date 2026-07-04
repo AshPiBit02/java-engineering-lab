@@ -14,7 +14,8 @@ public class App
 //        addProduct("Galaxy S26 Ultra",204990,2,"12GB RAM, 512GB Storage, SAmoled display","Electronics");
 //        getProductById(3);
 //        showProductData(productService.getAllProducts());
-        productService.updateProductField(2L,"categoy","Junk Food");
+//        productService.updateProductField(2L,"caegoy","Junk Food");
+        productService.updateProductField(2L,"category","Fast Food");
     }
 
     private static void addProduct(String name,double price,int quantity,String description,String category){
