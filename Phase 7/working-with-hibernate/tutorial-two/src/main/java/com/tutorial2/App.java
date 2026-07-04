@@ -21,7 +21,8 @@ public class App
 //        showProductData(productService.getAllProducts());
 //        showProductByCategory(productService.findByCategory("Electronics"),"Electronics");
 //        showProductByPriceRange(productService.findByPriceRange(30,30000000),30,30000000);
-        showLowStockProduct(productService.findLowStock(5));
+//        showLowStockProduct(productService.findLowStock(5));
+        SearchByName(productService.searchByName("c"));
     }
 
     private static void addProduct(String name,double price,int quantity,String description,String category){
@@ -85,6 +86,16 @@ public class App
             System.out.println("Products with low stock");
             System.out.println("-".repeat(20));
             products.forEach(p->System.out.printf("  %s(%d)%n",p.getName(),p.getQuantity()));
+        }
+    }
+
+    private static void SearchByName(List<Product> products){
+        if(products.isEmpty()){
+            System.out.println("No product with such keyword found!");
+        }else{
+            System.out.println("    Products");
+            System.out.println("-".repeat(18));
+            products.forEach(p->System.out.printf("  %s%n",p.getName()));
         }
     }
 }

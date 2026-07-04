@@ -115,4 +115,12 @@ public class ProductService {
             return query.list();
         }
     }
+
+    public List<Product> searchByName(String keyword){
+        try(Session session=sessionFactory.openSession()){
+            String hql="FROM Product WHERE LOWER(name) LIKE LOWER(:keyword)";
+            Query<Product>query=session.createQuery(hql,Product.class).setParameter("keyword","%"+keyword+"%");
+            return query.list();
+        }
+    }
 }
