@@ -91,4 +91,12 @@ public class ProductService {
             }
         }
     }
+
+    public List<Product> findByCategory(String category){
+        try(Session session=sessionFactory.openSession()){
+            String hql="FROM Product WHERE lOWER(category) =LOWER(:cat) ";
+            Query<Product>query=session.createQuery(hql,Product.class).setParameter("cat",category);
+            return query.list();
+        }
+    }
 }

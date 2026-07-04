@@ -19,6 +19,7 @@ public class App
 //        productService.updateProductField(2L,"category","Fast Food");
         productService.deleteProductById(6);
         showProductData(productService.getAllProducts());
+        showProductByCategory(productService.findByCategory("Electronics"),"Electronics");
     }
 
     private static void addProduct(String name,double price,int quantity,String description,String category){
@@ -53,6 +54,15 @@ public class App
             String desc=p.getDescription();
             String shortdesc=desc.length()>30?desc.substring(0,27)+"...":desc;
             System.out.printf("%-8d | %-20s | $%-10.2f |  %-8d | %-13s |  %-30s%n",p.getProductId(),p.getName(),p.getPrice(),p.getQuantity(),p.getCategory(),shortdesc);
+        }
+    }
+
+    private static void showProductByCategory(List<Product> product,String cat){
+        if(product.isEmpty()){
+            System.out.println("No products found in this category!");
+        }else{
+            System.out.println("-".repeat(10)+"Products("+cat+")"+"-".repeat(10));
+            product.forEach(p->System.out.printf("%-10s %s%n","",p.getName()));
         }
     }
 }
