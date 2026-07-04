@@ -99,4 +99,12 @@ public class ProductService {
             return query.list();
         }
     }
+
+    public List<Product> findByPriceRange(double min,double max){
+        try(Session session=sessionFactory.openSession()){
+            String hql="FROM Product WHERE price BETWEEN :min AND :max";
+            Query<Product>query= session.createQuery(hql,Product.class).setParameter("min",min).setParameter("max",max);
+            return query.list();
+        }
+    }
 }

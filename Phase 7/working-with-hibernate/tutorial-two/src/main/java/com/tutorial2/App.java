@@ -17,9 +17,10 @@ public class App
 //        showProductData(productService.getAllProducts());
 //        productService.updateProductField(2L,"caegoy","Junk Food");
 //        productService.updateProductField(2L,"category","Fast Food");
-        productService.deleteProductById(6);
-        showProductData(productService.getAllProducts());
-        showProductByCategory(productService.findByCategory("Electronics"),"Electronics");
+//        productService.deleteProductById(6);
+//        showProductData(productService.getAllProducts());
+//        showProductByCategory(productService.findByCategory("Electronics"),"Electronics");
+        showProductByPriceRange(productService.findByPriceRange(30,30000000),30,30000000);
     }
 
     private static void addProduct(String name,double price,int quantity,String description,String category){
@@ -63,6 +64,16 @@ public class App
         }else{
             System.out.println("-".repeat(10)+"Products("+cat+")"+"-".repeat(10));
             product.forEach(p->System.out.printf("%-10s %s%n","",p.getName()));
+        }
+    }
+
+    private static void showProductByPriceRange(List<Product> products,double min,double max){
+        if(products.isEmpty()){
+            System.out.println("No products found in that price("+min+","+max+") range!");
+        }else{
+            System.out.printf("%-2sProducts in Range(%.2f,%.2f)%-10s%n","",min,max,"");
+            System.out.println("-".repeat(40));
+            products.forEach(p->System.out.printf("%-7s %s%n","",p.getName()));
         }
     }
 }
