@@ -141,4 +141,12 @@ public class ProductService {
             return query.list();
         }
     }
+
+    public Object[] getMostExpensiveProduct(){
+        try(Session session=sessionFactory.openSession()){
+            String hql="SELECT name,price FROM Product ORDER BY price DESC";
+            Query<Object[]>query=session.createQuery(hql,Object[].class).setMaxResults(1);
+            return query.uniqueResult();
+        }
+    }
 }

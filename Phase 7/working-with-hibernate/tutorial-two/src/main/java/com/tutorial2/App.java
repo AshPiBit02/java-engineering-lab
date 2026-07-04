@@ -24,7 +24,8 @@ public class App
 //        showLowStockProduct(productService.findLowStock(5));
 //        SearchByName(productService.searchByName("c"));
 //        System.out.println("Inventory total valuation: $"+productService.getTotalInventoryValue());
-        showCountByCategory(productService.countByCategory());
+//        showCountByCategory(productService.countByCategory());
+        showMostExpensiveProduct(productService.getMostExpensiveProduct());
     }
 
 
@@ -109,6 +110,16 @@ public class App
             System.out.printf("%-5s %-20s| %-5s %s%n","","Category","","Count");
             System.out.println("-".repeat(45));
             products.forEach(p -> System.out.printf("%-5s %-20s| %-5s %d%n","",(String)p[0],"",(Long)p[1]));
+        }
+    }
+
+    private static void showMostExpensiveProduct(Object[] obj){
+        if(obj==null){
+            System.out.println("Inventory is Empty!");
+        }else{
+            System.out.println("Most Expensive Product");
+            System.out.println("-".repeat(40));
+            System.out.printf(" product [%-15s] %n price: [$%.2f]",(String)obj[0],(Double)obj[1]);
         }
     }
 }
