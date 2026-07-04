@@ -22,11 +22,9 @@ public class ProductService {
         }
     }
 
-//    public Student getById(long id){
-//        try(Session session=sessionFactory.openSession()){
-//            try{
-//
-//            }
-//        }
-//    }
+    public Product getById(long productId){
+        try(Session session=sessionFactory.openSession()){
+            return session.find(Product.class,productId);
+        }
+    }
 }

@@ -19,10 +19,9 @@ public class Product {
     @Column(name="quantity",nullable = false)
     private int quantity;
 
-   @Column(name="category",length = 100)
-   private String category;
+    @Column(name="category",length = 100)
+    private String category;
 
-    @Lob
     @Column(name="description")
     private String description;
 
