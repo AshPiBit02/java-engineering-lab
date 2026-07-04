@@ -5,6 +5,8 @@ import com.tutorial2.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import java.util.*;
 
 public class ProductService {
     private SessionFactory sessionFactory= HibernateUtil.getSessionFactory();
@@ -25,6 +27,14 @@ public class ProductService {
     public Product getById(long productId){
         try(Session session=sessionFactory.openSession()){
             return session.find(Product.class,productId);
+        }
+    }
+
+    public List<Product> getAllProducts(){
+        try(Session session=sessionFactory.openSession()){
+            String hql="FROM Product";
+            Query<Product> query=session.createQuery(hql, Product.class);
+            return query.list();
         }
     }
 }

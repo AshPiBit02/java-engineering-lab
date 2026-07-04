@@ -2,6 +2,7 @@ package com.tutorial2;
 
 import com.tutorial2.entities.Product;
 import com.tutorial2.service.ProductService;
+import java.util.List;
 public class App 
 {
     static ProductService productService;
@@ -12,6 +13,7 @@ public class App
 //        addProduct("Chips",80,23,"Lays Family Pack","Fast Food");
 //        addProduct("Galaxy S26 Ultra",204990,2,"12GB RAM, 512GB Storage, SAmoled display","Electronics");
         getProductById(3);
+        showProductData(productService.getAllProducts());
     }
 
     private static void addProduct(String name,double price,int quantity,String description,String category){
@@ -27,17 +29,25 @@ public class App
     private static void getProductById(long id){
         Product product= productService.getById(id);
         if(product!=null){
-        System.out.printf("%-10s %-22s %-13s %-10s %-14s %-30s%n","ProductID","ProductName","Price","Quantity","Category","Description");
-        System.out.println("-".repeat(110));
-        System.out.printf("%-8d | %-20s | $%-8.2f |  %-8d | %-10s |  %-30s%n",product.getProductId(),product.getName(),product.getPrice(),product.getQuantity(),product.getCategory(),product.getDescription());
+            System.out.printf("%-10s %-22s %-14s %-10s %-16s %-29s%n","ProductID","ProductName","Price","Quantity","Category","Description");
+            System.out.println("-".repeat(115));
+            String des=product.getDescription();
+            String shordes=des.length()<30?des.substring(0,27)+"...":des;
+            System.out.printf("%-8d | %-20s | $%-10.2f |  %-8d | %-13s |  %-30s%n",product.getProductId(),product.getName(),product.getPrice(),product.getQuantity(),product.getCategory(),shordes);
         }else{
             System.out.println("Product not found!");
         }
     }
 
-//    private static void showProductData(){
-//        System.out.printf("%-10s %-15s %-10s %-10s %-12s %-30s%n","ProductID","ProductName","Price","Quantity","Category","Description");
-//        System.out.println("-".repeat(100));
-//        while()
-//    }
+
+
+    private static void showProductData(List<Product> products){
+        System.out.printf("%-10s %-22s %-14s %-10s %-16s %-29s%n","ProductID","ProductName","Price","Quantity","Category","Description");
+        System.out.println("-".repeat(115));
+        for(Product p: products){
+            String desc=p.getDescription();
+            String shortdesc=desc.length()>30?desc.substring(0,27)+"...":desc;
+            System.out.printf("%-8d | %-20s | $%-10.2f |  %-8d | %-13s |  %-30s%n",p.getProductId(),p.getName(),p.getPrice(),p.getQuantity(),p.getCategory(),shortdesc);
+        }
+    }
 }
