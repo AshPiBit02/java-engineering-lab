@@ -133,4 +133,12 @@ public class ProductService {
 
         }
     }
+
+    public List<Object[]> countByCategory(){
+        try(Session session=sessionFactory.openSession()){
+            String hql="SELECT category,COUNT(*) FROM Product GROUP BY category";
+            Query<Object[]>query=session.createQuery(hql,Object[].class);
+            return query.list();
+        }
+    }
 }

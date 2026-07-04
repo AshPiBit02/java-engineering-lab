@@ -23,7 +23,8 @@ public class App
 //        showProductByPriceRange(productService.findByPriceRange(30,30000000),30,30000000);
 //        showLowStockProduct(productService.findLowStock(5));
 //        SearchByName(productService.searchByName("c"));
-        System.out.println("Inventory total valuation: $"+productService.getTotalInventoryValue());
+//        System.out.println("Inventory total valuation: $"+productService.getTotalInventoryValue());
+        showCountByCategory(productService.countByCategory());
     }
 
 
@@ -98,6 +99,16 @@ public class App
             System.out.println("    Products");
             System.out.println("-".repeat(18));
             products.forEach(p->System.out.printf("  %s%n",p.getName()));
+        }
+    }
+
+    private static void showCountByCategory(List<Object[]> products){
+        if(products.isEmpty()){
+            System.out.println("Inventory is Empty!");
+        }else{
+            System.out.printf("%-5s %-20s| %-5s %s%n","","Category","","Count");
+            System.out.println("-".repeat(45));
+            products.forEach(p -> System.out.printf("%-5s %-20s| %-5s %d%n","",(String)p[0],"",(Long)p[1]));
         }
     }
 }
