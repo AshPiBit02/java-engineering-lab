@@ -22,8 +22,10 @@ public class App
 //        showProductByCategory(productService.findByCategory("Electronics"),"Electronics");
 //        showProductByPriceRange(productService.findByPriceRange(30,30000000),30,30000000);
 //        showLowStockProduct(productService.findLowStock(5));
-        SearchByName(productService.searchByName("c"));
+//        SearchByName(productService.searchByName("c"));
+        System.out.println("Inventory total valuation: $"+productService.getTotalInventoryValue());
     }
+
 
     private static void addProduct(String name,double price,int quantity,String description,String category){
         Product product=new Product();

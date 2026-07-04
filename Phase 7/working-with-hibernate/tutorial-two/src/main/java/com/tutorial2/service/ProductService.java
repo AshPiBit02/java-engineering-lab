@@ -123,4 +123,14 @@ public class ProductService {
             return query.list();
         }
     }
+
+    public double getTotalInventoryValue(){
+        try(Session session=sessionFactory.openSession()){
+            String hql="SELECT SUM(p.price * p.quantity) FROM Product p";
+            Query<Double>query=session.createQuery(hql,Double.class);
+            Double total= query.uniqueResult();
+            return total!=null?total:0.0;
+
+        }
+    }
 }
