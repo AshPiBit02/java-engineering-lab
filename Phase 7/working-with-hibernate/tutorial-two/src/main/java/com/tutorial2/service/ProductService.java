@@ -34,7 +34,7 @@ public class ProductService {
 
     public List<Product> getAllProducts(){
         try(Session session=sessionFactory.openSession()){
-            String hql="FROM Product";
+            String hql="FROM Product ORDER BY productId";
             Query<Product> query=session.createQuery(hql, Product.class);
             return query.list();
         }
@@ -147,6 +147,15 @@ public class ProductService {
             String hql="SELECT name,price FROM Product ORDER BY price DESC";
             Query<Object[]>query=session.createQuery(hql,Object[].class).setMaxResults(1);
             return query.uniqueResult();
+        }
+    }
+
+    public List<Product> getProductPaginated(int pageNumber, int pageSize){
+        try(Session session=sessionFactory.openSession()){
+            int offset=(pageNumber-1)*pageSize;
+            String hql="FROM Product ORDER BY productId";
+            Query<Product>query=session.createQuery(hql,Product.class).setFirstResult(offset).setMaxResults(pageSize);
+            return query.list();
         }
     }
 }

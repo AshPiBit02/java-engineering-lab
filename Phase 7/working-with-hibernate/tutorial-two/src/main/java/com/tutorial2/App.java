@@ -25,7 +25,8 @@ public class App
 //        SearchByName(productService.searchByName("c"));
 //        System.out.println("Inventory total valuation: $"+productService.getTotalInventoryValue());
 //        showCountByCategory(productService.countByCategory());
-        showMostExpensiveProduct(productService.getMostExpensiveProduct());
+//        showMostExpensiveProduct(productService.getMostExpensiveProduct());
+        showProductsPaginated(productService.getProductPaginated(1,10));
     }
 
 
@@ -120,6 +121,15 @@ public class App
             System.out.println("Most Expensive Product");
             System.out.println("-".repeat(40));
             System.out.printf(" product [%-15s] %n price: [$%.2f]",(String)obj[0],(Double)obj[1]);
+        }
+    }
+
+    private static void showProductsPaginated(List<Product>products){
+        if(products.isEmpty()){
+            System.out.println("Inventory is Empty!");
+        }else{
+            System.out.printf("%s Paginated Products %s%n","".repeat(15),"".repeat(15));
+            showProductData(products);
         }
     }
 }
