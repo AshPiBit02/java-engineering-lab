@@ -1,5 +1,6 @@
 package com.tutorial2.service;
 
+import com.tutorial2.entities.Category;
 import com.tutorial2.entities.Product;
 import com.tutorial2.util.HibernateUtil;
 import com.tutorial2.util.ProductValidator;
@@ -56,7 +57,7 @@ public class ProductService {
                             case "price" -> product.setPrice((double) value);
                             case "quantity" -> product.setQuantity((Integer) value);
                             case "description" -> product.setDescription((String) value);
-                            case "category" -> product.setCategory((String) value);
+                            case "category" -> product.setCategory((Category) value);
                             default -> throw new IllegalArgumentException("Unknown Field: "+fieldName);
                         }
                     }

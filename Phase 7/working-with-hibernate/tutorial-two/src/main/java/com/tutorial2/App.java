@@ -1,5 +1,6 @@
 package com.tutorial2;
 
+import com.tutorial2.entities.Category;
 import com.tutorial2.entities.Product;
 import com.tutorial2.service.ProductService;
 import java.util.List;
@@ -30,7 +31,7 @@ public class App
     }
 
 
-    private static void addProduct(String name,double price,int quantity,String description,String category){
+    private static void addProduct(String name, double price, int quantity, String description, Category category){
         Product product=new Product();
         product.setName(name);
         product.setPrice(price);
