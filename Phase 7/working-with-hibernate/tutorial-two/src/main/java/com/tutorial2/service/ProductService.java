@@ -163,4 +163,23 @@ public class ProductService {
             return query.list();
         }
     }
+
+    public void bulkUpdatePriceByCategory(String category,double percentIncrease){
+        try(Session session=sessionFactory.openSession()){
+            Transaction tx=session.beginTransaction();
+            try{
+            String hql="UPDATE Product p SET p.price=p.price * (1+:percent/100.0) WHERE LOWER(p.category.name)=LOWER(:cat)";
+            int rowsUpdated=session.createMutationQuery(hql).setParameter("percent",percentIncrease).setParameter("cat",category).executeUpdate();
+            tx.commit();
+            if(rowsUpdated==0){
+                System.out.println("No products found in category: "+category);
+            }else{
+                System.out.println(rowsUpdated+" products updated in category: "+category);
+            }
+            }catch (Exception e){
+                tx.rollback();
+                throw e;
+            }
+        }
+    }
 }

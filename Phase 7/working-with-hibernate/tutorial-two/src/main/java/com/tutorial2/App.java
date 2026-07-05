@@ -4,7 +4,7 @@ import com.tutorial2.entities.Category;
 import com.tutorial2.entities.Product;
 import com.tutorial2.service.ProductService;
 import java.util.List;
-public class App 
+public class App
 {
     static ProductService productService;
     public static void main( String[] args )
@@ -27,7 +27,9 @@ public class App
 //        System.out.println("Inventory total valuation: $"+productService.getTotalInventoryValue());
 //        showCountByCategory(productService.countByCategory());
 //        showMostExpensiveProduct(productService.getMostExpensiveProduct());
-        showProductsPaginated(productService.getProductPaginated(1,10));
+//        showProductsPaginated(productService.getProductPaginated(1,10));
+        productService.bulkUpdatePriceByCategory("Electronics",10);
+        productService.bulkUpdatePriceByCategory("Electronic",10);
     }
 
 
