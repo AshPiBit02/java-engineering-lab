@@ -57,12 +57,12 @@ public class App
 
 
     private static void showProductData(List<Product> products){
-        System.out.printf("%-10s %-22s %-14s %-10s %-16s %-29s%n","ProductID","ProductName","Price","Quantity","Category","Description");
+        System.out.printf("%-10s %-25s %-14s %-10s %-16s %-29s%n","ProductID","ProductName","Price","Quantity","Category","Description");
         System.out.println("-".repeat(115));
         for(Product p: products){
             String desc=p.getDescription();
             String shortdesc=desc.length()>30?desc.substring(0,27)+"...":desc;
-            System.out.printf("%-8d | %-20s | $%-10.2f |  %-8d | %-13s |  %-30s%n",p.getProductId(),p.getName(),p.getPrice(),p.getQuantity(),p.getCategory(),shortdesc);
+            System.out.printf("%-8d | %-23s | $%-10.2f |  %-8d | %-13s |  %-30s%n",p.getProductId(),p.getName(),p.getPrice(),p.getQuantity(),p.getCategory().getName(),shortdesc);
         }
     }
 

@@ -37,7 +37,7 @@ public class ProductService {
 
     public List<Product> getAllProducts(){
         try(Session session=sessionFactory.openSession()){
-            String hql="FROM Product ORDER BY productId";
+            String hql="FROM Product p JOIN FETCH p.category ORDER BY p.productId";
             Query<Product> query=session.createQuery(hql, Product.class);
             return query.list();
         }
@@ -64,6 +64,7 @@ public class ProductService {
                     tx.commit();
                     System.out.println("Updated successfully");
                 }catch (IllegalArgumentException e){
+                    tx.rollback();
                     System.out.println("Invalid Field! "+e.getMessage());
                 }
                 catch (Exception e) {
@@ -98,7 +99,7 @@ public class ProductService {
 
     public List<Product> findByCategory(String category){
         try(Session session=sessionFactory.openSession()){
-            String hql="FROM Product WHERE lOWER(category) =LOWER(:cat) ";
+            String hql="FROM Product p JOIN FETCH p.category WHERE lOWER(p.category.name) =LOWER(:cat) ";
             Query<Product>query=session.createQuery(hql,Product.class).setParameter("cat",category);
             return query.list();
         }
@@ -122,7 +123,7 @@ public class ProductService {
 
     public List<Product> searchByName(String keyword){
         try(Session session=sessionFactory.openSession()){
-            String hql="FROM Product WHERE LOWER(name) LIKE LOWER(:keyword)";
+            String hql="FROM Product p JOIN FETCH p.category WHERE LOWER(p.name) LIKE LOWER(:keyword)";
             Query<Product>query=session.createQuery(hql,Product.class).setParameter("keyword","%"+keyword+"%");
             return query.list();
         }
@@ -140,7 +141,7 @@ public class ProductService {
 
     public List<Object[]> countByCategory(){
         try(Session session=sessionFactory.openSession()){
-            String hql="SELECT category,COUNT(*) FROM Product GROUP BY category";
+            String hql="SELECT p.category,COUNT(p) FROM Product p GROUP BY p.category.name";
             Query<Object[]>query=session.createQuery(hql,Object[].class);
             return query.list();
         }
@@ -148,7 +149,7 @@ public class ProductService {
 
     public Object[] getMostExpensiveProduct(){
         try(Session session=sessionFactory.openSession()){
-            String hql="SELECT name,price FROM Product ORDER BY price DESC";
+            String hql="SELECT p.name,p.price FROM Product p ORDER BY p.price DESC";
             Query<Object[]>query=session.createQuery(hql,Object[].class).setMaxResults(1);
             return query.uniqueResult();
         }
@@ -157,7 +158,7 @@ public class ProductService {
     public List<Product> getProductPaginated(int pageNumber, int pageSize){
         try(Session session=sessionFactory.openSession()){
             int offset=(pageNumber-1)*pageSize;
-            String hql="FROM Product ORDER BY productId";
+            String hql="FROM Product p JOIN FETCH p.category ORDER BY p.productId";
             Query<Product>query=session.createQuery(hql,Product.class).setFirstResult(offset).setMaxResults(pageSize);
             return query.list();
         }
