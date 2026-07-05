@@ -1,9 +1,10 @@
 package com.tutorial2;
 
+import com.tutorial2.entities.Category;
 import com.tutorial2.entities.Product;
 import com.tutorial2.service.ProductService;
 import java.util.List;
-public class App 
+public class App
 {
     static ProductService productService;
     public static void main( String[] args )
@@ -25,11 +26,14 @@ public class App
 //        SearchByName(productService.searchByName("c"));
 //        System.out.println("Inventory total valuation: $"+productService.getTotalInventoryValue());
 //        showCountByCategory(productService.countByCategory());
-        showMostExpensiveProduct(productService.getMostExpensiveProduct());
+//        showMostExpensiveProduct(productService.getMostExpensiveProduct());
+//        showProductsPaginated(productService.getProductPaginated(1,10));
+        productService.bulkUpdatePriceByCategory("Electronics",10);
+        productService.bulkUpdatePriceByCategory("Electronic",10);
     }
 
 
-    private static void addProduct(String name,double price,int quantity,String description,String category){
+    private static void addProduct(String name, double price, int quantity, String description, Category category){
         Product product=new Product();
         product.setName(name);
         product.setPrice(price);
@@ -55,12 +59,12 @@ public class App
 
 
     private static void showProductData(List<Product> products){
-        System.out.printf("%-10s %-22s %-14s %-10s %-16s %-29s%n","ProductID","ProductName","Price","Quantity","Category","Description");
+        System.out.printf("%-10s %-25s %-14s %-10s %-16s %-29s%n","ProductID","ProductName","Price","Quantity","Category","Description");
         System.out.println("-".repeat(115));
         for(Product p: products){
             String desc=p.getDescription();
             String shortdesc=desc.length()>30?desc.substring(0,27)+"...":desc;
-            System.out.printf("%-8d | %-20s | $%-10.2f |  %-8d | %-13s |  %-30s%n",p.getProductId(),p.getName(),p.getPrice(),p.getQuantity(),p.getCategory(),shortdesc);
+            System.out.printf("%-8d | %-23s | $%-10.2f |  %-8d | %-13s |  %-30s%n",p.getProductId(),p.getName(),p.getPrice(),p.getQuantity(),p.getCategory().getName(),shortdesc);
         }
     }
 
@@ -120,6 +124,15 @@ public class App
             System.out.println("Most Expensive Product");
             System.out.println("-".repeat(40));
             System.out.printf(" product [%-15s] %n price: [$%.2f]",(String)obj[0],(Double)obj[1]);
+        }
+    }
+
+    private static void showProductsPaginated(List<Product>products){
+        if(products.isEmpty()){
+            System.out.println("Inventory is Empty!");
+        }else{
+            System.out.printf("%s Paginated Products %s%n","".repeat(15),"".repeat(15));
+            showProductData(products);
         }
     }
 }

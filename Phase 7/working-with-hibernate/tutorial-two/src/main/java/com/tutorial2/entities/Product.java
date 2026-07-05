@@ -1,6 +1,6 @@
 package com.tutorial2.entities;
 
-
+import com.tutorial2.entities.Category;
 import jakarta.persistence.*;
 
 @Entity
@@ -19,8 +19,9 @@ public class Product {
     @Column(name="quantity",nullable = false)
     private int quantity;
 
-    @Column(name="category",length = 100)
-    private String category;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="category_id",nullable = false)
+    private Category category;
 
     @Column(name="description")
     private String description;
@@ -54,10 +55,10 @@ public class Product {
     }
 
 
-    public String getCategory(){
+    public Category getCategory(){
         return category;
     }
-    public void setCategory(String category){
+    public void setCategory(Category category){
         this.category=category;
     }
 

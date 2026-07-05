@@ -1,7 +1,9 @@
 package com.tutorial2.service;
 
+import com.tutorial2.entities.Category;
 import com.tutorial2.entities.Product;
 import com.tutorial2.util.HibernateUtil;
+import com.tutorial2.util.ProductValidator;
 import org.hibernate.FetchNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,6 +19,7 @@ public class ProductService {
         try(Session session=sessionFactory.openSession()){
             Transaction transaction=session.beginTransaction();
             try{
+                ProductValidator.validate(product);
                 session.persist(product);
                 transaction.commit();
             }catch (Exception e){
@@ -34,7 +37,7 @@ public class ProductService {
 
     public List<Product> getAllProducts(){
         try(Session session=sessionFactory.openSession()){
-            String hql="FROM Product";
+            String hql="FROM Product p JOIN FETCH p.category ORDER BY p.productId";
             Query<Product> query=session.createQuery(hql, Product.class);
             return query.list();
         }
@@ -48,18 +51,20 @@ public class ProductService {
                     if (product == null) {
                         throw new IllegalArgumentException("Product not found with id: " + id);
                     } else {
+                        ProductValidator.validateFieldValue(fieldName,value);
                         switch (fieldName) {
                             case "name" -> product.setName((String) value);
                             case "price" -> product.setPrice((double) value);
                             case "quantity" -> product.setQuantity((Integer) value);
                             case "description" -> product.setDescription((String) value);
-                            case "category" -> product.setCategory((String) value);
+                            case "category" -> product.setCategory((Category) value);
                             default -> throw new IllegalArgumentException("Unknown Field: "+fieldName);
                         }
                     }
                     tx.commit();
                     System.out.println("Updated successfully");
                 }catch (IllegalArgumentException e){
+                    tx.rollback();
                     System.out.println("Invalid Field! "+e.getMessage());
                 }
                 catch (Exception e) {
@@ -94,7 +99,7 @@ public class ProductService {
 
     public List<Product> findByCategory(String category){
         try(Session session=sessionFactory.openSession()){
-            String hql="FROM Product WHERE lOWER(category) =LOWER(:cat) ";
+            String hql="FROM Product p JOIN FETCH p.category WHERE lOWER(p.category.name) =LOWER(:cat) ";
             Query<Product>query=session.createQuery(hql,Product.class).setParameter("cat",category);
             return query.list();
         }
@@ -118,7 +123,7 @@ public class ProductService {
 
     public List<Product> searchByName(String keyword){
         try(Session session=sessionFactory.openSession()){
-            String hql="FROM Product WHERE LOWER(name) LIKE LOWER(:keyword)";
+            String hql="FROM Product p JOIN FETCH p.category WHERE LOWER(p.name) LIKE LOWER(:keyword)";
             Query<Product>query=session.createQuery(hql,Product.class).setParameter("keyword","%"+keyword+"%");
             return query.list();
         }
@@ -136,7 +141,7 @@ public class ProductService {
 
     public List<Object[]> countByCategory(){
         try(Session session=sessionFactory.openSession()){
-            String hql="SELECT category,COUNT(*) FROM Product GROUP BY category";
+            String hql="SELECT p.category,COUNT(p) FROM Product p GROUP BY p.category.name";
             Query<Object[]>query=session.createQuery(hql,Object[].class);
             return query.list();
         }
@@ -144,9 +149,37 @@ public class ProductService {
 
     public Object[] getMostExpensiveProduct(){
         try(Session session=sessionFactory.openSession()){
-            String hql="SELECT name,price FROM Product ORDER BY price DESC";
+            String hql="SELECT p.name,p.price FROM Product p ORDER BY p.price DESC";
             Query<Object[]>query=session.createQuery(hql,Object[].class).setMaxResults(1);
             return query.uniqueResult();
+        }
+    }
+
+    public List<Product> getProductPaginated(int pageNumber, int pageSize){
+        try(Session session=sessionFactory.openSession()){
+            int offset=(pageNumber-1)*pageSize;
+            String hql="FROM Product p JOIN FETCH p.category ORDER BY p.productId";
+            Query<Product>query=session.createQuery(hql,Product.class).setFirstResult(offset).setMaxResults(pageSize);
+            return query.list();
+        }
+    }
+
+    public void bulkUpdatePriceByCategory(String category,double percentIncrease){
+        try(Session session=sessionFactory.openSession()){
+            Transaction tx=session.beginTransaction();
+            try{
+            String hql="UPDATE Product p SET p.price=p.price * (1+:percent/100.0) WHERE LOWER(p.category.name)=LOWER(:cat)";
+            int rowsUpdated=session.createMutationQuery(hql).setParameter("percent",percentIncrease).setParameter("cat",category).executeUpdate();
+            tx.commit();
+            if(rowsUpdated==0){
+                System.out.println("No products found in category: "+category);
+            }else{
+                System.out.println(rowsUpdated+" products updated in category: "+category);
+            }
+            }catch (Exception e){
+                tx.rollback();
+                throw e;
+            }
         }
     }
 }
