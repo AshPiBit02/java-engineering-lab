@@ -2,6 +2,7 @@ package com.tutorial2.service;
 
 import com.tutorial2.entities.Product;
 import com.tutorial2.util.HibernateUtil;
+import com.tutorial2.util.ProductValidator;
 import org.hibernate.FetchNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,6 +18,7 @@ public class ProductService {
         try(Session session=sessionFactory.openSession()){
             Transaction transaction=session.beginTransaction();
             try{
+                ProductValidator.validate(product);
                 session.persist(product);
                 transaction.commit();
             }catch (Exception e){
@@ -48,6 +50,7 @@ public class ProductService {
                     if (product == null) {
                         throw new IllegalArgumentException("Product not found with id: " + id);
                     } else {
+                        ProductValidator.validateFieldValue(fieldName,value);
                         switch (fieldName) {
                             case "name" -> product.setName((String) value);
                             case "price" -> product.setPrice((double) value);
