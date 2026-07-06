@@ -35,6 +35,13 @@ public class Employee {
         return employeeId;
     }
 
+    public void setDepartment(Department department){
+        this.department=department;
+    }
+    public Department getDepartment(){
+        return department;
+    }
+
     public void setName(String name){
         this.name=name;
     }
@@ -75,6 +82,10 @@ public class Employee {
     }
     public String getJobTitle(){
         return jobTitle;
+    }
+
+    public long getDepartmentId(){
+        return department.getDepartmentId();
     }
 
 }

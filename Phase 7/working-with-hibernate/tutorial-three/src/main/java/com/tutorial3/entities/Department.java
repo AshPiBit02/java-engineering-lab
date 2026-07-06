@@ -32,5 +32,4 @@ public class Department {
     public String getLocation(){
         return location;
     }
-
 }
