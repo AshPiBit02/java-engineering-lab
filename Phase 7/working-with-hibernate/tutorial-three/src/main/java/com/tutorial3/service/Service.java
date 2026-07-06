@@ -1,4 +1,7 @@
 package com.tutorial3.service;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -40,6 +43,16 @@ public class Service {
     public Employee getEmployeeById(long id){
         try(Session session=sessionFactory.openSession()){
             return session.find(Employee.class,id);
+        }
+    }
+
+    public String getDepartmentById(long id){
+        try(Session session=sessionFactory.openSession()){
+            CriteriaBuilder cb=session.getCriteriaBuilder();
+            CriteriaQuery<Department> cq=cb.createQuery(Department.class);
+            Root<Department> root=cq.from(Department.class);
+            cq.select(root).where(cb.equal(root.get("departmentId"),id));
+            return session.createQuery(cq).getName();
         }
     }
 

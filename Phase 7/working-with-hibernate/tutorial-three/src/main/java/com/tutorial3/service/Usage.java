@@ -6,15 +6,14 @@ import com.tutorial3.entities.Employee;
 public class Usage {
     static Service serv=new Service();
 
-    static public Department addDepartment(String name,String location){
+    static public void addDepartment(String name,String location){
         Department dept=new Department();
         dept.setName(name);
         dept.setLocation(location);
         serv.saveDepartment(dept);
-        return dept;
     }
 
-    static public void addEmployee(String name,String email,double salary,String address,String contact,String job_title,Department dept){
+    static public void addEmployee(String name,String email,double salary,String address,String contact,String job_title,String dept){
         Employee emp=new Employee();
         emp.setName(name);
         emp.setEmail(email);

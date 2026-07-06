@@ -35,8 +35,8 @@ public class Employee {
         return employeeId;
     }
 
-    public void setDepartment(Department department){
-        this.department=department;
+    public void setDepartment(String dept){
+        department.setName(dept);
     }
     public Department getDepartment(){
         return department;
