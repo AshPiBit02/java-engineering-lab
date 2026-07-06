@@ -12,7 +12,7 @@ public class Employee {
     @Column(name="employee_name",length = 50,nullable = false)
     private String name;
 
-    @Column(name = "email",length = 40,nullable = false)
+    @Column(name = "email",length = 40,nullable = false,unique = true)
     private String email;
 
     @Column(name="salary",nullable = false)

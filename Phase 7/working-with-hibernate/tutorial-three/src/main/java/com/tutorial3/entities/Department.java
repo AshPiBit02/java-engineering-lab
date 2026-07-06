@@ -10,7 +10,7 @@ public class Department {
     @Column(name="department_id")
     private long departmentId;
 
-    @Column(name="department_name",length = 50,nullable = false)
+    @Column(name="department_name",length = 50,nullable = false,unique = true)
     private String name;
 
     @Column(name="location",length = 100,nullable = false)
