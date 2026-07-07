@@ -25,4 +25,7 @@ public class Usage {
         emp.setDepartment(dept);
         serv.saveEmployee(emp);
     }
+    static public void empWithSalaryGt(double salary){
+        serv.fetchAllEmployeeSalary(salary);
+    }
 }

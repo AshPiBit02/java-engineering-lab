@@ -1,5 +1,6 @@
 package com.tutorial3;
 import com.tutorial3.entities.Department;
+import com.tutorial3.service.Service;
 import com.tutorial3.service.Usage;
 public class App{
     public  static void main(String[] args){
@@ -13,6 +14,8 @@ public class App{
 //        Usage.addEmployee("The Unknown","thefacelessUnknown@gmail.com",600000,"SOUTH TM. 42","97XXXXXZXX","Trainer",2);
 //        Usage.addEmployee("Tom Jez","arcDesign@gmail.com",1258856,"Rookie' VI. 89","97X89XXXXX","Architect Designer",1);
 //        Usage.
+//        Usage.empWithSalaryGt(1000000000);
+//        Usage.empWithSalaryGt(100000);
 
     }
 }
