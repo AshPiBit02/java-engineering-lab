@@ -27,14 +27,14 @@ public class Employee {
     @Column(name="job_title",length = 30,nullable = false)
     private String jobTitle;
 
-    @Column(name="departemnt",length=50,nullable=false)
+    @Column(name="department",length=50,nullable=false)
     private String department;
 
     public long getEmployeeId(){
         return employeeId;
     }
 
-    public void setDepartment(String dept){
+    public void setDepartment(String department){
         this.department=department;
     }
     public String getDepartment(){
