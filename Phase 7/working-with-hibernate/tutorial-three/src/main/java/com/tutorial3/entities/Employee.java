@@ -27,18 +27,17 @@ public class Employee {
     @Column(name="job_title",length = 30,nullable = false)
     private String jobTitle;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="department_id",nullable = false)
-    private Department department;
+    @Column(name="departemnt",length=50,nullable=false)
+    private String department;
 
     public long getEmployeeId(){
         return employeeId;
     }
 
     public void setDepartment(String dept){
-        department.setName(dept);
+        this.department=department;
     }
-    public Department getDepartment(){
+    public String getDepartment(){
         return department;
     }
 
@@ -82,10 +81,6 @@ public class Employee {
     }
     public String getJobTitle(){
         return jobTitle;
-    }
-
-    public long getDepartmentId(){
-        return department.getDepartmentId();
     }
 
 }

@@ -46,14 +46,5 @@ public class Service {
         }
     }
 
-    public String getDepartmentById(long id){
-        try(Session session=sessionFactory.openSession()){
-            CriteriaBuilder cb=session.getCriteriaBuilder();
-            CriteriaQuery<Department> cq=cb.createQuery(Department.class);
-            Root<Department> root=cq.from(Department.class);
-            cq.select(root).where(cb.equal(root.get("departmentId"),id));
-            return session.createQuery(cq).getName();
-        }
-    }
 
 }
