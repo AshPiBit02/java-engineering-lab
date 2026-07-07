@@ -14,7 +14,7 @@ public class Usage {
     }
 
     static public void addEmployee(String name,String email,double salary,String address,String contact,String job_title,long departmentId){
-        Department dept=serv.getEmployeeById(departmentId);
+        Department dept=serv.getDepartmentById(departmentId);
         Employee emp=new Employee();
         emp.setName(name);
         emp.setEmail(email);

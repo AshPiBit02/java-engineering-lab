@@ -1,12 +1,13 @@
 package com.tutorial3.service;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
+//import org.hibernate.query.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import com.tutorial3.entities.*;
 import com.tutorial3.util.HibernateUtil;
+
+import java.util.List;
+
 public class Service {
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
@@ -40,9 +41,21 @@ public class Service {
         }
     }
 
-    public Department getEmployeeById(long id){
+    public Department getDepartmentById(long id){
         try(Session session=sessionFactory.openSession()){
             return session.find(Department.class,id);
+        }
+    }
+    public Employee getEmployeeById(long id){
+        try(Session session=sessionFactory.openSession()){
+            return session.find(Employee.class,id);
+        }
+    }
+
+    public List<Employee> getAllEmployees(){
+        try(Session session=sessionFactory.openSession())
+        {
+            return session.createQuery("FROM Employee",Employee.class).list();
         }
     }
 
