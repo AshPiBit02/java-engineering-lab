@@ -4,6 +4,8 @@ class Runner implements Runnable {
     private String name;
     private Random random = new Random();
     private int distance = 0;
+    private long startTime;
+    private long endTime;
 
     private static volatile String winner = null;
 
@@ -14,6 +16,7 @@ class Runner implements Runnable {
     @Override
     public void run() {
         int i = 1;
+        startTime = System.currentTimeMillis();
         while (distance < 100) {
             int step = random.nextInt(10) + 1;
             distance += step;
@@ -26,12 +29,16 @@ class Runner implements Runnable {
                 e.printStackTrace();
             }
         }
+        endTime = System.currentTimeMillis();
         System.out.println(name + " has finished the race!");
 
         if (winner == null) {
             winner = name;
         }
+    }
 
+    public long getRuntime() {
+        return endTime - startTime;
     }
 
     public static String getWinner() {
@@ -41,9 +48,13 @@ class Runner implements Runnable {
 
 public class RaceSimulator {
     public static void main(String[] args) {
-        Thread t1 = new Thread(new Runner("Milka"));
-        Thread t2 = new Thread(new Runner("Hussain"));
-        Thread t3 = new Thread(new Runner("Tomnyk"));
+        Runner r1 = new Runner("Milka");
+        Runner r2 = new Runner("Hussain");
+        Runner r3 = new Runner("Tommy");
+
+        Thread t1 = new Thread(r1);
+        Thread t2 = new Thread(r2);
+        Thread t3 = new Thread(r3);
 
         t1.start();
         t2.start();
@@ -55,8 +66,14 @@ public class RaceSimulator {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        System.out.println();
+        System.out.println("Race over!");
         System.out.println("-".repeat(15));
-        System.out.println("Race over! Winnner: " + Runner.getWinner());
+        System.out.println("Mlika runtime: " + r1.getRuntime() + "ms");
+        System.out.println("Hussain runtime: " + r2.getRuntime() + "ms");
+        System.out.println("Tommy runtime: " + r3.getRuntime() + "ms");
+        System.out.println("*".repeat(15));
+        System.out.println("Winner: " + Runner.getWinner());
 
     }
 
