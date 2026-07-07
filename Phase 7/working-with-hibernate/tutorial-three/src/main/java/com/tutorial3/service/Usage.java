@@ -13,7 +13,8 @@ public class Usage {
         serv.saveDepartment(dept);
     }
 
-    static public void addEmployee(String name,String email,double salary,String address,String contact,String job_title,String dept){
+    static public void addEmployee(String name,String email,double salary,String address,String contact,String job_title,long departmentId){
+        Department dept=serv.getDepartmentById(departmentId);
         Employee emp=new Employee();
         emp.setName(name);
         emp.setEmail(email);
@@ -23,5 +24,8 @@ public class Usage {
         emp.setJobTitle(job_title);
         emp.setDepartment(dept);
         serv.saveEmployee(emp);
+    }
+    static public void empWithSalaryGt(double salary){
+        serv.fetchAllEmployeeSalary(salary);
     }
 }
