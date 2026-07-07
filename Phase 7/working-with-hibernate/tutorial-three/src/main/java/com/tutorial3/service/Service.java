@@ -40,9 +40,9 @@ public class Service {
         }
     }
 
-    public Employee getEmployeeById(long id){
+    public Department getEmployeeById(long id){
         try(Session session=sessionFactory.openSession()){
-            return session.find(Employee.class,id);
+            return session.find(Department.class,id);
         }
     }
 
