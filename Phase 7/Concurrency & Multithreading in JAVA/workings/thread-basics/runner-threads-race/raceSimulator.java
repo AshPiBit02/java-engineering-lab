@@ -2,21 +2,23 @@ import java.util.Random;
 
 class Runner implements Runnable {
     private String name;
-    private Random random;
+    private Random random = new Random();
+    private int distance = 0;
+
+    private static volatile String winner = null;
 
     public Runner(String name) {
         this.name = name;
-        this.random = new Random();
     }
 
     @Override
     public void run() {
-        int distance = 0;
+        int i = 1;
         while (distance < 100) {
             int step = random.nextInt(10) + 1;
             distance += step;
-
             System.out.println(name + " -> " + distance + "m");
+            i++;
 
             try {
                 Thread.sleep(random.nextInt(201) + 100);
@@ -24,8 +26,16 @@ class Runner implements Runnable {
                 e.printStackTrace();
             }
         }
-        System.out.println(name + "has finished the race!");
+        System.out.println(name + " has finished the race!");
 
+        if (winner == null) {
+            winner = name;
+        }
+
+    }
+
+    public static String getWinner() {
+        return winner;
     }
 }
 
@@ -45,7 +55,8 @@ public class RaceSimulator {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Race over!");
+        System.out.println("-".repeat(15));
+        System.out.println("Race over! Winnner: " + Runner.getWinner());
 
     }
 
