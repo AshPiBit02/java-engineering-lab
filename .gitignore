@@ -39,6 +39,7 @@ Thumbs.db
 # Build outputs
 out/
 bin/
+tempCodeRunnerFile.java
 
 # Local only
 *.txt   # remove this if you want to keep important .txt files
