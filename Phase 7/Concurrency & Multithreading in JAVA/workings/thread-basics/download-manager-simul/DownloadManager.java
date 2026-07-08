@@ -4,6 +4,7 @@ class DownloadFile implements Runnable {
     private String fileName;
     private boolean downloaded;
     private Random rand = new Random();
+    private int progress = 0;
 
     DownloadFile(String fileName) {
         this.fileName = fileName;
@@ -12,21 +13,33 @@ class DownloadFile implements Runnable {
 
     @Override
     public void run() {
-        try {
-            System.out.println("Downloading: " + fileName);
-            Thread.sleep(rand.nextInt(1501) + 500);
-            downloaded = true;
-        } catch (InterruptedException e) {
-            System.out.println("Canceled: " + fileName);
+        while (progress < 100) {
+            int percentInc = rand.nextInt(10);
+            try {
+                progress += percentInc;
+                if (progress >= 100) {
+                    System.out.println();
+                    System.out.println("Downloading: " + fileName + " [ 100% ]");
+                    downloaded = true;
+                    System.out.println(fileName + " downloaded successfully!");
+                    System.out.println();
+                } else {
+                    System.out.println("Downloading: " + fileName + " [ " + progress + "% ]");
+                }
+                Thread.sleep(rand.nextInt(500));
+            } catch (InterruptedException e) {
+                System.out.println("Canceled: " + fileName + "[ " + progress + "% ]");
+                break;
+            }
         }
 
     }
 
-    public void downloadStatus() {
+    public void fileStatus() {
         if (downloaded) {
-            System.out.println(fileName + " downloaded successfully!");
+            System.out.println(fileName + ": [Downloaded]");
         } else {
-            System.out.println(fileName + " download failed!!");
+            System.out.println(fileName + ": [Timeout]");
         }
     }
 
@@ -55,9 +68,9 @@ public class DownloadManager {
         t2.join();
         t3.join();
 
-        file1.downloadStatus();
-        file2.downloadStatus();
-        file3.downloadStatus();
+        file1.fileStatus();
+        file2.fileStatus();
+        file3.fileStatus();
 
     }
 
