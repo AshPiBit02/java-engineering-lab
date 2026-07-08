@@ -74,7 +74,6 @@ public class RaceSimulator {
         System.out.println("Tommy runtime: " + r3.getRuntime() + "ms");
         System.out.println("*".repeat(15));
         System.out.println("Winner: " + Runner.getWinner());
-
     }
 
 }

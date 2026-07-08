@@ -43,10 +43,10 @@ class Sensor implements Runnable {
 
 public class BackgroundLogger {
     public static void main(String[] args) throws InterruptedException {
-        Thread t1 = new Thread(new Sensor("Sensor-A", false));
-        Thread t2 = new Thread(new Sensor("Sensor-B", true));
-        Thread t3 = new Thread(new Sensor("Sensor-C", false));
-        Thread t4 = new Thread(new Logger());
+        Thread t1 = new Thread(new Sensor("Sensor-A", false), "Thread-1");
+        Thread t2 = new Thread(new Sensor("Sensor-B", true), "Thread-2");
+        Thread t3 = new Thread(new Sensor("Sensor-C", false), "Thread-3");
+        Thread t4 = new Thread(new Logger(), "Thread-4");
 
         t4.setDaemon(true);
 
