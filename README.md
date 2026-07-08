@@ -54,7 +54,7 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] 1.4 Conditional Statements
 - [x] 1.5 Access Modifiers
 - [x] 1.6 Exception Handling
-- [ ] 1.7 Java Collections
+- [x] 1.7 Java Collections
 
 ---
 
@@ -81,15 +81,15 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] 3.5 Dialogs and Frames
 - [x] 3.6 Event handling and Listener Interfaces
 - [x] 3.7 Handling Action Events
-- [ ] 3.8 JavaFX vs Swing
-- [ ] 3.9 JavaFX Layouts
-- [ ] 3.10 JavaFX UI Controls
+- [x] 3.8 JavaFX vs Swing
+- [x] 3.9 JavaFX Layouts
+- [x] 3.10 JavaFX UI Controls
 
 ---
 
 ### Phase 4 · Distributed Network Programming 
 
-- [ ] 4.1 TCP, UDP, IP Address and Ports
+- [x] 4.1 TCP, UDP, IP Address and Ports
 - [ ] 4.2 Socket Programming using TCP and UDP
 - [ ] 4.3 Working with URLs and URL Connection Class
 - [ ] 4.4 Email Handling using Java Mail API
@@ -103,14 +103,14 @@ By the end of the course, students will be proficient in Java programming — eq
 
 ### Phase 5 · Database Connectivity with JAVA 
 
-- [ ] 5.1 JDBC Architecture
-- [ ] 5.2 JDBC Driver Types and Configuration
-- [ ] 5.3 Managing Connections and Statements
-- [ ] 5.4 Result Sets and Exception Handling
-- [ ] 5.5 DDL and DML Operations
-- [ ] 5.6 SQL Injection and Prepared Statements
-- [ ] 5.7 Row Sets and Transactions
-- [ ] 5.8 SQL Escapes
+- [x] 5.1 JDBC Architecture
+- [x] 5.2 JDBC Driver Types and Configuration
+- [x] 5.3 Managing Connections and Statements
+- [x] 5.4 Result Sets and Exception Handling
+- [x] 5.5 DDL and DML Operations
+- [x] 5.6 SQL Injection and Prepared Statements
+- [x] 5.7 Row Sets and Transactions
+- [x] 5.8 SQL Escapes
 
 ---
 
@@ -147,15 +147,15 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] **T04** · Packages and Data Types
 - [x] **T05** · Conditional Statements — if-else, switch-case, logical operators
 - [x] **T06** · Access Modifiers — public, private, protected, default
-- [ ] **T07** · Exception Handling — try-catch, checked vs unchecked exceptions
-- [ ] **T08** · Working with Files in Java (Java I/O)
-- [ ] **T09** · Java Collections Framework — ArrayList, LinkedList, HashMap
+- [x] **T07** · Exception Handling — try-catch, checked vs unchecked exceptions
+- [x] **T08** · Working with Files in Java (Java I/O)
+- [x] **T09** · Java Collections Framework — ArrayList, LinkedList, HashMap
 - [x] **T10** · Object-Oriented Concepts — inheritance, polymorphism, encapsulation, abstraction
-- [ ] **T11** · Advanced Inheritance and Interfaces
+- [x] **T11** · Advanced Inheritance and Interfaces
 - [x] **T12** · GUIs with Swing — components, event handling, layout management
-- [ ] **T13** · Introduction to JavaFX — scene graphs, UI controls, event handling
+- [x] **T13** · Introduction to JavaFX — scene graphs, UI controls, event handling
 - [ ] **T14** · Network Programming with Sockets — TCP and UDP
-- [ ] **T15** · Database Connectivity with JDBC
+- [x] **T15** · Database Connectivity with JDBC
 - [ ] **T16** · Advanced Inheritance and Interfaces (extended)
 - [ ] **T17** · Servlet Development — lifecycle, HTTP requests and responses
 - [ ] **T18** · JSP Essentials — dynamic pages, form handling, DB connectivity
@@ -171,7 +171,7 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] **P03** · GUI Application with Swing — buttons, text fields, labels
 - [x] **P04** · JavaFX Project — layout managers, UI controls, event handling
 - [ ] **P05** · Socket Programming — client-server app over TCP/UDP
-- [ ] **P06** · JDBC Database Application — CRUD operations and exception handling
+- [x] **P06** · JDBC Database Application — CRUD operations and exception handling
 - [ ] **P07** · Servlet-Based Web Application — HTTP, JSP, and dynamic content
 - [ ] **P08** · Concurrency Demonstration — multithreading and safe thread execution
 - [ ] **P09** · Hibernate Integration — ORM with database CRUD
