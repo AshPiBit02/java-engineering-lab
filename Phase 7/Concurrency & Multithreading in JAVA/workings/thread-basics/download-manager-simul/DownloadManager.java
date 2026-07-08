@@ -4,11 +4,12 @@ class DownloadFile implements Runnable {
     private String fileName;
     private boolean downloaded;
     private Random rand = new Random();
-    private int progress = 0;
+    private int progress;
 
     DownloadFile(String fileName) {
         this.fileName = fileName;
         downloaded = false;
+        progress = 0;
     }
 
     @Override
@@ -26,8 +27,9 @@ class DownloadFile implements Runnable {
                 } else {
                     System.out.println("Downloading: " + fileName + " [ " + progress + "% ]");
                 }
-                Thread.sleep(rand.nextInt(500));
+                Thread.sleep(rand.nextInt(205));
             } catch (InterruptedException e) {
+                System.out.println();
                 System.out.println("Canceled: " + fileName + "[ " + progress + "% ]");
                 break;
             }
@@ -58,7 +60,7 @@ public class DownloadManager {
         t2.start();
         t3.start();
 
-        Thread.sleep(800);
+        Thread.sleep(2000);
 
         t1.interrupt();
         t2.interrupt();
@@ -68,10 +70,17 @@ public class DownloadManager {
         t2.join();
         t3.join();
 
-        file1.fileStatus();
-        file2.fileStatus();
-        file3.fileStatus();
+        showFileStatus(file1, file2, file3);
 
+    }
+
+    private static void showFileStatus(DownloadFile f1, DownloadFile f2, DownloadFile f3) {
+        System.out.println();
+        System.out.println("Download Manager");
+        System.out.println("-".repeat(30));
+        f1.fileStatus();
+        f2.fileStatus();
+        f3.fileStatus();
     }
 
 }
