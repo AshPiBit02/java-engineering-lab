@@ -75,6 +75,7 @@ public class RaceSimulator {
         System.out.println("*".repeat(15));
         System.out.println("Winner: " + Runner.getWinner());
 
+
     }
 
 }
