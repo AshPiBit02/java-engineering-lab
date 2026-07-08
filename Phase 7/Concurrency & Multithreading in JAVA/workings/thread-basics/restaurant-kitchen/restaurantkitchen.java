@@ -33,12 +33,15 @@ class Dish implements Runnable {
 }
 
 public class restaurantkitchen {
-    private static int maxTime = 5000;
+    private static int maxTime = 500;
 
     public static void main(String[] args) throws InterruptedException {
-        Thread chef1 = new Thread(new Dish("Chef-1", "Briyani"));
-        Thread chef2 = new Thread(new Dish("Chef-2", "Sushi"));
-        Thread chef3 = new Thread(new Dish("Chef-3", "Ramen"));
+        Dish d1 = new Dish("Chef-1", "Briyani");
+        Dish d2 = new Dish("Chef-2", "Sushi");
+        Dish d3 = new Dish("Chef-3", "Ramen");
+        Thread chef1 = new Thread(d1);
+        Thread chef2 = new Thread(d2);
+        Thread chef3 = new Thread(d3);
 
         chef1.start();
         chef2.start();
@@ -54,8 +57,7 @@ public class restaurantkitchen {
         chef2.join();
         chef3.join();
 
-        Dish d = new Dish(null, null);
-        if (d.orderCancel()) {
+        if (d1.orderCancel() || d2.orderCancel() || d3.orderCancel()) {
             System.out.println("Customer frustrated!!");
         } else {
             System.out.println("Customer enjoying dishes");
