@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="596.0" maxWidth="624.0" minHeight="596.0" minWidth="624.0" prefHeight="596.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.init.Controller">
+   <children>
+      <Label fx:id="titleLabel" alignment="CENTER" layoutX="54.0" layoutY="7.0" prefHeight="17.0" prefWidth="516.0" text="JAVAFX-JDBC-POSTGESQL" textAlignment="CENTER" textFill="#4a0303" wrapText="true">
+         <font>
+            <Font name="MS Outlook" size="39.0" />
+         </font>
+      </Label>
+      <TableView fx:id="TableView" layoutY="144.0" prefHeight="452.0" prefWidth="624.0">
+         <columns>
+            <TableColumn fx:id="stuId" prefWidth="75.0" resizable="false" text="Student ID" />
+            <TableColumn fx:id="fullname" prefWidth="169.0" resizable="false" text="Full Name" />
+            <TableColumn fx:id="course" prefWidth="180.0" resizable="false" text="Course" />
+            <TableColumn fx:id="faculty" prefWidth="111.0" resizable="false" text="Faculty" />
+            <TableColumn fx:id="level" prefWidth="87.0" resizable="false" text="Level" />
+         </columns>
+      </TableView>
+      <Label fx:id="cmdLabel" contentDisplay="CENTER" layoutX="14.0" layoutY="64.0" prefHeight="37.0" prefWidth="107.0" text="SQL Command">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="sqlField" layoutX="140.0" layoutY="70.0" prefHeight="25.0" prefWidth="456.0" />
+      <Button fx:id="enterBtn" layoutX="185.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleEnter" prefHeight="25.0" prefWidth="151.0" text="Enter">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="refreshBtn" layoutX="393.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="25.0" prefWidth="151.0" text="Refresh">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
