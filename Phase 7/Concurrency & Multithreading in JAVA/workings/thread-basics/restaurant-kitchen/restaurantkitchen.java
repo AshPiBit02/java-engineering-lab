@@ -13,12 +13,13 @@ class Dish implements Runnable {
 
     @Override
     public void run() {
-        int prepTime = rand.nextInt(1501) + 500;
+        int prepTime = rand.nextInt(800) + 500;
         try {
             prepareDish(dishName, prepTime);
+            System.out.println(chefName + ": " + dishName + " prepared!");
         } catch (InterruptedException e) {
             orderCancel = true;
-            System.out.println("Head Chef: Order Canceled!!!");
+            System.out.println("Head Chef: " + dishName + " Canceled!!!");
         }
     }
 
@@ -33,7 +34,7 @@ class Dish implements Runnable {
 }
 
 public class restaurantkitchen {
-    private static int maxTime = 500;
+    private static int maxTime = 800;
 
     public static void main(String[] args) throws InterruptedException {
         Dish d1 = new Dish("Chef-1", "Briyani");
