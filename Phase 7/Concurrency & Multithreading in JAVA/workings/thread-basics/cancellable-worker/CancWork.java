@@ -1,4 +1,8 @@
+import java.util.Random;
+
 class Worker implements Runnable {
+    private Random random = new Random();
+
     @Override
     public void run() {
         int n = 0;
@@ -6,7 +10,7 @@ class Worker implements Runnable {
             System.out.println("Working.. tick " + n);
             n++;
             try {
-                Thread.sleep(500);
+                Thread.sleep(random.nextInt(501) + 200);
             } catch (InterruptedException e) {
                 System.out.println("Worker inpterrupted, stopping.");
                 break;
