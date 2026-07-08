@@ -19,18 +19,16 @@ class DownloadFile implements Runnable {
             try {
                 progress += percentInc;
                 if (progress >= 100) {
-                    System.out.println();
-                    System.out.println("Downloading: " + fileName + " [ 100% ]");
+                    System.out.printf("%-10s %-9s %s%n", "Downloading: ", fileName, " [ 100% ]");
                     downloaded = true;
                     System.out.println(fileName + " downloaded successfully!");
                     System.out.println();
                 } else {
-                    System.out.println("Downloading: " + fileName + " [ " + progress + "% ]");
+                    System.out.printf("%-10s %-10s [ %d%% ] %n", "Downloading: ", fileName, progress);
                 }
                 Thread.sleep(rand.nextInt(205));
             } catch (InterruptedException e) {
-                System.out.println();
-                System.out.println("Canceled: " + fileName + "[ " + progress + "% ]");
+                System.out.printf("%-10s %-7s [ %d%% ] %n", "Canceled: ", fileName, progress);
                 break;
             }
         }
@@ -39,9 +37,9 @@ class DownloadFile implements Runnable {
 
     public void fileStatus() {
         if (downloaded) {
-            System.out.println(fileName + ": [Downloaded]");
+            System.out.printf("%-10s %s%n", fileName, ": [Downloaded]");
         } else {
-            System.out.println(fileName + ": [Timeout]");
+            System.out.printf("%-10s %s%n", fileName, ": [Timeout]");
         }
     }
 
