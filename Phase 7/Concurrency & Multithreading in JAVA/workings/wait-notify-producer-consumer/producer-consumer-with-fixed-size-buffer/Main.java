@@ -7,6 +7,7 @@ class Buffer {
 
     public synchronized void produce(int value) throws InterruptedException {
         while (space == 0) {
+            System.out.println(Thread.currentThread().getName() + " Waiting...");
             wait();
         }
         buffer.add(value);
@@ -17,6 +18,7 @@ class Buffer {
 
     public synchronized int consume() throws InterruptedException {
         while (buffer.isEmpty()) {
+            System.out.println(Thread.currentThread().getName() + " Waiting...");
             wait();
         }
         int value = buffer.getFirst();
@@ -43,7 +45,7 @@ public class Main {
                     e.printStackTrace();
                 }
             }
-        });
+        },"Producer");
 
         Thread consumer = new Thread(() -> {
             for (int i = 1; i <= 20; i++) {
@@ -54,7 +56,7 @@ public class Main {
                     e.printStackTrace();
                 }
             }
-        });
+        },"Consumer");
 
         producer.start();
         consumer.start();
