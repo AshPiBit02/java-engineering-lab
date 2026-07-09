@@ -30,19 +30,33 @@ public class Main {
         }
     }
 
+    static void transferFixed(Account from, Account to, int amount) {
+        Account first = (from.id < to.id) ? from : to;
+        Account second = (from.id < to.id) ? to : from;
+
+        synchronized (first) {
+            synchronized (second) {
+                from.withdraw(amount);
+                to.deposit(amount);
+            }
+        }
+    }
+
     public static void main(String[] args) throws InterruptedException {
         Account a = new Account(101, 75500);
         Account b = new Account(102, 92556);
 
         Runnable r1 = () -> {
             for (int i = 0; i < 1000; i++) {
-                transferBuggy(a, b, 10);
+                // transferBuggy(a, b, 10);
+                transferFixed(a, b, 10);
             }
         };
 
         Runnable r2 = () -> {
             for (int i = 0; i < 1000; i++) {
-                transferBuggy(b, a, 11);
+                // transferBuggy(b, a, 11);
+                transferFixed(b, a, 10);
             }
         };
 
