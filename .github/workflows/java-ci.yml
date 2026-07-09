@@ -1,0 +1,46 @@
+name: Java Learning CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  maven-build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        module:
+          [
+            "JavaFX-CodeBase/foundations/hello-world_01",
+            "JavaFX-CodeBase/projects/dataviewer",
+            "Phase 7/working-with-hibernate/tutorial-one",
+            "Phase 7/working-with-hibernate/tutorial-two",
+            "Phase 7/working-with-hibernate/tutorial-three",
+          ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+      - run: mvn -f ${{ matrix.module }}/pom.xml clean install
+      - run: mvn -f ${{ matrix.module }}/pom.xml test
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.module }}-artifact
+          path: ${{ matrix.module }}/target/*.jar
+
+  raw-java-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+      - name: Compile raw Java files
+        run: javac $(find "Phase 1" "Phase 2" "Phase 3" "Phase 4" "Phase 5" "Phase 6" "Phase 7/Concurrency & Multithreading in JAVA" "Phase 7/Design Patterns" -name "*.java")
+      - name: Run simple tests
+        run: java org.junit.runner.JUnitCore MyTestClass
