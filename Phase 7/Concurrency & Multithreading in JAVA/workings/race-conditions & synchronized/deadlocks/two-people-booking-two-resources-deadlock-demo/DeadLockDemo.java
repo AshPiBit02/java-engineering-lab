@@ -1,3 +1,6 @@
+import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadMXBean;
+
 class Resource {
     private String name;
 
@@ -8,7 +11,7 @@ class Resource {
 }
 
 public class DeadLockDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Resource ticket1 = new Resource("Ticket-1");
         Resource ticket2 = new Resource("Ticket-2");
 
@@ -40,6 +43,15 @@ public class DeadLockDemo {
         };
         new Thread(agentA).start();
         new Thread(agentB).start();
+
+        Thread.sleep(1500);
+        ThreadMXBean bean = ManagementFactory.getThreadMXBean();
+        long[] ids = bean.findDeadlockedThreads();
+        if (ids != null) {
+            System.out.println("Deadlock detected!!!!!");
+            System.out.print("Exited");
+            System.exit(0);
+        }
     }
 
 }
