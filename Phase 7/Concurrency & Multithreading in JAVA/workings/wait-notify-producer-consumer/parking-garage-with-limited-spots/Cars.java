@@ -27,41 +27,71 @@ class Garage {
         System.out.println(leavingCar + " left the parking!");
         notifyAll();
     }
+
+    public boolean isGarageEmpty() {
+        return garage.isEmpty();
+    }
+
+    public int numUndepaturedCars() {
+        return garage.size();
+    }
 }
 
 public class Cars {
     public static void main(String[] args) throws InterruptedException {
-        Random rand = new Random();
         Garage gar = new Garage();
 
-        Thread carsArrival = new Thread(() -> {
-            for (int i = 1; i <= 53; i++) {
-                try {
-                    gar.arrive("Car-" + i);
-                    Thread.sleep(rand.nextInt(151) + 50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        int numArrivalThreads = 4;
+        int numDepartureThreads = 3;
+        int arrivalsPerThread = 15;
+        int departuresPerThread = 20;
+
+        Thread[] arrivalThreads = new Thread[numArrivalThreads];
+        Thread[] departureThreads = new Thread[numDepartureThreads];
+
+        for (int t = 0; t < numArrivalThreads; t++) {
+            final int threadId = t;
+            arrivalThreads[t] = new Thread(() -> {
+                Random rand = new Random();
+                for (int i = 1; i <= arrivalsPerThread; i++) {
+                    try {
+                        gar.arrive("Car-" + threadId + "-" + i);
+                        Thread.sleep(rand.nextInt(151) + 50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
-        Thread carsLeave = new Thread(() -> {
-            for (int i = 1; i <= 53; i++) {
-                try {
-                    gar.leave();
-                    Thread.sleep(rand.nextInt(401) + 200);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            });
+        }
+        for (int t = 0; t < numDepartureThreads; t++) {
+            departureThreads[t] = new Thread(() -> {
+                Random rand = new Random();
+                for (int i = 1; i <= departuresPerThread - 1; i++) {
+                    try {
+                        gar.leave();
+                        Thread.sleep(rand.nextInt(401) + 200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
 
-        carsArrival.start();
-        carsLeave.start();
+            });
+        }
 
-        carsArrival.join();
-        carsLeave.join();
+        for (Thread t : arrivalThreads)
+            t.start();
+        for (Thread t : departureThreads)
+            t.start();
 
-        System.out.println("Garage Closed!");
+        for (Thread t : arrivalThreads)
+            t.join();
+        for (Thread t : departureThreads)
+            t.join();
 
+        if (gar.isGarageEmpty()) {
+            System.out.println("Garage Closed!");
+        } else {
+            System.out.println(gar.numUndepaturedCars() + " cars has been stolen! Call the cops");
+        }
     }
 }
