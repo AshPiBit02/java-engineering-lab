@@ -40,7 +40,7 @@ public class Main {
             for (int i = 1; i <= 20; i++) {
                 try {
                     buf.produce(i);
-                    Thread.sleep(rand.nextInt(101) + 100);
+                    Thread.sleep(rand.nextInt(201) + 50);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -51,7 +51,7 @@ public class Main {
             for (int i = 1; i <= 20; i++) {
                 try {
                     buf.consume();
-                    Thread.sleep(rand.nextInt(151) + 150);
+                    Thread.sleep(rand.nextInt(301) + 50);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
