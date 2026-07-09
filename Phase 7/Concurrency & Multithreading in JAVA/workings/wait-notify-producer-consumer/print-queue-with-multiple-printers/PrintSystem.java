@@ -6,12 +6,11 @@ class PrintQueue {
     private int maxQueueSize = 10;
 
     public synchronized void submitJob(String job) throws InterruptedException {
-        while (maxQueueSize == 10) {
+        while (jobs.size() == maxQueueSize) {
             System.out.println(job + " waiting- queue full");
             wait();
         }
         jobs.add(job);
-        maxQueueSize--;
         System.out.println(job + "submitted");
         notifyAll();
 
