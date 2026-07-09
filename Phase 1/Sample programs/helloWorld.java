@@ -1,6 +1,6 @@
 public class helloWorld {
     public static void main(String[] args) {
-        System.out.println("Workflow test");
+        System.out.println("Workflow-Test 2");
 
     }
 }
