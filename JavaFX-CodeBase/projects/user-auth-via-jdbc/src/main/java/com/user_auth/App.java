@@ -12,6 +12,7 @@ public class App extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/FXML/login_auth.fxml"));
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/CSS/btnStyle.css").toExternalForm());
             stage.setResizable(true);
             stage.setScene(scene);
             stage.show();

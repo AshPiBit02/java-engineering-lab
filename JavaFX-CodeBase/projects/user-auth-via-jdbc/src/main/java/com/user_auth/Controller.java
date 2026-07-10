@@ -22,6 +22,9 @@ public class Controller {
     private Button loginBtn;
 
     @FXML
+    private Button registerBtn;
+
+    @FXML
     private ImageView backgroundImg;
 
     @FXML
@@ -41,10 +44,10 @@ public class Controller {
         backgroundImg.fitWidthProperty().bind(rootpane.widthProperty());
         backgroundImg.fitHeightProperty().bind(rootpane.heightProperty());
 
-        Image logo = new Image(getClass().getResource("/Images/logo.png").toExternalForm());
+        Image logo = new Image(getClass().getResource("/Images/modlogo.jpg").toExternalForm());
         logoImg.setImage(logo);
 
-        Image log = new Image(getClass().getResource("/Images/login.jpeg").toExternalForm());
+        Image log = new Image(getClass().getResource("/Images/login3.jpg").toExternalForm());
         logImg.setImage(log);
 
     }
@@ -53,10 +56,17 @@ public class Controller {
     private void handleLoginButtonAction() {
         String username = inputUsername.getText();
         String password = inputPassword.getText();
-
         System.out.println("Login Pressed");
-        System.out.println("Username " + username);
-        System.out.println("Password " + password);
+        if (username.isEmpty() || password.isEmpty()) {
+            System.out.println("Fields can't be empty!");
+        } else {
+
+        }
+    }
+
+    @FXML
+    void handleRegisterButtonAction() {
+        loginpane.setVisible(false);
     }
 
 }
