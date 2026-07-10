@@ -1,1 +1,1 @@
-rs1
+        System.out.println("-".repeat(100));

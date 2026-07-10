@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Main {
+public class Mainn {
     static ResultSet rs;
     static PreparedStatement ps;
     static Connection con;
@@ -59,7 +59,7 @@ public class Main {
 
         // Result
         System.out.println("\nFinal result: ");
-        System.out.println("-".repeat(100));
+
         reload_resultset();
         display(rs);
 
@@ -70,6 +70,7 @@ public class Main {
     static void display(ResultSet rs) throws Exception {
         System.out.println("-".repeat(100));
         System.out.printf("%-5s %-10s %-20s %-23s %-10s %-10s%n", "ID", "Name", "Faculty", "Course", "Marks", "Grade");
+        System.out.println("-".repeat(100));
         while (rs.next()) {
             System.out.printf("%-5d %-10s %-20s %-23s %-10d %-10s%n", rs.getInt("student_id"), rs.getString("name"),
                     rs.getString("faculty"), rs.getString("course"), rs.getInt("marks"), rs.getString("grade"));
