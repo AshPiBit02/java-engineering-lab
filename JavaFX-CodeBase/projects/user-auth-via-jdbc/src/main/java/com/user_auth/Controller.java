@@ -4,8 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 public class Controller {
+
+    @FXML
+    private StackPane rootpane;
+
     @FXML
     private TextField inputUsername;
 
@@ -19,11 +25,27 @@ public class Controller {
     private ImageView backgroundImg;
 
     @FXML
-    private void initizalize() {
-        System.out.println(getClass().getResource("/Images/background.jpg"));
+    private ImageView logoImg;
 
-        Image img = new Image(getClass().getResource("/Images/background.jpg").toExternalForm());
-        backgroundImg.setImage(img);
+    @FXML
+    private ImageView logImg;
+
+    @FXML
+    private AnchorPane loginpane;
+
+    @FXML
+    private void initialize() {
+
+        Image rootimg = new Image(getClass().getResource("/Images/background.jpg").toExternalForm());
+        backgroundImg.setImage(rootimg);
+        backgroundImg.fitWidthProperty().bind(rootpane.widthProperty());
+        backgroundImg.fitHeightProperty().bind(rootpane.heightProperty());
+
+        Image logo = new Image(getClass().getResource("/Images/logo.png").toExternalForm());
+        logoImg.setImage(logo);
+
+        Image log = new Image(getClass().getResource("/Images/login.jpeg").toExternalForm());
+        logImg.setImage(log);
 
     }
 

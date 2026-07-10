@@ -12,7 +12,7 @@ public class App extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/FXML/login_auth.fxml"));
             Scene scene = new Scene(root);
-            stage.setResizable(false);
+            stage.setResizable(true);
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {

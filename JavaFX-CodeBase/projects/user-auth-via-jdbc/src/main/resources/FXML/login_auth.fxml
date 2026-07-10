@@ -11,41 +11,42 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="rootpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="695.0"
-   xmlns="http://javafx.com/javafx/26"
-   xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.user_auth.Controller">
+<StackPane fx:id="rootpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.user_auth.Controller">
    <children>
-      <ImageView fx:id="backgroundImg" fitHeight="495.0" fitWidth="695.0" pickOnBounds="true" preserveRatio="true" />
-      <AnchorPane fx:id="loginpane" prefHeight="195.0" prefWidth="395.0" style="-fx-background-color: Red;" StackPane.alignment="CENTER">
+      <ImageView fx:id="backgroundImg" fitHeight="${rootpane.height}" fitWidth="${rootpane.width}" preserveRatio="false" StackPane.alignment="CENTER" />
+
+
+      <AnchorPane fx:id="loginpane" prefHeight="195.0" prefWidth="395.0" style="-fx-background-color: black;" StackPane.alignment="CENTER">
          <StackPane.margin>
             <Insets bottom="145.0" left="150.0" right="150.0" top="125.0" />
          </StackPane.margin>
          <children>
-            <ImageView fx:id="logImg" fitHeight="225.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true" />
-            <Label id="password" layoutX="189.0" layoutY="115.0" prefHeight="30.0" prefWidth="77.0" text="Password :" textAlignment="CENTER">
+            <ImageView fx:id="logImg" fitHeight="225.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="false" />
+            <Label id="password" layoutX="154.0" layoutY="115.0" prefHeight="30.0" prefWidth="77.0" text="Password :" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label id="username" layoutX="186.0" layoutY="82.0" prefHeight="30.0" prefWidth="77.0" text="Username :" textAlignment="CENTER">
+            <Label id="username" layoutX="150.0" layoutY="82.0" prefHeight="30.0" prefWidth="77.0" text="Username :" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Line fx:id="line" endX="100.0" layoutX="280.0" layoutY="187.0" startX="-100.0" stroke="#906868" strokeLineCap="ROUND" />
-            <Button fx:id="loginBtn" layoutX="215.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="22.0" prefWidth="130.0" style="-fx-background-color: yellow;" text="Login" textAlignment="CENTER">
+            <Line fx:id="line" endX="100.0" layoutX="243.0" layoutY="187.0" startX="-84.0" stroke="#f2001c" strokeLineCap="ROUND" strokeWidth="0.5" />
+            <Button fx:id="loginBtn" layoutX="175.0" layoutY="159.0" minHeight="10.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="22.0" prefWidth="154.0" style="-fx-background-color: green;" text="Login" textAlignment="CENTER">
                <font>
-                  <Font size="13.0" />
+                  <Font size="11.0" />
                </font>
             </Button>
-            <Button fx:id="registerBtn" layoutX="216.0" layoutY="191.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="130.0" style="-fx-background-color: yellow;" text="Register" textAlignment="CENTER">
+            <Button fx:id="registerBtn" layoutX="176.0" layoutY="191.0" minHeight="10.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="154.0" style="-fx-background-color: yellow;" text="Register" textAlignment="CENTER">
                <font>
-                  <Font size="13.0" />
+                  <Font size="11.0" />
                </font>
             </Button>
-            <TextField fx:id="inputUsername" layoutX="266.0" layoutY="84.0" prefHeight="18.0" prefWidth="110.0" style="-fx-background-color: white;" />
-            <PasswordField fx:id="inputPassword" layoutX="266.0" layoutY="118.0" prefHeight="18.0" prefWidth="110.0" style="-fx-background-color: white;" />
-            <ImageView id="logoImg" fitHeight="39.0" fitWidth="53.0" layoutX="255.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="inputUsername" layoutX="250.0" layoutY="84.0" prefHeight="11.0" prefWidth="110.0" style="-fx-background-color: white;" />
+            <PasswordField fx:id="inputPassword" layoutX="250.0" layoutY="118.0" prefHeight="18.0" prefWidth="110.0" style="-fx-background-color: white;" />
+            <ImageView fx:id="logoImg" fitHeight="70.0" fitWidth="80.0" layoutX="213.0" layoutY="8.0" preserveRatio="false" smooth="true" />
+
          </children>
       </AnchorPane>
    </children>
