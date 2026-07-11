@@ -52,13 +52,15 @@ public class LoadBalancer {
         checkoutSystem cs = new checkoutSystem();
         int numCustomers = 15;
         Thread[] customers = new Thread[numCustomers];
-        for (int i = 1; i <= numCustomers; i++) {
-            final int id = i;
-            try {
-                cs.checkout("Cus-Out-" + ((id * 100) + id));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        for (int i = 0; i < numCustomers; i++) {
+            final int id = i + 1;
+            customers[i] = new Thread(() -> {
+                try {
+                    cs.checkout("Cus-Out-" + ((id * 100) + id));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
         }
 
         for (Thread cus : customers) {
