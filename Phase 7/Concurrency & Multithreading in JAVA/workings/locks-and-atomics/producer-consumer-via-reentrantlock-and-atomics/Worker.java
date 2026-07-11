@@ -28,7 +28,7 @@ class Factory {
             totalProduced.incrementAndGet();
 
             System.out.println("Product: " + product + " added to buffer.");
-            BufferFull.signalAll();
+            BufferEmpty.signalAll();
         } finally {
             lock.unlock();
         }
@@ -51,29 +51,29 @@ class Factory {
 
             System.out.println("Product: " + product + " removed from buffer.");
 
-            BufferEmpty.signalAll();
+            BufferFull.signalAll();
         } finally {
             lock.unlock();
         }
     }
 
     public int getNetConsumedProductCount() {
-        return totalProduced.get();
+        return totalConsumed.get();
     }
 
     public int getNetProducedProductCount() {
-        return totalConsumed.get();
+        return totalProduced.get();
     }
 }
 
 public class Worker {
     public static void main(String[] args) throws InterruptedException {
-        int maxProduct = 477;
-        int numProducers = 9;
-        int numConsumers = 53;
+        int maxProduct = 53;
+        int numProducers = 5;
+        int numConsumers = 9;
 
-        int productPerProducer = 53;
-        int productPerConsumer = 9;
+        int productPerProducer = numConsumers;
+        int productPerConsumer = numProducers;
 
         Factory fact = new Factory();
 
