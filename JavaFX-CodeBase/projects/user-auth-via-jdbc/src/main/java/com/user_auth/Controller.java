@@ -44,7 +44,7 @@ public class Controller {
         backgroundImg.fitWidthProperty().bind(rootpane.widthProperty());
         backgroundImg.fitHeightProperty().bind(rootpane.heightProperty());
 
-        Image logo = new Image(getClass().getResource("/Images/modlogo.jpg").toExternalForm());
+        Image logo = new Image(getClass().getResource("/Images/logodoss.png").toExternalForm());
         logoImg.setImage(logo);
 
         Image log = new Image(getClass().getResource("/Images/login3.jpg").toExternalForm());

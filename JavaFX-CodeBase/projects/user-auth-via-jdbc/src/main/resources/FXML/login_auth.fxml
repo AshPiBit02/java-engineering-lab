@@ -31,21 +31,21 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Line fx:id="line" endX="115.0" layoutX="243.0" layoutY="235.0" startX="-84.0" stroke="RED" strokeLineCap="ROUND" strokeWidth="0.3" />
-            <Button fx:id="loginBtn" layoutX="175.0" layoutY="199.0" minHeight="10.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: green;" text="Login" textAlignment="CENTER" textFill="WHITE">
+            <Line fx:id="line" endX="136.0" layoutX="243.0" layoutY="235.0" startX="-84.0" stroke="RED" strokeLineCap="ROUND" strokeWidth="0.3" />
+            <Button fx:id="loginBtn" layoutX="175.0" layoutY="199.0" minHeight="10.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: green;" text="Login" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Comic Sans MS Italic" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="registerBtn" layoutX="176.0" layoutY="240.0" minHeight="10.0" mnemonicParsing="false" onAction="#handleRegisterButtonAction" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: blue;" text="Register" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="registerBtn" layoutX="176.0" layoutY="240.0" minHeight="10.0" mnemonicParsing="false" onAction="#handleRegisterButtonAction" prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: blue;" text="Register" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Comic Sans MS Italic" size="14.0" />
                </font>
             </Button>
-            <TextField fx:id="inputUsername" layoutX="250.0" layoutY="119.0" prefHeight="11.0" prefWidth="110.0" style="-fx-background-color: white;" />
-            <PasswordField fx:id="inputPassword" layoutX="250.0" layoutY="155.0" prefHeight="18.0" prefWidth="110.0" style="-fx-background-color: white;" />
-            <ImageView fx:id="logoImg" fitHeight="70.0" fitWidth="60.0" layoutX="227.0" layoutY="2.0" preserveRatio="false" smooth="true" />
-            <Label alignment="CENTER" layoutX="150.0" layoutY="49.0" prefHeight="43.0" prefWidth="199.0" text="Login" textFill="#c90a0a">
+            <TextField fx:id="inputUsername" layoutX="236.0" layoutY="119.0" prefHeight="26.0" prefWidth="134.0" style="-fx-background-color: white;" />
+            <PasswordField fx:id="inputPassword" layoutX="236.0" layoutY="155.0" prefHeight="26.0" prefWidth="134.0" style="-fx-background-color: white;" />
+            <ImageView fx:id="logoImg" fitHeight="64.0" fitWidth="60.0" layoutX="227.0" layoutY="7.0" preserveRatio="false" smooth="true" />
+            <Label alignment="CENTER" layoutX="150.0" layoutY="56.0" prefHeight="43.0" prefWidth="199.0" text="Login" textFill="RED">
                <font>
                   <Font name="Lucida Handwriting Italic" size="36.0" />
                </font>

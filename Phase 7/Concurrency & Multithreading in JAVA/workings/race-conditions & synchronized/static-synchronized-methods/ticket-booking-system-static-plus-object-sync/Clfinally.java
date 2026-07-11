@@ -11,7 +11,7 @@ class TicketCounter {
     }
 }
 
-public class Clerk {
+public class Clfinally {
     public static void main(String[] args) throws InterruptedException {
         TicketCounter counter1 = new TicketCounter();
         TicketCounter counter2 = new TicketCounter();
