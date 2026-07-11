@@ -27,7 +27,8 @@ class Factory {
             buffer.add(product);
             totalProduced.incrementAndGet();
 
-            System.out.println("Product: " + product + " added to buffer.");
+            System.out.println(
+                    "[" + Thread.currentThread().getName() + "]" + "   Product: " + product + " added to buffer.");
             BufferEmpty.signalAll();
         } finally {
             lock.unlock();
@@ -49,7 +50,8 @@ class Factory {
             buffer.removeFirst();
             totalConsumed.incrementAndGet();
 
-            System.out.println("Product: " + product + " removed from buffer.");
+            System.out.println(
+                    "[" + Thread.currentThread().getName() + "]" + "   Product: " + product + " removed from buffer.");
 
             BufferFull.signalAll();
         } finally {
@@ -85,7 +87,7 @@ public class Worker {
             producers[p] = new Thread(() -> {
                 for (int i = 1; i <= productPerProducer; i++) {
                     try {
-                        fact.produce(i * 100 + producerId);
+                        fact.produce(i * 25 + producerId);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
