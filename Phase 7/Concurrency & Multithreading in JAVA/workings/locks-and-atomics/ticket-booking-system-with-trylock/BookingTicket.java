@@ -6,27 +6,37 @@ class TicketCounter {
     private ReentrantLock lock = new ReentrantLock();
 
     public boolean bookSeat(String customerName) {
-        if (!lock.tryLock()) {
-            System.out.println(customerName + ": system busy, try again later");
-            return false;
-        }
-        try {
-            try {
-                Thread.sleep(210);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if (seatsAvailable > 0) {
-                seatsAvailable--;
-                System.out.println(customerName + ": booked a seat!");
-                return true;
+        int attempts = 0;
+        while (attempts < 5) {
+            if (lock.tryLock()) {
+                try {
+                    Thread.sleep(20);
+                    if (seatsAvailable > 0) {
+                        seatsAvailable--;
+                        System.out.println(customerName + ": booked a seat!");
+                        return true;
+                    } else {
+                        System.out.println(customerName + ": sold out!!!");
+                        return false;
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
             } else {
-                System.out.println(customerName + ": sold out!!!");
-                return false;
+                System.out.println(customerName + ": system busy, try again later");
+                attempts++;
+                try {
+                    Thread.sleep(81);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
-        } finally {
-            lock.unlock();
         }
+        System.out.println(customerName + ": frustrated after retries.");
+        return false;
     }
 }
 
