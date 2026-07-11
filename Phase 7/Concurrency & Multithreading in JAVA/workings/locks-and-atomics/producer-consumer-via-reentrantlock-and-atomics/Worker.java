@@ -66,16 +66,27 @@ class Factory {
     public int getNetProducedProductCount() {
         return totalProduced.get();
     }
+
+    public void peekBuffer() {
+        if (buffer.isEmpty()) {
+            System.out.println("Empty Buffer: All produced products are consumed!");
+        } else {
+            System.out.print("Unconsumed Products: ");
+            for (int products : buffer) {
+                System.out.print(products + " ");
+            }
+        }
+    }
 }
 
 public class Worker {
     public static void main(String[] args) throws InterruptedException {
         int maxProduct = 53;
-        int numProducers = 5;
+        int numProducers = 6;
         int numConsumers = 9;
 
-        int productPerProducer = numConsumers;
-        int productPerConsumer = numProducers;
+        int productPerProducer = 8;
+        int productPerConsumer = 4;
 
         Factory fact = new Factory();
 
@@ -128,5 +139,6 @@ public class Worker {
         System.out.println("Max Product Production Limit: " + maxProduct);
         System.out.println("Net Product Produced: " + fact.getNetProducedProductCount());
         System.out.println("Net Product Consumed: " + fact.getNetConsumedProductCount());
+        fact.peekBuffer();
     }
 }
