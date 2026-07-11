@@ -68,36 +68,60 @@ class Factory {
 
 public class Worker {
     public static void main(String[] args) throws InterruptedException {
-        int maxProduct = 239;
+        int maxProduct = 477;
+        int numProducers = 9;
+        int numConsumers = 53;
+
+        int productPerProducer = 53;
+        int productPerConsumer = 9;
+
         Factory fact = new Factory();
 
-        Thread producer = new Thread(() -> {
-            for (int i = 1; i <= 239; i++) {
-                try {
-                    fact.produce(i);
-                } catch (InterruptedException e) {
-                    System.out.println("Error in production!!!");
-                    e.printStackTrace();
+        Thread[] producers = new Thread[numProducers];
+        Thread[] consumers = new Thread[numConsumers];
+
+        for (int p = 0; p < numProducers; p++) {
+            final int producerId = p;
+            producers[p] = new Thread(() -> {
+                for (int i = 1; i <= productPerProducer; i++) {
+                    try {
+                        fact.produce(i * 100 + producerId);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        }, "Producer");
 
-        Thread consumer = new Thread(() -> {
-            for (int i = 1; i <= 239; i++) {
-                try {
-                    fact.consume();
-                } catch (InterruptedException e) {
-                    System.out.println("Error in consumption!!!");
-                    e.printStackTrace();
+            }, "PRODUCER-XV" + producerId);
+        }
+
+        for (int c = 0; c < numConsumers; c++) {
+            final int consumerId = c;
+            consumers[c] = new Thread(() -> {
+                for (int i = 1; i <= productPerConsumer; i++) {
+                    try {
+                        fact.consume();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        }, "Consumer");
 
-        producer.start();
-        consumer.start();
+            }, "CONSUMER-YN" + consumerId);
+        }
 
-        producer.join();
-        consumer.join();
+        for (Thread p : producers) {
+            p.start();
+        }
+        for (Thread c : consumers) {
+            c.start();
+        }
+
+        for (Thread p : producers) {
+            p.join();
+        }
+
+        for (Thread c : consumers) {
+            c.join();
+        }
 
         System.out.println("Max Product Production Limit: " + maxProduct);
         System.out.println("Net Product Produced: " + fact.getNetProducedProductCount());
