@@ -56,6 +56,7 @@ public class Calci extends Application {
                     errorAlert.showAndWait();
                     firstNum.clear();
                     secondNum.clear();
+                    resultField.clear();
                 }
             }
         });
@@ -72,6 +73,7 @@ public class Calci extends Application {
                     errorAlert.showAndWait();
                     firstNum.clear();
                     secondNum.clear();
+                    resultField.clear();
                 }
             }
         });
@@ -87,6 +89,7 @@ public class Calci extends Application {
                     errorAlert.showAndWait();
                     firstNum.clear();
                     secondNum.clear();
+                    resultField.clear();
                 }
 
             }
@@ -105,9 +108,11 @@ public class Calci extends Application {
                         resultField.setText(String.format("%.2f", x / y));
                     }
                 } catch (NumberFormatException ex) {
+                    errorAlert.setContentText("Invalid Input!!");
                     errorAlert.showAndWait();
                     firstNum.clear();
                     secondNum.clear();
+                    resultField.clear();
                 }
 
             }
