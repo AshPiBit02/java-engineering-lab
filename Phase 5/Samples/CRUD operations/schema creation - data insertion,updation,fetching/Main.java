@@ -77,6 +77,20 @@ class Mediator {
         }
     }
 
+    public static void deleteEmpById(int id){
+        String sql="DELETE FROM employee WHERE id=?";
+        try{
+            Connection con=getConnection();
+            PreparedStatement pst=con.prepareStatement(sql);
+            pst.setInt(1,id);
+            int rowAffected=pst.executeUpdate();
+            System.out.println(rowAffected+" Row Affected: Employee's record having id "+id+" deleted successfully!");
+        }catch(SQLException e){
+            System.out.println("Error: unable to delete employee with id "+id+ " !!!");
+            e.printStackTrace();
+        }
+    }
+
 }
 
     public class Main {
@@ -91,6 +105,8 @@ class Mediator {
             // Mediator.insertEmpDetails("Rhaenera Targerian", "Information & Technology",
             // 98555.02);
             Mediator.updateSalaryByDept("HR",10);
+            Mediator.fetchAllEmpDetails();
+            Mediator.deleteEmpById(6);
             Mediator.fetchAllEmpDetails();
 
         }
