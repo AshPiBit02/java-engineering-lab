@@ -17,14 +17,13 @@ class PrintQueue {
         notifyAll();
     }
 
-    public synchronized String pickJob(String printerName) throws InterruptedException {
+    public synchronized void pickJob(String printerName) throws InterruptedException {
         while (jobs.isEmpty()) {
             wait();
         }
         String job = jobs.removeFirst();
         System.out.println(printerName + " picked up " + job);
         notifyAll();
-        return job;
     }
 }
 
@@ -35,7 +34,7 @@ public class PrintSystem {
         int numSubmitterTasks = 3;
         int numPrinterTasks = 3;
 
-        int jobsPerSubmitterTask = 10;
+        int jobsPerSubmitterTask = 15;
         int JobsPerPrinterTask = 15;
 
         ExecutorService submitterPool = Executors.newFixedThreadPool(2);
@@ -74,9 +73,11 @@ public class PrintSystem {
         submitterPool.shutdown();
         printerPool.shutdown();
 
-        submitterPool.awaitTermination(5, TimeUnit.SECONDS);
-        printerPool.awaitTermination(8, TimeUnit.SECONDS);
+        boolean submittersDone = submitterPool.awaitTermination(5, TimeUnit.SECONDS);
+        boolean printersDone = printerPool.awaitTermination(8, TimeUnit.SECONDS);
+        System.out.println("Submitters finished in time: " + submittersDone);
+        System.out.println("Printers finished in time: " + printersDone);
 
-        System.out.println("All print jobs completed.")
+        System.out.println("All print jobs completed.");
     }
 }
