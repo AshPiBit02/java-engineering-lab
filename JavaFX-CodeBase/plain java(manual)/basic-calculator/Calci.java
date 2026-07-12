@@ -22,11 +22,16 @@ public class Calci extends Application {
         TextField secondNum = new TextField();
         TextField resultField = new TextField();
         resultField.setEditable(false);
+        resultField.setFocusTraversable(false);
 
         Button addBtn = new Button("Add");
+        addBtn.setMaxWidth(Double.MAX_VALUE);
         Button subBtn = new Button("Subtract");
+        subBtn.setMaxWidth(Double.MAX_VALUE);
         Button mulBtn = new Button("Multiply");
+        mulBtn.setMaxWidth(Double.MAX_VALUE);
         Button divBtn = new Button("Divide");
+        divBtn.setMaxWidth(Double.MAX_VALUE);
 
         addBtn.setOnAction(e -> {
             resultField.setText(
@@ -67,7 +72,7 @@ public class Calci extends Application {
         gp.add(mulBtn, 0, 5);
         gp.add(divBtn, 1, 5);
 
-        stage.setScene(new Scene(gp, 500, 400));
+        stage.setScene(new Scene(gp, 300, 250));
         stage.show();
 
     }
