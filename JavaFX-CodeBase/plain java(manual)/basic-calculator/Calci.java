@@ -10,6 +10,9 @@ public class Calci extends Application {
     public void start(Stage stage) {
 
         Label titleLabel = new Label("Basic JavaFX Calculator");
+        titleLabel.setFont(new javafx.scene.text.Font(20));
+        titleLabel.setMaxWidth(Double.MAX_VALUE);
+        titleLabel.setAlignment(javafx.geometry.Pos.CENTER);
 
         Label firstLabel = new Label("First Number: ");
         Label secondLabel = new Label("Second Number: ");
