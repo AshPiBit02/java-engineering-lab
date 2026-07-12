@@ -51,8 +51,8 @@ public class Calci extends Application {
             } else {
                 try {
                     resultField.setText(
-                            String.valueOf(
-                                    Integer.parseInt(firstNum.getText()) + Integer.parseInt(secondNum.getText())));
+                            String.valueOf(Math.round(Float.parseFloat(firstNum.getText())
+                                    + Float.parseFloat(secondNum.getText()) * 100f)));
                 } catch (NumberFormatException ex) {
                     errorAlert.showAndWait();
                     firstNum.setText("");
@@ -67,8 +67,8 @@ public class Calci extends Application {
             } else {
                 try {
                     resultField.setText(
-                            String.valueOf(
-                                    Integer.parseInt(firstNum.getText()) - Integer.parseInt(secondNum.getText())));
+                            String.valueOf(Math.round(Float.parseFloat(firstNum.getText())
+                                    - Float.parseFloat(secondNum.getText()) * 100f)));
                 } catch (NumberFormatException ex) {
                     errorAlert.showAndWait();
                     firstNum.setText("");
@@ -85,8 +85,8 @@ public class Calci extends Application {
                 try {
 
                     resultField.setText(
-                            String.valueOf(
-                                    Integer.parseInt(firstNum.getText()) * Integer.parseInt(secondNum.getText())));
+                            String.valueOf(Math.round(Float.parseFloat(firstNum.getText())
+                                    * Float.parseFloat(secondNum.getText()) * 100f)));
                 } catch (NumberFormatException ex) {
                     errorAlert.showAndWait();
                     firstNum.setText("");
@@ -101,8 +101,8 @@ public class Calci extends Application {
             } else {
                 try {
                     resultField.setText(
-                            String.valueOf(
-                                    Integer.parseInt(firstNum.getText()) / Integer.parseInt(secondNum.getText())));
+                            String.valueOf(Math.round(Float.parseFloat(firstNum.getText())
+                                    / Float.parseFloat(secondNum.getText()) * 100f)));
                 } catch (NumberFormatException ex) {
                     errorAlert.showAndWait();
                     firstNum.setText("");
