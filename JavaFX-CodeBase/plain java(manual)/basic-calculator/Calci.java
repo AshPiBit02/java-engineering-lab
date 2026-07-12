@@ -50,13 +50,12 @@ public class Calci extends Application {
                 infoAlert.showAndWait();
             } else {
                 try {
-                    resultField.setText(
-                            String.valueOf(Math.round(Float.parseFloat(firstNum.getText())
-                                    + Float.parseFloat(secondNum.getText()) * 100f)));
+                    float sum = Float.parseFloat(firstNum.getText()) + Float.parseFloat(secondNum.getText());
+                    resultField.setText(String.format("%.2f", sum));
                 } catch (NumberFormatException ex) {
                     errorAlert.showAndWait();
-                    firstNum.setText("");
-                    secondNum.setText("");
+                    firstNum.clear();
+                    secondNum.clear();
                 }
             }
         });
@@ -66,15 +65,14 @@ public class Calci extends Application {
                 infoAlert.showAndWait();
             } else {
                 try {
-                    resultField.setText(
-                            String.valueOf(Math.round(Float.parseFloat(firstNum.getText())
-                                    - Float.parseFloat(secondNum.getText()) * 100f)));
+                    float sub = Float.parseFloat(firstNum.getText()) - Float.parseFloat(secondNum.getText());
+                    resultField.setText(String.format("%.2f", sub));
+
                 } catch (NumberFormatException ex) {
                     errorAlert.showAndWait();
-                    firstNum.setText("");
-                    secondNum.setText("");
+                    firstNum.clear();
+                    secondNum.clear();
                 }
-
             }
         });
 
@@ -83,14 +81,12 @@ public class Calci extends Application {
                 infoAlert.showAndWait();
             } else {
                 try {
-
-                    resultField.setText(
-                            String.valueOf(Math.round(Float.parseFloat(firstNum.getText())
-                                    * Float.parseFloat(secondNum.getText()) * 100f)));
+                    float mul = Float.parseFloat(firstNum.getText()) * Float.parseFloat(secondNum.getText());
+                    resultField.setText(String.format("%.2f", mul));
                 } catch (NumberFormatException ex) {
                     errorAlert.showAndWait();
-                    firstNum.setText("");
-                    secondNum.setText("");
+                    firstNum.clear();
+                    secondNum.clear();
                 }
 
             }
@@ -100,18 +96,18 @@ public class Calci extends Application {
                 infoAlert.showAndWait();
             } else {
                 try {
-                    resultField.setText(
-                            String.valueOf(Math.round(Float.parseFloat(firstNum.getText())
-                                    / Float.parseFloat(secondNum.getText()) * 100f)));
+                    float x = Float.parseFloat(firstNum.getText());
+                    float y = Float.parseFloat(secondNum.getText());
+                    if (y == 0) {
+                        errorAlert.setContentText("Cannot divide by zero!");
+                        errorAlert.showAndWait();
+                    } else {
+                        resultField.setText(String.format("%.2f", x / y));
+                    }
                 } catch (NumberFormatException ex) {
                     errorAlert.showAndWait();
-                    firstNum.setText("");
-                    secondNum.setText("");
-                } catch (ArithmeticException exx) {
-                    errorAlert.setContentText("Divide by Zero!!!");
-                    errorAlert.showAndWait();
-                    firstNum.setText("");
-                    secondNum.setText("");
+                    firstNum.clear();
+                    secondNum.clear();
                 }
 
             }
