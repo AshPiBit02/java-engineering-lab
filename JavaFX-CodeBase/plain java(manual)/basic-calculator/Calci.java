@@ -4,6 +4,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class Calci extends Application {
     @Override
@@ -33,22 +35,86 @@ public class Calci extends Application {
         Button divBtn = new Button("Divide");
         divBtn.setMaxWidth(Double.MAX_VALUE);
 
+        Alert infoAlert = new Alert(AlertType.INFORMATION);
+        infoAlert.setTitle("Information");
+        infoAlert.setHeaderText(null);
+        infoAlert.setContentText("Fields can't be Empty!");
+
+        Alert errorAlert = new Alert(AlertType.ERROR);
+        errorAlert.setTitle("Error");
+        errorAlert.setHeaderText(null);
+        errorAlert.setContentText("Invalid Input!!");
+
         addBtn.setOnAction(e -> {
-            resultField.setText(
-                    String.valueOf(Integer.parseInt(firstNum.getText()) + Integer.parseInt(secondNum.getText())));
+            if (isEmpty(firstNum.getText(), secondNum.getText())) {
+                infoAlert.showAndWait();
+            } else {
+                try {
+                    resultField.setText(
+                            String.valueOf(
+                                    Integer.parseInt(firstNum.getText()) + Integer.parseInt(secondNum.getText())));
+                } catch (NumberFormatException ex) {
+                    errorAlert.showAndWait();
+                    firstNum.setText("");
+                    secondNum.setText("");
+                }
+            }
         });
 
         subBtn.setOnAction(e -> {
-            resultField.setText(
-                    String.valueOf(Integer.parseInt(firstNum.getText()) - Integer.parseInt(secondNum.getText())));
+            if (isEmpty(firstNum.getText(), secondNum.getText())) {
+                infoAlert.showAndWait();
+            } else {
+                try {
+                    resultField.setText(
+                            String.valueOf(
+                                    Integer.parseInt(firstNum.getText()) - Integer.parseInt(secondNum.getText())));
+                } catch (NumberFormatException ex) {
+                    errorAlert.showAndWait();
+                    firstNum.setText("");
+                    secondNum.setText("");
+                }
+
+            }
         });
+
         mulBtn.setOnAction(e -> {
-            resultField.setText(
-                    String.valueOf(Integer.parseInt(firstNum.getText()) * Integer.parseInt(secondNum.getText())));
+            if (isEmpty(firstNum.getText(), secondNum.getText())) {
+                infoAlert.showAndWait();
+            } else {
+                try {
+
+                    resultField.setText(
+                            String.valueOf(
+                                    Integer.parseInt(firstNum.getText()) * Integer.parseInt(secondNum.getText())));
+                } catch (NumberFormatException ex) {
+                    errorAlert.showAndWait();
+                    firstNum.setText("");
+                    secondNum.setText("");
+                }
+
+            }
         });
         divBtn.setOnAction(e -> {
-            resultField.setText(
-                    String.valueOf(Integer.parseInt(firstNum.getText()) / Integer.parseInt(secondNum.getText())));
+            if (isEmpty(firstNum.getText(), secondNum.getText())) {
+                infoAlert.showAndWait();
+            } else {
+                try {
+                    resultField.setText(
+                            String.valueOf(
+                                    Integer.parseInt(firstNum.getText()) / Integer.parseInt(secondNum.getText())));
+                } catch (NumberFormatException ex) {
+                    errorAlert.showAndWait();
+                    firstNum.setText("");
+                    secondNum.setText("");
+                } catch (ArithmeticException exx) {
+                    errorAlert.setContentText("Divide by Zero!!!");
+                    errorAlert.showAndWait();
+                    firstNum.setText("");
+                    secondNum.setText("");
+                }
+
+            }
         });
 
         GridPane gp = new GridPane();
@@ -75,6 +141,13 @@ public class Calci extends Application {
         stage.setScene(new Scene(gp, 300, 250));
         stage.show();
 
+    }
+
+    public boolean isEmpty(String num1, String num2) {
+        if (num1.equals("") || num2.equals("")) {
+            return true;
+        }
+        return false;
     }
 
     public static void main(String[] args) {
