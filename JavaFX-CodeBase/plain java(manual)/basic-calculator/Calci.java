@@ -44,6 +44,13 @@ public class Calci extends Application {
         errorAlert.setTitle("Error");
         errorAlert.setHeaderText(null);
         errorAlert.setContentText("Invalid Input!!");
+        Stage EalertStage = (Stage) errorAlert.getDialogPane().getScene().getWindow();
+        EalertStage.setX(475);
+        EalertStage.setY(60);
+
+        Stage IalertStage = (Stage) infoAlert.getDialogPane().getScene().getWindow();
+        IalertStage.setX(475);
+        IalertStage.setY(60);
 
         addBtn.setOnAction(e -> {
             if (isEmpty(firstNum.getText(), secondNum.getText())) {
