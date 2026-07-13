@@ -51,7 +51,6 @@ public class DataFetcher {
         boolean terminated = executor.awaitTermination(5, TimeUnit.SECONDS);
         System.out.println("Executor terminated cleanly: " + terminated);
     }
-
     public static void DataFetcherSequential() throws InterruptedException {
         System.out.println("Sequential Fetching");
         System.out.println("-".repeat(50));
