@@ -21,6 +21,15 @@ public class server_theResponder {
             while ((request = in.readLine()) != null) {
                 out.println("Respond: " + request.toUpperCase());
             }
+
+            System.out.println("Client closed the connection.");
+            try {
+                Thread.sleep(500);
+                System.out.println("Server Status: Closed");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -22,6 +22,7 @@ public class client_theRequester {
                 System.out.print("Request: ");
                 String request = sc.nextLine();
                 if (request.equalsIgnoreCase("end")) {
+                    System.out.println("Client connection closed");
                     return;
                 }
 
