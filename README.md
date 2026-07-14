@@ -129,11 +129,11 @@ By the end of the course, students will be proficient in Java programming — eq
 
 ### Phase 7 · Advanced Topics in JAVA 
 
-- [ ] 7.1 Overview of ORM
-- [ ] 7.2 Hibernate
+- [x] 7.1 Overview of ORM
+- [x] 7.2 Hibernate
 - [ ] 7.3 Web Framework Introduction
 - [ ] 7.4 Basics of Spring Boot
-- [ ] 7.5 Concurrency and Multithreading in JAVA
+- [x] 7.5 Concurrency and Multithreading in JAVA
 - [ ] 7.6 Design Patterns — Singleton, Factory and Abstract Factory
 
 ---
@@ -156,10 +156,10 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] **T13** · Introduction to JavaFX — scene graphs, UI controls, event handling
 - [ ] **T14** · Network Programming with Sockets — TCP and UDP
 - [x] **T15** · Database Connectivity with JDBC
-- [ ] **T16** · Advanced Inheritance and Interfaces (extended)
+- [x] **T16** · Advanced Inheritance and Interfaces (extended)
 - [ ] **T17** · Servlet Development — lifecycle, HTTP requests and responses
 - [ ] **T18** · JSP Essentials — dynamic pages, form handling, DB connectivity
-- [ ] **T19** · Concurrency and Multithreading — synchronization, thread pools
+- [x] **T19** · Concurrency and Multithreading — synchronization, thread pools
 - [ ] **T20** · Design Patterns — Singleton, Factory, Abstract Factory
 
 ---
@@ -173,8 +173,8 @@ By the end of the course, students will be proficient in Java programming — eq
 - [ ] **P05** · Socket Programming — client-server app over TCP/UDP
 - [x] **P06** · JDBC Database Application — CRUD operations and exception handling
 - [ ] **P07** · Servlet-Based Web Application — HTTP, JSP, and dynamic content
-- [ ] **P08** · Concurrency Demonstration — multithreading and safe thread execution
-- [ ] **P09** · Hibernate Integration — ORM with database CRUD
+- [x] **P08** · Concurrency Demonstration — multithreading and safe thread execution
+- [x] **P09** · Hibernate Integration — ORM with database CRUD
 - [ ] **P10** · Spring Boot Project — auto-configuration and dependency injection
 
 ---
@@ -203,7 +203,6 @@ By the end of the course, students will be proficient in Java programming — eq
 > This repository is part of my academic and personal learning journey in Java development.
 > Feel free to explore, fork, or star if you find it helpful!
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AshPiBitO2)
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:aashishchaudhari249@gmail.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/aashish-chaudhary-034a9a354)
 
