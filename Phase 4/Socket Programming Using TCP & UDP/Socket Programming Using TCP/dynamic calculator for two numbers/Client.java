@@ -17,10 +17,9 @@ public class Client {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-            String service = in.readLine();
+            String services = in.readLine();
+            System.out.println(services);
             while (true) {
-                System.out.println(service);
-
                 System.out.print("Client Request: ");
                 String request = sc.nextLine();
 
@@ -29,6 +28,9 @@ public class Client {
                     break;
                 }
                 out.println(request);
+
+                String respond = in.readLine();
+                System.out.println(respond);
             }
             in.close();
             out.close();

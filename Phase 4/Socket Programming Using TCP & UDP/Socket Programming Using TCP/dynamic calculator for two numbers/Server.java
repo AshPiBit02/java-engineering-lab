@@ -30,7 +30,7 @@ public class Server {
                 float b = Float.parseFloat(parts[2]);
                 switch (operation) {
                     case "add":
-                        out.printf("Respond: ", a + b);
+                        out.println("Respond: " + (a + b));
                         break;
                     case "sub":
                         out.println("Respond: " + (a - b));
@@ -39,11 +39,10 @@ public class Server {
                         out.println("Respond: " + (a * b));
                         break;
                     case "div":
-                        try {
-                            float div = a / b;
-                            out.println("Respond: " + div);
-                        } catch (ArithmeticException e) {
-                            out.println("Respond: cannot divide by zero!");
+                        if (b == 0.0) {
+                            out.println("Respond: Cannot divide by Zero!!");
+                        } else {
+                            out.println("Respond: " + (a / b));
                         }
                         break;
                     case "end":
