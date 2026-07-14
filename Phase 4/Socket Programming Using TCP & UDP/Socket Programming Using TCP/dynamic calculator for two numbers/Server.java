@@ -26,30 +26,40 @@ public class Server {
                 String request = in.readLine();
                 String[] parts = request.split(",");
                 String operation = parts[0];
-                float a = Float.parseFloat(parts[1]);
-                float b = Float.parseFloat(parts[2]);
-                switch (operation) {
-                    case "add":
-                        out.println("Respond: " + (a + b));
-                        break;
-                    case "sub":
-                        out.println("Respond: " + (a - b));
-                        break;
-                    case "mul":
-                        out.println("Respond: " + (a * b));
-                        break;
-                    case "div":
-                        if (b == 0.0) {
-                            out.println("Respond: Cannot divide by Zero!!");
-                        } else {
-                            out.println("Respond: " + (a / b));
-                        }
-                        break;
-                    case "end":
-                        return;
-                    default:
-                        out.println("Respond: Invalid input or Invalid operation!!!");
-                        break;
+                if (operation.equalsIgnoreCase("end")) {
+                    return;
+                }
+
+                if (parts.length != 3) {
+                    out.println("Respond: Provide input as operation,num1,num2");
+                }
+
+                try {
+                    float a = Float.parseFloat(parts[1]);
+                    float b = Float.parseFloat(parts[2]);
+                    switch (operation) {
+                        case "add":
+                            out.println("Respond: " + (a + b));
+                            break;
+                        case "sub":
+                            out.println("Respond: " + (a - b));
+                            break;
+                        case "mul":
+                            out.println("Respond: " + (a * b));
+                            break;
+                        case "div":
+                            if (b == 0.0) {
+                                out.println("Respond: Cannot divide by Zero!!");
+                            } else {
+                                out.println("Respond: " + (a / b));
+                            }
+                            break;
+                        default:
+                            out.println("Respond: Invalid operation!!!");
+                            break;
+                    }
+                } catch (NumberFormatException e) {
+                    out.println("Respond: Invalid input!!");
                 }
             }
         } catch (IOException e) {

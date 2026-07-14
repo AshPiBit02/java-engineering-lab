@@ -31,6 +31,7 @@ public class Client {
 
                 String respond = in.readLine();
                 System.out.println(respond);
+                System.out.println("-".repeat(70));
             }
             in.close();
             out.close();
