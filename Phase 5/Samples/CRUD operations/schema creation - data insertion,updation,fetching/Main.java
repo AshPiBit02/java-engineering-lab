@@ -104,9 +104,11 @@ class Mediator {
             // Mediator.insertEmpDetails("Alicent Hightower", "Sales", 65800.00);
             // Mediator.insertEmpDetails("Rhaenera Targerian", "Information & Technology",
             // 98555.02);
-            Mediator.updateSalaryByDept("HR",10);
-            Mediator.fetchAllEmpDetails();
-            Mediator.deleteEmpById(6);
+
+            // Mediator.updateSalaryByDept("HR",10);
+            // Mediator.fetchAllEmpDetails();
+
+            // Mediator.deleteEmpById(5);
             Mediator.fetchAllEmpDetails();
 
         }
