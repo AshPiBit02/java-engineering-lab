@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class server {
+public class servcler {
     public static void main(String[] args) {
         int port = 5001;
         Scanner sc = new Scanner(System.in);
