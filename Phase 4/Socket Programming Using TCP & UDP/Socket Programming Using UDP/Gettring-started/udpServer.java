@@ -3,7 +3,7 @@ import java.net.DatagramSocket;
 
 public class udpServer {
     public static void main(String[] args) {
-        int port = 900;
+        int port = 9000;
         try (DatagramSocket socket = new DatagramSocket(port)) {
             System.out.println("Server is listening on port " + port);
 
