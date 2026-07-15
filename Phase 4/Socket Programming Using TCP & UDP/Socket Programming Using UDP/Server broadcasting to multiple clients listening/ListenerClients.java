@@ -1,5 +1,6 @@
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.util.Random;
 
 public class ListenerClients {
     public static void main(String[] args) throws InterruptedException {
@@ -20,10 +21,9 @@ public class ListenerClients {
                         String word = new String(packet.getData(), 0, packet.getLength());
 
                         if (word.equalsIgnoreCase("END")) {
-                            System.out.println("End of broadcast.");
                             break;
                         }
-                        System.out.println("Heard: " + word);
+                        System.out.println(Thread.currentThread().getName() + " heard: " + word);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -37,6 +37,7 @@ public class ListenerClients {
         for (Thread client : clients) {
             client.join();
         }
+        System.out.println("End of broadcast.");
 
     }
 }
