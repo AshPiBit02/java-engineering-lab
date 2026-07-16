@@ -3,5 +3,8 @@ import java.rmi.RemoteException;
 
 public interface StringService extends Remote {
     String ToUpperCase(String s) throws RemoteException;
+
     String Reverse(String s) throws RemoteException;
+
+    int vowelCount(String s) throws RemoteException;
 }

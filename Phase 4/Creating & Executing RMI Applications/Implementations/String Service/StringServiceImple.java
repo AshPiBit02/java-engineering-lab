@@ -17,4 +17,11 @@ public class StringServiceImple extends UnicastRemoteObject implements StringSer
         return rev;
     }
 
+    public int vowelCount(String s) throws RemoteException {
+        System.out.println("Method vowelCount() called with " + s);
+        String input = s.toLowerCase();
+        int count = input.replaceAll("(?i)[^aeiou]", "").length();
+        return count;
+    }
+
 }
