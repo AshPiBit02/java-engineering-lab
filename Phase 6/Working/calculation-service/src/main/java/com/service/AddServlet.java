@@ -1,4 +1,4 @@
-package main.java.com.service;
+package com.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
