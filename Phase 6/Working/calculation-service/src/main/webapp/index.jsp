@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Greet User</title>
+    <title>Simple Calculator</title>
 </head>
 <body>
-    <form action="greet" method="get">
-        Username: <input type="text" name="username">
-        Location: <input type="text" name="place">
-        <input type="submit" value="Greet">
+    <h2>Addition</h2>
+    <form action="add" method="get">
+        Number 1: <input type="number" name="num1" step="any"><br><br>
+        Number 2: <input type="number" name="num2" step="any"><br><br>
+        <input type="submit" value="Add">
     </form>
 </body>
 </html>
