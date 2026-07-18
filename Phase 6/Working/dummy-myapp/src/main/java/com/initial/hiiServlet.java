@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class hiiServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        resp.getWriter().println("<h2>Hii from Server Validating the script</h2>");
+        resp.getWriter().println("<h2>Hii from Server Validating the script test 2</h2>");
 
     }
 
