@@ -6,8 +6,8 @@
     <title>Full Name</title>
 </head>
 <body>
-    <!-- <h2>Full Name: <%=request.getparameter("firstName") %> <%= request.getparameter("lastName")%></h2> -->
     <h2>Full Name: <%= request.getParameter("firstName") %> <%= request.getParameter("lastName") %></h2>
+    <a href="index.html" name="back"></a>
 
 </body>
 </html>
