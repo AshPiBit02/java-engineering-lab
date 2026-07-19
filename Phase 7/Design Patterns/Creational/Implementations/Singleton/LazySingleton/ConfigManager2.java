@@ -1,4 +1,5 @@
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
@@ -27,6 +28,8 @@ public class ConfigManager2 implements Serializable {
         }
     }
 
+
+
     public static void storeProperties(OutputStream out, String comments) {
         try {
             properties.store(out, comments);
@@ -48,5 +51,10 @@ public class ConfigManager2 implements Serializable {
         ConfigManager2 config = ConfigManager2.getInstance();
         config.loadProperties();
         System.out.println("Database Password: " + config.getProperty("db.password"));
+        try (FileOutputStream out = new FileOutputStream("config.properties")) {
+            config.storeProperties(out, "Saved new Configuration");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
