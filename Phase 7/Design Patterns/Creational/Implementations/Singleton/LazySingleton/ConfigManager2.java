@@ -19,13 +19,12 @@ public class ConfigManager2 implements Serializable {
         return instance;
     }
 
-    public static Properties loadProperties() {
+    public static void loadProperties() {
         try {
             properties.load(new FileInputStream("config.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return properties;
     }
 
     public static void storeProperties(OutputStream out, String comments) {
@@ -47,6 +46,7 @@ public class ConfigManager2 implements Serializable {
 
     public static void main(String[] args) {
         ConfigManager2 config = ConfigManager2.getInstance();
+        config.loadProperties();
         System.out.println("Database Password: " + config.getProperty("db.password"));
     }
 }
