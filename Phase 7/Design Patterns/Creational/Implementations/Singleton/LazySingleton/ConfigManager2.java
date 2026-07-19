@@ -28,7 +28,9 @@ public class ConfigManager2 implements Serializable {
         }
     }
 
-
+    public static void addProperties(String key, String value) {
+        properties.setProperty(key, value);
+    }
 
     public static void storeProperties(OutputStream out, String comments) {
         try {
@@ -56,5 +58,9 @@ public class ConfigManager2 implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        config.addProperties("psqldb.url", "jdbc:/postgresql://localhost:5432/java_db");
+        config.loadProperties();
+        System.out.println("PSQL DB URL: " + config.getProperty("psqldb.url"));
     }
 }
