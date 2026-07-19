@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 
 public class ConfigManager implements Serializable {
     private static ConfigManager instance = null;
-    private java.util.Properties properties;
+    private Properties properties;
 
     private ConfigManager() {
         properties = new Properties();
