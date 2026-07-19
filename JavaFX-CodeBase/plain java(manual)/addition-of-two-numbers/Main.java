@@ -6,13 +6,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-
 import javafx.stage.Stage;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) {
-        
+
         Label firstLabel = new Label("First Number: ");
         Label secondLabel = new Label("Second Number: ");
         Label resultLabel = new Label("Result: ");
@@ -25,10 +24,10 @@ public class Main extends Application {
         Button btn = new Button("Add");
 
         btn.setOnAction(e -> {
-            if("".equals(num1.getText())){
+            if ("".equals(num1.getText()) || "".equals(num2.getText())) {
                 Alert infoAlert = new Alert(AlertType.INFORMATION);
                 infoAlert.setTitle("Information");
-                infoAlert.setHeaderText(null);  // set to null for no header line, or add a short header
+                infoAlert.setHeaderText(null); // set to null for no header line, or add a short header
                 infoAlert.setContentText("Fields can't be Empty!");
                 infoAlert.showAndWait();
             }
