@@ -10,8 +10,11 @@
     <form action="calculate" method="get">
     Number 1: <input type="number" name="num1" step="any"><br>
     Number 2: <input type="number" name="num2" step="any"><br>
-    Result : <input type="text" value="<%= request.getAttribute("result") %>" readonly><br>
-    <input type="submit" value="Add">
+    Result : <input type="text" value="<%= (String) request.getAttribute("result") %>" readonly><br>
+    <input type="submit" name="operation" value="Add">
+    <input type="submit" name="operation" value="Subtract">
+    <input type="submit" name="operation" value="Multiply">
+    <input type="submit" name="operation" value="Divide">
     </form>
 
 </body>
