@@ -7,9 +7,10 @@
 </head>
 <body>
     <h2>Addition</h2>
-    Number 1: <input type="number" name="num1">
-    Number 2: <input type="number" name="num2">
-    Result : <input type="text" value="<%= request.getAttribute("result") %>" readonly>
+    Number 1: <input type="number" name="num1"><br>
+    Number 2: <input type="number" name="num2"><br>
+    Result : <input type="text" value="<%= request.getAttribute("result") %>" readonly><br>
+    <input type="submit" value="Add">
 
 </body>
 </html>
