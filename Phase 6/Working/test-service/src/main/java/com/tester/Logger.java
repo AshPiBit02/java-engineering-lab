@@ -16,7 +16,12 @@ public class Logger extends HttpServlet {
 
         req.setAttribute("username", user);
         req.setAttribute("password", pass);
-        RequestDispatcher rd = req.getRequestDispatcher("welcome.jsp");
+        RequestDispatcher rd;
+        if (user.equals("github") && pass.equals("hubgit2")) {
+            rd = req.getRequestDispatcher("welcome.jsp");
+        } else {
+            rd = req.getRequestDispatcher("notwelcome.jsp");
+        }
         rd.forward(req, res);
     }
 
