@@ -15,7 +15,7 @@ public class Logger extends HttpServlet {
         String pass = req.getParameter("password");
 
         req.setAttribute("username", user);
-        req.setAttribute("password", user);
+        req.setAttribute("password", pass);
         RequestDispatcher rd = req.getRequestDispatcher("welcome.jsp");
         rd.forward(req, res);
     }
