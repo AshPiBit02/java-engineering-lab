@@ -12,7 +12,7 @@
     String pass=(String) request.getAttribute("password");
     %>
 
-    Hello, <% =user%><br>
-    Your Password is : <%=pass%>
+    Hello, <%= user%><br>
+    Your Password is : <%= pass%>
 </body>
 </html>
