@@ -6,12 +6,11 @@
     <title>Simple Interest</title>
 </head>
 <body>
-    <H1>SI</H1>
+    <H1>Calculate Simple Interest</H1>
     <form action="simpleInterest" method="get">
-        Principle: <input type="number" name="principle" step="any"><br>
+        Principle       : <input type="number" name="principle" step="any"><br>
         Time(in year(s)): <input type="number" name="time" step="any"><br>
-        Rate: <input type="number" name="rate" step="any"><br>
-        Result: <%= request.getParameter("result") %>
+        Rate            : <input type="number" name="rate" step="any"><br>
         <input type="submit" value="Calculate">
     </form>
 </body>
