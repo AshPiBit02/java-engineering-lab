@@ -15,6 +15,9 @@ public class SqRtChecker extends HttpServlet {
             result = "True";
         }
         req.setAttribute("result", result);
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        res.setHeader("Pragma", "no-cache");
+        res.setDateHeader("Expires", 0);
         RequestDispatcher rd = req.getRequestDispatcher("PerfectSq.jsp");
         rd.forward(req, res);
     }
