@@ -14,7 +14,7 @@ public class names extends HttpServlet {
         String lname = (String) req.getParameter("lname");
 
         req.setAttribute("Fname", fname);
-        req.setAttribute("Lname", fname);
+        req.setAttribute("Lname", lname);
         RequestDispatcher rd = req.getRequestDispatcher("fullname.jsp");
         rd.forward(req, res);
 

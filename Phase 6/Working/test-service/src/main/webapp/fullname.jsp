@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>
-        FullName: <%= request.getAttribute("Fname") request.getAttribute("Lname");
+        FullName: <%= request.getAttribute("Fname") %> <%= request.getAttribute("Lname") %>;
     </h1>
 </body>
 </html>
