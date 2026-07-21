@@ -6,7 +6,7 @@
     <title>User UI</title>
 </head>
 <body>
-    <form action="jlogger" method="post">
+<form action="<%= request.getContextPath() %>/jlogger" method="post">
         Username: <input type="text" name="username"><br>
         Password: <input type="password" name="password"><br>
         <input type="submit" value="submit"> <input type="reset" value="reset">

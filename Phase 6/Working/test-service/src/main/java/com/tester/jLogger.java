@@ -29,12 +29,19 @@ public class jLogger extends HttpServlet {
     }
 
     void insertData(String username, String password) throws SQLException {
-        try (Connection con = DBConnection.getConnection()) {
-            PreparedStatement pst = con.prepareStatement("INSERT INTO servlet(username,password) VALUES(?,?)");
-            pst.setString(1, username);
-            pst.setString(2, password);
-            int rowAffected = pst.executeUpdate();
-            System.out.println(username + "'s credentails added to DB successfully!");
+        try {
+            Class.forName("org.postgresql.Driver");
+            try (Connection con = DBConnection.getConnection()) {
+                PreparedStatement pst = con.prepareStatement("INSERT INTO servlet(username,password) VALUES(?,?)");
+                pst.setString(1, username);
+                pst.setString(2, password);
+                int rowAffected = pst.executeUpdate();
+                if (rowAffected > 0) {
+                    System.out.println(username + "'s credentials added to DB successfully!");
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }
