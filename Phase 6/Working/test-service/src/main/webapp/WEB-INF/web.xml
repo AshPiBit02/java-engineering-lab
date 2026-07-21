@@ -4,6 +4,7 @@
 
 <web-app>
   <welcome-file-list>
+    <welcome-file>userUtil.jsp</welcome-file>
     <welcome-file>perfectSQ.jsp</welcome-file>
     <welcome-file>palindrome.jsp</welcome-file>
     <welcome-file>SI.html</welcome-file>
