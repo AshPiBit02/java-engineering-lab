@@ -10,14 +10,20 @@ import java.sql.PreparedStatement;
 public class jLogger extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res)
-            throws IOException, ServletException, SQLException {
+            throws IOException, ServletException {
         String user = String.valueOf(req.getParameter("username"));
         String pass = String.valueOf(req.getParameter("password"));
         if (!user.isEmpty() || !pass.isEmpty()) {
-            insertData(user, pass);
+            try {
+                insertData(user, pass);
+            } catch (SQLException e) {
+                System.out.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
         } else {
             System.out.println("Fields Can't be Empty");
         }
+        process(req, res);
 
     }
 
