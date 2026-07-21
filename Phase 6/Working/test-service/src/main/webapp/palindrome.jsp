@@ -8,7 +8,8 @@
 <body>
     <form action="palindromeChecker" method="post">
         Input String: <input type="text" name="input"><br>
-        Result: <%= request.getAttribute("result") %>
+        Result: <%= request.getAttribute("result")!=null? request.getAttribute("result"):"" %><br>
+        <input type="submit" value="Check">
     </form>
 </body>
 </html>

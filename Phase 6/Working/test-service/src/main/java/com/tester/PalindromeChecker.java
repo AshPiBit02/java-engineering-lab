@@ -4,7 +4,7 @@ import jakarta.servlet.annotation.WebServlet;
 import java.io.IOException;
 
 @WebServlet("/palindromeChecker")
-public class PalindromeChecker {
+public class PalindromeChecker extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String input = String.valueOf(req.getParameter("input"));
