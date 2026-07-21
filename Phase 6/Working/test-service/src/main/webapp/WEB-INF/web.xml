@@ -4,6 +4,7 @@
 
 <web-app>
   <welcome-file-list>
+    <welcome-file>palindrome.jsp</welcome-file>
     <welcome-file>SI.html</welcome-file>
     <welcome-file>partialNames.jsp</welcome-file>
     <welcome-file>Greeter.jsp</welcome-file>
