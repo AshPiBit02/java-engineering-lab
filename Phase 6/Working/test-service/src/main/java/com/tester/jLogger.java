@@ -11,9 +11,10 @@ public class jLogger extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
+        System.out.println("test");
         String user = String.valueOf(req.getParameter("username"));
         String pass = String.valueOf(req.getParameter("password"));
-        if (!user.isEmpty() || !pass.isEmpty()) {
+        if (!user.isEmpty() && !pass.isEmpty()) {
             try {
                 insertData(user, pass);
             } catch (SQLException e) {
@@ -23,7 +24,7 @@ public class jLogger extends HttpServlet {
         } else {
             System.out.println("Fields Can't be Empty");
         }
-        process(req, res);
+        req.getRequestDispatcher("userUtil.jsp").forward(req, res);
 
     }
 
