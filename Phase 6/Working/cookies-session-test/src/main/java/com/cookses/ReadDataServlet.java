@@ -23,9 +23,9 @@ public class ReadDataServlet extends HttpServlet {
         out.println("Cookie visitorName = " + cookieVal);
 
         HttpSession session = req.getSession(false);
-        if (session != null && session.getAttribute("loginTime") != null) {
+        if (session != null && session.getAttribute("LoginTime") != null) {
             out.println("Session ID: " + session.getId());
-            out.println("Login time stored: " + session.getAttribute("loginTime"));
+            out.println("Login time stored: " + session.getAttribute("LoginTime"));
         } else {
             out.println("No Active session found!");
         }
