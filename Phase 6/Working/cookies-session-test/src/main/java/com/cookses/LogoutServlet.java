@@ -11,17 +11,12 @@ public class LogoutServlet extends HttpServlet {
         res.setContentType("text/plain");
         PrintWriter out = res.getWriter();
 
-        Cookie[] cookie = req.getCookies();
-        Cookie[] cookies = req.getCookies();
-        String found = null;
-        if (cookies != null) {
-            for (Cookie c : cookies) {
-                if (c.getName().equals("name")) {
-                    found = c.getValue();
-                }
-            }
-        }
-        out.println(found != null ? "Have a nice day, " + found : "Who you?");
+        Cookie cookie = new Cookie("userName", "");
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+        res.addCookie(cookie);
+
+        out.println("You have been logged out.");
     }
 
 }
