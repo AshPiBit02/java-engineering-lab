@@ -13,7 +13,7 @@ public class SetThemeServlet extends HttpServlet {
         PrintWriter out = res.getWriter();
         res.setContentType("text/plain");
         String theme = req.getParameter("theme");
-        if (theme.equals("light") || theme.equals("dark")) {
+        if (theme != null && (theme.equals("light") || theme.equals("dark"))) {
             Cookie cookie = new Cookie("siteTheme", theme);
             cookie.setMaxAge(60);
             cookie.setPath("/");
