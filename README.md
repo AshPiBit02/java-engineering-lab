@@ -95,8 +95,8 @@ By the end of the course, students will be proficient in Java programming — eq
 - [ ] 4.4 Email Handling using Java Mail API
 - [x] 4.5 Architecture of RMI
 - [x] 4.6 Creating and Executing RMI Applications
-- [ ] 4.7 Architecture of CORBA
-- [ ] 4.8 RMI vs CORBA
+- [x] 4.7 Architecture of CORBA
+- [x] 4.8 RMI vs CORBA
 - [ ] 4.9 IDL and Simple CORBA Program
 
 ---
@@ -116,14 +116,14 @@ By the end of the course, students will be proficient in Java programming — eq
 
 ### Phase 6 · Servlets and JSP 
 
-- [ ] 6.1 Overview of Web Application
-- [ ] 6.2 HTTP Methods and Responses
-- [ ] 6.3 Life Cycle of Web Servlets
-- [ ] 6.4 Writing Servlet programs with Servlet APIs
-- [ ] 6.5 Reading and Processing Forms
-- [ ] 6.6 Handling GET/POST Requests
-- [ ] 6.7 Database connectivity through servlets
-- [ ] 6.8 Cookies and Sessions
+- [x] 6.1 Overview of Web Application
+- [x] 6.2 HTTP Methods and Responses
+- [x] 6.3 Life Cycle of Web Servlets
+- [x] 6.4 Writing Servlet programs with Servlet APIs
+- [x] 6.5 Reading and Processing Forms
+- [x] 6.6 Handling GET/POST Requests
+- [x] 6.7 Database connectivity through servlets
+- [x] 6.8 Cookies and Sessions
 
 ---
 
@@ -131,7 +131,7 @@ By the end of the course, students will be proficient in Java programming — eq
 
 - [x] 7.1 Overview of ORM
 - [x] 7.2 Hibernate
-- [ ] 7.3 Web Framework Introduction
+- [x] 7.3 Web Framework Introduction
 - [ ] 7.4 Basics of Spring Boot
 - [x] 7.5 Concurrency and Multithreading in JAVA
 - [ ] 7.6 Design Patterns — Singleton, Factory and Abstract Factory
@@ -154,11 +154,11 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] **T11** · Advanced Inheritance and Interfaces
 - [x] **T12** · GUIs with Swing — components, event handling, layout management
 - [x] **T13** · Introduction to JavaFX — scene graphs, UI controls, event handling
-- [ ] **T14** · Network Programming with Sockets — TCP and UDP
+- [x] **T14** · Network Programming with Sockets — TCP and UDP
 - [x] **T15** · Database Connectivity with JDBC
 - [x] **T16** · Advanced Inheritance and Interfaces (extended)
-- [ ] **T17** · Servlet Development — lifecycle, HTTP requests and responses
-- [ ] **T18** · JSP Essentials — dynamic pages, form handling, DB connectivity
+- [x] **T17** · Servlet Development — lifecycle, HTTP requests and responses
+- [x] **T18** · JSP Essentials — dynamic pages, form handling, DB connectivity
 - [x] **T19** · Concurrency and Multithreading — synchronization, thread pools
 - [ ] **T20** · Design Patterns — Singleton, Factory, Abstract Factory
 
@@ -170,9 +170,9 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] **P02** · Object-Oriented Programming — inheritance, encapsulation, polymorphism
 - [x] **P03** · GUI Application with Swing — buttons, text fields, labels
 - [x] **P04** · JavaFX Project — layout managers, UI controls, event handling
-- [ ] **P05** · Socket Programming — client-server app over TCP/UDP
+- [x] **P05** · Socket Programming — client-server app over TCP/UDP
 - [x] **P06** · JDBC Database Application — CRUD operations and exception handling
-- [ ] **P07** · Servlet-Based Web Application — HTTP, JSP, and dynamic content
+- [x] **P07** · Servlet-Based Web Application — HTTP, JSP, and dynamic content
 - [x] **P08** · Concurrency Demonstration — multithreading and safe thread execution
 - [x] **P09** · Hibernate Integration — ORM with database CRUD
 - [ ] **P10** · Spring Boot Project — auto-configuration and dependency injection
