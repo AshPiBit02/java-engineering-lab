@@ -17,7 +17,7 @@ public class CheckThemeServlet extends HttpServlet {
         String theme = null;
         if (cookies != null) {
             for (Cookie c : cookies) {
-                if (c.getName().equals("theme")) {
+                if (c.getName().equals("siteTheme")) {
                     theme = c.getValue();
                 }
             }
