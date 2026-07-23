@@ -34,9 +34,11 @@ public class WithdrawServlet extends HttpServlet {
                 }
             }
         }
-        int realBalance = Integer.parseInt(balance);
+        int realBalance;
         if (balance == null) {
             realBalance = 0;
+        } else {
+            realBalance = Integer.parseInt(balance);
         }
         if (balance == null || realBalance < withdrawAmount) {
             out.println("Insufficient balance. Current balance: $" + realBalance);
