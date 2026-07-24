@@ -2,6 +2,6 @@ public class OrderService {
     private Logger logger = AuditLogger.getInstance();
 
     void placeOrder(String orderId) {
-        logger.log("Order placed: " + orderID);
+        logger.log("Order placed: " + orderId);
     }
 }

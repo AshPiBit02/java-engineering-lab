@@ -27,7 +27,7 @@ public class AuditLogger implements Logger {
             System.out.println();
             System.out.println("-".repeat(15));
             for (String entries : auditTrail) {
-                System.out.println(entries);
+                System.out.println(entries + " Successful");
             }
         }
     }
