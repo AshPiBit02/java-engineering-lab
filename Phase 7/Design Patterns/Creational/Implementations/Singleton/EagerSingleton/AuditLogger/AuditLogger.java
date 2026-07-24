@@ -15,8 +15,9 @@ public class AuditLogger implements Logger {
 
     @Override
     public void log(String action) {
-        auditTrail.add(LocalDateTime.now() + " : " + action);
-        System.out.println(action + " performed.");
+        LocalDateTime ldt = LocalDateTime.now();
+        auditTrail.add(ldt + " : " + action);
+        System.out.println(action + " : " + ldt);
     }
 
     public void printAuditTrail() {
