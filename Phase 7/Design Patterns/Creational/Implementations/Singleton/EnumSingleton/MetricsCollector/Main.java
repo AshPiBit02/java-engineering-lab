@@ -7,8 +7,7 @@ public class Main {
 
         MetricsCollector.printAllMetrics();
 
-
-        
+        MetricsCollector.getOrdinals();
         // System.out.println("Page view count: " +
         // MetricsCollector.PAGE_VIEWS.getCount());
         // System.out.println("Login attempt count: " +
