@@ -11,5 +11,11 @@ public enum MetricsCollector {
         return count;
     }
 
-    
+    public static void printAllMetrics() {
+        System.out.println("-".repeat(20) + " All Metrics " + "-".repeat(20));
+        for (MetricsCollector metric : MetricsCollector.values()) {
+            System.out.println(metric.name() + ": " + metric.getCount());
+        }
+    }
+
 }
