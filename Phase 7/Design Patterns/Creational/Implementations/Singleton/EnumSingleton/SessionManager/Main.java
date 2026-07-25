@@ -17,7 +17,7 @@ public class Main {
         try{
             Constructor<SessionManager> constructor = SessionManager.class.getDeclaredConstructor();
             constructor.setAccessible(true);
-            SessionManager hacked=constructor.newInstance();
+            SessionManager hacked=constructor.newInstance("FAKE",99);
             System.out.println("Reflection succeeded (this shouldn't happen!)");
         }catch(Exception e){
             System.out.println("Reflection blocked: "+e);
