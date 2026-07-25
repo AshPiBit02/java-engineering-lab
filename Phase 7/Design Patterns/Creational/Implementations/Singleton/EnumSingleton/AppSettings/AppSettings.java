@@ -14,7 +14,7 @@ public enum AppSettings implements SettingsStore {
     @Override
     public void setSetting(String key, String value) {
         setting.put(key, value);
-        System.out.format("[SET] %s : %s successful. %n", key, value);
+        System.out.format("[SET] %s : %s %n", key, value);
     }
 
     @Override
@@ -31,7 +31,10 @@ public enum AppSettings implements SettingsStore {
             System.out.println("No settings set yet.");
             return;
         }
-        setting.forEach((key, value) -> System.out.format("%s : %s ", key, value));
+        System.out.println();
+        System.out.println("Setting");
+        System.out.println("-".repeat(40));
+        setting.forEach((key, value) -> System.out.format("%-15s : %s %n", key, value));
 
     }
 
