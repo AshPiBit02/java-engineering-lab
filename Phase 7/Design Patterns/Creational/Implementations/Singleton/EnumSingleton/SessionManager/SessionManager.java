@@ -6,6 +6,7 @@ public enum SessionManager implements Logger {
     public void login(String username) {
         currentUser = username;
         System.out.println(username + " logged in.");
+        log("User session started.");
     }
 
     public String getCurrentUser() {
@@ -15,6 +16,7 @@ public enum SessionManager implements Logger {
     public void logout() {
         System.out.println(currentUser + " logged out.");
         currentUser = null;
+        log("User session ended.");
     }
 
     @Override
