@@ -10,4 +10,10 @@ public class ConcreteProcessor {
             return new ConcretePayment.PayPalPayment();
         }
     }
+
+    static class CryptoProcessor extends PaymentProcessor {
+        PaymentMethod createPaymentMethod() {
+            return new ConcretePayment.CryptoPayment();
+        }
+    }
 }
