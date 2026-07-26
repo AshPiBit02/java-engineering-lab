@@ -7,7 +7,7 @@ public class ConcreteExporters {
 
     static class WordExporter extends DocumentExporter {
         Document createDocument() {
-            return new ConcreteDocument().WordDocument();
+            return new ConcreteDocument.WordDocument();
         }
     }
 }
