@@ -1,13 +1,13 @@
 public class ConcreteProcessor {
-    static class CreditCardPayment extends PaymentProcessor {
+    static class CreditCardProcessor extends PaymentProcessor {
         PaymentMethod createPaymentMethod() {
             return new ConcretePayment.CreditCardPayment();
         }
     }
 
-    static class PayPalPayment extends PaymentProcessor {
+    static class PayPalProcessor extends PaymentProcessor {
         PaymentMethod createPaymentMethod() {
-            return new ConcretePayemet.PayPalPayment();
+            return new ConcretePayment.PayPalPayment();
         }
     }
 }
