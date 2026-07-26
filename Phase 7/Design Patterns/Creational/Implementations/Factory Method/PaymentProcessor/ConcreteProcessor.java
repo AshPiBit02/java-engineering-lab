@@ -1,5 +1,5 @@
 public class ConcreteProcessor {
-    static class CreditCardPayemnt extends PaymentProcessor {
+    static class CreditCardPayment extends PaymentProcessor {
         PaymentMethod createPaymentMethod() {
             return new ConcretePayment.CreditCardPayment();
         }
