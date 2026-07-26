@@ -1,13 +1,13 @@
 public class ConcreteCreators {
-    class CarFactory extends VehicleFactory {
+    static class CarFactory extends VehicleFactory {
         Vehicle createVehicle() {
-            return new Car();
+            return new ConcreteProducts.Car();
         }
     }
 
-    class BikeFactory extends VehicleFactory {
+    static class BikeFactory extends VehicleFactory {
         Vehicle createVehicle() {
-            return new Bike();
+            return new ConcreteProducts.Bike();
         }
     }
 }
