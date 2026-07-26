@@ -1,3 +1,3 @@
-public interface Logger {
+public interface ace {
     void log(String action);
 }

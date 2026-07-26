@@ -1,5 +1,5 @@
 public class UserService {
-    private Logger logger = AuditLogger.getInstance();
+    private ace logger = AuditLogger.getInstance();
 
     void createUser(String name) {
         logger.log("User create: " + name);

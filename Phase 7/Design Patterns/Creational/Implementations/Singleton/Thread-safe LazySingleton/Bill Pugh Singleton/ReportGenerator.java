@@ -27,8 +27,7 @@ public class ReportGenerator {
 
     public void showReports() {
         System.out.println();
-        System.out.printf("-".repeat(50) + " Reports " + "-".repeat(50));
-        System.out.println();
+        System.out.println("-".repeat(50) + " Reports " + "-".repeat(50));
         for (String report : reports) {
             System.out.println(report);
         }

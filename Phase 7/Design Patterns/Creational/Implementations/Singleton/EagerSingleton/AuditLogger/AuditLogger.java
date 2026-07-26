@@ -1,7 +1,7 @@
 import java.util.*;
 import java.time.LocalDateTime;
 
-public class AuditLogger implements Logger {
+public class AuditLogger implements ace {
     private static final AuditLogger instance = new AuditLogger();
     private List<String> auditTrail;
 
