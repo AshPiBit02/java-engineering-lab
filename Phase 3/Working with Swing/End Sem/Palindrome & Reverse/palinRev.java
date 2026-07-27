@@ -21,8 +21,7 @@ public class palinRev {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String input = inputField.getText();
-                StringBuilder sb = new StringBuilder(input);
-                String reversed = sb.reverse().toString();
+                String reversed = getReverse(input);
                 if (input.equals(reversed)) {
                     outputLabel.setText("True");
                 } else {
@@ -30,6 +29,7 @@ public class palinRev {
                 }
             }
         });
+
         palindromeCheckBtn.setBounds(40, 100, 150, 20);
         JButton reverseBtn = new JButton("Reverse");
         reverseBtn.setBounds(200, 100, 150, 20);
@@ -41,5 +41,10 @@ public class palinRev {
         frame.add(reverseBtn);
         frame.setVisible(true);
 
+    }
+
+    public static String getReverse(String input) {
+        StringBuilder sb = new StringBuilder(input);
+        return sb.reverse().toString();
     }
 }
