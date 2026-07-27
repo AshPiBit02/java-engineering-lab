@@ -21,6 +21,10 @@ public class palinRev {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String input = inputField.getText();
+                if (input.isEmpty()) {
+                    outputLabel.setText("Field can't be empty!");
+                    return;
+                }
                 String reversed = getReverse(input);
                 if (input.equals(reversed)) {
                     outputLabel.setText("True");
@@ -36,6 +40,10 @@ public class palinRev {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String input = inputField.getText();
+                if (input.isEmpty()) {
+                    outputLabel.setText("Field can't be empty!");
+                    return;
+                }
                 outputLabel.setText(getReverse(input));
             }
         });
