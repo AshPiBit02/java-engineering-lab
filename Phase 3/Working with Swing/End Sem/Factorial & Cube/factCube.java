@@ -21,7 +21,11 @@ public class factCube {
             public void mousePressed(MouseEvent e) {
                 try {
                     int num = Integer.parseInt(inputField.getText());
-                    outputLabel.setText(String.valueOf(factorial(num)));
+                    if (num < 0) {
+                        outputLabel.setText("Invalid Input!");
+                    } else {
+                        outputLabel.setText(String.valueOf(factorial(num)));
+                    }
                 } catch (NumberFormatException ex) {
                     outputLabel.setText("Invalid Input!");
                 }
@@ -47,6 +51,9 @@ public class factCube {
     }
 
     private static long factorial(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
         long fact = 1;
         for (int i = 1; i <= n; i++) {
             fact *= i;
