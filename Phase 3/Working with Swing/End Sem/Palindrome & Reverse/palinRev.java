@@ -32,6 +32,13 @@ public class palinRev {
 
         palindromeCheckBtn.setBounds(40, 100, 150, 20);
         JButton reverseBtn = new JButton("Reverse");
+        reverseBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String input = inputField.getText();
+                outputLabel.setText(getReverse(input));
+            }
+        });
         reverseBtn.setBounds(200, 100, 150, 20);
 
         frame.add(textLabel);
