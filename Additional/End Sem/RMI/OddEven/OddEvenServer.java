@@ -5,7 +5,7 @@ import java.rmi.Naming;
 public class OddEvenServer {
     public static void main(String[] args) {
         try {
-            int port = 1010;
+            int port = 1011;
             LocateRegistry.createRegistry(port);
             OddEvenImple oddeven = new OddEvenImple();
             Naming.rebind("rmi://localhost:1010/OddEvenService", oddeven);
