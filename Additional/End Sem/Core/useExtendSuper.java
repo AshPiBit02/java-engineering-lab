@@ -13,24 +13,21 @@ class Parent {
 }
 
 class Child extends Parent {
-    String CfirstName;
-
-    Child(String CfirstName, String FfirstName, String lastName) {
-        super(FfirstName, lastName);
-        this.CfirstName = CfirstName;
+    Child(String firstName, String lastName) {
+        super(firstName, lastName);
     }
 
     @Override
     void intro() {
         super.intro();
-        System.out.println("Son: My self " + CfirstName + " " + lastName);
+        System.out.println("Son: My self " + firstName + " " + lastName + " Jr.");
 
     }
 }
 
 public class useExtendSuper {
     public static void main(String[] args) {
-        Child c = new Child("Son", "Father", "Willow");
+        Child c = new Child("Walter", "White");
         c.intro();
     }
 }
