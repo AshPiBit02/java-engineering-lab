@@ -4,6 +4,7 @@
 
 <web-app>
   <welcome-file-list>
+    <welcome-file>names.html</welcome-file>
     <welcome-file>record.jsp</welcome-file>
     <welcome-file>init.jsp</welcome-file>
   </welcome-file-list>
