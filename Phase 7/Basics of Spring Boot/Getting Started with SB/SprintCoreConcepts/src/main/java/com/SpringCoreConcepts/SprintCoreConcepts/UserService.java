@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
     DataBase dataBase;
-    public UserService(@Qualifier("mySQLDB") DataBase dataBase)
+    public UserService(DataBase dataBase)
     {
         this.dataBase=dataBase;
     }
