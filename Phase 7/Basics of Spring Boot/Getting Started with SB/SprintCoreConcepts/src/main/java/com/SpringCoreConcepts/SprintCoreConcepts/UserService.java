@@ -1,9 +1,14 @@
 package com.SpringCoreConcepts.SprintCoreConcepts;
 
 public class UserService {
-    PostgresDB postgresDB=new PostgresDB();
+    DataBase dataBase;
+    public UserService(DataBase dataBase)
+    {
+        this.dataBase=dataBase;
+    }
+
     public void saveUser(String user){
         System.out.println("UserService is saving user: "+user);
-        postgresDB.saveToDB(user);
+        dataBase.save(user);
     }
 }

@@ -11,7 +11,9 @@ public class SprintCoreConceptsApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(SprintCoreConceptsApplication.class, args);
 	}
-	UserService userService=new UserService();
+	DataBase postgres=new PostgresDB();
+	DataBase mysql=new MySQLDB();
+	UserService userService=new UserService(mysql);
 	@Override
 	public void run(String... args) throws Exception {
 		userService.saveUser("Aashish");
