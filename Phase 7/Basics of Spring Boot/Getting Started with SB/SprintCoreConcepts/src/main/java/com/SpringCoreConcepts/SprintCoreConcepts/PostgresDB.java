@@ -1,7 +1,8 @@
 package com.SpringCoreConcepts.SprintCoreConcepts;
 
-import javax.xml.crypto.Data;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PostgresDB implements DataBase {
     @Override
     public void save(String user) {

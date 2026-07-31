@@ -1,5 +1,8 @@
 package com.SpringCoreConcepts.SprintCoreConcepts;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserService {
     DataBase dataBase;
     public UserService(DataBase dataBase)
