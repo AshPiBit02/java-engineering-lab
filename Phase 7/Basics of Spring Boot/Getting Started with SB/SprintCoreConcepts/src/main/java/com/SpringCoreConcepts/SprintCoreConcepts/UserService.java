@@ -1,11 +1,12 @@
 package com.SpringCoreConcepts.SprintCoreConcepts;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
     DataBase dataBase;
-    public UserService(DataBase dataBase)
+    public UserService(@Qualifier("mySQLDB") DataBase dataBase)
     {
         this.dataBase=dataBase;
     }
