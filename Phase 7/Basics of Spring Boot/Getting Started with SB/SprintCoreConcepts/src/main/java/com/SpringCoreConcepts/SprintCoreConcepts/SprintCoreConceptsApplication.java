@@ -3,8 +3,10 @@ package com.SpringCoreConcepts.SprintCoreConcepts;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @SpringBootApplication
+@ConfigurationPropertiesScan
 public class SprintCoreConceptsApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
