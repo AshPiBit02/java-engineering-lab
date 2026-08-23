@@ -15,7 +15,7 @@ public class LenServiceServer {
             System.out.println("Server waiting for client connection....");
 
             Socket socket = serverSocket.accept();
-            System.out.pritnln("Server connect to " + socket.getInetAddress());
+            System.out.println("Server connect to " + socket.getInetAddress());
 
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
@@ -24,10 +24,10 @@ public class LenServiceServer {
             while ((request = in.readLine()) != null) {
                 if (request.equalsIgnoreCase("end")) {
                     System.out.println("Closing Connection....");
-                    return;
+                    break;
                 }
                 System.out.println("Request: " + request);
-                String response = String.valueOf(len(request));
+                String response = "Length-" + String.valueOf(request.length());
                 out.println(response);
                 System.out.println("Response: " + response);
             }
