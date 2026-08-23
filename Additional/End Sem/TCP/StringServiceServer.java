@@ -23,7 +23,7 @@ public class StringServiceServer {
             while ((line = in.readLine()) != null) {
                 System.out.println("Client: " + line);
                 if (line.equalsIgnoreCase("end")) {
-                    out.println("Server: Good Night!");
+                    out.println("Good Night!");
                     break;
                 }
                 out.println("Server: " + line.toUpperCase());
