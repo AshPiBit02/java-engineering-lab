@@ -4,9 +4,10 @@
 
 <web-app>
   <welcome-file-list>
+    <welcome-file>init2.jsp</welcome-file>
+    <welcome-file>record.jsp</welcome-file>
     <welcome-file>adderInterface.jsp</welcome-file>
     <welcome-file>names.html</welcome-file>
-    <welcome-file>record.jsp</welcome-file>
     <welcome-file>init.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

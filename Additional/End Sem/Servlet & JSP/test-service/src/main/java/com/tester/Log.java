@@ -10,7 +10,7 @@ public class Log extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         if (!username.isEmpty() && !password.isEmpty()) {
-            req.setAttribute("user", username);
+            req.setAttribute("user", username); 
             req.getRequestDispatcher("success.jsp").forward(req, res);
         } else {
             req.getRequestDispatcher("failed.jsp").forward(req, res);
