@@ -15,13 +15,10 @@ public class App1 extends HttpServlet {
         String address = req.getParameter("city");
         String profession = req.getParameter("profession");
 
-        res.setContentType("text/html");
-        PrintWriter out = res.getWriter();
-        out.println("<html><body>");
-        out.println("Name of Applicant: " + name + "<br>");
-        out.println("City: " + address + "<br>");
-        out.println("Profession: " + profession + "<br>");
-        out.println("</body></html>");
+        req.setAttribute("name", name);
+        req.setAttribute("city", address);
+        req.setAttribute("profession", profession);
+        req.getRequestDispatcher("intro2.jsp").forward(req, res);
 
     }
 
