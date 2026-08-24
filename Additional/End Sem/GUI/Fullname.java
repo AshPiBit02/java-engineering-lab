@@ -16,7 +16,6 @@ public class Fullname {
         JLabel fullNameLabel = new JLabel("");
 
         JButton submit = new JButton("Submit");
-        fNameLabel.setBounds(20, 150, 150, 30);
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String fullname = fNameField.getText() + " " + lNameField.getText();
