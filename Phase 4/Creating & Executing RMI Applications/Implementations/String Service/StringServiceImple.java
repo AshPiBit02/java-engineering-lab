@@ -1,8 +1,8 @@
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class StringServiceImple extends UnicastRemoteObject implements StringService {
-    protected StringServiceImple() throws RemoteException {
+public class StStringBuilder extends UnicastRemoteObject implements StringService {
+    protected StStringBuilder() throws RemoteException {
         super();
     }
 

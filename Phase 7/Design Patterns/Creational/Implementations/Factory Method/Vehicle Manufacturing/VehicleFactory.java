@@ -1,14 +1,14 @@
 abstract class VehicleFactory {
-    abstract Vehicle createVehicle();
+    abstract BuildVehicle createVehicle();
 
     void manufacture() {
-        Vehicle v = createVehicle();
+        BuildVehicle v = createVehicle();
         v.assemble();
         inspect(v);
         System.out.println("Vehicle ready for delivery.\n");
     }
 
-    private void inspect(Vehicle v) {
+    private void inspect(BuildVehicle v) {
         System.out.println("Running quality insepction...");
     }
 }

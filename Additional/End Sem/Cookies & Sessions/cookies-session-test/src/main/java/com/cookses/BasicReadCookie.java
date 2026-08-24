@@ -3,6 +3,9 @@ package com.cookses;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.*;
+import jakarta.servlet.annotation.WebServlet;
+
+@WebServlet("/basicReadCookie")
 
 public class BasicReadCookie extends HttpServlet {
     @Override

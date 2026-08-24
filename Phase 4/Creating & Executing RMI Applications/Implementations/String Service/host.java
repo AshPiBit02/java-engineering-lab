@@ -1,7 +1,7 @@
 import java.rmi.Naming;
 import java.util.concurrent.ExecutionException;
 
-public class StringServiceClient {
+public class host {
     public static void main(String[] args) {
         String input = "change this to uppercase";
         String input2 = "kaggle";

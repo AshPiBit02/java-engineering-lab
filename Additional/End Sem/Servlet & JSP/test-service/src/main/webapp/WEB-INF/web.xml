@@ -4,6 +4,7 @@
 
 <web-app>
   <welcome-file-list>
+    <welcome-file>SimpleInterest.html</welcome-file>
     <welcome-file>login.jsp</welcome-file>
     <welcome-file>studentForm.html</welcome-file>
     <welcome-file>init2.jsp</welcome-file>

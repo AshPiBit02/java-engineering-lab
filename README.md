@@ -132,9 +132,9 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] 7.1 Overview of ORM
 - [x] 7.2 Hibernate
 - [x] 7.3 Web Framework Introduction
-- [ ] 7.4 Basics of Spring Boot
+- [x] 7.4 Basics of Spring Boot
 - [x] 7.5 Concurrency and Multithreading in JAVA
-- [ ] 7.6 Design Patterns — Singleton, Factory and Abstract Factory
+- [x] 7.6 Design Patterns — Singleton, Factory and Abstract Factory
 
 ---
 
@@ -160,7 +160,7 @@ By the end of the course, students will be proficient in Java programming — eq
 - [x] **T17** · Servlet Development — lifecycle, HTTP requests and responses
 - [x] **T18** · JSP Essentials — dynamic pages, form handling, DB connectivity
 - [x] **T19** · Concurrency and Multithreading — synchronization, thread pools
-- [ ] **T20** · Design Patterns — Singleton, Factory, Abstract Factory
+- [x] **T20** · Design Patterns — Singleton, Factory, Abstract Factory
 
 ---
 

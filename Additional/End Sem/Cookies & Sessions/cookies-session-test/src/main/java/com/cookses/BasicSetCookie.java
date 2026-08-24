@@ -6,7 +6,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.ServletException;
 import java.io.IOException;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.annotation.*;
 
+@WebServlet("/basicSetCookie")
 public class BasicSetCookie extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
