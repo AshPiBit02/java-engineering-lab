@@ -52,12 +52,12 @@ public class Kitchen {
         Chief chief = new Chief();
         Food rice = chief.getFood("rice");
         rice.cook();
-        rice.serve();
         Food lentils = chief.getFood("rice");
         lentils.cook();
-        lentils.serve();
         Food vegies = chief.getFood("rice");
         vegies.cook();
+        rice.serve();
+        lentils.serve();
         vegies.serve();
 
     }
